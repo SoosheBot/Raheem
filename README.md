@@ -4,18 +4,16 @@
 
 🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
 
-# 1️⃣ Title of project goes here
+# 1️⃣ Raheem
 
 1️⃣ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
 
 ## 4️⃣ Contributors
 
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
-
-|                                       [Student 1](https://github.com/)                                        |                                       [Student 2](https://github.com/)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Student 5](https://github.com/)                                        |
+|                                       [Alexander Cooter](https://github.com/alex-lc)                                        |                                       [Susheela Bhat Harkins](https://github.com/SoosheBot)                                        |                                       [K Parrish](https://github.com/KParrish193)                                        |                                       [Chad Snyder](https://github.com/Lou34964)                                        |                                       [Christopher Hernandez](https://github.com/ChristopherHernandezW22)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)             |
+|                      [<img src="https://avatars0.githubusercontent.com/u/56034009?s=460&u=b669b08f675dfc5eae00873bfd5712c5f0dccda9&v=4" width = "200" />](https://github.com/alex-lc)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/SoosheBot)                       |                      [<img src="https://avatars1.githubusercontent.com/u/57117452?s=460&u=d2685b1e3a8cf9da3ede46027dd1a5a78b62d346&v=4" width = "200" />](https://github.com/KParrish193)                       |                      [<img src="https://avatars3.githubusercontent.com/u/55504221?s=460&u=77653c65863d40fb5d13888160cc0652fcc9d304&v=4" width = "200" />](https://github.com/Lou34964)                       |                      [<img src="https://avatars2.githubusercontent.com/u/47870832?s=460&u=c8a57dac57e267945af87bfe96cca76d562478c0&v=4" width = "200" />](https://github.com/ChristopherHernandezW22)                       |
+|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/alex-lc)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/SoosheBot)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/KParrish193)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Lou34964)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ChristopherHernandezW22)             |
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
 
 <br>
@@ -33,26 +31,20 @@
 
 ## Project Overview
 
-1️⃣ [Trello Board](🚫add link to trello board here)
+1️⃣ [Trello Board] (https://trello.com/b/kWzBgwRD/labs-22-raheem)
 
-1️⃣ [Product Canvas](🚫add link to product canvas here)
+1️⃣ [Product Canvas] (https://www.notion.so/Raheem-org-658df791ef9d4a57ab27cc99932ca769)
 
 1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
 
-🚫 Replace lorem ipsum with a description of your project
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+### Description 
+Raheem is an independent online service that helps people take action against police violence. We're a startup non-profit, based in Oakland, CA with the mission of bringing the voices of people impacted by police violence into the conversation to end it; holding individual officers accountable; and building policy based on community experience. 
 
 
 ### 4️⃣ Key Features
 
--    feature one
--    feature two
--    feature three
--    feature four
--    feature five
+-    Give people who have experienced police violence a reason to tell their story and make it easy for them to do so.
+-   Showcase those stories for other community members, media, activists, and policymakers.
 
 ## 1️⃣ Tech Stack
 

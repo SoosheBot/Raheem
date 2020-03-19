@@ -1,5 +1,7 @@
 # Raheem
 
-## Dependencies
-- react-router-dom
+### Dependencies
+
 - dotenv
+- react-router-dom
+- firebase
