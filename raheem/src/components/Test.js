@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import firebase from "../firebase";
-import {GetAllDataFromCollection, GetDataFromCollectionByCity} from "../FireBase-Utils/Get"
 
 function useCollection(collectionName, coll, setColl) {
 

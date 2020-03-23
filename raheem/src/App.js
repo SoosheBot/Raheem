@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import {GetAllDataFromCollection} from "./FireBase-Utils/Get"
+
 
 /* components */
 import Save from './components/buttons/Save';
@@ -15,7 +15,7 @@ function App() {
         <h1>Raheem</h1>
       </Route>
       <Route path="/test">
-        <TestList GetAllDataFromCollection={GetAllDataFromCollection}/>
+        <TestList />
       </Route>
     </div>
   );
