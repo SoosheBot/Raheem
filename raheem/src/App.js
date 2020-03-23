@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-/* components */
 import Demographics from './components/Demographics';
 
 function App() {

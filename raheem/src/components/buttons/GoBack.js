@@ -1,12 +1,12 @@
 import React from 'react';
 import '../../index.css';
 
-function Save() {
+function GoBack() {
     return (
         <button className="save">
-            Save For Later
+            Go Back
         </button>
     )
 }
 
-export default Save;
+export default GoBack;
