@@ -1,4 +1,5 @@
 import React from 'react';
+import TextInput from '../global/TextInput';
 
 function StopDetails() {
     return (
@@ -12,6 +13,7 @@ function StopDetails() {
                 <input type="checkbox" />
                 <p>Negative</p>
             </div>
+            <TextInput />
         </div>
     )
 }
