@@ -1,5 +1,5 @@
 import React from 'react';
-import {Progress} from 'antd';
+import { Progress } from 'antd';
 
 //Purpose of this component is to explain what Raheem is to new users
 function Landing() {
@@ -34,9 +34,3 @@ function Landing() {
 }
 
 export default Landing
-
-
-
-
-
-
