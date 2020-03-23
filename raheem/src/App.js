@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 
 /* components */
 import Save from './components/buttons/Save';
+import StopDetails from './components/forms/StopDetails';
 
 function App() {
   return (
