@@ -4,7 +4,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 //antd components and icons
-import {MailOutlined} from 'antd';
+import {MailOutlined} from '@ant-design/icons';
+import {Progress} from 'antd';
 
 //buttons
 import GoBack from "./buttons/GoBack.js";
@@ -35,11 +36,11 @@ const Email = () => {
             {errors.email && errors.email.message}
 
         {/* on submit will need to direct to thank you page with confirmation to check email for next steps */}
-        {/* does this need to be the save button, or is this something else? */}
-        <div className="buttoncContainer">
-        <button type="submit"> <MailOutlined /> Submit</button>
-        <GoBack />
-        </div>
+
+            <div className="buttoncContainer">
+                <button type="submit"> <MailOutlined /> Submit</button>
+                <GoBack />
+            </div>
         </form>
 
         <div>
