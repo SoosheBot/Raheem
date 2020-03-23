@@ -9,6 +9,7 @@ function Landing() {
     <div className="container">
         <div className="landingTextContainer">
             <div>
+            <div>
                 <h2>Your story can end police violence.</h2>
                 <p>Report and track police to build safer communities for people of color.</p>
             </div>
