@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import firebase from "../firebase";
+import {GetAllDataFromCollection, GetDataFromCollectionByCity} from "../FireBase-Utils/Get"
 
 function useCollection(collectionName, coll, setColl) {
 
@@ -19,6 +20,27 @@ function useCollection(collectionName, coll, setColl) {
 
   return coll;
 }
+// function useTests() {
+//   const [tests, setTests] = useState([]);
+
+//   useEffect(() => {
+//     // firebase
+//     //   .firestore()
+//     //   .collection("test")
+//     //   .onSnapshot(snapshot => {
+//     //     const newTests = snapshot.docs.map(doc => ({
+//     //       id: doc.id,
+//     //       ...doc.data()
+//     //     }));
+
+//     //     setTests(newTests);
+//     //   });
+
+//     setTests(GetAllDataFromCollection('test'));
+//   }, []);
+
+//   return tests;
+// }
 
 function TestList() {
   const [tests, setTests] = useState([]);
