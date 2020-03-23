@@ -1,32 +1,32 @@
 import React, { useState, useEffect } from "react";
 import firebase from "../firebase";
 
-function useTests() {
-  const [tests, setTests] = useState([]);
+function useCollection(collectionName, coll, setColl) {
 
   useEffect(() => {
     firebase
       .firestore()
-      .collection("test")
+      .collection(collectionName)
       .onSnapshot(snapshot => {
-        const newTests = snapshot.docs.map(doc => ({
+        const newColl = snapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
         }));
 
-        setTests(newTests);
+        setColl(newColl);
       });
   }, []);
 
-  return tests;
+  return coll;
 }
 
 function TestList() {
-    const tests = useTests();
+  const [tests, setTests] = useState([]);
+    const collection = useCollection("test", tests, setTests);
 
   return (
     <div>
-      {tests.map(test =>
+      {collection.map(test =>
           <li key={test.id}>
               <h2>First Name: {test.fname}</h2>
               <h2>Last Name: {test.lname}</h2>
