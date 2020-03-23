@@ -1,12 +1,12 @@
 import React from 'react';
 import '../../index.css';
 
-function Save() {
-    return (
+function Continue() {
+    return(
         <button className="save">
-            Save For Later
+            Continue
         </button>
     )
 }
 
-export default Save;
+export default Continue;

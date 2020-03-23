@@ -1,12 +1,13 @@
 import React from 'react';
 import '../../index.css';
 
-function Save() {
-    return (
+//button to exit the application
+function Exit() {
+    return(
         <button className="save">
-            Save For Later
+            Exit
         </button>
     )
 }
 
-export default Save;
+export default Exit;
