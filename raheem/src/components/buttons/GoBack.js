@@ -1,10 +1,11 @@
 import React from 'react';
 import '../../index.css';
+import {LeftOutlined} from 'antd';
 
 function GoBack() {
     return (
         <button className="save">
-            Go Back
+        <LeftOutlined /> Go Back
         </button>
     )
 }

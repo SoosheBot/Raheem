@@ -1,10 +1,11 @@
 import React from 'react';
 import '../../index.css';
+import {SaveOutlined} from 'antd';
 
 function Save() {
     return (
         <button className="save">
-            Save For Later
+            <SaveOutlined /> Save For Later 
         </button>
     )
 }
