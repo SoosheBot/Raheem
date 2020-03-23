@@ -4,13 +4,13 @@ import React from 'react';
 import '../../index.css';
 
 //ant design icon
-import {LeftOutlined} from '@ant-design/icons';
+import { CaretLeftOutlined } from '@ant-design/icons';
 
 //button to go to previous page in application
 function GoBack() {
     return (
         <button className="save">
-        <LeftOutlined /> Go Back
+        <CaretLeftOutlined /> Go Back
         </button>
     )
 }

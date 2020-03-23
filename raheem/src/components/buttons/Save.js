@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../index.css';
-import {SaveOutlined} from '@ant-design/icons';
+import { SaveOutlined } from '@ant-design/icons';
 
 function Save() {
     return (
