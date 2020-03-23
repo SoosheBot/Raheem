@@ -1,13 +1,31 @@
-body {
+/* noto serif font - secondary font */
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700,700i&display=swap');
+
+/* temporary CSS reset until Christopher adds in tailwind CSS styling */
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  font-size: 62.5%;
+}
+
+button.save {
+  font-family: 'Noto Serif', serif;
+  font-weight: 700;
+  font-size: 2.4rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: #FFF600;
+  line-height: 3.6rem;
+  padding: 0.5rem 1rem;
+  transition: all 300ms;
+}
+
+button.save:hover {
+  transition: background 300ms;
+  background: #FAEB00;
+  cursor: pointer;
 }
