@@ -1,6 +1,6 @@
 import React from 'react';
 import { Progress } from 'antd';
-import Continue from './buttons/Continue.js'
+import Continue from './buttons/Continue.js;
 
 //Purpose of this component is to explain what Raheem is to new users
 function Landing() {
