@@ -1,25 +1,26 @@
-import React from 'react';
+import React from "react";
 
-//Purpose is to 
+//Purpose is to
 function Landing() {
+  return (
+    <div>
+      <div>
+        <h2>Your story can end police violence.</h2>
+        <p>
+          Report and track police to build safer communities for people of
+          color.
+        </p>
+      </div>
 
-    return(
-        <div>
-            <h2>Your story can end police violence.</h2>
-            <p>Report and track police to build safer communities for people of color.</p>
-        </div>
-
-        <div>
-            <h2>About Raheem</h2>
-            <p>Raheem is an independent service for reporting police conduct in the United States.</p>
-        </div>
-    )
+      <div>
+        <h2>About Raheem</h2>
+        <p>
+          Raheem is an independent service for reporting police conduct in the
+          United States.
+        </p>
+      </div>
+    </div>
+  );
 }
 
-export default Landing
-
-
-
-
-
-
+export default Landing;
