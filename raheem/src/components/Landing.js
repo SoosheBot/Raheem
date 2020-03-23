@@ -7,11 +7,13 @@ import { Progress } from 'antd';
 import Continue from './buttons/Continue.js'
 import Exit from './buttons/Exit.js'
 
+
 //Purpose of this component is to explain what Raheem is to new users
 function Landing() {
 
     return(
-        <div>
+    <div className="container">
+        <div className="landingTextContainer">
             <div>
                 <h2>Your story can end police violence.</h2>
                 <p>Report and track police to build safer communities for people of color.</p>
@@ -25,13 +27,21 @@ function Landing() {
                     Raheem uses data to identify places with the highest rates of police violence in the country. Then we partner with community oversight structures in these areas to collect firsthand reports of police conduct and help people file formal complaints that can lead to officers being held accountable. 
                     </p>
             </div>
+        </div>
 
-            <div>                
+
+        <div className="landingButtonContainer">
+            <div>
+                <p>Click here to proceed.</p>
                 <Continue />
+            </div>
+            <div>
+                <p>Click here to exit.</p>
                 <Exit />
             </div>
+        </div>
 
-            <div>
+        <div className="progressContainer">
             <Progress
                 strokeColor={{
                     '0%': '#FFF600',
@@ -39,9 +49,9 @@ function Landing() {
                 }}
                 percent={5}
                 />
-            </div>
         </div>
+    </div>
     )
 }
 
-export default Landing
+export default Landing;
