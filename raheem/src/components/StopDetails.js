@@ -1,5 +1,17 @@
 import React from 'react';
 
+//buttons
+import Continue from './buttons/Continue';
+import Save from './buttons/Save';
+import GoBack from './buttons/GoBack';
+
+//components
+import Tags from './Tags';
+
+//antd components and icons
+import { Progress } from 'antd';
+
+
 function StopDetails() {
     return (
         <div>
@@ -37,6 +49,16 @@ function StopDetails() {
                     <Save />
                     {/* go to email */}
                 </div>
+            </div>
+
+            <div className="progress">
+            <Progress
+                strokeColor={{
+                    '0%': '#FFF600',
+                    '100%': '#111111',
+                }}
+                percent={20}  />
+                />
             </div>
         </div>
     )

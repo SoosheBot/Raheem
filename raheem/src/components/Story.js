@@ -3,6 +3,14 @@ import React from "react";
 //form validation
 import { useForm } from "react-hook-form";
 
+//buttons
+import Continue from './buttons/Continue';
+import Save from './buttons/Save';
+import GoBack from './buttons/GoBack';
+
+//antd components and icons
+import { Progress } from 'antd';
+
 function Story() {
 
     const { handleSubmit, register, errors } = useForm();
@@ -27,7 +35,7 @@ function Story() {
                         }
                         })}
                     />
-                    {errors.email && errors.email.message}
+                    {errors.story && errors.story.message}
                 </form>
             </div>
 
@@ -49,7 +57,15 @@ function Story() {
                 </div>
             </div>
 
-            {/* progress bar */}
+            <div className="progressContainer">
+            <Progress
+                strokeColor={{
+                    '0%': '#FFF600',
+                    '50%': '#111111',
+                }}
+                percent={50}
+                />
+        </div>
         </div>
     )
 }
