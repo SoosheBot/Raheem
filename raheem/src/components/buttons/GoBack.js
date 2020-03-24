@@ -6,6 +6,7 @@ import '../../index.css';
 //ant design icon
 import { CaretLeftOutlined } from '@ant-design/icons';
 
+
 //button to go to previous page in application
 function GoBack() {
     return (

@@ -4,6 +4,7 @@ import React from 'react';
 import '../../index.css';
 
 //ant design icon
+
 import { CaretRightOutlined } from '@ant-design/icons';
 
 //button to continue in the application

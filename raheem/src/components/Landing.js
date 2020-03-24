@@ -7,7 +7,6 @@ import { Progress } from 'antd';
 import Continue from './buttons/Continue.js'
 import Exit from './buttons/Exit.js'
 
-
 //Purpose of this component is to explain what Raheem is to new users
 function Landing() {
 
