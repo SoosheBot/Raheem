@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { findByLabelText } from '@testing-library/react';
+import { Progress } from 'antd';
 
 function Demographics() {
 
@@ -24,47 +24,121 @@ function Demographics() {
                     <option value="74+">74+</option>
                 </select>
 
+                {errors.age && <p>Please select an age range.</p>}
+
                 {/* ETHNICITY */}
                 <label>Please specify your ethnicity:</label>
-                <label htmlFor="african-american">
-                    <input name="african-american" type="radio" ref={register} />
+                <div>
+                    <input name="ethnicity" type="radio" ref={register({ required: true })} value="african american" />
                     African-American
-                </label>
-                <label htmlFor="asian">
-                    <input name="asian" type="radio" ref={register} />
+                </div>
+                <div>
+                    <input name="ethnicity" type="radio" ref={register({ required: true })} value="asian" />
                     Asian
-                </label>
-                <label htmlFor="Caucasian">
-                    <input name="caucasian" type="radio" ref={register} />
+                </div>
+                <div>
+                    <input name="ethnicity" type="radio" ref={register({ required: true })} value="caucasian" />
                     Caucasian
-                </label>
-                <label htmlFor="hispanic">
-                    <input name="hispanic" type="radio" ref={register} />
+                </div>
+                <div>
+                    <input name="ethnicity" type="radio" ref={register({ required: true })} value="hispanic" />
                     Latino or Hispanic
-                </label>
-                <label htmlFor="native-american">
-                    <input name="native-american" type="radio" ref={register} />
+                </div>
+                <div>
+                    <input name="ethnicity" type="radio" ref={register({ required: true })} value="native american" />
                     Native American
-                </label>
-                <label htmlFor="hawaiian-pacific">
-                    <input name="hawaiian-pacific" type="radio" ref={register} />
+                </div>
+                <div>
+                    <input name="ethnicity" type="radio" ref={register({ required: true })} value="hawaiian pacific islander" />
                     Native Hawaiian or Pacific Islander
-                </label>
-                <label htmlFor="other">
-                    <input name="other" type="radio" ref={register} />
+                </div>
+                <div>
+                    <input name="ethnicity" type="radio" ref={register({ required: true })} value="other" />
                     Other
-                </label>
-                <label htmlFor="unknown">
-                    <input name="unknown" type="radio" ref={register} />
+                </div>
+                <div>
+                    <input name="ethnicity" type="radio" ref={register({ required: true })} value="unknown" />
                     Unknown
-                </label>
-                <label htmlFor="no-preference">
-                    <input name="no-preference" type="radio" ref={register} />
+                </div>
+                <div>
+                    <input name="ethnicity" type="radio" ref={register({ required: true })} value="no preference" />
                     Prefer not to say
-                </label>
+                </div>
+
+                {errors.ethnicity && <p>Please select an ethnicity.</p>}
+
+                <label>What gender do you identify as?:</label>
+                <div>
+                    <input name="gender" type="radio" ref={register({ required: true })} value="female" />
+                    Female
+                </div>
+                <div>
+                    <input name="gender" type="radio" ref={register({ required: true })} value="male" />
+                    Male
+                </div>
+                <div>
+                    <input name="gender" type="radio" ref={register({ required: true })} value="variant non conforming" />
+                    Gender Variant/Non-Conforming
+                </div>
+                <div>
+                    <input name="gender" type="radio" ref={register({ required: true })} value="not listed" />
+                    Not listed
+                </div>
+                <div>
+                    <input name="gender" type="radio" ref={register({ required: true })} value="no preference" />
+                    Prefer not to say
+                </div>
+                <div>
+                    <input name="gender" type="radio" ref={register({ required: true })} value="other" />
+                    Other
+                </div>
+
+                {errors.gender && <p>Please select a gender.</p>}
+
+                <label>Do you consider yourself to be:</label>
+                <div>
+                    <input name="sexuality" type="radio" ref={register({ required: true })} value="heterosexual" />
+                    Heterosexual or straight
+                </div>
+                <div>
+                    <input name="gender" type="radio" ref={register({ required: true })} value="homosexual" />
+                    Homosexual
+                </div>
+                <div>
+                    <input name="gender" type="radio" ref={register({ required: true })} value="bisexual" />
+                    Bisexual
+                </div>
+                <div>
+                    <input name="gender" type="radio" ref={register({ required: true })} value="other" />
+                    Other
+                </div>
+
+                {errors.gender && <p>Please select a sexuality.</p>}
+
+                <label>Do you consider yourself to be transgender?:</label>
+                <div>
+                    <input name="transgender" type="radio" ref={register({ required: true })} value="yes" />
+                    Yes
+                </div>
+                <div>
+                    <input name="transgender" type="radio" ref={register({ required: true })} value="no" />
+                    No
+                </div>
+
+                {errors.transgender && <p>This field is required.</p>}
 
                 <input type="submit" />
             </form>
+
+            <div className="progressContainer">
+                <Progress
+                    strokeColor={{
+                        '0%': '#FFF600',
+                        '100%': '#111111',
+                    }}
+                    percent={25}
+                />
+            </div>
         </div>
     )
 }
