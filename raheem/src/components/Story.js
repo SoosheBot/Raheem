@@ -1,6 +1,6 @@
 import React from "react"
 
-function TextInput() {
+function Story() {
 
     return (
         <div>
@@ -9,4 +9,4 @@ function TextInput() {
     )
 }
 
-export default TextInput;
+export default Story;
