@@ -1,6 +1,11 @@
 import React from 'react';
+
+//ant design components
 import { Progress } from 'antd';
-import Continue from './buttons/Continue.js;
+
+
+//buttons
+import Continue from './buttons/Continue.js';
 
 //Purpose of this component is to explain what Raheem is to new users
 function Landing() {
@@ -8,7 +13,6 @@ function Landing() {
     return(
     <div className="container">
         <div className="landingTextContainer">
-            <div>
             <div>
                 <h2>Your story can end police violence.</h2>
                 <p>Report and track police to build safer communities for people of color.</p>
