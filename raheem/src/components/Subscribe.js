@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 
 //antd components and icons
 import {BellOutlined} from '@ant-design/icons';
-import {Progress} from 'antd';
+import { Progress } from 'antd';
 
 //buttons
 import GoBack from "./buttons/GoBack.js";
@@ -44,8 +44,11 @@ const Subscribe = () => {
         {/* on submit will need to direct to thank you page with confirmation to check email for next steps */}
         
             <div className="buttoncContainer">
-                <button type="submit"> Subscribe<BellOutlined /> </button>
+                <button type="submit"> Subscribe <BellOutlined /> </button>
+                {/* go to thank you */}
+
                 <GoBack />
+                {/* go to demographics */}
             </div>
         </form>
 
