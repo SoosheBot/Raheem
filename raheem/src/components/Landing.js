@@ -29,7 +29,6 @@ function Landing() {
             </div>
         </div>
 
-
         <div className="landingButtonContainer">
             <div>
                 <p>Click here to proceed.</p>

@@ -1,8 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-
-
 /* components */
 import TestList from "./components/Test";
 import Demographics from './components/Demographics';
