@@ -7,7 +7,6 @@ import { Route } from 'react-router-dom';
 import TestList from "./components/Test";
 import Demographics from './components/Demographics';
 
-
 function App() {
   return (
     <div>
