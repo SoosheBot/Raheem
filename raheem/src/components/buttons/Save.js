@@ -1,10 +1,11 @@
 import React from 'react';
 import '../../index.css';
+import {SaveOutlined} from '@ant-design/icons';
 
 function Save() {
     return (
         <button className="save">
-            Save
+            <SaveOutlined /> Save For Later 
         </button>
     )
 }
