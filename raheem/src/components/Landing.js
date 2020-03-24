@@ -7,7 +7,6 @@ import { Progress } from 'antd';
 import Continue from './buttons/Continue.js';
 import Exit from './buttons/Exit.js';
 
-
 //Purpose of this component is to explain what Raheem is to new users
 function Landing() {
 
@@ -27,6 +26,7 @@ function Landing() {
                     Raheem uses data to identify places with the highest rates of police violence in the country. Then we partner with community oversight structures in these areas to collect firsthand reports of police conduct and help people file formal complaints that can lead to officers being held accountable. 
                     </p>
             </div>
+
       </div>
 
 
@@ -54,4 +54,4 @@ function Landing() {
     )
 }
 
-export default Landing
+export default Landing;
