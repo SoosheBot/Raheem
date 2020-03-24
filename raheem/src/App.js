@@ -18,6 +18,7 @@ function App() {
 
       <Route path="/test">
         <TestList />
+      </Route>
       <Route path="/demo">
         <Demographics />
 
