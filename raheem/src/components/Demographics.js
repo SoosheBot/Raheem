@@ -1,7 +1,12 @@
 import React from 'react';
+
+//validation
 import { useForm } from 'react-hook-form';
+
+//antd icons and components
 import { Progress } from 'antd';
 
+//this function collects information about the users
 function Demographics() {
 
     const { register, handleSubmit, errors } = useForm();
@@ -130,13 +135,31 @@ function Demographics() {
                 <input type="submit" />
             </form>
 
+            <div className="tagsButtonContainer">
+                <div>
+                    <p>Click here to proceed.</p>
+                    <Continue />
+                    {/* continue to subscription */}
+                </div>
+                <div>
+                    <p>Click here to go back.</p>
+                    <GoBack />
+                    {/* go back to story */}
+                </div>
+                <div>
+                    <p>Click here to save your responses and come back later.</p>
+                    <Save />
+                    {/* go to email */}
+                </div>
+            </div>
+
             <div className="progressContainer">
                 <Progress
                     strokeColor={{
                         '0%': '#FFF600',
                         '100%': '#111111',
                     }}
-                    percent={25}
+                    percent={75}
                 />
             </div>
         </div>

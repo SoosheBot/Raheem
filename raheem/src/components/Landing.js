@@ -27,7 +27,7 @@ function Landing() {
                     Raheem uses data to identify places with the highest rates of police violence in the country. Then we partner with community oversight structures in these areas to collect firsthand reports of police conduct and help people file formal complaints that can lead to officers being held accountable. 
                     </p>
             </div>
-      </div>
+    </div>
 
 
 
@@ -35,10 +35,12 @@ function Landing() {
             <div>
                 <p>Click here to proceed.</p>
                 <Continue />
+                {/* goes to stop details */}
             </div>
             <div>
                 <p>Click here to exit.</p>
                 <Exit />
+                {/*  */}
             </div>
         </div>
 
