@@ -4,13 +4,14 @@ import React from 'react';
 import '../../index.css';
 
 //ant design icon
-import {RightOutlined} from '@ant-design/icons';
+
+import { CaretRightOutlined } from '@ant-design/icons';
 
 //button to continue in the application
 function Continue() {
     return(
         <button className="save">
-            Continue <RightOutlined />
+            Continue <CaretRightOutlined />
         </button>
     )
 }

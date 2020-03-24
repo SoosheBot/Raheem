@@ -4,8 +4,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 //antd components and icons
-import {MailOutlined} from '@ant-design/icons';
-import {Progress} from 'antd';
+import { MailOutlined } from '@ant-design/icons';
+import { Progress } from 'antd';
 
 //buttons
 import GoBack from "./buttons/GoBack.js";
@@ -41,6 +41,7 @@ const Email = () => {
                 <button type="submit"> <MailOutlined /> Submit</button>
                 <GoBack />
             </div>
+
         </form>
 
         <div>
