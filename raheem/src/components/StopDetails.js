@@ -5,6 +5,7 @@ import Tags from './Tags';
 import Continue from './buttons/Continue';
 import GoBack from './buttons/GoBack';
 import Save from './buttons/Save';
+import { Progress } from 'antd';
 
 function StopDetails() {
     return (
@@ -46,12 +47,12 @@ function StopDetails() {
             </div>
 
             <div className="progress">
-            <Progress
-                strokeColor={{
-                    '0%': '#FFF600',
-                    '100%': '#111111',
-                }}
-                percent={20}  />
+                <Progress
+                    strokeColor={{
+                        '0%': '#FFF600',
+                        '100%': '#111111',
+                    }}
+                    percent={20} />
                 />
             </div>
         </div>

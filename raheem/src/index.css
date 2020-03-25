@@ -18,6 +18,7 @@ html {
 }
 
 button.save {
+  width: 100%;
   font-family: 'Noto Serif', serif;
   font-weight: 700;
   font-size: 1.4rem;
@@ -34,4 +35,10 @@ button.save:hover {
   transition: background 300ms;
   background: #FAEB00;
   cursor: pointer;
+}
+
+@media (max-width: 550px) {
+  button.save {
+    font-size: 1.2rem;
+  }
 }

@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import Continue from './buttons/Continue';
 import GoBack from './buttons/GoBack';
 import Save from './buttons/Save';
+import { Progress } from 'antd';
 
 function Story() {
 
@@ -55,14 +56,14 @@ function Story() {
             </div>
 
             <div className="progressContainer">
-            <Progress
-                strokeColor={{
-                    '0%': '#FFF600',
-                    '50%': '#111111',
-                }}
-                percent={50}
+                <Progress
+                    strokeColor={{
+                        '0%': '#FFF600',
+                        '50%': '#111111',
+                    }}
+                    percent={50}
                 />
-        </div>
+            </div>
         </div>
     )
 }
