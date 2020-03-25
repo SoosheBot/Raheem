@@ -7,6 +7,15 @@ import { Progress } from 'antd';
 import Continue from './buttons/Continue.js';
 import Exit from './buttons/Exit.js';
 
+//style
+import styled from 'styled-components';
+
+// const ProgressContainer = styled.div`
+//     width: 100%,
+//     display: flex,
+//     flex-direction: row
+//     padding: 5%;
+// `
 
 //Purpose of this component is to explain what Raheem is to new users
 function Landing() {
@@ -40,7 +49,7 @@ function Landing() {
             <div>
                 <p>Click here to exit.</p>
                 <Exit />
-                {/*  */}
+                {/* go to thank you */}
             </div>
         </div>
 

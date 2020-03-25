@@ -1,14 +1,17 @@
 import React from 'react';
 
-//buttons
-import Continue from './buttons/Continue';
-import Save from './buttons/Save';
-import GoBack from './buttons/GoBack';
-
-//components
+/* components */
 import Tags from './Tags';
 
-//antd components and icons
+/* Buttons */
+import Continue from './buttons/Continue';
+import GoBack from './buttons/GoBack';
+import Save from './buttons/Save';
+
+/*antd components and icons */
+
+
+
 
 
 

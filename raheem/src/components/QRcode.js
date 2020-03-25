@@ -9,7 +9,7 @@ const Container = styled.div`
 function QRcode() {
     return(
         <Container>
-            <p>QR Code Goes Here!</p>
+            <h1>QR Code Goes Here!</h1>
         </Container>
     )
 }
