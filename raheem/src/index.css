@@ -1,6 +1,10 @@
 /* noto serif font - secondary font */
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700,700i&display=swap');
 
+/* robot temporary font until we get official font from stakeholder */
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700,900&display=swap');
+
+
 /* temporary CSS reset until Christopher adds in tailwind CSS styling */
 * {
   margin: 0;
@@ -10,18 +14,20 @@
 
 html {
   font-size: 62.5%;
+  background: #FFF600;
 }
 
 button.save {
   font-family: 'Noto Serif', serif;
   font-weight: 700;
-  font-size: 2.4rem;
+  font-size: 1.4rem;
   border: none;
   border-radius: 0.5rem;
   background: #FFF600;
-  line-height: 3.6rem;
   padding: 0.5rem 1rem;
   transition: all 300ms;
+  display: flex;
+  align-items: center;
 }
 
 button.save:hover {
