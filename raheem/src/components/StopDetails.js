@@ -9,7 +9,7 @@ import GoBack from './buttons/GoBack';
 import Tags from './Tags';
 
 //antd components and icons
-import { Progress } from 'antd';
+
 
 
 function StopDetails() {
@@ -51,14 +51,8 @@ function StopDetails() {
                 </div>
             </div>
 
-            <div className="progress">
-            <Progress
-                strokeColor={{
-                    '0%': '#FFF600',
-                    '100%': '#111111',
-                }}
-                percent={20}  />
-                />
+            <div className="progressContainer">
+
             </div>
         </div>
     )

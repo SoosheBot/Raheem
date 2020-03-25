@@ -55,14 +55,8 @@ const Subscribe = () => {
             </div>
         </form>
 
-        <div className="progress">
-            <Progress
-                strokeColor={{
-                    '0%': '#FFF600',
-                    '100%': '#111111',
-                }}
-                percent={99}
-                />
+        <div className="progressContainer">
+
         </div>
     </div>
     );

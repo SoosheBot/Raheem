@@ -1,23 +1,13 @@
 import React, { useState, useEffect } from "react";
 
 //antd components
-import { Progress, Tag } from 'antd';
+import { Tag } from 'antd';
 
 //styles
 import styled from 'styled-components';
 
 //defining tag type
 const { CheckableTag } = Tag;
-
-//setting state
-// const [checked, setChecked] = useState(false);
-// const [positive, setPositive] = useState();
-// const [negative, setNegative] = useState();
-
-//setting checked tags to true
-// const handleChange = checked => {
-//     setChecked(true);
-// };
 
 //this component is used for displaying story tags 
 const Tags = (props) => {

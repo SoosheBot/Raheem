@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-//antd components and icons
-import { Progress } from 'antd';
 
 function ThankYou() {
 
