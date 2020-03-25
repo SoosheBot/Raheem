@@ -13,7 +13,8 @@ import Demographics from './components/Demographics';
 import Subscribe from './components/Subscribe';
 import ThankYou from './components/ThankYou';
 import TestAdd from './components/TestAdd';
-import Test from './components/Test'
+import Test from './components/Test';
+import TestDel from './components/TestDel';
 
 function App() {
   return (
@@ -61,6 +62,10 @@ function App() {
 
       <Route path="/test">
         <Test />
+      </Route>
+
+      <Route path="/testDel">
+        <TestDel />
       </Route>
     </div>
   );
