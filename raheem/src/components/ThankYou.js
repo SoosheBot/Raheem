@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+//antd components and icons
+import { Progress } from 'antd';
+
 function ThankYou() {
 
     /* we could possibly store some value in localStorage to determine

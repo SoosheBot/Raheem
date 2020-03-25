@@ -32,7 +32,7 @@ function Story() {
                             }
                         })}
                     />
-                    {errors.email && errors.email.message}
+                    {errors.story && errors.story.message}
                 </form>
             </div>
 
@@ -54,7 +54,15 @@ function Story() {
                 </div>
             </div>
 
-            {/* progress bar */}
+            <div className="progressContainer">
+            <Progress
+                strokeColor={{
+                    '0%': '#FFF600',
+                    '50%': '#111111',
+                }}
+                percent={50}
+                />
+        </div>
         </div>
     )
 }
