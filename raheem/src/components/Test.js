@@ -49,9 +49,10 @@ function TestList() {
     <div>
       {collection.map(test =>
           <li key={test.id}>
-              <h2>First Name: {test.fname}</h2>
-              <h2>Last Name: {test.lname}</h2>
+              <h2>First Name: {test.Fname}</h2>
+              <h2>Last Name: {test.Lname}</h2>
               <h2>Age: {test.age}</h2>
+
           </li>
       )}
     </div>
