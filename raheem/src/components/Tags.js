@@ -9,18 +9,18 @@ import styled from 'styled-components';
 //defining tag type
 const { CheckableTag } = Tag;
 
-//setting state
-// const [checked, setChecked] = useState(false);
-// const [positive, setPositive] = useState();
-// const [negative, setNegative] = useState();
-
-//setting checked tags to true
-// const handleChange = checked => {
-//     setChecked(true);
-// };
-
 //this component is used for displaying story tags 
 const Tags = (props) => {
+
+    //setting state
+    // const [checked, setChecked] = useState(false);
+    // const [positive, setPositive] = useState();
+    // const [negative, setNegative] = useState();
+
+    //setting checked tags to true
+    // const handleChange = checked => {
+    //     setChecked(true);
+    // };
 
     return (
     <div>
@@ -59,3 +59,33 @@ const Tags = (props) => {
 };
 
 export default Tags;
+
+
+
+
+// import { Tag } from 'antd';
+
+// const { CheckableTag } = Tag;
+
+// class MyTag extends React.Component {
+//   state = { checked: true };
+
+//   handleChange = checked => {
+//     this.setState({ checked });
+//   };
+
+//   render() {
+//     return (
+//       <CheckableTag {...this.props} checked={this.state.checked} onChange={this.handleChange} />
+//     );
+//   }
+// }
+
+// ReactDOM.render(
+//   <div>
+//     <MyTag>Tag1</MyTag>
+//     <MyTag>Tag2</MyTag>
+//     <MyTag>Tag3</MyTag>
+//   </div>,
+//   mountNode,
+// );

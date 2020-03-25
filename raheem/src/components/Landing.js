@@ -1,7 +1,7 @@
 import React from 'react';
 
-//ant design components
-import { Progress } from 'antd';
+//progress bar
+import Progress from './other/Progress'
 
 //buttons
 import Continue from './buttons/Continue.js';
@@ -40,18 +40,12 @@ function Landing() {
             <div>
                 <p>Click here to exit.</p>
                 <Exit />
-                {/*  */}
+                {/* exit to thank you */}
             </div>
         </div>
 
         <div className="progressContainer">
-            <Progress
-                strokeColor={{
-                    '0%': '#FFF600',
-                    '100%': '#111111',
-                }}
-                percent={5}
-                />
+            <Progress />
         </div>
     </div>
     )
