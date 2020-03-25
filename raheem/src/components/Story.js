@@ -3,13 +3,10 @@ import React from "react";
 //form validation
 import { useForm } from "react-hook-form";
 
-//buttons
+/* components */
 import Continue from './buttons/Continue';
-import Save from './buttons/Save';
 import GoBack from './buttons/GoBack';
-
-//antd components and icons
-import { Progress } from 'antd';
+import Save from './buttons/Save';
 
 function Story() {
 
@@ -29,10 +26,10 @@ function Story() {
                     <input
                         name="story"
                         ref={register({
-                        required: 'Required',
-                        pattern: {
-                            message: "input is required"
-                        }
+                            required: 'Required',
+                            pattern: {
+                                message: "input is required"
+                            }
                         })}
                     />
                     {errors.story && errors.story.message}

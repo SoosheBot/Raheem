@@ -1,16 +1,10 @@
 import React from 'react';
 
-//buttons
-import Continue from './buttons/Continue';
-import Save from './buttons/Save';
-import GoBack from './buttons/GoBack';
-
-//components
+/* components */
 import Tags from './Tags';
-
-//antd components and icons
-import { Progress } from 'antd';
-
+import Continue from './buttons/Continue';
+import GoBack from './buttons/GoBack';
+import Save from './buttons/Save';
 
 function StopDetails() {
     return (
