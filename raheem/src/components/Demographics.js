@@ -1,5 +1,9 @@
 import React from 'react';
 
+import Continue from './buttons/Continue';
+import GoBack from './buttons/GoBack';
+import Save from './buttons/Save';
+
 //validation
 import { useForm } from 'react-hook-form';
 
