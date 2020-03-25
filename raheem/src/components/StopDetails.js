@@ -1,5 +1,11 @@
 import React from 'react';
 
+/* components */
+import Tags from './Tags';
+import Continue from './buttons/Continue';
+import GoBack from './buttons/GoBack';
+import Save from './buttons/Save';
+
 function StopDetails() {
     return (
         <div>

@@ -3,6 +3,11 @@ import React from "react";
 //form validation
 import { useForm } from "react-hook-form";
 
+/* components */
+import Continue from './buttons/Continue';
+import GoBack from './buttons/GoBack';
+import Save from './buttons/Save';
+
 function Story() {
 
     const { handleSubmit, register, errors } = useForm();
@@ -21,10 +26,10 @@ function Story() {
                     <input
                         name="story"
                         ref={register({
-                        required: 'Required',
-                        pattern: {
-                            message: "input is required"
-                        }
+                            required: 'Required',
+                            pattern: {
+                                message: "input is required"
+                            }
                         })}
                     />
                     {errors.email && errors.email.message}
