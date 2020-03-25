@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-//antd components and icons
-import { Progress } from 'antd';
 
 function ThankYou() {
 

@@ -179,10 +179,12 @@ function Demographics() {
                         percent={75}
                     />
                 </div>
+
             </form>
 
             {console.log(demographicData)}
         </DemographicsContainer>
+
     )
 }
 

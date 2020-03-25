@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 
 //antd components and icons
 import { MailOutlined } from '@ant-design/icons';
-import { Progress } from 'antd';
 
 //buttons
 import GoBack from "./buttons/GoBack.js";
@@ -44,17 +43,9 @@ const Email = () => {
 
         </form>
 
-        <div>
-            <Progress
-                strokeColor={{
-                    '0%': '#FFF600',
-                    '100%': '#111111',
-                }}
-                percent={5} 
-                // dynamically adjust precentage?
-                status="exception" />
-                />
-            </div>
+        <div className="progressContainer">
+    
+        </div>
     </div>
     );
 };

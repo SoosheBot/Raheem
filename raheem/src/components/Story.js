@@ -56,13 +56,7 @@ function Story() {
             </div>
 
             <div className="progressContainer">
-                <Progress
-                    strokeColor={{
-                        '0%': '#FFF600',
-                        '50%': '#111111',
-                    }}
-                    percent={50}
-                />
+
             </div>
         </div>
     )
