@@ -1,13 +1,38 @@
 import React from "react";
 
+//form validation
+import { useForm } from "react-hook-form";
+
 import Continue from './buttons/Continue';
 import GoBack from './buttons/GoBack';
 import Save from './buttons/Save';
 
 import styled from "styled-components";
 
-//form validation
-import { useForm } from "react-hook-form";
+const Form = styled.div`
+    margin-left: auto;
+    margin-right: auto;
+    width: 375px;
+    background-color: #FFF600;
+`;
+
+const WhiteBG = styled.div`
+    background-color: #FFFFFF;
+`;
+
+const Heading1 = styled.h1`
+    font-size: 3em;
+    text-align: center;
+    margin: 1em;
+`;
+
+const Heading2 = styled.h2`
+    text-align: center;
+`;
+
+const PTag = styled.p`
+    font-size: 16px;
+`;
 
 function Story() {
 
@@ -17,11 +42,11 @@ function Story() {
     };
 
     return (
-        <div>
+        <Form>
             <div>
-                <p>
-                    {/* user instructions */}
-                </p>
+                <PTag>
+                    Describe the indicent from start to finish. Be as descriptive as possible, and remember to include details about the officer's attitude and actions during this encounter.
+                </PTag>
 
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <input
@@ -35,6 +60,7 @@ function Story() {
                     />
                     {errors.email && errors.email.message}
                 </form>
+
             </div>
 
             <div className="tagsButtonContainer">
@@ -56,7 +82,7 @@ function Story() {
             </div>
 
             {/* progress bar */}
-        </div>
+        </Form>
     )
 }
 
