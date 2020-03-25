@@ -1,7 +1,7 @@
 import React from 'react';
 
 //progress bar
-import Progress from './other/Progress'
+import ProgressBar from './other/ProgressBar'
 
 //buttons
 import Continue from './buttons/Continue.js';
@@ -45,7 +45,7 @@ function Landing() {
         </div>
 
         <div className="progressContainer">
-            <Progress />
+            <ProgressBar />
         </div>
     </div>
     )

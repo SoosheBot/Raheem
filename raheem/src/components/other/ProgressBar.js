@@ -8,16 +8,18 @@ const { Step } = Steps;
 function ProgressBar() {
     const [current, setCurrent] = useState(0)
 
-    onChange {
-    console.log('onChange:', current);
-    setCurrent(current);
-    };
+    // onChange {
+    // console.log('onChange:', current);
+    // setCurrent(current);
+    // };
 
-    const { current } = this.state;
+    // const { current } = this.state;
 
     return (
         <div>
-        <Steps current={current} onChange={{onChange}}>
+        <Steps 
+        // current={current} onChange={{onChange}}
+        >
             <Step title="Step 1" description="About" />
             <Step title="Step 2" description="Stop Information" />
             <Step title="Step 4" description="Stop Details" />

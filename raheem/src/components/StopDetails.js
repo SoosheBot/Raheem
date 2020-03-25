@@ -51,15 +51,6 @@ function StopDetails() {
                 </div>
             </div>
 
-            <div className="progress">
-            <Progress
-                strokeColor={{
-                    '0%': '#FFF600',
-                    '100%': '#111111',
-                }}
-                percent={20}  />
-                />
-            </div>
         </div>
     )
 }

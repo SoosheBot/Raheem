@@ -13,14 +13,14 @@ const { CheckableTag } = Tag;
 const Tags = (props) => {
 
     //setting state
-    // const [checked, setChecked] = useState(false);
+    const [checked, setChecked] = useState(false);
     // const [positive, setPositive] = useState();
     // const [negative, setNegative] = useState();
 
     //setting checked tags to true
-    // const handleChange = checked => {
-    //     setChecked(true);
-    // };
+    const handleChange = checked => {
+        setChecked(true);
+    };
 
     return (
     <div>
@@ -31,26 +31,27 @@ const Tags = (props) => {
         <div>
             {/* tags display */}
 
-            {/* <CheckableTag 
+            <CheckableTag 
                 {...props} 
-                checked={ checked } 
+                checked={ false } 
+                color='black'
                 onChange={ handleChange } 
-            /> */}
+            />
 
             {/* positive */}
             <div>
-                {/* <MyTag>Helped</MyTag>
-                <MyTag>Protected</MyTag> */}
+                <CheckableTag>Helped</CheckableTag>
+                <CheckableTag>Protected </CheckableTag>
             </div>
 
             {/* negative */}
             <div>
-                {/* <MyTag>Physically Attacked</MyTag>
-                <MyTag>Disrespected</MyTag>
-                <MyTag>Wrongly Accused</MyTag>
-                <MyTag>Harrassed</MyTag>
-                <MyTag>Neglected</MyTag>
-                <MyTag>Profiled</MyTag> */}
+                <CheckableTag>Physically Attacked</CheckableTag>
+                <CheckableTag>Disrespected</CheckableTag>
+                <CheckableTag>Wrongly Accused</CheckableTag>
+                <CheckableTag>Harrassed</CheckableTag>
+                <CheckableTag>Neglected</CheckableTag>
+                <CheckableTag>Profiled</CheckableTag>
             </div>
         </div>
 
@@ -59,33 +60,3 @@ const Tags = (props) => {
 };
 
 export default Tags;
-
-
-
-
-// import { Tag } from 'antd';
-
-// const { CheckableTag } = Tag;
-
-// class MyTag extends React.Component {
-//   state = { checked: true };
-
-//   handleChange = checked => {
-//     this.setState({ checked });
-//   };
-
-//   render() {
-//     return (
-//       <CheckableTag {...this.props} checked={this.state.checked} onChange={this.handleChange} />
-//     );
-//   }
-// }
-
-// ReactDOM.render(
-//   <div>
-//     <MyTag>Tag1</MyTag>
-//     <MyTag>Tag2</MyTag>
-//     <MyTag>Tag3</MyTag>
-//   </div>,
-//   mountNode,
-// );
