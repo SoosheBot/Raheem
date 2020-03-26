@@ -27,7 +27,7 @@ function Landing(props) {
         
             <AboutStoryContainer>
                 <AboutHeading>Your story can end police violence.</AboutHeading>
-                <AboutSubHeading>Report and track police to build safer communities for people of color.
+                <AboutSubHeading>The more we know about police behavior, the greater chance we have to change it.
                 </AboutSubHeading>
             </AboutStoryContainer>
 
@@ -35,7 +35,7 @@ function Landing(props) {
             <div>
                 <AboutHeading>About Raheem</AboutHeading>
                 <AboutSubHeading>Raheem is an independent service for reporting police conduct in the United States.</AboutSubHeading>
-                    <AboutContent>Being killed by police is the 6th leading cause of death for young Black men in America. Yet, there is limited information about the 63 million police interactions every year that shape our lives or the lives of our loved ones—until it's too late.  </AboutContent>
+                    <AboutContent>Being killed by police is the <BoldSpan>6th leading cause of death</BoldSpan> for young Black men in America. Yet, there is limited information about the 63 million police interactions every year that shape our lives or the lives of our loved ones—until it's too late.  </AboutContent>
                     <AboutContent>
                     Raheem uses data to identify places with the highest rates of police violence in the country. Then we partner with community oversight structures in these areas to collect firsthand reports of police conduct and help people file formal complaints that can lead to officers being held accountable. 
                     </AboutContent>
@@ -143,4 +143,10 @@ const ExitContainer = styled.div`
     flex-direction: column;
     align-items: flex-start;
     margin: 2% 0;
+`
+
+const BoldSpan = styled.span`
+    background: #F2F2F2;
+    font-weight: 800;
+
 `
