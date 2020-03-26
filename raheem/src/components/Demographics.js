@@ -169,7 +169,6 @@ function Demographics() {
 
                 {/* progress bar */}
                 <div className="progressContainer">
-
                 </div>
 
             </form>

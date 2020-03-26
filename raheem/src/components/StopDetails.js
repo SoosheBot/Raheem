@@ -12,7 +12,24 @@ import Controls from './buttons/Controls';
 /*antd components and icons */
 import { Tag } from 'antd';
 
+// import Tags from './Tags';
 
+const Form = styled.div`
+    margin-left: auto;
+    margin-right: auto;
+    width: 375px;
+    background-color: #FFF600;
+`;
+
+const Heading1 = styled.h1`
+    font-size: 3em;
+    text-align: center;
+    margin: 1em;
+`;
+
+const Heading2 = styled.h2`
+    text-align: center;
+`;
 
 //defining tag type
 const { CheckableTag } = Tag;

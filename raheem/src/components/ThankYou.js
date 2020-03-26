@@ -15,7 +15,7 @@ function ThankYou() {
     // localStorage.setItem('cancelled', 'true');
 
     // uncomment to view submitted thank you screen
-    localStorage.setItem('submitted', 'true');
+    // localStorage.setItem('submitted', 'true');
 
     useEffect(() => {
         if (!!localStorage.getItem('cancelled')) {
@@ -32,9 +32,10 @@ function ThankYou() {
                 <Cancelled>
                     <h2>Thank You</h2>
                     <p>Thank you for your time today.</p>
-                    <p>If you accidentally clicked on 'cancel', you can click the back button
-                    to return to the report submission form and continue filling out your report,
-                    otherwise, we hope you have a great rest of the day.
+                    <p>If you accidentally clicked on 'Exit', you can click the back button
+                    to return to the report submission form and continue filling out your report.
+                    Otherwise, we hope you have a great rest of the day.
+                    {/* goBack Button */}
                     </p>
                 </Cancelled>}
 
