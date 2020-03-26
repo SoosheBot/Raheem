@@ -10,6 +10,10 @@ function Header() {
 
     const [toggle, setToggle] = useState(false);
 
+    const toggleMenu = () => {
+        setToggle(!toggle);
+    }
+
     return (
         <HeaderContainer>
             <div className="logo">
@@ -17,8 +21,8 @@ function Header() {
             </div>
 
             <nav>
-                <MenuOutlined onMouseEnter={() => setToggle(!toggle)} style={{ fontSize: '24px' }} />
-                {toggle === true && <div onMouseLeave={() => setToggle(!toggle)} className="navigation">
+                <MenuOutlined onMouseEnter={() => toggleMenu()} style={{ fontSize: '24px' }} />
+                {toggle === true && <div onMouseLeave={() => toggleMenu()} onClick={() => toggleMenu()} className="navigation">
                     <Link to="/">Home</Link>
                     <Link to="/QR">QR</Link>
                     <Link to="/landing">Landing</Link>

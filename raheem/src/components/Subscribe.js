@@ -43,13 +43,12 @@ const Subscribe = () => {
                 <h2>Thank you!</h2>
                 <p>
                     Please take a moment to select if you want to recieve any of the following:
-            </p>
+                </p>
                 <form onSubmit={handleSubmit(onSubmit)}>
 
                     <div>
                         <input
                             type="checkbox"
-                            placeholder="Local Area Updates"
                             name="Local Area Updates"
                             ref={register}
                         />
@@ -59,7 +58,6 @@ const Subscribe = () => {
                     <div>
                         <input
                             type="checkbox"
-                            placeholder=" Copy of My Response"
                             name="Send Me a Copy of My Response"
                             ref={register}
                         />
@@ -72,7 +70,7 @@ const Subscribe = () => {
                         <button type="submit"> Subscribe <BellOutlined /> </button>
                         {/* go to thank you */}
 
-                        <button>Go Back</button>
+                        <button onClick={() => history.push(`/demographics`)}>Go Back</button>
                         {/* go to demographics */}
                     </div>
                 </form>
