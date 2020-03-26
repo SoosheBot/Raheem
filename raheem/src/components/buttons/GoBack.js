@@ -1,10 +1,15 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+
+//css
 import '../../index.css';
 
-import { SaveOutlined } from '@ant-design/icons';
+//ant design icon
+import { CaretLeftOutlined } from '@ant-design/icons';
 
-function Save() {
+
+//button to go to previous page in application
+function GoBack() {
 
     /* bring history in using the useHistory hook from react-router-dom */
     const history = useHistory();
@@ -12,11 +17,11 @@ function Save() {
     return (
         <button onClick={(e) => {
             e.preventDefault(); // prevent default refresh
-            history.push(`/subscribe`); // push user to subscribe page to save submission
+            history.goBack(); // take the user back a step in their history
         }} className="save">
-            <SaveOutlined /> Save For Later
+            <CaretLeftOutlined /> Go Back
         </button>
     )
 }
 
-export default Save;
+export default GoBack;
