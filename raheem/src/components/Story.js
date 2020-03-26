@@ -19,6 +19,7 @@ const FormY = styled.div`
 const FormW = styled.form`
     background-color: #FFFFFF;
     margin: 1em;
+    padding-bottom: 1em;
 `;
 
 const Heading1 = styled.h1`
@@ -33,11 +34,6 @@ const Heading1 = styled.h1`
 const Heading2 = styled.h2`
     text-align: center;
     padding: 1em;
-`;
-
-const Close = styled.p`
-    content: 'x';
-    font-weight: 300;
 `;
 
 const PHeading = styled.p`
@@ -72,6 +68,10 @@ function Story() {
             </div>
 
             <FormW onSubmit={handleSubmit(onSubmit)}>
+                <p>Details</p>
+                <h2>I was Profiled by police near Schenectady, New York 12345</h2>
+
+                <h2>What happened?</h2>
                 <PTag>
                     Describe the indicent from start to finish. Be as descriptive as possible, and remember to include details about the officer's attitude and actions during this encounter.
                 </PTag>
@@ -86,6 +86,68 @@ function Story() {
                     })}
                 />
                 {errors.email && errors.email.message}
+                <p>Required</p>
+
+                <div>
+                    <input type="checkbox" />
+                    <p>Did Police use physical force against you or point their weapon at you?</p>
+
+                    <input type="checkbox" />
+                    <p>Did police threaten you verbally, use foul language, or intimidate you during this encounter?</p>
+
+                    <input type="checkbox" />
+                    <p>Did police take money, take or destroy property, or issue an excessive fine during this encounter?</p>
+
+                    <input type="checkbox" />
+                    <p>Did police fail to help you when you needed it?</p>
+                </div>
+                <h2>When did this happen?</h2>
+                <p>Enter the date and time as best as you can remember.</p>
+
+                <div>
+                    <input type="date" />
+                    <p>Required</p>
+
+                    <input type="time" />
+                    <p>Required</p>
+                </div>
+
+                <h2>How were you treated?</h2>
+                <p>Required</p>
+                <div>
+                    <input type="checkbox" />
+                    <p>Very well</p>
+
+                    <input type="checkbox" />
+                    <p>Well</p>
+
+                    <input type="checkbox" />
+                    <p>Just okay</p>
+
+                    <input type="checkbox" />
+                    <p>Badly</p>
+
+                    <input type="checkbox" />
+                    <p>Very badly</p>
+                </div>
+
+                <h2>How did this make you feel?</h2>
+                <input placeholder="I felt..." />
+                <p>Required</p>
+
+                <h2>How could this have gone better?</h2>
+                <p>How would you have preferred the officer(s) to handle the situation? What different actions would have led to a better oucome?</p>
+                <input
+                    name="story"
+                    ref={register({
+                    required: 'Required',
+                    pattern: {
+                        message: "input is required"
+                    }
+                    })}
+                />
+                {errors.email && errors.email.message}
+                <p>Required</p>
             </FormW>
 
         </FormY>
