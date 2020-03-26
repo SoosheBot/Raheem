@@ -78,6 +78,42 @@ const PTag = styled.p`
     padding-bottom: 0.5em;
 `;
 
+const SummaryInput = styled.input`
+    margin: 0 auto;
+    display: block;
+    width: 85%;
+    height: 30em;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+`;
+
+const BasicInput = styled.input`
+    margin: 0 auto;
+    display: block;
+    width: 85%;
+    height: 2.25em;
+    text-align: center;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    font-size: 3em;
+`;
+
+const FeelInput = styled.input`
+    margin: 0 auto;
+    display: block;
+    width: 85%;
+    height: 1.75em;
+    padding-right: 0.75em;
+    padding-left: 0.75em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    font-size: 2.5em;
+`;
+
+
+
 function Story() {
 
     const { handleSubmit, register, errors } = useForm();
@@ -105,7 +141,7 @@ function Story() {
                     Describe the indicent from start to finish. Be as descriptive as possible, and remember to include details about the officer's attitude and actions during this encounter.
                 </PTag>
 
-                <input
+                <SummaryInput
                     name="story"
                     ref={register({
                     required: 'Required',
@@ -134,10 +170,10 @@ function Story() {
                 <PTag>Enter the date and time as best as you can remember.</PTag>
 
                 <div>
-                    <input type="date" />
+                    <BasicInput type="date" />
                     <PTag>Required</PTag>
 
-                    <input type="time" />
+                    <BasicInput type="time" />
                     <PTag>Required</PTag>
                 </div>
 
@@ -161,12 +197,12 @@ function Story() {
                 </div>
 
                 <Heading2>How did this make you feel?</Heading2>
-                <input placeholder="I felt..." />
+                <FeelInput placeholder="I felt..." />
                 <PTag>Required</PTag>
 
                 <Heading2>How could this have gone better?</Heading2>
                 <PTag>How would you have preferred the officer(s) to handle the situation? What different actions would have led to a better oucome?</PTag>
-                <input
+                <SummaryInput
                     name="story"
                     ref={register({
                     required: 'Required',
