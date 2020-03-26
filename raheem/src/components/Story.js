@@ -187,22 +187,22 @@ function Story() {
 
                 <MarginDiv>
                     <FlexDiv>
-                        <CircleCheckBox type="radio" />
+                        <CircleCheckBox type="radio" value="a" name="select"/>
                         <Heading2Gray>Did Police use physical force against you or point their weapon at you?</Heading2Gray>
                     </FlexDiv>
 
                     <FlexDiv>
-                        <CircleCheckBox type="radio" />
+                        <CircleCheckBox type="radio" value="b" name="select"/>
                         <Heading2Gray>Did police threaten you verbally, use foul language, or intimidate you during this encounter?</Heading2Gray>
                     </FlexDiv>
 
                     <FlexDiv>
-                        <CircleCheckBox type="radio" />
+                        <CircleCheckBox type="radio" value="c" name="select"/>
                         <Heading2Gray>Did police take money, take or destroy property, or issue an excessive fine during this encounter?</Heading2Gray>
                     </FlexDiv>
 
                     <FlexDiv>
-                        <CircleCheckBox type="radio" />
+                        <CircleCheckBox type="radio" value="d" name="select"/>
                         <Heading2Gray>Did police fail to help you when you needed it?</Heading2Gray>
                     </FlexDiv>
                 </MarginDiv>
@@ -222,27 +222,27 @@ function Story() {
                 <PTag>Required</PTag>
                 <MarginDiv>
                     <FlexDiv>
-                        <CircleCheckBox type="radio" />
+                        <CircleCheckBox type="radio" value="a" name="treatment"/>
                         <Heading2Gray>Very well</Heading2Gray>
                     </FlexDiv>
 
                     <FlexDiv>
-                        <CircleCheckBox type="radio" />
+                        <CircleCheckBox type="radio" value="b" name="treatment"/>
                         <Heading2Gray>Well</Heading2Gray>
                     </FlexDiv>
 
                     <FlexDiv>
-                        <CircleCheckBox type="radio" />
+                        <CircleCheckBox type="radio" value="c" name="treatment"/>
                         <Heading2Gray>Just okay</Heading2Gray>
                     </FlexDiv>
 
                     <FlexDiv>
-                        <CircleCheckBox type="radio" />
+                        <CircleCheckBox type="radio" value="d" name="treatment"/>
                         <Heading2Gray>Badly</Heading2Gray>
                     </FlexDiv>
 
                     <FlexDiv>
-                        <CircleCheckBox type="radio" />
+                        <CircleCheckBox type="radio" value="e" name="treatment"/>
                         <Heading2Gray>Very badly</Heading2Gray>
                     </FlexDiv>
                 </MarginDiv>
