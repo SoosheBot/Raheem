@@ -100,3 +100,24 @@ function StopDetails(props) {
 }
 
 export default StopDetails;
+
+
+const Control = styled.button`
+    width: 45%;
+    font-family: 'Noto Serif', serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    height: 5rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: #FFF600;
+    padding: 0.5rem 1rem;
+    transition: all 300ms;
+    margin: 1rem 0 0;
+
+    &:hover {
+        transition: background 300ms;
+        background: #FAEB00;
+        cursor: pointer;
+    }
+`;
