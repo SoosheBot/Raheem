@@ -81,13 +81,15 @@ const PTag = styled.p`
     padding-bottom: 0.5em;
 `;
 
-const SummaryInput = styled.input`
+const SummaryInput = styled.textarea`
     margin: 0 auto;
     margin-top: 1em;
     margin-bottom: 1em;
+    font-size: 14px;
     display: block;
     width: 90%;
     height: 40em;
+    padding: 0.5em;
 `;
 
 const BasicInput = styled.input`
