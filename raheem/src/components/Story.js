@@ -156,6 +156,7 @@ function Story() {
     };
 
     return (
+        <div>
         <FormY>
             <div>
 
@@ -163,6 +164,7 @@ function Story() {
                     <MyStories>My Stories</MyStories>
 
                 </div>
+                
                 <Heading1>Your story matters.</Heading1>
                 <PHeading>The more we know about police behavior, the greater chance we have to change it.</PHeading>
             </div>
@@ -269,11 +271,9 @@ function Story() {
                 {errors.email && errors.email.message}
                 <PTag>Required</PTag>
             </FormW>
-
         </FormY>
 
             <div className="progressContainer">
-
             </div>
         </div>
 
