@@ -54,10 +54,7 @@ function Landing() {
         </div>
 
         <div className="progressContainer">
-            <Progress
-                strokeColor="black"
-                percent={25}
-                />
+
         </div>
     </div>
     )

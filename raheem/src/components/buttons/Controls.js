@@ -13,12 +13,12 @@ function Controls(props) {
     return (
         <ControlsContainer>
             <div>
-                <Continue next={next} />
-                {/* continue to subscription */}
-            </div>
-            <div>
                 <GoBack />
                 {/* go back to story */}
+            </div>
+            <div>
+                <Continue next={next} />
+                {/* continue to subscription */}
             </div>
             <div>
                 <Save />
@@ -35,9 +35,19 @@ const ControlsContainer = styled.div`
     display: flex;
     justify-content: space-evenly;
 
+    @media (max-width: 460px) {
+        flex-direction: column;
+        align-items: center;
+    }
+    
     div {
         width: 30%;
         display: flex;
         align-items: center;  
+
+        @media (max-width: 460px) {
+            width: 100%;
+            justify-content: center;
+        }
     }
 `;

@@ -2,9 +2,18 @@ import React from 'react';
 
 /* components */
 import Tags from './Tags';
+
+/* Buttons */
 import Continue from './buttons/Continue';
 import GoBack from './buttons/GoBack';
 import Save from './buttons/Save';
+
+/*antd components and icons */
+
+
+
+
+
 
 function StopDetails() {
     return (
@@ -45,14 +54,8 @@ function StopDetails() {
                 </div>
             </div>
 
-            <div className="progress">
-            {/* <Progress
-                strokeColor={{
-                    '0%': '#FFF600',
-                    '100%': '#111111',
-                }}
-                percent={20}  />
-                /> */}
+            <div className="progressContainer">
+
             </div>
         </div>
     )

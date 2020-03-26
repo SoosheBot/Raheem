@@ -12,9 +12,8 @@ import Story from './components/Story';
 import Demographics from './components/Demographics';
 import Subscribe from './components/Subscribe';
 import ThankYou from './components/ThankYou';
-import TestAdd from './components/TestAdd';
-import Test from './components/Test';
-import TestDel from './components/TestDel';
+// import Test from './co'
+
 
 function App() {
   return (
@@ -56,16 +55,8 @@ function App() {
         <ThankYou />
       </Route>
 
-      <Route path="/testAdd">
-        <TestAdd />
-      </Route>
-
       <Route path="/test">
         <Test />
-      </Route>
-
-      <Route path="/testDel">
-        <TestDel />
       </Route>
     </div>
   );
