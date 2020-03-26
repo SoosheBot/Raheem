@@ -24,6 +24,8 @@ const Heading2 = styled.h2`
     text-align: center;
 `;
 
+
+
 function StopDetails() {
     return (
         <Form>
@@ -52,7 +54,15 @@ function StopDetails() {
                     {/* go to email */}
                 </div>
             </div>
+
         </Form>
+
+
+            <div className="progressContainer">
+
+            </div>
+        </div>
+
     )
 }
 

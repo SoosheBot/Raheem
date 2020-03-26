@@ -158,6 +158,7 @@ function Story() {
     return (
         <FormY>
             <div>
+
                 <div>
                     <MyStories>My Stories</MyStories>
 
@@ -220,6 +221,7 @@ function Story() {
                     <PTag>Required</PTag>
                 </div>
 
+
                 <Heading2>How were you treated?</Heading2>
                 <PTag>Required</PTag>
                 <MarginDiv>
@@ -269,6 +271,12 @@ function Story() {
             </FormW>
 
         </FormY>
+
+            <div className="progressContainer">
+
+            </div>
+        </div>
+
     )
 }
 
