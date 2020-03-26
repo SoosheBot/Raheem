@@ -12,6 +12,8 @@ import Story from './components/Story';
 import Demographics from './components/Demographics';
 import Subscribe from './components/Subscribe';
 import ThankYou from './components/ThankYou';
+import Test from './components/Test';
+
 
 function App() {
   return (
@@ -51,6 +53,10 @@ function App() {
 
       <Route path="/thank-you">
         <ThankYou />
+      </Route>
+
+      <Route path="/test">
+        <Test />
       </Route>
     </div>
   );
