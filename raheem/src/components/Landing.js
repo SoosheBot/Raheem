@@ -1,6 +1,7 @@
 import React from 'react';
-import { Progress } from 'antd';
-import Continue from './buttons/Continue.js'
+
+import Continue from './buttons/Continue.js';
+import Exit from './buttons/Exit.js';
 
 //Purpose of this component is to explain what Raheem is to new users
 function Landing() {
@@ -36,11 +37,7 @@ function Landing() {
 
         <div className="progressContainer">
             <Progress
-                strokeColor={{
-                    '0%': '#FFF600',
-                    '100%': '#111111',
-                }}
-                percent={5}
+
                 />
         </div>
     </div>
