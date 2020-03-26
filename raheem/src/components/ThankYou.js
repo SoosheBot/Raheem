@@ -15,7 +15,7 @@ function ThankYou() {
     // localStorage.setItem('cancelled', 'true');
 
     // uncomment to view submitted thank you screen
-    localStorage.setItem('submitted', 'true');
+    // localStorage.setItem('submitted', 'true');
 
     useEffect(() => {
         if (!!localStorage.getItem('cancelled')) {
