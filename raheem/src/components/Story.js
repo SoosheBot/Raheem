@@ -9,7 +9,7 @@ import Save from './buttons/Save';
 
 import styled from "styled-components";
 
-const FormY = styled.div`
+const FormY = styled.form`
     margin-left: auto;
     margin-right: auto;
     width: 375px;
@@ -31,7 +31,26 @@ const Heading1 = styled.h1`
     padding-bottom: 0.5em;
 `;
 
+const Statement = styled.h2`
+    font-size: 2.25em;
+    text-align: center;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-bottom: 2.5em;
+`;
+
+const GraySpan = styled.span`
+    color: #888888;
+`;
+
 const Heading2 = styled.h2`
+    font-size: 2.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-top: 2.5em;
+`;
+
+const MyStories = styled.p`
     text-align: center;
     padding: 1em;
 `;
@@ -44,9 +63,19 @@ const PHeading = styled.p`
     margin-bottom: 3em;
 `;
 
+const Details = styled.p`
+    font-size: 14px;
+    margin: 1em;
+    padding-top: 4em;
+    text-align: center;
+`;
+
 const PTag = styled.p`
     font-size: 14px;
-    padding: 2em;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
 `;
 
 function Story() {
@@ -60,7 +89,7 @@ function Story() {
         <FormY>
             <div>
                 <div>
-                    <Heading2>My Stories</Heading2>
+                    <MyStories>My Stories</MyStories>
 
                 </div>
                 <Heading1>Your story matters.</Heading1>
@@ -68,10 +97,10 @@ function Story() {
             </div>
 
             <FormW onSubmit={handleSubmit(onSubmit)}>
-                <p>Details</p>
-                <h2>I was Profiled by police near Schenectady, New York 12345</h2>
+                <Details>Details</Details>
+                <Statement><GraySpan>I was</GraySpan> Profiled <GraySpan>by police near</GraySpan> Schenectady, New York 12345</Statement>
 
-                <h2>What happened?</h2>
+                <Heading2>What happened?</Heading2>
                 <PTag>
                     Describe the indicent from start to finish. Be as descriptive as possible, and remember to include details about the officer's attitude and actions during this encounter.
                 </PTag>
@@ -86,7 +115,7 @@ function Story() {
                     })}
                 />
                 {errors.email && errors.email.message}
-                <p>Required</p>
+                <PTag>Required</PTag>
 
                 <div>
                     <input type="checkbox" />
@@ -101,19 +130,19 @@ function Story() {
                     <input type="checkbox" />
                     <p>Did police fail to help you when you needed it?</p>
                 </div>
-                <h2>When did this happen?</h2>
-                <p>Enter the date and time as best as you can remember.</p>
+                <Heading2>When did this happen?</Heading2>
+                <PTag>Enter the date and time as best as you can remember.</PTag>
 
                 <div>
                     <input type="date" />
-                    <p>Required</p>
+                    <PTag>Required</PTag>
 
                     <input type="time" />
-                    <p>Required</p>
+                    <PTag>Required</PTag>
                 </div>
 
-                <h2>How were you treated?</h2>
-                <p>Required</p>
+                <Heading2>How were you treated?</Heading2>
+                <PTag>Required</PTag>
                 <div>
                     <input type="checkbox" />
                     <p>Very well</p>
@@ -131,12 +160,12 @@ function Story() {
                     <p>Very badly</p>
                 </div>
 
-                <h2>How did this make you feel?</h2>
+                <Heading2>How did this make you feel?</Heading2>
                 <input placeholder="I felt..." />
-                <p>Required</p>
+                <PTag>Required</PTag>
 
-                <h2>How could this have gone better?</h2>
-                <p>How would you have preferred the officer(s) to handle the situation? What different actions would have led to a better oucome?</p>
+                <Heading2>How could this have gone better?</Heading2>
+                <PTag>How would you have preferred the officer(s) to handle the situation? What different actions would have led to a better oucome?</PTag>
                 <input
                     name="story"
                     ref={register({
@@ -147,7 +176,7 @@ function Story() {
                     })}
                 />
                 {errors.email && errors.email.message}
-                <p>Required</p>
+                <PTag>Required</PTag>
             </FormW>
 
         </FormY>
