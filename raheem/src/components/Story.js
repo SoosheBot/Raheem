@@ -12,7 +12,7 @@ import styled from "styled-components";
 const FormY = styled.form`
     margin-left: auto;
     margin-right: auto;
-    width: 500px;
+    width: 100%;
     background-color: #FFF600;
     padding: 0.5em;
 `;
@@ -30,12 +30,11 @@ const MyStories = styled.p`
 `;
 
 const Heading1 = styled.h1`
+    width: 100%;
+    display: flex;
+    justify-content: center;
     font-size: 4em;
     text-align: center;
-    padding-right: 3em;
-    padding-left: 3em;
-    padding-top: 1em;
-    padding-bottom: 0.5em;
 `;
 
 const Statement = styled.h2`
@@ -61,9 +60,11 @@ const Heading2 = styled.h2`
 const PHeading = styled.p`
     text-align: center;
     font-size: 2em;
-    margin-left: 4.5em;
-    margin-right: 4.5em;
-    margin-bottom: 3em;
+    display: flex;
+    justify-content: center;
+    // margin-left: 4.5em;
+    // margin-right: 4.5em;
+    margin: 2rem 0;
 `;
 
 const Details = styled.p`
@@ -157,121 +158,121 @@ function Story() {
 
     return (
         <div>
-        <FormY>
-            <div>
-
+            <FormY>
                 <div>
-                    <MyStories>My Stories</MyStories>
 
+                    <div>
+                        <MyStories>My Stories</MyStories>
+
+                    </div>
+
+                    <Heading1>Your story matters.</Heading1>
+                    <PHeading>The more we know about police behavior, the greater chance we have to change it.</PHeading>
                 </div>
-                
-                <Heading1>Your story matters.</Heading1>
-                <PHeading>The more we know about police behavior, the greater chance we have to change it.</PHeading>
-            </div>
 
-            <FormW onSubmit={handleSubmit(onSubmit)}>
-                <Details>Details</Details>
-                <Statement><GraySpan>I was</GraySpan> Profiled <GraySpan>by police near</GraySpan> Schenectady, New York 12345</Statement>
+                <FormW onSubmit={handleSubmit(onSubmit)}>
+                    <Details>Details</Details>
+                    <Statement><GraySpan>I was</GraySpan> Profiled <GraySpan>by police near</GraySpan> Schenectady, New York 12345</Statement>
 
-                <Heading2>What happened?</Heading2>
-                <PTag>
-                    Describe the indicent from start to finish. Be as descriptive as possible, and remember to include details about the officer's attitude and actions during this encounter.
+                    <Heading2>What happened?</Heading2>
+                    <PTag>
+                        Describe the indicent from start to finish. Be as descriptive as possible, and remember to include details about the officer's attitude and actions during this encounter.
                 </PTag>
 
-                <SummaryInput
-                    name="story"
-                    ref={register({
-                    required: 'Required',
-                    pattern: {
-                        message: "input is required"
-                    }
-                    })}
-                />
-                {errors.email && errors.email.message}
-                <PTag>Required</PTag>
-
-                <MarginDiv>
-                    <FlexDiv>
-                        <CircleCheckBox type="radio" value="a" name="select"/>
-                        <Heading2Gray>Did Police use physical force against you or point their weapon at you?</Heading2Gray>
-                    </FlexDiv>
-
-                    <FlexDiv>
-                        <CircleCheckBox type="radio" value="b" name="select"/>
-                        <Heading2Gray>Did police threaten you verbally, use foul language, or intimidate you during this encounter?</Heading2Gray>
-                    </FlexDiv>
-
-                    <FlexDiv>
-                        <CircleCheckBox type="radio" value="c" name="select"/>
-                        <Heading2Gray>Did police take money, take or destroy property, or issue an excessive fine during this encounter?</Heading2Gray>
-                    </FlexDiv>
-
-                    <FlexDiv>
-                        <CircleCheckBox type="radio" value="d" name="select"/>
-                        <Heading2Gray>Did police fail to help you when you needed it?</Heading2Gray>
-                    </FlexDiv>
-                </MarginDiv>
-
-                <Heading2>When did this happen?</Heading2>
-                <PTag>Enter the date and time as best as you can remember.</PTag>
-
-                <div>
-                    <BasicInput type="date" />
+                    <SummaryInput
+                        name="story"
+                        ref={register({
+                            required: 'Required',
+                            pattern: {
+                                message: "input is required"
+                            }
+                        })}
+                    />
+                    {errors.email && errors.email.message}
                     <PTag>Required</PTag>
 
-                    <BasicInput type="time" />
+                    <MarginDiv>
+                        <FlexDiv>
+                            <CircleCheckBox type="radio" value="a" name="select" />
+                            <Heading2Gray>Did Police use physical force against you or point their weapon at you?</Heading2Gray>
+                        </FlexDiv>
+
+                        <FlexDiv>
+                            <CircleCheckBox type="radio" value="b" name="select" />
+                            <Heading2Gray>Did police threaten you verbally, use foul language, or intimidate you during this encounter?</Heading2Gray>
+                        </FlexDiv>
+
+                        <FlexDiv>
+                            <CircleCheckBox type="radio" value="c" name="select" />
+                            <Heading2Gray>Did police take money, take or destroy property, or issue an excessive fine during this encounter?</Heading2Gray>
+                        </FlexDiv>
+
+                        <FlexDiv>
+                            <CircleCheckBox type="radio" value="d" name="select" />
+                            <Heading2Gray>Did police fail to help you when you needed it?</Heading2Gray>
+                        </FlexDiv>
+                    </MarginDiv>
+
+                    <Heading2>When did this happen?</Heading2>
+                    <PTag>Enter the date and time as best as you can remember.</PTag>
+
+                    <div>
+                        <BasicInput type="date" />
+                        <PTag>Required</PTag>
+
+                        <BasicInput type="time" />
+                        <PTag>Required</PTag>
+                    </div>
+
+
+                    <Heading2>How were you treated?</Heading2>
                     <PTag>Required</PTag>
-                </div>
+                    <MarginDiv>
+                        <FlexDiv>
+                            <CircleCheckBox type="radio" value="a" name="treatment" />
+                            <Heading2Gray>Very well</Heading2Gray>
+                        </FlexDiv>
 
+                        <FlexDiv>
+                            <CircleCheckBox type="radio" value="b" name="treatment" />
+                            <Heading2Gray>Well</Heading2Gray>
+                        </FlexDiv>
 
-                <Heading2>How were you treated?</Heading2>
-                <PTag>Required</PTag>
-                <MarginDiv>
-                    <FlexDiv>
-                        <CircleCheckBox type="radio" value="a" name="treatment"/>
-                        <Heading2Gray>Very well</Heading2Gray>
-                    </FlexDiv>
+                        <FlexDiv>
+                            <CircleCheckBox type="radio" value="c" name="treatment" />
+                            <Heading2Gray>Just okay</Heading2Gray>
+                        </FlexDiv>
 
-                    <FlexDiv>
-                        <CircleCheckBox type="radio" value="b" name="treatment"/>
-                        <Heading2Gray>Well</Heading2Gray>
-                    </FlexDiv>
+                        <FlexDiv>
+                            <CircleCheckBox type="radio" value="d" name="treatment" />
+                            <Heading2Gray>Badly</Heading2Gray>
+                        </FlexDiv>
 
-                    <FlexDiv>
-                        <CircleCheckBox type="radio" value="c" name="treatment"/>
-                        <Heading2Gray>Just okay</Heading2Gray>
-                    </FlexDiv>
+                        <FlexDiv>
+                            <CircleCheckBox type="radio" value="e" name="treatment" />
+                            <Heading2Gray>Very badly</Heading2Gray>
+                        </FlexDiv>
+                    </MarginDiv>
 
-                    <FlexDiv>
-                        <CircleCheckBox type="radio" value="d" name="treatment"/>
-                        <Heading2Gray>Badly</Heading2Gray>
-                    </FlexDiv>
+                    <Heading2>How did this make you feel?</Heading2>
+                    <FeelInput placeholder="I felt..." />
+                    <PTag>Required</PTag>
 
-                    <FlexDiv>
-                        <CircleCheckBox type="radio" value="e" name="treatment"/>
-                        <Heading2Gray>Very badly</Heading2Gray>
-                    </FlexDiv>
-                </MarginDiv>
-
-                <Heading2>How did this make you feel?</Heading2>
-                <FeelInput placeholder="I felt..." />
-                <PTag>Required</PTag>
-
-                <Heading2>How could this have gone better?</Heading2>
-                <PTag>How would you have preferred the officer(s) to handle the situation? What different actions would have led to a better oucome?</PTag>
-                <SummaryInput
-                    name="story"
-                    ref={register({
-                    required: 'Required',
-                    pattern: {
-                        message: "input is required"
-                    }
-                    })}
-                />
-                {errors.email && errors.email.message}
-                <PTag>Required</PTag>
-            </FormW>
-        </FormY>
+                    <Heading2>How could this have gone better?</Heading2>
+                    <PTag>How would you have preferred the officer(s) to handle the situation? What different actions would have led to a better oucome?</PTag>
+                    <SummaryInput
+                        name="story"
+                        ref={register({
+                            required: 'Required',
+                            pattern: {
+                                message: "input is required"
+                            }
+                        })}
+                    />
+                    {errors.email && errors.email.message}
+                    <PTag>Required</PTag>
+                </FormW>
+            </FormY>
 
             <div className="progressContainer">
             </div>
