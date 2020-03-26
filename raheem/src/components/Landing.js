@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 //ant design components
 import { Progress } from 'antd';
@@ -13,17 +14,24 @@ import styled from 'styled-components';
 
 
 //Purpose of this component is to explain what Raheem is to new users
-function Landing() {
+function Landing(props) {
+    /* bring in useHistory hook from react-router-dom */
+    const history = useHistory();
+
+    const onSubmit = () => {
+        history.push(`/details`);
+    }
 
     return(
     <AboutContainer className="container">
-        <AboutTextContainer className="landingTextContainer">
-            <div>
+        
+            <AboutStoryContainer>
                 <AboutHeading>Your story can end police violence.</AboutHeading>
                 <AboutSubHeading>Report and track police to build safer communities for people of color.
                 </AboutSubHeading>
-            </div>
+            </AboutStoryContainer>
 
+                <AboutTextContainer >
             <div>
                 <AboutHeading>About Raheem</AboutHeading>
                 <AboutSubHeading>Raheem is an independent service for reporting police conduct in the United States.</AboutSubHeading>
@@ -32,27 +40,26 @@ function Landing() {
                     Raheem uses data to identify places with the highest rates of police violence in the country. Then we partner with community oversight structures in these areas to collect firsthand reports of police conduct and help people file formal complaints that can lead to officers being held accountable. 
                     </AboutContent>
             </div>
-        </AboutTextContainer>
 
+        <ButtonContainer className="landingButtonContainer">
+        <ExitContainer>
 
-
-        <div className="landingButtonContainer">
-            <div>
-                <p>Click here to proceed.</p>
-                <Continue />
-                {/* goes to stop details */}
-            </div>
-            <div>
-                <p>Click here to exit.</p>
                 <Exit />
                 {/* go to thank you */}
-            </div>
+            </ExitContainer>
+            <ContinueContainer>
 
-        </div>
-            {/* add progress bar */}
+                <Continue 
+                />
+                {/* goes to stop details */}
+            </ContinueContainer>
+
+        </ButtonContainer>
+
         <div className="progressContainer">
-
+              {/* add progress bar */}
         </div>
+    </AboutTextContainer>
     </AboutContainer>
     )
 }
@@ -64,7 +71,19 @@ const AboutContainer = styled.div`
     flex-direction: column;
     align-items: center;
     font-family: 'Noto Serif', serif;
+    margin: 5rem 0;
+`
 
+const AboutStoryContainer = styled.div`
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 9% 5%;
+
+    @media (max-width: 500px) {
+        width: 95%;
+    }
 `
 
 const AboutTextContainer = styled.div`
@@ -75,7 +94,6 @@ const AboutTextContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     padding: 9%;
-    
 
     @media (max-width: 500px) {
         width: 95%;
@@ -86,13 +104,14 @@ const AboutHeading = styled.h2`
     font-family: 'Roboto', sans-serif;
     font-weight: 900;
     font-size: 4.0rem;
-    margin: 0 0 2%;
+    margin: 2% 0 2%;
 `
 
 const AboutSubHeading = styled.h3`
     font-weight: 900;
     font-size: 1.8rem;
     margin: 2% 0 3%;
+    line-height: 2.6rem;
 `
 
 const AboutContent = styled.p`
@@ -100,4 +119,31 @@ const AboutContent = styled.p`
     margin: 0 0 2rem;
     line-height: 2.6rem;
     text-align: justify;
+`
+
+const ButtonContainer = styled.div`
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    @media (max-width: 500px) {
+        width: 95%;
+    }
+`
+
+const ContinueContainer = styled.div`
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 2% 0;
+`
+
+const ExitContainer = styled.div`
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 2% 0;
 `
