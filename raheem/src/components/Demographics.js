@@ -171,13 +171,6 @@ function Demographics() {
 
                 {/* progress bar */}
                 <div className="progressContainer">
-                    <Progress
-                        strokeColor={{
-                            '0%': '#FFF600',
-                            '100%': '#111111',
-                        }}
-                        percent={75}
-                    />
                 </div>
 
             </form>

@@ -25,7 +25,7 @@ function Header() {
                 {toggle === true && <div onMouseLeave={() => toggleMenu()} onClick={() => toggleMenu()} className="navigation">
                     <Link to="/">Home</Link>
                     <Link to="/QR">QR</Link>
-                    <Link to="/landing">Landing</Link>
+                    <Link to="/about">About</Link>
                     <Link to="/details">Stop Details</Link>
                     <Link to="/story">Story</Link>
                     <Link to="/demographics">Demographics</Link>
