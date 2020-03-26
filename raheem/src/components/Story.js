@@ -22,6 +22,13 @@ const FormW = styled.form`
     padding-bottom: 1em;
 `;
 
+const MyStories = styled.p`
+    font-size: 1.75em;
+    font-weight: bold;
+    text-align: center;
+    padding: 1em;
+`;
+
 const Heading1 = styled.h1`
     font-size: 4em;
     text-align: center;
@@ -48,11 +55,6 @@ const Heading2 = styled.h2`
     padding-left: 1em;
     padding-right: 1em;
     margin-top: 2.5em;
-`;
-
-const MyStories = styled.p`
-    text-align: center;
-    padding: 1em;
 `;
 
 const PHeading = styled.p`
@@ -100,6 +102,7 @@ const BasicInput = styled.input`
     font-size: 3em;
 `;
 
+
 const FeelInput = styled.input`
     margin: 0 auto;
     display: block;
@@ -112,7 +115,30 @@ const FeelInput = styled.input`
     font-size: 2.5em;
 `;
 
+const MarginDiv = styled.div`
+    margin-right: 2.5em;
+    margin-left: 2.5em;
+    margin-top: 5em;
+    margin-bottom: 5em;
+`;
 
+const FlexDiv = styled.div`
+    display: flex;
+    margin-top: 3em;
+    margin-bottom: 3em;
+`;
+
+const CircleCheckBox = styled.input`
+    border-radius: 100%;
+`;
+
+const Heading2Gray = styled.h2`
+    color: #888888;
+    font-size: 2.25em;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-top: 2.5em;
+`;
 
 function Story() {
 
@@ -153,19 +179,28 @@ function Story() {
                 {errors.email && errors.email.message}
                 <PTag>Required</PTag>
 
-                <div>
-                    <input type="checkbox" />
-                    <p>Did Police use physical force against you or point their weapon at you?</p>
+                <MarginDiv>
+                    <FlexDiv>
+                        <input type="checkbox" />
+                        <Heading2Gray>Did Police use physical force against you or point their weapon at you?</Heading2Gray>
+                    </FlexDiv>
 
-                    <input type="checkbox" />
-                    <p>Did police threaten you verbally, use foul language, or intimidate you during this encounter?</p>
+                    <FlexDiv>
+                        <input type="checkbox" />
+                        <Heading2Gray>Did police threaten you verbally, use foul language, or intimidate you during this encounter?</Heading2Gray>
+                    </FlexDiv>
 
-                    <input type="checkbox" />
-                    <p>Did police take money, take or destroy property, or issue an excessive fine during this encounter?</p>
+                    <FlexDiv>
+                        <input type="checkbox" />
+                        <Heading2Gray>Did police take money, take or destroy property, or issue an excessive fine during this encounter?</Heading2Gray>
+                    </FlexDiv>
 
-                    <input type="checkbox" />
-                    <p>Did police fail to help you when you needed it?</p>
-                </div>
+                    <FlexDiv>
+                        <input type="checkbox" />
+                        <Heading2Gray>Did police fail to help you when you needed it?</Heading2Gray>
+                    </FlexDiv>
+                </MarginDiv>
+
                 <Heading2>When did this happen?</Heading2>
                 <PTag>Enter the date and time as best as you can remember.</PTag>
 
@@ -179,22 +214,32 @@ function Story() {
 
                 <Heading2>How were you treated?</Heading2>
                 <PTag>Required</PTag>
-                <div>
-                    <input type="checkbox" />
-                    <p>Very well</p>
+                <MarginDiv>
+                    <FlexDiv>
+                        <input type="checkbox" />
+                        <p>Very well</p>
+                    </FlexDiv>
 
-                    <input type="checkbox" />
-                    <p>Well</p>
+                    <FlexDiv>
+                        <input type="checkbox" />
+                        <p>Well</p>
+                    </FlexDiv>
 
-                    <input type="checkbox" />
-                    <p>Just okay</p>
+                    <FlexDiv>
+                        <input type="checkbox" />
+                        <p>Just okay</p>
+                    </FlexDiv>
 
-                    <input type="checkbox" />
-                    <p>Badly</p>
+                    <FlexDiv>
+                        <input type="checkbox" />
+                        <p>Badly</p>
+                    </FlexDiv>
 
-                    <input type="checkbox" />
-                    <p>Very badly</p>
-                </div>
+                    <FlexDiv>
+                        <input type="checkbox" />
+                        <p>Very badly</p>
+                    </FlexDiv>
+                </MarginDiv>
 
                 <Heading2>How did this make you feel?</Heading2>
                 <FeelInput placeholder="I felt..." />
