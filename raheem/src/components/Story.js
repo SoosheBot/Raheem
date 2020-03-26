@@ -14,6 +14,7 @@ const FormY = styled.form`
     margin-right: auto;
     width: 500px;
     background-color: #FFF600;
+    padding: 0.5em;
 `;
 
 const FormW = styled.form`
