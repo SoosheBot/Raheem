@@ -1,8 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-//ant design components
-import { Progress } from 'antd';
+//progress bar
+import ProgressBar from './other/ProgressBar'
 
 //buttons
 import Continue from './buttons/Continue.js';
@@ -43,17 +43,14 @@ function Landing(props) {
 
         <ButtonContainer className="landingButtonContainer">
         <ExitContainer>
-
                 <Exit />
                 {/* go to thank you */}
             </ExitContainer>
             <ContinueContainer>
-
                 <Continue 
                 />
                 {/* goes to stop details */}
             </ContinueContainer>
-
         </ButtonContainer>
 
         <div className="progressContainer">
