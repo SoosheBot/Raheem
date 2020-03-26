@@ -22,42 +22,41 @@ function Landing(props) {
         history.push(`/details`);
     }
 
-    return(
-    <AboutContainer className="container">
-        
+    return (
+        <AboutContainer className="container">
+
             <AboutStoryContainer>
                 <AboutHeading>Your story can end police violence.</AboutHeading>
                 <AboutSubHeading>Report and track police to build safer communities for people of color.
                 </AboutSubHeading>
             </AboutStoryContainer>
 
-                <AboutTextContainer >
-            <div>
-                <AboutHeading>About Raheem</AboutHeading>
-                <AboutSubHeading>Raheem is an independent service for reporting police conduct in the United States.</AboutSubHeading>
+            <AboutTextContainer >
+                <div>
+                    <AboutHeading>About Raheem</AboutHeading>
+                    <AboutSubHeading>Raheem is an independent service for reporting police conduct in the United States.</AboutSubHeading>
                     <AboutContent>Being killed by police is the 6th leading cause of death for young Black men in America. Yet, there is limited information about the 63 million police interactions every year that shape our lives or the lives of our loved ones—until it's too late.  </AboutContent>
                     <AboutContent>
-                    Raheem uses data to identify places with the highest rates of police violence in the country. Then we partner with community oversight structures in these areas to collect firsthand reports of police conduct and help people file formal complaints that can lead to officers being held accountable. 
+                        Raheem uses data to identify places with the highest rates of police violence in the country. Then we partner with community oversight structures in these areas to collect firsthand reports of police conduct and help people file formal complaints that can lead to officers being held accountable.
                     </AboutContent>
-            </div>
+                </div>
 
-        <ButtonContainer className="landingButtonContainer">
-        <ExitContainer>
-                <Exit />
-                {/* go to thank you */}
-            </ExitContainer>
-            <ContinueContainer>
-                <Continue 
-                />
-                {/* goes to stop details */}
-            </ContinueContainer>
-        </ButtonContainer>
+                <ButtonContainer className="landingButtonContainer">
+                    <ExitContainer>
+                        <Exit />
+                        {/* go to thank you */}
+                    </ExitContainer>
+                    <ContinueContainer>
+                        <Continue />
+                        {/* goes to stop details */}
+                    </ContinueContainer>
+                </ButtonContainer>
 
-        <div className="progressContainer">
-              {/* add progress bar */}
-        </div>
-    </AboutTextContainer>
-    </AboutContainer>
+                <div className="progressContainer">
+                    {/* add progress bar */}
+                </div>
+            </AboutTextContainer>
+        </AboutContainer>
     )
 }
 
