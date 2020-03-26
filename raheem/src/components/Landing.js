@@ -47,7 +47,7 @@ function Landing(props) {
                         {/* go to thank you */}
                     </ExitContainer>
                     <ContinueContainer>
-                        <Continue />
+                        <Continue next={`/report`} />
                         {/* goes to stop details */}
                     </ContinueContainer>
                 </ButtonContainer>
