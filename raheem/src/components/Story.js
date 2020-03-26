@@ -12,7 +12,7 @@ import styled from "styled-components";
 const FormY = styled.form`
     margin-left: auto;
     margin-right: auto;
-    width: 375px;
+    width: 500px;
     background-color: #FFF600;
 `;
 
@@ -24,7 +24,6 @@ const FormW = styled.form`
 
 const MyStories = styled.p`
     font-size: 1.75em;
-    font-weight: bold;
     text-align: center;
     padding: 1em;
 `;
@@ -32,17 +31,18 @@ const MyStories = styled.p`
 const Heading1 = styled.h1`
     font-size: 4em;
     text-align: center;
-    padding-right: 1em;
-    padding-left: 1em;
+    padding-right: 3em;
+    padding-left: 3em;
     padding-top: 1em;
     padding-bottom: 0.5em;
 `;
 
 const Statement = styled.h2`
-    font-size: 2.25em;
+    font-size: 2.5em;
     text-align: center;
-    padding-left: 1em;
-    padding-right: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
+    margin-top: 1em;
     margin-bottom: 2.5em;
 `;
 
@@ -59,16 +59,16 @@ const Heading2 = styled.h2`
 
 const PHeading = styled.p`
     text-align: center;
-    font-size: 18px;
-    margin-left: 3em;
-    margin-right: 3em;
+    font-size: 2em;
+    margin-left: 4.5em;
+    margin-right: 4.5em;
     margin-bottom: 3em;
 `;
 
 const Details = styled.p`
     font-size: 14px;
     margin: 1em;
-    padding-top: 4em;
+    padding-top: 5em;
     text-align: center;
 `;
 
@@ -82,19 +82,17 @@ const PTag = styled.p`
 
 const SummaryInput = styled.input`
     margin: 0 auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
     display: block;
-    width: 85%;
-    height: 30em;
-    padding-left: 2em;
-    padding-right: 2em;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+    width: 90%;
+    height: 40em;
 `;
 
 const BasicInput = styled.input`
     margin: 0 auto;
     display: block;
-    width: 85%;
+    width: 90%;
     height: 2.25em;
     text-align: center;
     margin-top: 0.5em;
@@ -106,7 +104,7 @@ const BasicInput = styled.input`
 const FeelInput = styled.input`
     margin: 0 auto;
     display: block;
-    width: 85%;
+    width: 90%;
     height: 1.75em;
     padding-right: 0.75em;
     padding-left: 0.75em;
@@ -124,20 +122,27 @@ const MarginDiv = styled.div`
 
 const FlexDiv = styled.div`
     display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 3em;
     margin-bottom: 3em;
+    /* border: 1px solid black; */
 `;
 
 const CircleCheckBox = styled.input`
-    border-radius: 100%;
+    width: 3.5em;
+    height: 3.5em;
 `;
 
 const Heading2Gray = styled.h2`
     color: #888888;
     font-size: 2.25em;
-    padding-left: 1em;
-    padding-right: 1em;
-    margin-top: 2.5em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-left: 5%;
+    padding-right: 5%;
+    width: 80%;
+    /* border: 1px solid black; */
 `;
 
 function Story() {
@@ -181,22 +186,22 @@ function Story() {
 
                 <MarginDiv>
                     <FlexDiv>
-                        <input type="checkbox" />
+                        <CircleCheckBox type="radio" />
                         <Heading2Gray>Did Police use physical force against you or point their weapon at you?</Heading2Gray>
                     </FlexDiv>
 
                     <FlexDiv>
-                        <input type="checkbox" />
+                        <CircleCheckBox type="radio" />
                         <Heading2Gray>Did police threaten you verbally, use foul language, or intimidate you during this encounter?</Heading2Gray>
                     </FlexDiv>
 
                     <FlexDiv>
-                        <input type="checkbox" />
+                        <CircleCheckBox type="radio" />
                         <Heading2Gray>Did police take money, take or destroy property, or issue an excessive fine during this encounter?</Heading2Gray>
                     </FlexDiv>
 
                     <FlexDiv>
-                        <input type="checkbox" />
+                        <CircleCheckBox type="radio" />
                         <Heading2Gray>Did police fail to help you when you needed it?</Heading2Gray>
                     </FlexDiv>
                 </MarginDiv>
@@ -216,28 +221,28 @@ function Story() {
                 <PTag>Required</PTag>
                 <MarginDiv>
                     <FlexDiv>
-                        <input type="checkbox" />
-                        <p>Very well</p>
+                        <CircleCheckBox type="radio" />
+                        <Heading2Gray>Very well</Heading2Gray>
                     </FlexDiv>
 
                     <FlexDiv>
-                        <input type="checkbox" />
-                        <p>Well</p>
+                        <CircleCheckBox type="radio" />
+                        <Heading2Gray>Well</Heading2Gray>
                     </FlexDiv>
 
                     <FlexDiv>
-                        <input type="checkbox" />
-                        <p>Just okay</p>
+                        <CircleCheckBox type="radio" />
+                        <Heading2Gray>Just okay</Heading2Gray>
                     </FlexDiv>
 
                     <FlexDiv>
-                        <input type="checkbox" />
-                        <p>Badly</p>
+                        <CircleCheckBox type="radio" />
+                        <Heading2Gray>Badly</Heading2Gray>
                     </FlexDiv>
 
                     <FlexDiv>
-                        <input type="checkbox" />
-                        <p>Very badly</p>
+                        <CircleCheckBox type="radio" />
+                        <Heading2Gray>Very badly</Heading2Gray>
                     </FlexDiv>
                 </MarginDiv>
 
