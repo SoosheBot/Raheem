@@ -148,5 +148,4 @@ const ExitContainer = styled.div`
 const BoldSpan = styled.span`
     background: #F2F2F2;
     font-weight: 800;
-
 `
