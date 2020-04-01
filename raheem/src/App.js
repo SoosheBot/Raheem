@@ -13,6 +13,7 @@ import Story from './components/Story';
 import Demographics from './components/Demographics';
 import Subscribe from './components/Subscribe';
 import ThankYou from './components/ThankYou';
+import Test from './components/TestComponents/Test';
 import Header from './components/layout/Header';
 
 function App() {
@@ -57,6 +58,10 @@ function App() {
 
       <Route path="/thank-you">
         <ThankYou />
+      </Route>
+
+      <Route path="/test">
+        <Test />
       </Route>
     </div>
   );
