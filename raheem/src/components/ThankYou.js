@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
+//buttons
+import GoBack from './buttons/GoBack.js';
 
 function ThankYou() {
 
@@ -37,6 +39,13 @@ function ThankYou() {
                     Otherwise, we hope you have a great rest of the day.
                     {/* goBack Button */}
                     </p>
+
+                    <ButtonContainer className="landingButtonContainer">
+                        <BackContainer>
+                            <GoBack />
+                            {/* go to thank you */}
+                        </BackContainer>
+                    </ButtonContainer>
                 </Cancelled>}
 
             {submitted &&
@@ -125,3 +134,22 @@ const Submitted = styled.div`
         width: 95%;
     }
 `;
+
+const ButtonContainer = styled.div`
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    @media (max-width: 500px) {
+        width: 95%;
+    }
+`
+
+const BackContainer = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 2% 0;
+`
