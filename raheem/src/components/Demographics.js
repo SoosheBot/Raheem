@@ -5,8 +5,6 @@ import { useHistory } from 'react-router-dom';
 /* validation */
 import { useForm } from 'react-hook-form';
 
-/* antd icons and components */
-import { Progress } from 'antd';
 // import Controls from './buttons/Controls';
 
 /* this function collects information about the users */
@@ -171,13 +169,6 @@ function Demographics() {
 
                 {/* progress bar */}
                 <div className="progressContainer">
-                    <Progress
-                        strokeColor={{
-                            '0%': '#FFF600',
-                            '100%': '#111111',
-                        }}
-                        percent={75}
-                    />
                 </div>
 
             </form>

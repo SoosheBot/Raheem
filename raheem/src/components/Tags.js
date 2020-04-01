@@ -10,6 +10,7 @@ import styled from 'styled-components';
 const { CheckableTag } = Tag;
 
 
+
 //this component is used for displaying story tags 
 const Tags = (props) => {
 
@@ -34,24 +35,25 @@ const Tags = (props) => {
 
             <CheckableTag 
                 {...props} 
-                checked={ checked } 
+                checked={ false } 
+                color='black'
                 onChange={ handleChange } 
             />
 
             {/* positive */}
             <div>
-                {/* <MyTag>Helped</MyTag>
-                <MyTag>Protected</MyTag> */}
+                <CheckableTag>Helped</CheckableTag>
+                <CheckableTag>Protected </CheckableTag>
             </div>
 
             {/* negative */}
             <div>
-                {/* <MyTag>Physically Attacked</MyTag>
-                <MyTag>Disrespected</MyTag>
-                <MyTag>Wrongly Accused</MyTag>
-                <MyTag>Harrassed</MyTag>
-                <MyTag>Neglected</MyTag>
-                <MyTag>Profiled</MyTag> */}
+                <CheckableTag>Physically Attacked</CheckableTag>
+                <CheckableTag>Disrespected</CheckableTag>
+                <CheckableTag>Wrongly Accused</CheckableTag>
+                <CheckableTag>Harrassed</CheckableTag>
+                <CheckableTag>Neglected</CheckableTag>
+                <CheckableTag>Profiled</CheckableTag>
             </div>
         </div>
 
