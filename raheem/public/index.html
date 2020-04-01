@@ -15,6 +15,23 @@
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
+  <!-- The following content in the <script> tag adds Google Analytics tracking and some minor integration functionality to the Raheem page. It is copied from the Firebase app when "Analytics" was enabled. -->
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyBz7WrOfVZUkPoQvkC-Kd75z-FDOa4LnAo",
+        authDomain: "raheem-b6ed6.firebaseapp.com",
+        databaseURL: "https://raheem-b6ed6.firebaseio.com",
+        projectId: "raheem-b6ed6",
+        storageBucket: "raheem-b6ed6.appspot.com",
+        messagingSenderId: "629185099277",
+        appId: "1:629185099277:web:536c4ed806980c15a30744",
+        measurementId: "G-YKXVVGHE3B"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
 </body>
 
 </html>

@@ -12,7 +12,7 @@ import Story from './components/Story';
 import Demographics from './components/Demographics';
 import Subscribe from './components/Subscribe';
 import ThankYou from './components/ThankYou';
-// import Test from './co'
+import Test from './components/TestComponents/Test';
 
 
 function App() {
