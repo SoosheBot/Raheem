@@ -49,6 +49,7 @@ test("it adds a new record to the collection", () => {
       expect(data).toHaveProperty("Fname", "Krusty");
       expect(data).toHaveProperty("Lname", "the Clown");
       expect(data).toHaveProperty("age", 53);
+      expect(data.exists).toBe(true)
     })
     .catch(err => {
       console.log("error adding to users collection", err);
