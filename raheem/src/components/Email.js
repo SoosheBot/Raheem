@@ -41,20 +41,11 @@ const Email = () => {
                 <button type="submit"> <MailOutlined /> Submit</button>
                 <GoBack />
             </div>
-
         </form>
 
-        <div>
-            <Progress
-                strokeColor={{
-                    '0%': '#FFF600',
-                    '100%': '#111111',
-                }}
-                percent={5} 
-                // dynamically adjust precentage?
-                status="exception" />
-                />
-            </div>
+        <div className="progressContainer">
+
+        </div>
     </div>
     );
 };

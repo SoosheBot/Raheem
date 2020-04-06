@@ -12,12 +12,15 @@ import Demographics from './components/Demographics';
 import Subscribe from './components/Subscribe';
 import ThankYou from './components/ThankYou';
 
+import ProgressBar from './components/other/ProgressBar';
+
 function App() {
   return (
     <div>
       {/* routes using react-router-dom */}
       <Route exact path="/">
         <h1>Raheem</h1>
+        <ProgressBar />
       </Route>
 
       <Route path="/QR">
