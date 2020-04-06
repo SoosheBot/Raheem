@@ -59,6 +59,12 @@ export const Label = styled.label`
     font-family: 'Roboto', sans-serif;
     font-size: 2.2rem;
     font-weight: 700;
+
+    span.light {
+        font-weight: 300;
+        font-size: 2.2rem;
+        font-family: 'Roboto', sans-serif;
+    }
 `;
 
 /* QR Component Form Styling */

@@ -21,7 +21,9 @@ export const DemographicsContainer = styled.div`
     h2 {
         font-family: 'Roboto', sans-serif;
         font-weight: 900;
-        font-size: 3rem;
+        font-size: 2.2rem;
+        width: 100%;
+        text-align: left;
 
         @media (max-width: 500px) {
             font-size: 3.5rem;
@@ -34,7 +36,10 @@ export const DemographicsContainer = styled.div`
 
     // Top heading tagline
     p.description {
-        font-size: 2rem;
+        width: 100%;
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.4rem;
+        text-align: left;
         margin: 1rem 0;
 
         // mobile breakpoint at 540px
@@ -58,7 +63,6 @@ export const DemographicsContainer = styled.div`
         font-family: 'Roboto', sans-serif;
         font-weight: 900;
         font-size: 2.2rem;
-        margin-top: 3rem;
 
         @media (max-width: 310px) {
             font-size: 2.5rem;
@@ -74,12 +78,10 @@ export const DemographicsContainer = styled.div`
     // Form styling
     form {
         background: #ffffff;
-        margin: 2rem 0;
-        padding: 3rem 2rem;
+        margin: 2rem 0 0;
         display: flex;
         flex-direction: column;
-        padding: 0 10%;
-        width: 80%;
+        width: 100%;
 
         @media (min-width: 1080px) {
             width: 800px;

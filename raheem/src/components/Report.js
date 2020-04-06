@@ -12,7 +12,6 @@ export default function Report() {
         <Container>
             <Content>
                 <Tags />
-
                 <Demographics />
                 <span>You'll have the opportunity to say more</span>
             </Content>

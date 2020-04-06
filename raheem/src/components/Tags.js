@@ -40,7 +40,7 @@ export default function Tags() {
 
     return (
         <div>
-            <Label>I was (click as many as apply)</Label>
+            <Label>I was <span className="light">(click as many as apply)</span></Label>
             <TagContainer>
                 <Tag onClick={toggleTag} value="helped">helped</Tag>
                 <Tag onClick={toggleTag} value="protected">protected</Tag>
