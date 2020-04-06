@@ -1,5 +1,7 @@
 import React, { useState }from 'react';
 
+import styled from 'styled-components';
+
 /* antd components and icons */
 import { Steps } from 'antd';
 
@@ -18,14 +20,17 @@ function ProgressBar() {
     return (
         <div>
         <Steps 
-        // current={current} onChange={{onChange}}
+            progressDot 
+            current={3}
+            size='small'
+            
         >
-            <Step title="Step 1" description="About" />
-            <Step title="Step 2" description="Stop Information" />
-            <Step title="Step 4" description="Stop Details" />
-            <Step title="Step 5" description="Date" />
-            <Step title="Step 6" description="User Information" />
-            <Step title="Step 7" description="Subscription" />
+            <Step description="About"/>
+            <Step description="Stop Information" />
+            <Step description="Stop Details" />
+            <Step description="Date" />
+            <Step description="User Information" />
+            <Step description="Subscription" />
         </Steps>
         </div>
         );
@@ -58,5 +63,3 @@ export default ProgressBar
 //   </div>,
 //   mountNode,
 // );
-
-

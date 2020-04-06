@@ -16,6 +16,8 @@ import ThankYou from './components/ThankYou';
 import Test from './components/TestComponents/Test';
 import Header from './components/layout/Header';
 
+import ProgressBar from './components/other/ProgressBar';
+
 function App() {
   return (
     <div>
