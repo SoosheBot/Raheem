@@ -1,58 +1,140 @@
-import React from 'react';
+import React, { useState } from "react";
 
-//buttons
-import Continue from './buttons/Continue';
-import Save from './buttons/Save';
-import GoBack from './buttons/GoBack';
+//styles
+import styled from 'styled-components';
 
-//components
-import Tags from './Tags';
+/* Buttons */
+import Controls from './buttons/Controls';
+// import Continue from './buttons/Continue';
+// import GoBack from './buttons/GoBack';
+// import Save from './buttons/Save';
 
-//antd components and icons
-import { Progress } from 'antd';
+/*antd components and icons */
+import { Tag } from 'antd';
 
+// import Tags from './Tags';
 
-function StopDetails() {
+const Form = styled.div`
+    margin-left: auto;
+    margin-right: auto;
+    width: 375px;
+    background-color: #FFF600;
+`;
+
+const Heading1 = styled.h1`
+    font-size: 3em;
+    text-align: center;
+    margin: 1em;
+`;
+
+const Heading2 = styled.h2`
+    text-align: center;
+`;
+
+//defining tag type
+const { CheckableTag } = Tag;
+
+function StopDetails(props) {
+
+    // setting state
+    const [checked, setChecked] = useState(false);
+    const [toggle, setToggle] = useState();
+
+    const handleChange = checked => {
+        setChecked(true);
+    };
+
     return (
+
         <div>
-            <div>
-                <h2>How was your stop?</h2>
+            <CheckableTag 
+                {...props} 
+                checked={ true }
+                color={'black'}
+                onChange={ handleChange } 
+            />
+
+            <div className="stopDetails">
+                <h2>How would you classify your stop?</h2>
 
                 <div>
-                    <input type="checkbox" />
-                    <p>Positive</p>
+                    <CheckableTag>Positive</CheckableTag>
 
-                    <input type="checkbox" />
-                    <p>Negative</p>
+                    <CheckableTag>Negative</CheckableTag>
                 </div>
             </div>
 
-            <div>
+            <div className="tagsInstructions">
                 {/* display tags component after selection has been made */}
                 {/* set state for positive/negative display to pass to Tags component */}
-                <Tags />
+                <p>
+                    {/* instructions to user to click on appropriate tags */}
+                </p>
             </div>
 
-            <div className="tagsButtonContainer">
+
+            <div className="tags">
+                {/* positive */}
+                    <div>
+                        <CheckableTag>Helped</CheckableTag>
+                        <CheckableTag>Protected</CheckableTag>
+                    </div>
+
+                {/* negative */}
+                    <div>
+                        <CheckableTag>Physically Attacked</CheckableTag>
+                        <CheckableTag>Disrespected</CheckableTag>
+                        <CheckableTag>Wrongly Accused</CheckableTag>
+                        <CheckableTag>Harrassed</CheckableTag>
+                        <CheckableTag>Neglected</CheckableTag>
+                        <CheckableTag>Profiled</CheckableTag>
+                    </div>
+            </div>
+
+            {/* <div className="tagsButtonContainer">
                 <div>
                     <p>Click here to proceed.</p>
                     <Continue />
                     {/* continue to story */}
-                </div>
+                {/* </div>
                 <div>
                     <p>Click here to go back.</p>
-                    <GoBack />
+                    <GoBack /> */}
                     {/* go back to landing */}
-                </div>
+                {/* </div>
                 <div>
                     <p>Click here to save your responses and come back later.</p>
-                    <Save />
+                    <Save /> */}
                     {/* go to email */}
-                </div>
-            </div>
+                {/* </div>
+            </div>  */}
 
+            <div className="progressContainer">
+                {/* < progressBar /> */}
+            </div>
         </div>
     )
 }
 
 export default StopDetails;
+
+
+const Control = styled.button`
+    width: 45%;
+    font-family: 'Noto Serif', serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    height: 5rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: #FFF600;
+    padding: 0.5rem 1rem;
+    transition: all 300ms;
+    margin: 1rem 0 0;
+
+    &:hover {
+        transition: background 300ms;
+        background: #FAEB00;
+        cursor: pointer;
+    }
+`;
