@@ -47,7 +47,6 @@ function Demographics() {
 
                 {/* RACE INPUTS */}
                 <h3>Your Race</h3>
-                <span>Required</span>
                 <div>
                     <input name="race" type="radio" ref={register({ required: true })} value="asian" />
                     Asian
@@ -103,7 +102,6 @@ function Demographics() {
                     <option value="no preference">Prefer Not to Say</option>
                     <option value="other">Other</option>
                 </select>
-                <span>Required</span>
 
                 {errors.gender && <p className="error">Please select a gender.</p>}
 
@@ -155,7 +153,6 @@ function Demographics() {
                             maxLength: 4
                         })} />
                 </div>
-                <span>Required</span>
 
                 {/* error handling for month input for data of birth */}
                 {errors.dobMonth && errors.dobMonth.type === "required" && <p className="error">A month is required.</p>}
@@ -173,17 +170,17 @@ function Demographics() {
                 {errors.dobYear && errors.dobYear.type === "maxLength" && <p className="error">Please enter a valid year.</p>}
 
                 {/* submit the form and continue through the flow */}
-                <input type="submit" value="Continue" />
+                <input type="submit" value="Add this report" />
 
                 {/* button controls to go back or save form submission */}
-                <div className="controls">
+                {/* <div className="controls">
                     <Control>Go Back</Control>
                     <Control>Save</Control>
-                </div>
+                </div> */}
 
                 {/* progress bar */}
-                <div className="progressContainer">
-                </div>
+                {/* <div className="progressContainer">
+                </div> */}
             </form>
         </DemographicsContainer>
     )
@@ -213,7 +210,9 @@ const DemographicsContainer = styled.div`
     h2 {
         font-family: 'Roboto', sans-serif;
         font-weight: 900;
-        font-size: 3rem;
+        font-size: 2.2rem;
+        width: 100%;
+        text-align: left;
 
         @media (max-width: 500px) {
             font-size: 3.5rem;
@@ -226,7 +225,10 @@ const DemographicsContainer = styled.div`
 
     // Top heading tagline
     p.description {
-        font-size: 2rem;
+        width: 100%;
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.4rem;
+        text-align: left;
         margin: 1rem 0;
 
         // mobile breakpoint at 540px
@@ -249,7 +251,7 @@ const DemographicsContainer = styled.div`
     h3 {
         font-family: 'Roboto', sans-serif;
         font-weight: 900;
-        font-size: 2.5rem;
+        font-size: 2.2rem;
         margin-top: 3rem;
 
         @media (max-width: 310px) {
@@ -266,12 +268,10 @@ const DemographicsContainer = styled.div`
     // Form styling
     form {
         background: #ffffff;
-        margin: 2rem 0;
-        padding: 3rem 2rem;
+        margin: 2rem 0 0;
         display: flex;
         flex-direction: column;
-        padding: 0 10%;
-        width: 80%;
+        width: 100%;
 
         @media (min-width: 1080px) {
             width: 800px;

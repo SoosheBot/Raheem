@@ -13,7 +13,6 @@ export const TagContainer = styled.div`
 `;
 
 export const Tag = styled.button`
-    // width: 20%;
     margin: 0.5rem;
     padding: 1rem;
     background: #ffffff;
