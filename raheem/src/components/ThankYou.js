@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
+//buttons
+import GoBack from './buttons/GoBack.js';
 
 function ThankYou() {
 
@@ -15,7 +17,7 @@ function ThankYou() {
     // localStorage.setItem('cancelled', 'true');
 
     // uncomment to view submitted thank you screen
-    localStorage.setItem('submitted', 'true');
+    // localStorage.setItem('submitted', 'true');
 
     useEffect(() => {
         if (!!localStorage.getItem('cancelled')) {
@@ -32,10 +34,18 @@ function ThankYou() {
                 <Cancelled>
                     <h2>Thank You</h2>
                     <p>Thank you for your time today.</p>
-                    <p>If you accidentally clicked on 'cancel', you can click the back button
-                    to return to the report submission form and continue filling out your report,
-                    otherwise, we hope you have a great rest of the day.
+                    <p>If you accidentally clicked on 'Exit', you can click the back button
+                    to return to the report submission form and continue filling out your report.
+                    Otherwise, we hope you have a great rest of the day.
+                    {/* goBack Button */}
                     </p>
+
+                    <ButtonContainer className="landingButtonContainer">
+                        <BackContainer>
+                            <GoBack />
+                            {/* go to thank you */}
+                        </BackContainer>
+                    </ButtonContainer>
                 </Cancelled>}
 
             {submitted &&
@@ -124,3 +134,22 @@ const Submitted = styled.div`
         width: 95%;
     }
 `;
+
+const ButtonContainer = styled.div`
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    @media (max-width: 500px) {
+        width: 95%;
+    }
+`
+
+const BackContainer = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 2% 0;
+`

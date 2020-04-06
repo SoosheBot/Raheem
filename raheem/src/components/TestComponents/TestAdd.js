@@ -6,10 +6,9 @@ const AddItemForm = () => {
   const [Fname, setFname] = useState("");
   const [Lname, setLname] = useState("");
   const [age, setAge] = useState(0);
-  
 
-  /* The onSubmit function we takes the 'e' 
-    or event and submits it to Firebase
+  /* The onSubmit function we take the 'e' 
+    (or event) and submit it to Firebase
     */
   const onSubmit = e => {
     /* 
@@ -17,6 +16,7 @@ const AddItemForm = () => {
     prevents the whole page from reloading
     */
     e.preventDefault();
+    /* we call the firebase firestore collection and add the fields we want to the collection when the user clicks onSubmit in the form */
     firebase
       .firestore()
       .collection("test")
@@ -25,16 +25,33 @@ const AddItemForm = () => {
         Lname,
         age
       })
-      //.then will reset the form to nothing
+      /* .then clears all of the fields after the submit -- resetting the form for another add! */
       .then(() => setFname(""), setLname(""), setAge(""));
   };
 
   return (
-    
-      <form onSubmit={onSubmit}>
-        <input type="text" name="Fname" value={Fname.Fname} placeholder="First Name" onChange={e => setFname(e.currentTarget.value)}/>
-        <input type="text" name="Lname" value={Lname.Lname} placeholder="Last Name" onChange={e => setLname(e.currentTarget.value)}/>
-        <input type="number" name="age" value={age.age} placeholder={0} onChange={e => setAge(e.currentTarget.value)}/>
+    <form onSubmit={onSubmit}>
+      <input
+        type="text"
+        name="Fname"
+        value={Fname.Fname}
+        placeholder="First Name"
+        onChange={e => setFname(e.currentTarget.value)}
+      />
+      <input
+        type="text"
+        name="Lname"
+        value={Lname.Lname}
+        placeholder="Last Name"
+        onChange={e => setLname(e.currentTarget.value)}
+      />
+      <input
+        type="number"
+        name="age"
+        value={age.age}
+        placeholder={0}
+        onChange={e => setAge(e.currentTarget.value)}
+      />
       <button>Add</button>
     </form>
   );

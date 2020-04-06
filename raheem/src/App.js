@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 /* route */
 import { Route } from 'react-router-dom';
@@ -12,19 +13,23 @@ import Story from './components/Story';
 import Demographics from './components/Demographics';
 import Subscribe from './components/Subscribe';
 import ThankYou from './components/ThankYou';
-// import Test from './co'
-
+import Test from './components/TestComponents/Test';
+import Header from './components/layout/Header';
 
 function App() {
   return (
     <div>
+      <Header />
+
       {/* routes using react-router-dom */}
       <Route exact path="/">
-        <h1>Raheem</h1>
+        <Splash>
+          <h1>Raheem</h1>
+        </Splash>
       </Route>
 
       <Route path="/QR">
-        < QRcode/>
+        < QRcode />
       </Route>
 
       <Route path="/about">
@@ -63,3 +68,16 @@ function App() {
 }
 
 export default App;
+
+const Splash = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    font-size: 4rem;
+    font-weight: 900;
+  }
+`;
