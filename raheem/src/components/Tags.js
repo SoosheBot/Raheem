@@ -1,64 +1,59 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from 'react';
 
-//antd components
-import { Tag } from 'antd';
+/* styles */
+import { Label } from '../styles/global';
+import { TagContainer, Tag } from '../styles/tags';
 
-//styles
-import styled from 'styled-components';
+export default function Tags() {
 
-//defining tag type
-const { CheckableTag } = Tag;
+    /* state for an array of the user's selected / toggled tags */
+    const [toggledTags, setToggledTags] = useState([]);
 
+    /* function to find the index of a selected tag so that we
+        can easily remove it if the user deselects it */
+    const findIndexOfTag = (tag) => {
+        const index = toggledTags.indexOf(tag);
+        return index;
+    }
 
+    /* function to actually toggle / select a specific tag */
+    const toggleTag = (e) => {
+        e.preventDefault(); // prevent default refresh from button clicks
+        e.target.classList.toggle('toggled'); // toggle the 'toggled' class for styling when clicked
 
-//this component is used for displaying story tags 
-const Tags = (props) => {
-
-    // setting state
-    const [checked, setChecked] = useState(false);
-    const [positive, setPositive] = useState();
-    const [negative, setNegative] = useState();
-
-    // setting checked tags to true
-        const handleChange = checked => {
-            setChecked(true);
-        };
+        /* if our toggled tags array does NOT include the selected tag,
+            then we should add it to our toggled tags array */
+        if (!toggledTags.includes(e.target.value)) {
+            setToggledTags([
+                ...toggledTags,
+                e.target.value
+            ]);
+        }
+        else {
+            /* otherwise we should find the index of the already toggled
+                tag, filter it out, and update our toggled tags state 
+                with the remaining toggled tags */
+            const filter = toggledTags.filter(tag => tag !== e.target.value);
+            setToggledTags(filter);
+        }
+    }
 
     return (
-    <div>
-        <p>
-            {/* instructions to user to click on appropriate tags */}
-        </p>
-
         <div>
-            {/* tags display */}
+            <Label>I was (click as many as apply)</Label>
+            <TagContainer>
+                <Tag onClick={toggleTag} value="helped">helped</Tag>
+                <Tag onClick={toggleTag} value="protected">protected</Tag>
+                <Tag onClick={toggleTag} value="profiled">profiled</Tag>
+                <Tag onClick={toggleTag} value="neglected">neglected</Tag>
+                <Tag onClick={toggleTag} value="harassed">harassed</Tag>
+                <Tag onClick={toggleTag} value="wrongly accused">wrongly accused</Tag>
+                <Tag onClick={toggleTag} value="disrespected">disrespected</Tag>
+                <Tag onClick={toggleTag} value="physically attacked">physically attacked</Tag>
+            </TagContainer>
 
-            <CheckableTag 
-                {...props} 
-                checked={ false } 
-                color='black'
-                onChange={ handleChange } 
-            />
-
-            {/* positive */}
-            <div>
-                <CheckableTag>Helped</CheckableTag>
-                <CheckableTag>Protected </CheckableTag>
-            </div>
-
-            {/* negative */}
-            <div>
-                <CheckableTag>Physically Attacked</CheckableTag>
-                <CheckableTag>Disrespected</CheckableTag>
-                <CheckableTag>Wrongly Accused</CheckableTag>
-                <CheckableTag>Harrassed</CheckableTag>
-                <CheckableTag>Neglected</CheckableTag>
-                <CheckableTag>Profiled</CheckableTag>
-            </div>
+            {/* ensuring our toggled tags array is working correctly */}
+            {console.log(toggledTags)}
         </div>
-
-    </div>
-    );
-};
-
-export default Tags;
+    )
+}
