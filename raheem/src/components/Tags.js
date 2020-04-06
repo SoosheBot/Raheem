@@ -1,17 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-//antd components
-import { Tag } from 'antd';
-
 //styles
 import styled from 'styled-components';
 
-//defining tag type
-const { CheckableTag } = Tag;
-
-
-
-//this component is used for displaying story tags 
+//this component is used for displaying tags 
 const Tags = (props) => {
 
     // setting state
