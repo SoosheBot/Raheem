@@ -44,11 +44,11 @@ function App() {
       </Route>
 
       <Route path="/report">
-        <Story />
+        <Report />
       </Route>
 
-      <Route path="/newreport">
-        <Report />
+      <Route path="/story">
+        <Story />
       </Route>
 
       <Route path="/demographics">
