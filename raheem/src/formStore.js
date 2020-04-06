@@ -1,0 +1,35 @@
+import React, { createContext, useReducer } from 'react';
+
+/* setup our initial global state */
+const initialState = {
+    race: '',
+    gender: '',
+    transgender: null,
+    dobMonth: '',
+    dobDay: '',
+    dobYear: ''
+}
+
+/* create our context object using the createContext hook */
+const formStore = createContext(initialState);
+
+/* deconstruct Provider from our form store */
+const { Provider } = formStore;
+
+const StateProvider = ({ children }) => {
+    const [state, dispatch] = useReducer((state, action) => {
+        switch (action.type) {
+            case 'DEMOGRAPHICS':
+                return {
+                    ...state,
+                    ...action.payload
+                };
+            default:
+                return state;
+        };
+    }, initialState);
+
+    return <Provider value={{ state, dispatch }}>{children}</Provider>;
+};
+
+export { formStore, StateProvider }

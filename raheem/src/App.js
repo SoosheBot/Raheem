@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 /* route */
@@ -19,6 +19,7 @@ import Header from './components/layout/Header';
 import ProgressBar from './components/other/ProgressBar';
 
 function App() {
+
   return (
     <div>
       <Header />

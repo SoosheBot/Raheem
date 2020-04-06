@@ -1,14 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
+
+/* bring in our global form store */
+import { formStore } from '../formStore.js';
 
 /* validation */
 import { useForm } from 'react-hook-form';
 
-// import Controls from './buttons/Controls';
-
 /* this function collects information about the users */
 function Demographics() {
+
+    /* bring in our global state using the useContext hook
+        and our form store */
+    const globalState = useContext(formStore);
+
+    /* deconstruct dispatch off globalState to dispatch an action */
+    const { dispatch } = globalState;
+
+    /* make sure we've successfully pulled in our global state */
+    console.log(globalState);
 
     /* bring in useHistory hook from react-router-dom */
     const history = useHistory();
@@ -18,9 +29,12 @@ function Demographics() {
 
     /* configure react-hook-form */
     const { register, handleSubmit, errors } = useForm();
+
+    /* handle submit for the demographics form */
     const onSubmit = (data) => {
+        dispatch({ type: 'DEMOGRAPHICS', payload: data }); // update our global state
         setDemographicData({ ...data, dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}` })
-        history.push(`/subscribe`);
+        history.push(`/subscribe`); // push the user to the subscribe component
     }
 
     return (
@@ -31,7 +45,7 @@ function Demographics() {
 
             <form onSubmit={handleSubmit(onSubmit)}>
 
-                {/* RACE */}
+                {/* RACE INPUTS */}
                 <h3>Your Race</h3>
                 <span>Required</span>
                 <div>
@@ -75,9 +89,10 @@ function Demographics() {
                     Prefer not to say
                 </div>
 
+                {/* error handling for race inputs */}
                 {errors.race && <p className="error">Please select your race.</p>}
 
-                {/* GENDER */}
+                {/* GENDER INPUTS */}
                 <h3>Gender</h3>
                 <select name="gender" ref={register({ required: true })}>
                     <option value="">Select gender...</option>
@@ -98,9 +113,10 @@ function Demographics() {
                     I identify as trans
                 </div>
 
+                {/* error handling for transgender input */}
                 {errors.transgender && <p className="error">This field is required.</p>}
 
-                {/* AGES */}
+                {/* AGE INPUTS*/}
                 <h3>Date of birth</h3>
                 <div className="dob-container">
                     <input
@@ -156,26 +172,20 @@ function Demographics() {
                 {errors.dobYear && errors.dobYear.type === "minLength" && <p className="error">Please enter a valid year.</p>}
                 {errors.dobYear && errors.dobYear.type === "maxLength" && <p className="error">Please enter a valid year.</p>}
 
+                {/* submit the form and continue through the flow */}
                 <input type="submit" value="Continue" />
 
-                {/* pass down the path to the next page through props */}
-                {/* <Controls next="/subscribe" /> */}
-
+                {/* button controls to go back or save form submission */}
                 <div className="controls">
                     <Control>Go Back</Control>
                     <Control>Save</Control>
                 </div>
 
-
                 {/* progress bar */}
                 <div className="progressContainer">
                 </div>
-
             </form>
-
-            {console.log(demographicData)}
         </DemographicsContainer>
-
     )
 }
 
