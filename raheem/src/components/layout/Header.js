@@ -28,7 +28,6 @@ function Header() {
                     <Link to="/about">About</Link>
                     <Link to="/report">Report</Link>
                     <Link to="/story">Story</Link>
-                    <Link to="/demographics">Demographics</Link>
                     <Link to="/subscribe">Subscribe</Link>
                     <Link to="/thank-you">Thank You</Link>
                 </div>}

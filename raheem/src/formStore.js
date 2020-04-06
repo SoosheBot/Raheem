@@ -2,6 +2,7 @@ import React, { createContext, useReducer } from 'react';
 
 /* setup our initial global state */
 const initialState = {
+    tags: [],
     race: '',
     gender: '',
     transgender: null,
@@ -19,11 +20,11 @@ const { Provider } = formStore;
 const StateProvider = ({ children }) => {
     const [state, dispatch] = useReducer((state, action) => {
         switch (action.type) {
-            case 'DEMOGRAPHICS':
+            case 'REPORT':
                 return {
                     ...state,
                     ...action.payload
-                };
+                }
             default:
                 return state;
         };

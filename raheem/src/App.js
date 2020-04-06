@@ -9,14 +9,11 @@ import QRcode from './components/QRcode';
 import Landing from './components/Landing';
 import Date from './components/Date';
 import Story from './components/Story';
-import Demographics from './components/Demographics';
 import Subscribe from './components/Subscribe';
 import ThankYou from './components/ThankYou';
 import Test from './components/TestComponents/Test';
 import Header from './components/layout/Header';
 import Report from './components/Report';
-
-import ProgressBar from './components/other/ProgressBar';
 
 function App() {
 
@@ -49,10 +46,6 @@ function App() {
 
       <Route path="/story">
         <Story />
-      </Route>
-
-      <Route path="/demographics">
-        <Demographics />
       </Route>
 
       <Route path="/subscribe">

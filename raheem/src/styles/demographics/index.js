@@ -49,11 +49,9 @@ export const DemographicsContainer = styled.div`
 
         @media(max-width: 500px) {
             font-size: 1.4rem;
-            text-align: center;
         }
 
         @media(max-width: 400px) {
-            text-align: center;
             padding: 0 5%;
         }
     }
@@ -63,6 +61,11 @@ export const DemographicsContainer = styled.div`
         font-family: 'Roboto', sans-serif;
         font-weight: 900;
         font-size: 2.2rem;
+        margin-top: 3rem;
+
+        &:first-child {
+            margin-top: 0;
+        }
 
         @media (max-width: 310px) {
             font-size: 2.5rem;
@@ -119,12 +122,22 @@ export const DemographicsContainer = styled.div`
             font-size: 2rem;
             padding-left: 1rem;
 
-            @media (max-width: 340px) {
+            @media (max-width: 440px) {
                 font-size: 1.6rem;
+                padding-left: 0.5rem;
+            }
+
+            @media (max-width: 360px) {
+                font-size: 1.2rem;
+                padding-left: 0.5rem;
             }
 
             @media (max-width: 285px) {
                 font-size: 1.2rem;
+            }
+
+            @media (max-width: 265px) {
+                font-size: 1rem;
             }
 
             &:focus {
@@ -164,6 +177,14 @@ export const DemographicsContainer = styled.div`
                 outline: none;
                 border: 1px solid #FAEB00;
             }
+
+            @media (max-width: 300px) {
+                font-size: 1.4rem;
+            }
+
+            @media (max-width: 255px) {
+                font-size: 1.2rem;
+            }
         }
 
         // Submit button styling
@@ -178,6 +199,14 @@ export const DemographicsContainer = styled.div`
             padding: 0.5rem 1rem;
             transition: all 300ms;
             margin: 3rem 0 0;
+
+            @media (max-width: 340px) {
+                font-size: 1.6rem;
+            }
+
+            @media (max-width: 265px) {
+                font-size: 1.4rem;
+            }
 
             &:hover {
                 transition: background 300ms;
