@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 /* route */
@@ -13,9 +13,13 @@ import Story from './components/Story';
 import Demographics from './components/Demographics';
 import Subscribe from './components/Subscribe';
 import ThankYou from './components/ThankYou';
+import Test from './components/TestComponents/Test';
 import Header from './components/layout/Header';
 
+import ProgressBar from './components/other/ProgressBar';
+
 function App() {
+
   return (
     <div>
       <Header />
@@ -57,6 +61,10 @@ function App() {
 
       <Route path="/thank-you">
         <ThankYou />
+      </Route>
+
+      <Route path="/test">
+        <Test />
       </Route>
     </div>
   );

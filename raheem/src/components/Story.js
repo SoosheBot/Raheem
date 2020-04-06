@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 
 import Continue from './buttons/Continue';
 import GoBack from './buttons/GoBack';
-import Save from './buttons/Save';
 
 import styled from "styled-components";
 
@@ -24,12 +23,14 @@ const FormW = styled.form`
 `;
 
 const MyStories = styled.p`
+    font-family: 'Roboto', sans-serif;
     font-size: 1.75em;
     text-align: center;
     padding: 1em;
 `;
 
 const Heading1 = styled.h1`
+    font-family: 'Roboto', sans-serif;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -38,6 +39,7 @@ const Heading1 = styled.h1`
 `;
 
 const Statement = styled.h2`
+    font-family: 'Roboto', sans-serif;
     font-size: 2.5em;
     text-align: center;
     padding-left: 2em;
@@ -51,6 +53,7 @@ const GraySpan = styled.span`
 `;
 
 const Heading2 = styled.h2`
+    font-family: 'Roboto', sans-serif;
     font-size: 2.5em;
     padding-left: 1em;
     padding-right: 1em;
@@ -58,8 +61,9 @@ const Heading2 = styled.h2`
 `;
 
 const PHeading = styled.p`
+    font-family: 'Roboto', sans-serif;
     text-align: center;
-    font-size: 2em;
+    font-size: 1.6rem;
     display: flex;
     justify-content: center;
     // margin-left: 4.5em;
@@ -68,6 +72,7 @@ const PHeading = styled.p`
 `;
 
 const Details = styled.p`
+    font-family: 'Roboto', sans-serif;
     font-size: 14px;
     margin: 1em;
     padding-top: 5em;
@@ -75,6 +80,7 @@ const Details = styled.p`
 `;
 
 const PTag = styled.p`
+    font-family: 'Roboto', sans-serif;
     font-size: 14px;
     padding-left: 2em;
     padding-right: 2em;
@@ -114,7 +120,7 @@ const FeelInput = styled.input`
     padding-left: 0.75em;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
-    font-size: 2.5em;
+    font-size: 2rem;
 `;
 
 const MarginDiv = styled.div`
@@ -139,6 +145,7 @@ const CircleCheckBox = styled.input`
 `;
 
 const Heading2Gray = styled.h2`
+    font-family: 'Roboto', sans-serif;
     color: #888888;
     font-size: 2.25em;
     margin-top: 1em;
@@ -148,6 +155,33 @@ const Heading2Gray = styled.h2`
     width: 80%;
     /* border: 1px solid black; */
 `;
+
+const ButtonContainer = styled.div`
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    @media (max-width: 500px) {
+        width: 95%;
+    }
+`
+
+const ContinueContainer = styled.div`
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 2% 0;
+`
+
+const ExitContainer = styled.div`
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 2% 0;
+`
 
 function Story() {
 
@@ -271,6 +305,16 @@ function Story() {
                     />
                     {errors.email && errors.email.message}
                     <PTag>Required</PTag>
+
+                    <ButtonContainer className="landingButtonContainer">
+                        <ExitContainer>
+                            <GoBack />
+                        </ExitContainer>
+                        <ContinueContainer>
+                            <Continue next={`/demographics`} />
+                            {/* goes to stop details */}
+                        </ContinueContainer>
+                    </ButtonContainer>
                 </FormW>
             </FormY>
 

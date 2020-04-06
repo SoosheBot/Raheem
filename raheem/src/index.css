@@ -29,7 +29,9 @@ button.save {
   transition: all 300ms;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
+
 
 button.save:hover {
   transition: background 300ms;
