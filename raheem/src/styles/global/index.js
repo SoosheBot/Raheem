@@ -7,6 +7,13 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    span {
+        font-family: 'Noto Serif', serif;
+        font-weight: 900;
+        font-size: 1.2rem;
+        text-align: center;
+    }
 `
 
 export const HeadingContainer = styled.div`
@@ -50,8 +57,14 @@ export const ContentSep = styled.div`
 
 export const Label = styled.label`
     font-family: 'Roboto', sans-serif;
-    font-size: 2.6rem;
+    font-size: 2.2rem;
     font-weight: 700;
+
+    span.light {
+        font-weight: 300;
+        font-size: 2.2rem;
+        font-family: 'Roboto', sans-serif;
+    }
 `;
 
 /* QR Component Form Styling */

@@ -7,16 +7,13 @@ import { Route } from 'react-router-dom';
 /* components */
 import QRcode from './components/QRcode';
 import Landing from './components/Landing';
-import StopDetails from './components/StopDetails';
 import Date from './components/Date';
 import Story from './components/Story';
-import Demographics from './components/Demographics';
 import Subscribe from './components/Subscribe';
 import ThankYou from './components/ThankYou';
 import Test from './components/TestComponents/Test';
 import Header from './components/layout/Header';
-
-import ProgressBar from './components/other/ProgressBar';
+import Report from './components/Report';
 
 function App() {
 
@@ -39,20 +36,16 @@ function App() {
         <Landing />
       </Route>
 
-      <Route path="/details">
-        <StopDetails />
-      </Route>
-
       <Route path="/date">
         <Date />
       </Route>
 
       <Route path="/report">
-        <Story />
+        <Report />
       </Route>
 
-      <Route path="/demographics">
-        <Demographics />
+      <Route path="/story">
+        <Story />
       </Route>
 
       <Route path="/subscribe">
