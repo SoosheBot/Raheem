@@ -16,7 +16,7 @@ export const Tag = styled.button`
     margin: 0.5rem;
     padding: 1rem;
     background: #ffffff;
-    border-radius: 0.5rem;
+    border-radius: 100px;
     border: 1px solid #121212;
     color: #111111;
     font-size: 1.4rem;
