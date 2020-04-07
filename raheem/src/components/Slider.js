@@ -56,11 +56,8 @@ const TxSlider = withStyles({
 
 const marks = [
     {
-        value: 0,
-        label: 'Very Poorly',
-    },
-    {
         value: 1,
+        label: 'Very Poorly',
     },
     {
         value: 2,
@@ -109,7 +106,7 @@ export default function CustomizedSlider() {
                 defaultValue={0} 
                 step={1}
                 marks={marks}
-                min={0}
+                min={1}
                 max={10}/>
             </div>
             </div>
