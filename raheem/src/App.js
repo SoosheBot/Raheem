@@ -8,6 +8,7 @@ import { Route } from 'react-router-dom';
 import QRcode from './components/QRcode';
 import Landing from './components/Landing';
 import Date from './components/Date';
+import Slider from './components/Slider';
 import Story from './components/Story';
 import Subscribe from './components/Subscribe';
 import ThankYou from './components/ThankYou';
@@ -38,6 +39,10 @@ function App() {
 
       <Route path="/date">
         <Date />
+      </Route>
+
+      <Route path="/slider">
+        <Slider />
       </Route>
 
       <Route path="/report">
