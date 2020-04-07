@@ -6,9 +6,9 @@ const initialState = {
     race: '',
     gender: '',
     transgender: null,
-    dobMonth: '',
-    dobDay: '',
-    dobYear: ''
+    dob: '',
+    incidentDate: '',
+    time: ''
 }
 
 /* create our context object using the createContext hook */

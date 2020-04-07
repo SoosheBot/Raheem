@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     },
     margin: {
         height: theme.spacing(3),
-    },
+    }
 }));
 
 const TxSlider = withStyles({
@@ -73,13 +73,13 @@ const marks = [
     },
     {
         value: 6,
-    },    
+    },
     {
         value: 7,
-    },    
+    },
     {
         value: 8,
-    },    
+    },
     {
         value: 9,
     },
@@ -98,17 +98,17 @@ export default function CustomizedSlider() {
                 <h2>How would you rate your treatment during your interaction?</h2>
             </div>
             <div className={classes.root}>
-            <div className={classes.margin}>
-            <Typography gutterBottom></Typography>
-            <TxSlider 
-                valueLabelDisplay="auto" 
-                aria-label="pretto slider" 
-                defaultValue={0} 
-                step={1}
-                marks={marks}
-                min={1}
-                max={10}/>
-            </div>
+                <div className={classes.margin}>
+                    <Typography gutterBottom></Typography>
+                    <TxSlider
+                        valueLabelDisplay="auto"
+                        aria-label="pretto slider"
+                        defaultValue={0}
+                        step={1}
+                        marks={marks}
+                        min={1}
+                        max={10} />
+                </div>
             </div>
         </Container>
     );

@@ -1,84 +1,13 @@
 import styled from 'styled-components';
 
-export const DemographicsContainer = styled.div`
-    margin: 5rem 0;
+export const ReportForm = styled.div`
+    margin: 1rem 0;
     font-family: 'Noto Serif', serif;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    // Error styling
-    p.error {
-        margin-top: 1rem;
-        font-family: 'Roboto', sans-serif;
-        color: #db3737;
-        font-size: 1.2rem;
-        font-weight: 500;
-    }
-
-    // Top heading
-    h2 {
-        font-family: 'Roboto', sans-serif;
-        font-weight: 900;
-        font-size: 2.2rem;
-        width: 100%;
-        text-align: left;
-
-        @media (max-width: 500px) {
-            font-size: 3.5rem;
-        }
-
-        @media (max-width: 400px) {
-            font-size: 3rem;
-        }
-    }
-
-    // Top heading tagline
-    p.description {
-        width: 100%;
-        font-family: 'Roboto', sans-serif;
-        font-size: 1.4rem;
-        text-align: left;
-        margin: 1rem 0;
-
-        // mobile breakpoint at 540px
-        @media (max-width: 540px) {
-            font-size: 1.8rem;
-        }
-
-        @media(max-width: 500px) {
-            font-size: 1.4rem;
-        }
-
-        @media(max-width: 400px) {
-            padding: 0 5%;
-        }
-    }
-
-    // Form heading
-    h3 {
-        font-family: 'Roboto', sans-serif;
-        font-weight: 900;
-        font-size: 2.2rem;
-        margin-top: 3rem;
-
-        &:first-child {
-            margin-top: 0;
-        }
-
-        @media (max-width: 310px) {
-            font-size: 2.5rem;
-        }
-    }
-
-    // Required field span
-    span {
-        font-size: 1.4rem;
-        margin: 0.5rem 0 2rem;
-    }
-
-    // Form styling
     form {
         background: #ffffff;
         margin: 2rem 0 0;
@@ -108,6 +37,123 @@ export const DemographicsContainer = styled.div`
                 font-size: 1.6rem;
             }
         }
+
+        // Top heading
+    h2 {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 900;
+        font-size: 2.2rem;
+        width: 100%;
+        text-align: left;
+        margin-top: 5rem;
+
+        &:first-child {
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 500px) {
+            font-size: 3.5rem;
+        }
+
+        @media (max-width: 400px) {
+            font-size: 3rem;
+        }
+    }
+
+    h3 {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;
+        font-size: 1.8rem;
+        line-height: 2.8rem;
+        margin-top: 2rem;
+    }
+
+    span {
+        margin-top: 3rem;
+    }
+
+    // Top heading tagline
+    p.description {
+        width: 100%;
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.4rem;
+        text-align: left;
+        margin: 1rem 0;
+
+        // mobile breakpoint at 540px
+        @media (max-width: 540px) {
+            font-size: 1.8rem;
+        }
+
+        @media(max-width: 500px) {
+            font-size: 1.4rem;
+        }
+
+        @media(max-width: 400px) {
+            padding: 0 5%;
+        }
+    }
+
+    .error {
+        color: red;
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 300;
+    }
+
+    input[type=text].incident {
+        width: 33%;
+        height: 5rem;
+        font-weight: 900;
+        font-size: 2rem;
+        padding-left: 1rem;
+
+        @media (max-width: 440px) {
+            font-size: 1.6rem;
+            padding-left: 0.5rem;
+        }
+
+        @media (max-width: 360px) {
+            font-size: 1.2rem;
+            padding-left: 0.5rem;
+        }
+
+        @media (max-width: 285px) {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 265px) {
+            font-size: 1rem;
+        }
+
+        &:focus {
+            outline: none;
+            border: 1px solid #FAEB00;
+        }
+    }
+
+    input[type=time] {
+        margin-top: 2rem;
+        width: 99%;
+        height: 5rem;
+        font-size: 2rem;
+        font-weight: 900;
+        padding-left: 1rem;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    input[type=time]::-webkit-datetime-edit-text {
+        font-size: 2rem;
+        padding: 0 15%;
+    }
+
+    input[type=time]::-webkit-clear-button {
+        display: none;
+    }
+
+    input[type=time]::-webkit-inner-spin-button {
+        height: 5rem;
+    }
 
         // Date of birth container
         .dob-container {
@@ -214,31 +260,5 @@ export const DemographicsContainer = styled.div`
                 cursor: pointer;
             }
         }
-
-        .controls {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-        }
-    }
-`;
-
-export const Control = styled.button`
-    width: 45%;
-    font-family: 'Noto Serif', serif;
-    font-weight: 700;
-    font-size: 1.4rem;
-    height: 5rem;
-    border: none;
-    border-radius: 0.5rem;
-    background: #FFF600;
-    padding: 0.5rem 1rem;
-    transition: all 300ms;
-    margin: 1rem 0 0;
-
-    &:hover {
-        transition: background 300ms;
-        background: #FAEB00;
-        cursor: pointer;
     }
 `;
