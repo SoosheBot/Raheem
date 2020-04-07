@@ -35,7 +35,6 @@ padding: 3% 0;
 const TxSlider = withStyles({
     root: {
         color: '#FFF600',
-        fontColor: 'purple',
         height: 8,
     },
     thumb: {
@@ -55,10 +54,10 @@ const TxSlider = withStyles({
         marginLeft: -5
     },
     markLabel: {
-        fontSize: '15px',
+        fontSize: '1.5rem',
         padding: '15px 30px',
         fontFamily: 'Roboto',
-        lineHeight: '18px',
+        lineHeight: '1.8rem',
         letterSpacing: -0.2,
         color: '#C4C4C4'
     },
@@ -72,15 +71,18 @@ const TxSlider = withStyles({
     track: {
         height: 8,
         borderRadius: 10,
-        border: '1px solid #111111',
+        border: '2px solid #111111',
         color: '#FFF600'
     },
     rail: {
         height: 8,
         borderRadius: 10,
-        border: '1px solid #111111',
+        border: '2px solid #111111',
         color: '#FFF600',
     },
+    mark: {
+        color: '#808080',
+    },git push 
 })(Slider);
 
 const marks = [
