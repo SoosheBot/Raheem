@@ -30,7 +30,6 @@ width: 85%;
 padding: 3% 0 2%;
 `
 
-
 //slider styles from material UI
 const TxSlider = withStyles({
     root: {

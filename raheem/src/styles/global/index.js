@@ -108,3 +108,102 @@ export const QRCodeContainer = styled.div`
     height: 10.87rem;
     background: #C4C4C4;
 `;
+
+
+/* incident time styling */
+export const IncidentTimeContainer = styled.div`
+    width: 100%;
+
+    // Top heading
+    h2 {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 900;
+        font-size: 2.2rem;
+        width: 100%;
+        text-align: left;
+
+        @media (max-width: 500px) {
+            font-size: 3.5rem;
+        }
+
+        @media (max-width: 400px) {
+            font-size: 3rem;
+        }
+    }
+
+    // Top heading tagline
+    p.description {
+        width: 100%;
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.4rem;
+        text-align: left;
+        margin: 1rem 0;
+
+        // mobile breakpoint at 540px
+        @media (max-width: 540px) {
+            font-size: 1.8rem;
+        }
+
+        @media(max-width: 500px) {
+            font-size: 1.4rem;
+        }
+
+        @media(max-width: 400px) {
+            padding: 0 5%;
+        }
+    }
+
+    input[type=text].incident {
+        width: 33%;
+        height: 5rem;
+        font-weight: 900;
+        font-size: 2rem;
+        padding-left: 1rem;
+
+        @media (max-width: 440px) {
+            font-size: 1.6rem;
+            padding-left: 0.5rem;
+        }
+
+        @media (max-width: 360px) {
+            font-size: 1.2rem;
+            padding-left: 0.5rem;
+        }
+
+        @media (max-width: 285px) {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 265px) {
+            font-size: 1rem;
+        }
+
+        &:focus {
+            outline: none;
+            border: 1px solid #FAEB00;
+        }
+    }
+
+    input[type=time] {
+        margin-top: 2rem;
+        width: 99%;
+        height: 5rem;
+        font-size: 2rem;
+        font-weight: 900;
+        padding-left: 1rem;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    input[type=time]::-webkit-datetime-edit-text {
+        font-size: 2rem;
+        padding: 0 15%;
+    }
+
+    input[type=time]::-webkit-clear-button {
+        display: none;
+    }
+
+    input[type=time]::-webkit-inner-spin-button {
+        height: 5rem;
+    }
+`;

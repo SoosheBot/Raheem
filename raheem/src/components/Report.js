@@ -4,8 +4,8 @@ import { useHistory } from 'react-router-dom';
 
 /* styles */
 import { Container, Content, Label } from '../styles/global';
-import { DemographicsContainer } from '../styles/demographics';
 import { TagContainer, Tag } from '../styles/tags';
+import { ReportForm } from '../styles/global/forms.js';
 
 /* bring in our global form store */
 import { formStore } from '../formStore.js';
@@ -53,8 +53,19 @@ export default function Report() {
 
     /* handle submit for the demographics form */
     const onSubmit = (data) => {
-        dispatch({ type: 'REPORT', payload: { ...data, tags: toggledTags, dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}` } }); // update our global state
-        // history.push(`/subscribe`); // push the user to the subscribe component
+        console.log(data);
+        dispatch({
+            type: 'REPORT', payload: {
+                race: data.race,
+                gender: data.gender,
+                transgender: data.transgender,
+                time: data.time,
+                tags: toggledTags,
+                dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}`,
+                incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`
+            }
+        }); // update our global state
+        history.push(`/story`); // push the user to the story component
     }
 
     return (
@@ -75,12 +86,67 @@ export default function Report() {
                 {/* ensuring our toggled tags array is working correctly */}
                 {console.log(toggledTags)}
 
-                <DemographicsContainer>
-
-                    <h2>About you</h2>
-                    <p className="description">Help us understand how police treat people like you.</p>
-
+                <ReportForm>
                     <form onSubmit={handleSubmit(onSubmit)}>
+                        <h2>When did this happen?</h2>
+                        <p className="description">Enter the date and time as best as you can remember.</p>
+                        <div>
+                            <input
+                                className="incident"
+                                type="text"
+                                name="incidentMonth"
+                                placeholder="MM"
+                                autoComplete="off"
+                                ref={register({
+                                    required: true,
+                                    minLength: 2,
+                                    maxLength: 2,
+                                    min: 1,
+                                    max: 12
+                                })} />
+                            <input
+                                className="incident"
+                                type="text"
+                                name="incidentDay"
+                                placeholder="DD"
+                                autoComplete="off"
+                                ref={register({
+                                    required: true,
+                                    minLength: 2,
+                                    maxLength: 2
+                                })} />
+                            <input
+                                className="incident"
+                                type="text"
+                                name="incidentYear"
+                                placeholder="YYYY"
+                                autoComplete="off"
+                                ref={register({
+                                    required: true,
+                                    minLength: 4,
+                                    maxLength: 4
+                                })} />
+                        </div>
+
+                        {/* error handling for month input for incident */}
+                        {errors.incidentMonth && errors.incidentMonth.type === "required" && <p className="error">A month is required.</p>}
+                        {errors.incidentMonth && errors.incidentMonth.type === "minLength" && <p className="error">Please enter a valid month.</p>}
+                        {errors.incidentMonth && errors.incidentMonth.type === "maxLength" && <p className="error">Please enter a valid month.</p>}
+
+                        {/* error handling for day input for incident */}
+                        {errors.incidentDay && errors.incidentDay.type === "required" && <p className="error">A day is required.</p>}
+                        {errors.incidentDay && errors.incidentDay.type === "minLength" && <p className="error">Please enter a valid day.</p>}
+                        {errors.incidentDay && errors.incidentDay.type === "maxLength" && <p className="error">Please enter a valid day.</p>}
+
+                        {/* error handling for year input for incident */}
+                        {errors.incidentYear && errors.incidentYear.type === "required" && <p className="error">A year is required.</p>}
+                        {errors.incidentYear && errors.incidentYear.type === "minLength" && <p className="error">Please enter a valid year.</p>}
+                        {errors.incidentYear && errors.incidentYear.type === "maxLength" && <p className="error">Please enter a valid year.</p>}
+
+                        <input type="time" placeholder="time" name="time" ref={register} defaultValue="15:00" />
+
+                        <h2>About you</h2>
+                        <p className="description">Help us understand how police treat people like you.</p>
 
                         {/* RACE INPUTS */}
                         <h3>Your Race</h3>
@@ -208,11 +274,11 @@ export default function Report() {
 
                         {/* submit the form and continue through the flow */}
                         <input type="submit" value="Add this report" />
-                    </form>
-                </DemographicsContainer>
 
-                <span>You'll have the opportunity to say more</span>
+                        <span>You'll have the opportunity to say more</span>
+                    </form>
+                </ReportForm>
             </Content>
-        </Container>
+        </Container >
     )
 }
