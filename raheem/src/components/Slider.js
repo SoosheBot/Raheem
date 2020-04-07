@@ -21,13 +21,13 @@ width: 100%;
 const SliderContainer = styled.div`
 display: flex;
 width: 85%;
-padding: 2% 3.9rem;
+padding: 2% 3.9rem 4%;
 `
 
 const HeaderContainer = styled.div`
 display: flex;
 width: 85%;
-padding: 3% 0;
+padding: 3% 0 2%;
 `
 
 
@@ -48,14 +48,9 @@ const TxSlider = withStyles({
             boxShadow: 'inherit',
         },
     },
-    mark: {
-        color: '#808080',
-        height: 6,
-        marginLeft: -5
-    },
     markLabel: {
         fontSize: '1.5rem',
-        padding: '15px 30px',
+        padding: '19px 30px',
         fontFamily: 'Roboto',
         lineHeight: '1.8rem',
         letterSpacing: -0.2,
@@ -71,18 +66,15 @@ const TxSlider = withStyles({
     track: {
         height: 8,
         borderRadius: 10,
-        border: '2px solid #111111',
+        border: '1px solid #111111',
         color: '#FFF600'
     },
     rail: {
         height: 8,
         borderRadius: 10,
-        border: '2px solid #111111',
-        color: '#FFF600',
+        border: '2px solid #000000',
+        color: '#555555',
     },
-    mark: {
-        color: '#808080',
-    },git push 
 })(Slider);
 
 const marks = [
@@ -90,30 +82,31 @@ const marks = [
         value: 1,
         label: 'Very Poorly',
     },
-    {
-        value: 2,
-    },
-    {
-        value: 3,
-    },
-    {
-        value: 4,
-    },
-    {
-        value: 5,
-    },
-    {
-        value: 6,
-    },    
-    {
-        value: 7,
-    },    
-    {
-        value: 8,
-    },    
-    {
-        value: 9,
-    },
+    // adds in ticks on slider
+    // {
+    //     value: 2,
+    // },
+    // {
+    //     value: 3,
+    // },
+    // {
+    //     value: 4,
+    // },
+    // {
+    //     value: 5,
+    // },
+    // {
+    //     value: 6,
+    // },    
+    // {
+    //     value: 7,
+    // },    
+    // {
+    //     value: 8,
+    // },    
+    // {
+    //     value: 9,
+    // },
     {
         value: 10,
         label: 'Very Well',
@@ -121,7 +114,6 @@ const marks = [
 ];
 
 export default function CustomizedSlider() {
-    // const classes = useStyles();
 
     return (
         <Container>
