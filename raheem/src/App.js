@@ -10,11 +10,11 @@ import Landing from './components/Landing';
 import Date from './components/Date';
 import Slider from './components/Slider';
 import Story from './components/Story';
-import Demographics from './components/Demographics';
 import Subscribe from './components/Subscribe';
 import ThankYou from './components/ThankYou';
 import Test from './components/TestComponents/Test';
 import Header from './components/layout/Header';
+import Report from './components/Report';
 
 function App() {
 
@@ -46,11 +46,11 @@ function App() {
       </Route>
 
       <Route path="/report">
-        <Story />
+        <Report />
       </Route>
 
-      <Route path="/demographics">
-        <Demographics />
+      <Route path="/story">
+        <Story />
       </Route>
 
       <Route path="/subscribe">
