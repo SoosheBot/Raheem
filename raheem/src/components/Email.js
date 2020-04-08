@@ -1,5 +1,9 @@
 import React from "react";
 
+
+/*FireStore*/
+import firebase from "../firebase"
+
 //form validation
 import { useForm } from "react-hook-form";
 
@@ -14,6 +18,12 @@ const Email = () => {
     const { handleSubmit, register, errors } = useForm();
     const onSubmit = values => {
         console.log("values from email on-submit",values);
+        firebase
+        .firestore()
+        .collection('emails')
+        .add({
+            emails: values.email
+        })
     };
 
     return (

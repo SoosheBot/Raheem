@@ -14,6 +14,7 @@ import ThankYou from './components/ThankYou';
 import Test from './components/TestComponents/Test';
 import Header from './components/layout/Header';
 import Report from './components/Report';
+import Email from './components/Email';
 
 function App() {
 
@@ -54,6 +55,10 @@ function App() {
 
       <Route path="/about">
         <About />
+      </Route>
+
+      <Route path="/email">
+        <Email />
       </Route>
 
       {/* route to officer page in RC2 */}
