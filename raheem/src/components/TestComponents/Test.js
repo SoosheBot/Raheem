@@ -16,9 +16,9 @@ function Test() {
   const editItem = (test) => {
     setEditing(true);
     setCurrentItem({
-      Fname: "",
-      Lname: "",
-      age: 0
+      Fname: test.Fname,
+      Lname: test.Lname,
+      age: test.age
     });
     setCurrentId(test.id)
   };
@@ -27,7 +27,7 @@ function Test() {
     console.log(
       "It send the item to the updated item function:",
       updatedItem
-      // ,currentItem.id
+      
     );
     setEditing(false);
     firebase
