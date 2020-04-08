@@ -92,6 +92,7 @@ export default function Report() {
                 tags: toggledTags,
                 dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}`,
                 incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`
+                
             }
         )
         .then(
