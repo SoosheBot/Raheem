@@ -6,6 +6,7 @@ const initialState = {
     race: '',
     gender: '',
     transgender: null,
+    rating: '',
     dob: '',
     incidentDate: '',
     time: ''
