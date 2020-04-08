@@ -36,10 +36,6 @@ function App() {
         <Landing />
       </Route>
 
-      <Route path="/about">
-        <About />
-      </Route>
-
       <Route path="/report">
         <Report />
       </Route>
@@ -55,6 +51,12 @@ function App() {
       <Route path="/thank-you">
         <ThankYou />
       </Route>
+
+      <Route path="/about">
+        <About />
+      </Route>
+
+      {/* route to officer page in RC2 */}
 
       <Route path="/test">
         <Test />
