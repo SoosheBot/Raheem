@@ -40,11 +40,9 @@ const Email = () => {
                 <button type="submit"> <MailOutlined /> Submit</button>
                 <GoBack />
             </div>
-
         </form>
 
         <div className="progressContainer">
-    
         </div>
     </div>
     );
