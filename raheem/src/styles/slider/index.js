@@ -29,8 +29,8 @@ export const TxSlider = withStyles({
     thumb: {
         height: 24,
         width: 24,
-        backgroundColor: '#fff',
-        border: '2px solid #111111',
+        backgroundColor: '#FFF600',
+        border: '1px solid #555555',
         marginTop: -8,
         marginLeft: -12,
         '&:focus, &:hover, &$active': {
@@ -39,29 +39,28 @@ export const TxSlider = withStyles({
     },
     markLabel: {
         fontSize: '1.5rem',
-        padding: '19px 30px',
+        padding: '20px',
         fontFamily: 'Roboto',
         lineHeight: '1.8rem',
         letterSpacing: -0.2,
-        color: '#C4C4C4'
+        color: '#111111'
     },
     active: {},
     valueLabel: {
         left: 'calc(-50% + 4px)',
         color: '#111111',
-        fontFamily: 'Roboto',
-        fontSize: '1.1rem',
+        fontFamily: 'Neuzeit Grotesk',
+        fontSize: '1.2rem',
     },
     track: {
         height: 8,
         borderRadius: 10,
-        border: '1px solid #111111',
-        color: '#FFF600'
+        color: '#111111'
     },
     rail: {
         height: 8,
         borderRadius: 10,
-        border: '2px solid #000000',
+        border: '1px solid #111111',
         color: '#555555',
     },
 })(Slider);
