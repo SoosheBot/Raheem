@@ -5,8 +5,8 @@ import PersonIcon from '@material-ui/icons/Person';
 
 const OfficerPic = styled.img`
     margin-bottom: 2rem;
-    width: 124px;
-    height: 127px;
+    width: 182px;
+    height: 186.4px;
     border-radius: 50%;
     background: grey;
 `;
