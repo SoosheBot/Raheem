@@ -1,9 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-//progress bar
-import ProgressBar from './other/ProgressBar'
-
 //buttons
 import Continue from './buttons/Continue.js';
 import Exit from './buttons/Exit.js';
@@ -51,10 +48,7 @@ function Landing(props) {
                         {/* goes to stop details */}
                     </ContinueContainer>
                 </ButtonContainer>
-
-                <div className="progressContainer">
-                    {/* add progress bar */}
-                </div>
+                
             </AboutTextContainer>
         </AboutContainer>
     )

@@ -7,6 +7,13 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    span {
+        font-family: 'Noto Serif', serif;
+        font-weight: 900;
+        font-size: 1.2rem;
+        text-align: center;
+    }
 `
 
 export const HeadingContainer = styled.div`
@@ -36,10 +43,16 @@ export const Heading = styled.h2`
 export const SubHeading = styled.h3`
     font-family: 'Roboto', sans-serif;
     font-weight: 900;
-    font-size: 1.8rem;
+    font-size: 2.6rem;
     margin: 2% 0 3%;
     line-height: 2.6rem;
 `
+
+export const Paragraph = styled.p`
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+`;
 
 export const ContentSep = styled.div`
     height: 1rem;
@@ -50,8 +63,22 @@ export const ContentSep = styled.div`
 
 export const Label = styled.label`
     font-family: 'Roboto', sans-serif;
-    font-size: 2.6rem;
+    font-size: 2.2rem;
     font-weight: 700;
+
+    span.light {
+        font-weight: 300;
+        font-size: 2.2rem;
+        font-family: 'Roboto', sans-serif;
+    }
+`;
+
+export const Controls = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5rem;
 `;
 
 /* QR Component Form Styling */

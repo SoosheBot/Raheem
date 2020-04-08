@@ -7,10 +7,6 @@ import styled from 'styled-components'
 //form validation
 import { useForm } from "react-hook-form";
 
-//antd components and icons
-import { BellOutlined } from '@ant-design/icons';
-import { Progress } from 'antd';
-
 //buttons
 import GoBack from "./buttons/GoBack.js";
 
@@ -67,7 +63,7 @@ const Subscribe = () => {
 
                     {/* on submit will need to direct to thank you page with confirmation to check email for next steps */}
                     <div className="controls">
-                        <button type="submit"> Subscribe <BellOutlined /> </button>
+                        <button type="submit"> Subscribe </button>
                         {/* go to thank you */}
 
                         <button onClick={() => history.push(`/demographics`)}>Go Back</button>
