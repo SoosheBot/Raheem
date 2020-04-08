@@ -78,6 +78,7 @@ export default function Report() {
                 incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`
             }
         }); // update our global state
+
         //send report to firestore
         firebase
         .firestore()
