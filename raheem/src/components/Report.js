@@ -11,8 +11,11 @@ import { SliderContainer, HeaderContainer, TxSlider, marks } from '../styles/sli
 /* bring in our global form store */
 import { formStore } from '../formStore.js';
 
-//material ui imports
+/* material UI */
 import Typography from '@material-ui/core/Typography';
+
+/* components */
+import Officer from '../components/Officer';
 
 export default function Report() {
 
@@ -82,6 +85,11 @@ export default function Report() {
     return (
         <Container>
             <Content>
+                <Officer profile={{
+                    officer: "Officer Peyton",
+                    precinct: "#15",
+                    badge: "R4567"
+                }} />
 
                 <HeaderContainer>
                     <h2>How were you treated?</h2>

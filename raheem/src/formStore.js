@@ -26,6 +26,11 @@ const StateProvider = ({ children }) => {
                     ...state,
                     ...action.payload
                 }
+            case 'STORY':
+                return {
+                    ...state,
+                    ...action.payload
+                }
             default:
                 return state;
         };
