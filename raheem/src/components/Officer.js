@@ -23,7 +23,6 @@ const DivO = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 5rem;
 `;
 
 function Officer(props) {

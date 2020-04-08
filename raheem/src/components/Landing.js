@@ -6,7 +6,7 @@ import Officer from './Officer'
 
 //style
 import styled from 'styled-components';
-import { Container, Content } from '../styles/global';
+import { Container, Content, Controls, Divider } from '../styles/global';
 
 /* components */
 import LargeButtonPrimary from './buttons/LargeButtonPrimary';
@@ -52,11 +52,10 @@ function Landing(props) {
                         badge: "R4567"
                     }} />
 
-                <ButtonContainer className="landingButtonContainer">
+                <Controls>
                     <LargeButtonPrimary title="View Reports" />
                     <LargeButtonSecondary title="Add a Report" />
-                </ButtonContainer>
-
+                </Controls>
             </AboutTextContainer>
         </AboutContainer>
     )
@@ -77,7 +76,6 @@ const AboutStoryContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    // padding: 0 9% 5%;
     background: #FFF600;
 `
 
@@ -105,34 +103,3 @@ const AboutSubHeading = styled.h3`
     margin: 2.2rem 0;
     line-height: 2.6rem;
 `
-
-const ButtonContainer = styled.div`
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    @media (max-width: 500px) {
-        width: 95%;
-    }
-`
-
-const ViewButton = styled.button`
-    font-family: 'Roboto', sans-serif;
-    font-size: 2.4rem;
-    line-height: 2.6rem;
-`
-
-const ReportButton = styled.button`
-    background: #FFF600;
-    font-family: 'Roboto', sans-serif;
-    font-size: 2.4rem;
-    line-height: 2.6rem;
-`
-
-const Divider = styled.div`
-    height: 4px;
-    width: 100%;
-    background: #111111;
-    margin-bottom: 4.4rem;
-`;
