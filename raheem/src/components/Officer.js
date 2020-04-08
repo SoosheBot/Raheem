@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import PersonIcon from '@material-ui/icons/Person';
+
 const OfficerPic = styled.img`
     margin-bottom: 2rem;
     width: 124px;

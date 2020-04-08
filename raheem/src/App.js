@@ -7,8 +7,7 @@ import { Route } from 'react-router-dom';
 /* components */
 import QRcode from './components/QRcode';
 import Landing from './components/Landing';
-import Date from './components/Date';
-import Slider from './components/Slider';
+import About from './components/About';
 import Story from './components/Story';
 import Subscribe from './components/Subscribe';
 import ThankYou from './components/ThankYou';
@@ -33,16 +32,8 @@ function App() {
         < QRcode />
       </Route>
 
-      <Route path="/about">
+      <Route path="/landing">
         <Landing />
-      </Route>
-
-      <Route path="/date">
-        <Date />
-      </Route>
-
-      <Route path="/slider">
-        <Slider />
       </Route>
 
       <Route path="/report">
@@ -60,6 +51,12 @@ function App() {
       <Route path="/thank-you">
         <ThankYou />
       </Route>
+
+      <Route path="/about">
+        <About />
+      </Route>
+
+      {/* route to officer page in RC2 */}
 
       <Route path="/test">
         <Test />
