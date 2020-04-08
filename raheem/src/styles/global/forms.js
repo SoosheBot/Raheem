@@ -7,21 +7,26 @@ export const ReportForm = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    
+    p.description {
+        margin: 0 0 1rem;
+        font-size: 1.8rem;
+        line-height: 1.6rem;
+        font-family: 'Roboto', sans-serif;
+    }
 
     form {
         background: #ffffff;
-        margin: 2rem 0 0;
         display: flex;
         flex-direction: column;
         width: 100%;
 
-        @media (min-width: 1080px) {
-            width: 800px;
-            padding: 0 5%;
-        }
-
-        @media (max-width: 500px) {
-            width: 95%;
+        .description {
+            margin: 1rem 0;
+            padding: 0 20px;
+            font-size: 1.8rem;
+            line-height: 1.6rem;
+            font-family: 'Roboto', sans-serif; 
         }
 
         // Content and field separation within form
@@ -29,7 +34,6 @@ export const ReportForm = styled.div`
             font-family: 'Roboto', sans-serif;
             font-size: 2rem;
             font-weight: 900;
-            margin: 1rem 0;
             display: flex;
             align-items: center;
 
@@ -38,60 +42,48 @@ export const ReportForm = styled.div`
             }
         }
 
-        // Top heading
+        .radio {
+            margin: 6px 0 6px;
+            font-size: 2.6rem;
+            line-height: 2.8rem;
+            font-weight: bold;
+            color: #888888;
+            letter-spacing: 0.283636px;
+        }
+
+        .inputs {
+            padding: 0 20px;
+
+            h3 {
+                width: 100%;
+                text-align: left;
+                margin-top: 5rem;
+                padding: 0;
+            }
+        }
+
+    // Top heading
     h2 {
-        font-family: 'Roboto', sans-serif;
+        font-size: 2.8rem;
         font-weight: 900;
-        font-size: 2.2rem;
-        width: 100%;
-        text-align: left;
-        margin-top: 5rem;
-
-        &:first-child {
-            margin-top: 2rem;
-        }
-
-        @media (max-width: 500px) {
-            font-size: 3.5rem;
-        }
-
-        @media (max-width: 400px) {
-            font-size: 3rem;
-        }
+        font-family: 'Roboto', sans-serif;
     }
 
     h3 {
         font-family: 'Roboto', sans-serif;
         font-weight: 700;
-        font-size: 1.8rem;
-        line-height: 2.8rem;
-        margin-top: 2rem;
+        font-size: 2.4rem;
+        line-height: 1.6rem;
+        margin: 5rem 0 1rem;
+        padding: 0 20px;
     }
 
     span {
         margin-top: 3rem;
-    }
-
-    // Top heading tagline
-    p.description {
-        width: 100%;
         font-family: 'Roboto', sans-serif;
-        font-size: 1.4rem;
-        text-align: left;
-        margin: 1rem 0;
-
-        // mobile breakpoint at 540px
-        @media (max-width: 540px) {
-            font-size: 1.8rem;
-        }
-
-        @media(max-width: 500px) {
-            font-size: 1.4rem;
-        }
-
-        @media(max-width: 400px) {
-            padding: 0 5%;
-        }
+        font-weight: normal;
+        font-size: 1.6rem;
+        line-height: 2.2rem;
     }
 
     .error {
@@ -101,12 +93,36 @@ export const ReportForm = styled.div`
         font-weight: 300;
     }
 
+    input[type=text].incident::placeholder {
+        color: #C4C4C4;
+    }
+
     input[type=text].incident {
         width: 33%;
         height: 5rem;
         font-weight: 900;
         font-size: 2rem;
         padding-left: 1rem;
+        color: #111111;
+
+        &:first-child {
+            border-top-left-radius: 0.5rem;
+            border-bottom-left-radius: 0.5rem;
+            border: 1px solid #111111;
+        }
+
+        &:nth-child(2) {
+            border-top: 1px solid #111111;
+            border-bottom: 1px solid #111111;
+            border-left: none;
+            border-right: none;
+        }
+
+        &:last-child {
+            border-top-right-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+            border: 1px solid #111111;
+        }
 
         @media (max-width: 440px) {
             font-size: 1.6rem;
@@ -140,6 +156,9 @@ export const ReportForm = styled.div`
         font-weight: 900;
         padding-left: 1rem;
         font-family: 'Roboto', sans-serif;
+        border-radius: 0.5rem;
+        border: 1px solid #111111;
+        color: #C4C4C4;
     }
 
     input[type=time]::-webkit-datetime-edit-text {
@@ -158,6 +177,7 @@ export const ReportForm = styled.div`
         // Date of birth container
         .dob-container {
             width: 100%;
+            margin-bottom: 10rem;
         }
 
         // Date of birth input styling
@@ -194,9 +214,10 @@ export const ReportForm = styled.div`
 
         // Radio button styling
         input[type=radio] {
-            height: 3rem;
-            width: 10%;
-            margin-right: 1rem;
+            height: 42px;
+            width: 42px;
+            margin-right: 2rem;
+            margin-left: 20px;
         }
 
         // Checkbox styling

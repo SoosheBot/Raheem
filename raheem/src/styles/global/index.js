@@ -1,7 +1,13 @@
 import styled from 'styled-components';
 
+export const TopBar = styled.div`
+width: 100%;
+height: 3.6rem;
+background: #555555;
+`;
+
 export const Container = styled.div`
-    margin: 5rem 0;
+    margin: 1rem 0;
     font-family: 'Noto Serif', serif;
     width: 100%;
     display: flex;
@@ -25,12 +31,16 @@ export const HeadingContainer = styled.div`
 `;
 
 export const Content = styled.div`
-    width: 80%;
+    width: 100%;
     background: #ffffff;
-    margin: 2rem 0;
-    padding: 3rem 10%;
+    margin-bottom: 2rem;
+    padding: 0 20px;
     display: flex;
     flex-direction: column;
+
+    .go-back {
+
+    }
 `;
 
 export const Heading = styled.h2`
@@ -65,12 +75,21 @@ export const Label = styled.label`
     font-family: 'Roboto', sans-serif;
     font-size: 2.2rem;
     font-weight: 700;
+`;
 
-    span.light {
-        font-weight: 300;
-        font-size: 2.2rem;
-        font-family: 'Roboto', sans-serif;
-    }
+export const Divider = styled.div`
+    height: 4px;
+    width: 100%;
+    background: #111111;
+    margin-bottom: 4.4rem;
+`;
+
+export const SmallDivider = styled.div`
+    height: 1px;
+    margin-top: 5rem;
+    padding: 0;
+    width: 100%;
+    background: #111111;
 `;
 
 export const Controls = styled.div`

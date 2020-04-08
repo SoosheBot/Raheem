@@ -11,7 +11,7 @@ export default function LargeButtonPrimary(props) {
 }
 
 const Primary = styled.button`
-    width: 34.3rem;
+    width: 100%;
     height: 5.2rem;
     border: 1px solid #000000;
     border-radius: 0.6rem;
