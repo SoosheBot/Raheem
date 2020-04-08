@@ -62,9 +62,11 @@ test("it adds a new record to the collection", () => {
     .catch(err => {
       console.log("error adding to users collection", err);
     });
+    
 });
 
 test("it deletes a record", () => {
+
   db.collection("users")
     .doc("1abc")
     .delete()

@@ -2,6 +2,9 @@ import React, { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 
+/*FireStore*/
+import firebase from "../firebase"
+
 /* styles */
 import { Container, Content, Label } from '../styles/global';
 import { TagContainer, Tag } from '../styles/tags';
@@ -75,6 +78,31 @@ export default function Report() {
                 incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`
             }
         }); // update our global state
+
+        //send report to firestore
+        firebase
+        .firestore()
+        .collection('reports')
+        .add(
+            {
+                race: data.race,
+                gender: data.gender,
+                transgender: data.transgender,
+                time: data.time,
+                rating: rating,
+                tags: toggledTags,
+                dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}`,
+                incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`
+            }
+        )
+        .then(
+            function(doc) {
+                dispatch({
+                type: 'REPORT', payload: {
+                    reportId: doc.id
+                }
+            })}
+        )
         history.push(`/story`); // push the user to the story component
     }
 

@@ -2,6 +2,7 @@ import React, { createContext, useReducer } from 'react';
 
 /* setup our initial global state */
 const initialState = {
+    reportId: '',
     tags: [],
     race: '',
     gender: '',
