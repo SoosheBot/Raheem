@@ -6,9 +6,16 @@ import { useHistory } from 'react-router-dom';
 import { Container, Content, Label } from '../styles/global';
 import { TagContainer, Tag } from '../styles/tags';
 import { ReportForm } from '../styles/global/forms.js';
+import { SliderContainer, HeaderContainer, TxSlider, marks } from '../styles/slider';
 
 /* bring in our global form store */
 import { formStore } from '../formStore.js';
+
+/* material UI */
+import Typography from '@material-ui/core/Typography';
+
+/* components */
+import Officer from '../components/Officer';
 
 export default function Report() {
 
@@ -29,6 +36,8 @@ export default function Report() {
 
     /* state for an array of the user's selected / toggled tags */
     const [toggledTags, setToggledTags] = useState([]);
+
+    const [rating, setRating] = useState('');
 
     /* function to actually toggle / select a specific tag */
     const toggleTag = (e) => {
@@ -53,13 +62,14 @@ export default function Report() {
 
     /* handle submit for the demographics form */
     const onSubmit = (data) => {
-        console.log(data);
+        // console.log(data);
         dispatch({
             type: 'REPORT', payload: {
                 race: data.race,
                 gender: data.gender,
                 transgender: data.transgender,
                 time: data.time,
+                rating: rating,
                 tags: toggledTags,
                 dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}`,
                 incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`
@@ -68,9 +78,36 @@ export default function Report() {
         history.push(`/story`); // push the user to the story component
     }
 
+    const handleRatingChange = (e, value) => {
+        setRating(value);
+    }
+
     return (
         <Container>
             <Content>
+                <Officer profile={{
+                    officer: "Officer Peyton",
+                    precinct: "#15",
+                    badge: "R4567"
+                }} />
+
+                <HeaderContainer>
+                    <h2>How were you treated?</h2>
+                </HeaderContainer>
+                <SliderContainer>
+                    <Typography gutterBottom></Typography>
+                    <TxSlider
+                        valueLabelDisplay="auto"
+                        aria-label="slider"
+                        defaultValue={0}
+                        step={1}
+                        marks={marks}
+                        min={1}
+                        max={10}
+                        name="rating"
+                        onChangeCommitted={handleRatingChange} />
+                </SliderContainer>
+
                 <Label>I was <span className="light">(click as many as apply)</span></Label>
                 <TagContainer>
                     <Tag onClick={toggleTag} value="helped">helped</Tag>
@@ -84,7 +121,7 @@ export default function Report() {
                 </TagContainer>
 
                 {/* ensuring our toggled tags array is working correctly */}
-                {console.log(toggledTags)}
+                {/* {console.log(toggledTags)} */}
 
                 <ReportForm>
                     <form onSubmit={handleSubmit(onSubmit)}>

@@ -262,3 +262,25 @@ export const ReportForm = styled.div`
         }
     }
 `;
+
+export const StoryForm = styled.div`
+    margin: 2rem 0 0;
+
+    form {
+        width: 100%;
+
+        textarea {
+            width: 100%;
+            height: 50rem;
+            resize: none;
+            font-size: 1.2rem;
+            font-family: 'Roboto', sans-serif;
+            padding: 1rem;
+
+            &:focus {
+                outline: none;
+                border: 1px solid #FAEB00;
+            }
+        }
+    }
+`;

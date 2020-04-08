@@ -6,6 +6,7 @@ const initialState = {
     race: '',
     gender: '',
     transgender: null,
+    rating: '',
     dob: '',
     incidentDate: '',
     time: ''
@@ -21,6 +22,11 @@ const StateProvider = ({ children }) => {
     const [state, dispatch] = useReducer((state, action) => {
         switch (action.type) {
             case 'REPORT':
+                return {
+                    ...state,
+                    ...action.payload
+                }
+            case 'STORY':
                 return {
                     ...state,
                     ...action.payload

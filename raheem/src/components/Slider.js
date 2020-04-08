@@ -120,15 +120,15 @@ export default function CustomizedSlider() {
                 <h2>How were you treated?</h2>
             </HeaderContainer>
             <SliderContainer>
-                    <Typography gutterBottom></Typography>
-                    <TxSlider 
-                        valueLabelDisplay="auto" 
-                        aria-label="slider" 
-                        defaultValue={0} 
-                        step={1}
-                        marks={marks}
-                        min={1}
-                        max={10}/>
+                <Typography gutterBottom></Typography>
+                <TxSlider
+                    valueLabelDisplay="auto"
+                    aria-label="slider"
+                    defaultValue={0}
+                    step={1}
+                    marks={marks}
+                    min={1}
+                    max={10} />
             </SliderContainer>
         </Container>
     );
