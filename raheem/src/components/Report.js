@@ -66,6 +66,7 @@ export default function Report() {
             const filter = toggledTags.filter(tag => tag !== e.target.value);
             setToggledTags(filter);
         }
+        console.log(`tags: ${toggledTags}`)
     }
 
     /* handle submit for the demographics form */
@@ -116,6 +117,7 @@ export default function Report() {
 
     const handleRatingChange = (e, value) => {
         setRating(value);
+        console.log(`rating: ${rating}`)
     }
 
     const name = watch("self");
