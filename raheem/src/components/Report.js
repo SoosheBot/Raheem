@@ -100,19 +100,28 @@ export default function Report() {
                 
             }
         )
-        .then(function(doc) {
+        .then(
+            function(doc) {
                 dispatch({
                 type: 'REPORT', payload: {
                     reportId: doc.id
                 }
-                })
-        
+            )
+            .then(
+                function (doc) {
+                    dispatch({
+                        type: 'REPORT', payload: {
+                            reportId: doc.id
+                        }
+                    })
+                }
+            )
         history.push(`/story`); // push the user to the story component
-    })
+    }
 
     const handleRatingChange = (e, value) => {
         setRating(value);
-    }}
+    }
 
     const name = watch("self");
 
