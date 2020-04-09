@@ -162,14 +162,14 @@ export default function Report() {
 
             <Content>
                 <TagContainer>
-                    <Tag onClick={toggleTag} value="helped">helped</Tag>
-                    <Tag onClick={toggleTag} value="protected">protected</Tag>
-                    <Tag onClick={toggleTag} value="profiled">profiled</Tag>
-                    <Tag onClick={toggleTag} value="neglected">neglected</Tag>
-                    <Tag onClick={toggleTag} value="harassed">harassed</Tag>
-                    <Tag onClick={toggleTag} value="wrongly accused">wrongly accused</Tag>
-                    <Tag onClick={toggleTag} value="disrespected">disrespected</Tag>
-                    <Tag onClick={toggleTag} value="physically attacked">physically attacked</Tag>
+                    <Tag data-id="tag" onClick={toggleTag} value="helped">helped</Tag>
+                    <Tag data-id="tag" onClick={toggleTag} value="protected">protected</Tag>
+                    <Tag data-id="tag" onClick={toggleTag} value="profiled">profiled</Tag>
+                    <Tag data-id="tag" onClick={toggleTag} value="neglected">neglected</Tag>
+                    <Tag data-id="tag" onClick={toggleTag} value="harassed">harassed</Tag>
+                    <Tag data-id="tag" onClick={toggleTag} value="wrongly accused">wrongly accused</Tag>
+                    <Tag data-id="tag" onClick={toggleTag} value="disrespected">disrespected</Tag>
+                    <Tag data-id="tag" onClick={toggleTag} value="physically attacked">physically attacked</Tag>
                 </TagContainer>
 
             </Content>

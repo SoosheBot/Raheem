@@ -14,6 +14,7 @@
     "firebase": "^7.12.0",
     "firebase-admin": "^8.10.0",
     "firestore-jest-mock": "^0.3.0",
+    "mutationobserver-shim": "^0.3.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hook-form": "^5.1.3",
