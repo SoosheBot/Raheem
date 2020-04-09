@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { useHistory } from 'react-router-dom';
 
 /*FireStore*/
 import firebase from "../firebase"
@@ -23,6 +24,9 @@ import { StoryForm } from '../styles/global/forms.js';
 
 function Story() {
 
+    /* bring in useHistory from react-router-dom */
+    const history = useHistory();
+
     /* bring in our global state using the useContext hook
     and our form store */
     const globalState = useContext(formStore);
@@ -36,17 +40,13 @@ function Story() {
         console.log(`globalState:${globalState.state}`);
         dispatch({ type: 'STORY', payload: data });
         firebase
-        .firestore()
-        .collection('stories')
-        .add({
-            reportRef: `/raheem-b6ed6/reports/${globalState.state.reportId}`,
-            storyBody: data
-        })
+            .firestore()
+            .collection('stories')
+            .add({
+                reportRef: `/raheem-b6ed6/reports/${globalState.state.reportId}`,
+                storyBody: data
+            })
     };
-
-
-
-
 
     return (
         <Container>
@@ -54,7 +54,7 @@ function Story() {
 
                 {console.log('TESTING. IS STATE UPDATED?', globalState)}
                 <div className="go-back">
-                    <img src={Back} alt="Go Back" />
+                    <img onClick={() => history.goBack()} src={Back} alt="Go Back" />
                 </div>
                 <Officer profile={{
                     officer: "Officer Peyton",
@@ -62,17 +62,17 @@ function Story() {
                     badge: "R4567"
                 }} />
             </Content>
-                <Divider />
+            <Divider />
             <Content>
                 <span className="thankyou">
-                Thank you for your feedback! 
+                    Thank you for your feedback!
                 </span>
             </Content>
 
             <HeaderContainer>
                 <h2>Tell Us More</h2>
             </HeaderContainer>
-            
+
             <Content>
                 <Paragraph className='description'>Describe the incident from start to finish. Be as descriptive
                 as possible, and remember to include details about the officer's attitude
@@ -84,8 +84,8 @@ function Story() {
                         <textarea name="story" ref={register} />
 
                         <Controls>
-                            <LargeButtonPrimary title="Save For Later" />
-                            <LargeButtonSecondary type="submit" title="Complete Report" />
+                            <LargeButtonPrimary route="email" title="Save For Later" />
+                            <LargeButtonSecondary completed="true" route="thank-you" type="submit" title="Complete Report" />
                         </Controls>
                     </form>
                 </StoryForm>

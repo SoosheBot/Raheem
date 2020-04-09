@@ -1,5 +1,4 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 
 //components
 import Officer from './Officer'
@@ -15,8 +14,6 @@ import LargeButtonSecondary from './buttons/LargeButtonSecondary';
 
 //Purpose of this component is to serve as a landing after a user scans a QR code and explain what Raheem is to new users
 function Landing(props) {
-    /* bring in useHistory hook from react-router-dom */
-    const history = useHistory();
 
     return (
         <AboutContainer className="container">
@@ -30,7 +27,7 @@ function Landing(props) {
             <AboutTextContainer>
 
                 <AboutSubHeading>
-                Raheem is an independent service for reporting police conduct to help build safer communities for people of color.
+                    Raheem is an independent service for reporting police conduct to help build safer communities for people of color.
                 </AboutSubHeading>
 
 
@@ -56,7 +53,7 @@ function Landing(props) {
 
                 <Controls>
                     <LargeButtonPrimary title="View Reports" />
-                    <LargeButtonSecondary title="Add a Report" />
+                    <LargeButtonSecondary route="report" title="Add a Report" />
                 </Controls>
             </AboutTextContainer>
         </AboutContainer>
