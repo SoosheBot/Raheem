@@ -294,9 +294,11 @@ export const StoryForm = styled.div`
             width: 100%;
             height: 50rem;
             resize: none;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-family: 'Roboto', sans-serif;
             padding: 1rem;
+            border-radius: 20px;
+            border: 1px solid #111111;
 
             &:focus {
                 outline: none;

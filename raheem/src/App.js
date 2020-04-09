@@ -73,6 +73,8 @@ const Splash = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #FFF600;
+  margin: 0;
 
   h1 {
     font-size: 4rem;

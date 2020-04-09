@@ -280,7 +280,7 @@ export default function Report() {
                         </div>
                     <div className="radio">
                         <input name="race" type="radio" ref={register({ required: true })} value="no preference" />
-                            Prefer not to say
+                            Prefer Not To Say
                         </div>
 
                     {/* error handling for race inputs */}
@@ -303,11 +303,11 @@ export default function Report() {
                         </div>
                     <div className="radio">
                         <input name="gender" type="radio" ref={register()} value="opt out" />
-                            Prefer not to say
+                            Prefer Not To Say
                         </div>
                     <div className="radio">
                         <input name="gender" type="radio" ref={register()} value="self identify" />
-                            Prefer to self identify
+                            Prefer To Self Identify
                         </div>
 
                     {/* <select name="gender" ref={register({ required: true })}>
@@ -379,7 +379,7 @@ export default function Report() {
 
                     {/* submit the form and continue through the flow */}
                     <div className="inputs">
-                        <LargeButtonSecondary type="submit" title="Add this report" />
+                        <LargeButtonSecondary type="submit" title="Add This Report" />
                     </div>
 
                     {/* <input type="submit" value="Add this report" /> */}
