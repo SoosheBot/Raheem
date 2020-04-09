@@ -85,17 +85,26 @@ export default function Report() {
 
         //send report to firestore
         firebase
-            .firestore()
-            .collection('reports')
-            .add(
-                {
-                    race: data.race,
-                    gender: data.gender,
-                    time: data.time,
-                    rating: rating,
-                    tags: toggledTags,
-                    dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}`,
-                    incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`
+        .firestore()
+        .collection('reports')
+        .add(
+            {
+                race: data.race,
+                gender: data.gender,
+                transgender: data.transgender,
+                time: data.time,
+                rating: rating,
+                tags: toggledTags,
+                dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}`,
+                incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`
+                
+            }
+        )
+        .then(
+            function(doc) {
+                dispatch({
+                type: 'REPORT', payload: {
+                    reportId: doc.id
                 }
             )
             .then(
