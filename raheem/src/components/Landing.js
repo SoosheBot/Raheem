@@ -30,8 +30,10 @@ function Landing(props) {
             <AboutTextContainer>
 
                 <AboutSubHeading>
-                    Report and track police to build safer communities for people of color.
+                Raheem is an independent service for reporting police conduct to help build safer communities for people of color.
                 </AboutSubHeading>
+
+
 
                 {/* <AboutSubHeading>
                     Raheem is an independent service for reporting police conduct in the United States.

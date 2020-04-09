@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+
+
 export const TopBar = styled.div`
 width: 100%;
 height: 3.6rem;
@@ -20,6 +22,20 @@ export const Container = styled.div`
         font-size: 1.2rem;
         text-align: center;
     }
+
+    span.thankyou{
+        font-size: 2.4rem;
+        text-align: left;
+        font-weight: normal;
+    }
+
+    p.description {
+        margin: 1.2rem 0 1rem;
+        font-size: 1.8rem;
+        line-height: 1.6rem;
+        font-family: 'Roboto', sans-serif;
+    }
+
 `
 
 export const HeadingContainer = styled.div`

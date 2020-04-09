@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 
 /*FireStore*/
@@ -16,6 +16,7 @@ import { formStore } from '../formStore.js';
 
 /* material UI */
 import Typography from '@material-ui/core/Typography';
+import { TextField } from "@material-ui/core";
 
 /* components */
 import Officer from '../components/Officer';
@@ -30,7 +31,7 @@ export default function Report() {
     const history = useHistory();
 
     /* configure react-hook-form */
-    const { register, handleSubmit, errors } = useForm();
+    const { register, handleSubmit, errors, watch } = useForm();
 
     /* bring in our global state using the useContext hook
     and our form store */
@@ -74,7 +75,6 @@ export default function Report() {
             type: 'REPORT', payload: {
                 race: data.race,
                 gender: data.gender,
-                transgender: data.transgender,
                 time: data.time,
                 rating: rating,
                 tags: toggledTags,
@@ -91,7 +91,6 @@ export default function Report() {
                 {
                     race: data.race,
                     gender: data.gender,
-                    transgender: data.transgender,
                     time: data.time,
                     rating: rating,
                     tags: toggledTags,
@@ -114,6 +113,8 @@ export default function Report() {
     const handleRatingChange = (e, value) => {
         setRating(value);
     }
+
+    const name = watch("self");
 
     return (
         <Container>
@@ -280,7 +281,7 @@ export default function Report() {
                         </div>
                     <div className="radio">
                         <input name="race" type="radio" ref={register({ required: true })} value="no preference" />
-                            Prefer not to say
+                            Prefer Not To Say
                         </div>
 
                     {/* error handling for race inputs */}
@@ -303,11 +304,29 @@ export default function Report() {
                         </div>
                     <div className="radio">
                         <input name="gender" type="radio" ref={register()} value="opt out" />
-                            Prefer not to say
+                            Prefer Not To Say
                         </div>
                     <div className="radio">
-                        <input name="gender" type="radio" ref={register()} value="self identify" />
-                            Prefer to self identify
+                    <input name="gender" type="radio" ref={register()} value="self identify" />
+                        {/* Prefer To Self-Identify */}
+                        <input
+                            className="self"
+                            type="text"
+                            name="self identify"
+                            placeholder="Prefer To Self Identify"
+                            autoComplete="off"
+                            ref={register()} 
+                        /> 
+                        {/* {name === "self" && (
+                            <Controller
+                                className="self"
+                                as={ TextField }
+                                name="gender"
+                                placeholder="Prefer To Self Identify"
+                                autoComplete="off"
+                                ref={register()} 
+                                />
+                            )} */}
                         </div>
 
                     {/* <select name="gender" ref={register({ required: true })}>
@@ -379,7 +398,7 @@ export default function Report() {
 
                     {/* submit the form and continue through the flow */}
                     <div className="inputs">
-                        <LargeButtonSecondary type="submit" title="Add this report" />
+                        <LargeButtonSecondary type="submit" title="Add This Report" />
                     </div>
 
                     {/* <input type="submit" value="Add this report" /> */}
