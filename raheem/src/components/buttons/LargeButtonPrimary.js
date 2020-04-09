@@ -1,12 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 
 export default function LargeButtonPrimary(props) {
 
-    const { title } = props;
+    const history = useHistory();
+    const { title, route } = props;
+
+    const nextPage = (e) => {
+        e.preventDefault();
+        history.push(`/${route}`)
+    }
 
     return (
-        <Primary>{title}</Primary>
+        <Primary onClick={nextPage}>{title}</Primary>
     )
 }
 

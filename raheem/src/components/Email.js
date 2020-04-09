@@ -33,21 +33,21 @@ const Email = () => {
     const { handleSubmit, register, errors } = useForm();
     const onSubmit = values => {
 
-        console.log("values from email on-submit",values);
+        console.log("values from email on-submit", values);
+        localStorage.setItem('saved', 'true');
         firebase
-        .firestore()
-        .collection('emails')
-        .add({
-            emails: values.email
-        })
-
+            .firestore()
+            .collection('emails')
+            .add({
+                emails: values.email
+            })
     };
 
     return (
         <Container>
             <Content>
                 <div className="go-back">
-                    <img src={Back} alt="Go Back" />
+                    <img onClick={() => history.goBack()} src={Back} alt="Go Back" />
                 </div>
 
                 <Officer profile={{
@@ -88,8 +88,8 @@ const Email = () => {
                     {/* on submit will need to direct to thank you page with confirmation to check email for next steps */}
 
                     <Controls>
-                        <LargeButtonPrimary title="Go Back" />
-                        <LargeButtonSecondary type="submit" title="Submit" />
+                        <LargeButtonPrimary route="story" title="Go Back" />
+                        <LargeButtonSecondary completed="true" route="thank-you" type="submit" title="Submit" />
                     </Controls>
                 </EmailForm>
             </Content>
