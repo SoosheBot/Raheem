@@ -4,19 +4,31 @@ import Slider from '@material-ui/core/Slider';
 
 export const SliderContainer = styled.div`
     display: flex;
-    width: 99%;
-    padding: 2% 1% 4%;
-    margin-bottom: 3rem;
+    justify-content: center;
+    width: 80%;
+    // padding: 0 0 0 20px;
+    // margin: 3rem 0;
+    margin: 5rem auto 10rem;
 `
 
 export const HeaderContainer = styled.div`
     display: flex;
-    width: 85%;
-    padding: 3% 0 2%;
+    align-items: center;
+    width: 100%;
+    height: 4.3rem;
+    padding: 0 20px;
+    background: #FFF600;
 
     h2 {
-        font-size: 2.6rem;
+        font-size: 2.8rem;
         font-weight: 900;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    span.light {
+        font-weight: 300;
+        font-size: 1.6rem;
+        line-height: 2.2rem;
         font-family: 'Roboto', sans-serif;
     }
 `
@@ -40,6 +52,7 @@ export const TxSlider = withStyles({
     markLabel: {
         fontSize: '1.5rem',
         padding: '20px',
+        // paddingLeft: '40px',
         fontFamily: 'Roboto',
         lineHeight: '1.8rem',
         letterSpacing: -0.2,
