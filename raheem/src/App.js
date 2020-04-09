@@ -45,8 +45,8 @@ function App() {
         <Story />
       </Route>
 
-      <Route path="/subscribe">
-        <Subscribe />
+      <Route path="/email">
+        <Email />
       </Route>
 
       <Route path="/thank-you">
