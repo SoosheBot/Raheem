@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 
 /*FireStore*/
 import firebase from "../firebase";
@@ -10,8 +11,6 @@ import { formStore } from '../formStore.js';
 
 /* components */
 import Officer from "./Officer";
-import LargeButtonPrimary from '../components/buttons/LargeButtonPrimary';
-import LargeButtonSecondary from '../components/buttons/LargeButtonSecondary';
 
 /* assets */
 import Back from '../assets/Back.svg';
@@ -46,6 +45,8 @@ function Story() {
                 reportRef: `/raheem-b6ed6/reports/${globalState.state.reportId}`,
                 storyBody: data
             })
+        localStorage.setItem('completed', true);
+        history.push(`/thank-you`);
     };
 
     return (
@@ -84,8 +85,11 @@ function Story() {
                         <textarea name="story" ref={register} />
 
                         <Controls>
-                            <LargeButtonPrimary route="email" title="Save For Later" />
-                            <LargeButtonSecondary completed="true" route="thank-you" type="submit" title="Complete Report" />
+                            <ButtonPrimary onClick={() => {
+                                localStorage.setItem('completed', false);
+                                history.push(`/email`);
+                            }}>Save For Later</ButtonPrimary>
+                            <ButtonSecondary type="submit">Complete Report</ButtonSecondary>
                         </Controls>
                     </form>
                 </StoryForm>
@@ -96,3 +100,47 @@ function Story() {
 }
 
 export default Story;
+
+const ButtonSecondary = styled.button`
+    width: 100%;
+    height: 5.2rem;
+    border: 1px solid #000000;
+    border-radius: 0.6rem;
+    background: #111111;
+    margin: 0.5rem 0;
+    color: #ffffff;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2.2rem;
+    line-height: 2.4rem;
+    letter-spacing: 0.25;
+    transition: all 300ms;
+
+    &:hover {
+        cursor: pointer;
+        transition: opacity 300ms;
+        opacity: 0.9;
+    }
+`;
+
+const ButtonPrimary = styled.button`
+    width: 100%;
+    height: 5.2rem;
+    border: 1px solid #111111;
+    border-radius: 0.6rem;
+    background: #ffffff;
+    margin: 0.5rem 0;
+    color: #111111;
+    font-weight: bold;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2.2rem;
+    line-height: 2.4rem;
+    letter-spacing: 0.25;
+    transition: all 300ms;
+
+    &:hover {
+        cursor: pointer;
+        transition: opacity 300ms;
+        opacity: 0.9;
+    }
+
+`;

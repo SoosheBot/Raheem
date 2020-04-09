@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 //components
 import Officer from './Officer'
@@ -7,13 +8,10 @@ import Officer from './Officer'
 import styled from 'styled-components';
 import { Container, Content, Controls, Divider } from '../styles/global';
 
-/* components */
-import LargeButtonPrimary from './buttons/LargeButtonPrimary';
-import LargeButtonSecondary from './buttons/LargeButtonSecondary';
-
-
 //Purpose of this component is to serve as a landing after a user scans a QR code and explain what Raheem is to new users
 function Landing(props) {
+
+    const history = useHistory();
 
     return (
         <AboutContainer className="container">
@@ -52,8 +50,8 @@ function Landing(props) {
                     }} />
 
                 <Controls>
-                    <LargeButtonPrimary title="View Reports" />
-                    <LargeButtonSecondary route="report" title="Add a Report" />
+                    <ButtonPrimary>View Reports</ButtonPrimary>
+                    <ButtonSecondary onClick={() => history.push(`/report`)}>Add a Report</ButtonSecondary>
                 </Controls>
             </AboutTextContainer>
         </AboutContainer>
@@ -102,3 +100,47 @@ const AboutSubHeading = styled.h3`
     margin: 2.2rem 0;
     line-height: 2.6rem;
 `
+
+const ButtonSecondary = styled.button`
+    width: 100%;
+    height: 5.2rem;
+    border: 1px solid #000000;
+    border-radius: 0.6rem;
+    background: #111111;
+    margin: 0.5rem 0;
+    color: #ffffff;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2.2rem;
+    line-height: 2.4rem;
+    letter-spacing: 0.25;
+    transition: all 300ms;
+
+    &:hover {
+        cursor: pointer;
+        transition: opacity 300ms;
+        opacity: 0.9;
+    }
+`;
+
+const ButtonPrimary = styled.button`
+    width: 100%;
+    height: 5.2rem;
+    border: 1px solid #111111;
+    border-radius: 0.6rem;
+    background: #ffffff;
+    margin: 0.5rem 0;
+    color: #111111;
+    font-weight: bold;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2.2rem;
+    line-height: 2.4rem;
+    letter-spacing: 0.25;
+    transition: all 300ms;
+
+    &:hover {
+        cursor: pointer;
+        transition: opacity 300ms;
+        opacity: 0.9;
+    }
+
+`;

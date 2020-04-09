@@ -5,13 +5,8 @@ import { useHistory } from 'react-router-dom';
 
 import Officer from './Officer';
 
-//buttons
-import GoBack from './buttons/GoBack.js';
-import LargeButtonPrimary from './buttons/LargeButtonPrimary';
-import LargeButtonSeconary from './buttons/LargeButtonSecondary';
-
 //styles
-import { Container, Content, SubHeading, Paragraph, Controls } from '../styles/global';
+import { Container, Content, Controls } from '../styles/global';
 import { HeaderContainer } from '../styles/slider';
 
 /* assets */
@@ -63,8 +58,8 @@ function ThankYou() {
                     <p>Follow the link in your email to complete your story.</p>
 
                     <Controls style={{ paddingLeft: '20px', paddingRight: '20px' }} >
-                        <LargeButtonPrimary route="" title="Home Page" />
-                        <LargeButtonSeconary title="Officer Page" />
+                        <ButtonPrimary>Home Page</ButtonPrimary>
+                        <ButtonSecondary>Officer Page</ButtonSecondary>
                     </Controls>
                 </Cancelled>}
 
@@ -80,8 +75,8 @@ function ThankYou() {
                         <p>Your story will help end police violence.</p>
 
                         <Controls style={{ paddingLeft: '20px', paddingRight: '20px' }}>
-                            <LargeButtonPrimary route="" title="Home Page" />
-                            <LargeButtonSeconary title="Officer Page" />
+                            <ButtonPrimary onClick={() => history.push(`/`)}>Home Page</ButtonPrimary>
+                            <ButtonSecondary>Officer Page</ButtonSecondary>
                         </Controls>
                     </Submitted>
                 </div>}
@@ -132,13 +127,6 @@ const ThankYouContainer = styled.div`
 `;
 
 const Cancelled = styled.div`
-    // background: #ffffff;
-    // margin: 2rem 0;
-    // display: flex;
-    // flex-direction: column;
-    // padding: 0 20px;
-    // width: 100%;
-
     background: #ffffff;
     margin: 2rem 0;
     display: flex;
@@ -168,4 +156,48 @@ const Submitted = styled.div`
         padding: 0 20px;
         margin-top: 0.5rem;
     }
+`;
+
+const ButtonSecondary = styled.button`
+    width: 100%;
+    height: 5.2rem;
+    border: 1px solid #000000;
+    border-radius: 0.6rem;
+    background: #111111;
+    margin: 0.5rem 0;
+    color: #ffffff;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2.2rem;
+    line-height: 2.4rem;
+    letter-spacing: 0.25;
+    transition: all 300ms;
+
+    &:hover {
+        cursor: pointer;
+        transition: opacity 300ms;
+        opacity: 0.9;
+    }
+`;
+
+const ButtonPrimary = styled.button`
+    width: 100%;
+    height: 5.2rem;
+    border: 1px solid #111111;
+    border-radius: 0.6rem;
+    background: #ffffff;
+    margin: 0.5rem 0;
+    color: #111111;
+    font-weight: bold;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2.2rem;
+    line-height: 2.4rem;
+    letter-spacing: 0.25;
+    transition: all 300ms;
+
+    &:hover {
+        cursor: pointer;
+        transition: opacity 300ms;
+        opacity: 0.9;
+    }
+
 `;
