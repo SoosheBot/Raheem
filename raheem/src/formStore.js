@@ -6,7 +6,7 @@ const initialState = {
     tags: [],
     race: '',
     gender: '',
-    transgender: null,
+    selfIdentify: '',
     rating: '',
     dob: '',
     incidentDate: '',
