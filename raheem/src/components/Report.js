@@ -87,33 +87,32 @@ export default function Report() {
 
         //send report to firestore
         firebase
-        .firestore()
-        .collection('reports')
-        .add(
-            {
-                race: data.race,
-                gender: data.gender,
-                selfIdentify: data.self_identify,
-                time: data.time,
-                rating: rating,
-                tags: toggledTags,
-                dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}`,
-                incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`
-                
-            }
-        )
-        .then(
-            function(doc) {
-                dispatch({
-                type: 'REPORT', payload: {
-                    reportId: doc.id
+            .firestore()
+            .collection('reports')
+            .add(
+                {
+                    race: data.race,
+                    gender: data.gender,
+                    selfIdentify: data.self_identify,
+                    time: data.time,
+                    rating: rating,
+                    tags: toggledTags,
+                    dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}`,
+                    incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`
+
                 }
+            )
+            .then(
+                function (doc) {
+                    dispatch({
+                        type: 'REPORT', payload: {
+                            reportId: doc.id
+                        }
+                    })
                 })
-        })
-        history.push(`/story`); // push the user to the story component
     }
-        
-    
+
+
 
     const handleRatingChange = (e, value) => {
         setRating(value);
@@ -126,7 +125,7 @@ export default function Report() {
         <Container>
             <Content>
                 <div className="go-back">
-                    <img src={Back} alt="Go Back" />
+                    <img onClick={() => history.goBack()} src={Back} alt="Go Back" />
                 </div>
                 <Officer profile={{
                     officer: "Officer Peyton",
@@ -313,7 +312,7 @@ export default function Report() {
                             Prefer Not To Say
                         </div>
                     <div className="radio">
-                    <input name="gender" type="radio" ref={register()} value="self identify" />
+                        <input name="gender" type="radio" ref={register()} value="self identify" />
                         {/* Prefer To Self-Identify */}
                         <input
                             className="self"
@@ -321,8 +320,8 @@ export default function Report() {
                             name="self_identify"
                             placeholder="Prefer To Self Identify"
                             autoComplete="off"
-                            ref={register()} 
-                        /> 
+                            ref={register()}
+                        />
                         {/* {name === "self" && (
                             <Controller
                                 className="self"
@@ -333,7 +332,7 @@ export default function Report() {
                                 ref={register()} 
                                 />
                             )} */}
-                        </div>
+                    </div>
 
                     {/* <select name="gender" ref={register({ required: true })}>
                         <option value="">Select gender...</option>
@@ -404,10 +403,8 @@ export default function Report() {
 
                     {/* submit the form and continue through the flow */}
                     <div className="inputs">
-                        <LargeButtonSecondary type="submit" title="Add This Report" />
+                        <LargeButtonSecondary route="story" type="submit" title="Add This Report" />
                     </div>
-
-                    {/* <input type="submit" value="Add this report" /> */}
 
                     <span>You'll have the opportunity to say more</span>
                 </form>
