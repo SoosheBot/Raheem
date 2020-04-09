@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
+import Officer from './Officer'
+
 //buttons
 import GoBack from './buttons/GoBack.js';
+import LargeButtonPrimary from './buttons/LargeButtonPrimary';
+import LargeButtonSeconary from './buttons/LargeButtonSecondary';
+
+//styles
+import { Container, Content, SubHeading, Paragraph, Controls } from '../styles/global';
 
 function ThankYou() {
 
@@ -29,41 +36,52 @@ function ThankYou() {
     }, []);
 
     return (
-        <ThankYouContainer>
-            {cancelled &&
-                <Cancelled>
-                    <h2>Thank You</h2>
-                    <p>Thank you for your time today.</p>
-                    <p>If you accidentally clicked on 'Exit', you can click the back button
-                    to return to the report submission form and continue filling out your report.
-                    Otherwise, we hope you have a great rest of the day.
-                    {/* goBack Button */}
-                    </p>
+        <Container>
+            <Content>
+                <Officer profile={{
+                    officer: "Officer Peyton",
+                    precinct: "#15",
+                    badge: "R4567"
+                }} />
 
-                    <ButtonContainer className="landingButtonContainer">
-                        <BackContainer>
-                            <GoBack />
-                            {/* go to thank you */}
-                        </BackContainer>
-                    </ButtonContainer>
-                </Cancelled>}
+                <hr />
 
-            {submitted &&
-                <Submitted>
-                    <h2>Thank You</h2>
-                    <p>Thank you for taking the time to help build a safer community.</p>
-                    <p>For further escalation of your report, you have the following options: </p>
-                    <ul>
-                        <li>Escalate to Raheem staff.</li>
-                        <li>Escalate to the media.</li>
-                        <li>Escalate to law enforcement.</li>
-                    </ul>
-                </Submitted>}
-        </ThankYouContainer>
+                {cancelled &&
+                    <Cancelled>
+                        <SubHeading>Thank you for your time!</SubHeading>
+                        <Paragraph>Check your email to complete your report at a later time.</Paragraph>
+
+                        <Controls>
+                            <LargeButtonPrimary title="Home Page"/>
+                            <LargeButtonSeconary title="Officer Page"/>
+                        </Controls>
+                    </Cancelled>}
+
+                {submitted &&
+                    <Submitted>
+                        <ThankYouH2>Thank you for your feedback!</ThankYouH2>
+                        <SubHeading>Report Submitted!</SubHeading>
+                        <Paragraph>Your story will help end police violence.</Paragraph>
+                    
+                        <Controls>
+                            <LargeButtonPrimary title="Home Page"/>
+                            <LargeButtonSeconary title="Officer Page"/>
+                        </Controls>
+                    </Submitted>}
+            </Content>
+        </Container>
     )
 }
 
 export default ThankYou;
+
+const ThankYouH2 = styled.h2`
+    font-family: Noto Serif JP;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
+`;
 
 const ThankYouContainer = styled.div`
     margin: 5rem 0;
