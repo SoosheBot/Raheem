@@ -48,8 +48,9 @@ function ThankYou() {
 
                 {cancelled &&
                     <Cancelled>
-                        <SubHeading>Thank you for your time!</SubHeading>
-                        <Paragraph>Check your email to complete your report at a later time.</Paragraph>
+                        <ThankYouH2>Thank you for your feedback!</ThankYouH2>
+                        <SubHeading>Reminder sent</SubHeading>
+                        <Paragraph>Follow the link in your email to complete your story.</Paragraph>
 
                         <Controls>
                             <LargeButtonPrimary title="Home Page"/>
