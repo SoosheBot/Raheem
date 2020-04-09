@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function LargeButtonPrimary(props) {
+export default function LargeButtonSecondary(props) {
 
     const { title } = props;
 
@@ -11,16 +11,17 @@ export default function LargeButtonPrimary(props) {
 }
 
 const Secondary = styled.button`
-    width: 34.3rem;
+    width: 100%;
     height: 5.2rem;
     border: 1px solid #000000;
     border-radius: 0.6rem;
-    background: #000000;
+    background: #111111;
     margin: 0.5rem 0;
     color: #ffffff;
-    font-weight: 900;
-    font-family: 'Noto Serif', serif;
+    font-family: 'Noto Serif JP', serif;
     font-size: 2.2rem;
+    line-height: 2.4rem;
+    letter-spacing: 0.25;
     transition: all 300ms;
 
     &:hover {

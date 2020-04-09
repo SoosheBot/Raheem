@@ -11,15 +11,18 @@ export default function LargeButtonPrimary(props) {
 }
 
 const Primary = styled.button`
-    width: 34.3rem;
+    width: 100%;
     height: 5.2rem;
-    border: 1px solid #000000;
+    border: 1px solid #111111;
     border-radius: 0.6rem;
     background: #ffffff;
     margin: 0.5rem 0;
-    font-weight: 900;
-    font-family: 'Noto Serif', serif;
+    color: #111111;
+    font-weight: bold;
+    font-family: 'Noto Serif JP', serif;
     font-size: 2.2rem;
+    line-height: 2.4rem;
+    letter-spacing: 0.25;
     transition: all 300ms;
 
     &:hover {

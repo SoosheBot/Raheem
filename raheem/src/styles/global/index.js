@@ -1,7 +1,15 @@
 import styled from 'styled-components';
 
+
+
+export const TopBar = styled.div`
+width: 100%;
+height: 3.6rem;
+background: #555555;
+`;
+
 export const Container = styled.div`
-    margin: 5rem 0;
+    margin: 1rem 0;
     font-family: 'Noto Serif', serif;
     width: 100%;
     display: flex;
@@ -14,6 +22,20 @@ export const Container = styled.div`
         font-size: 1.2rem;
         text-align: center;
     }
+
+    span.thankyou{
+        font-size: 2.4rem;
+        text-align: left;
+        font-weight: normal;
+    }
+
+    p.description {
+        margin: 1.2rem 0 1rem;
+        font-size: 1.8rem;
+        line-height: 1.6rem;
+        font-family: 'Roboto', sans-serif;
+    }
+
 `
 
 export const HeadingContainer = styled.div`
@@ -25,12 +47,16 @@ export const HeadingContainer = styled.div`
 `;
 
 export const Content = styled.div`
-    width: 80%;
+    width: 100%;
     background: #ffffff;
-    margin: 2rem 0;
-    padding: 3rem 10%;
+    margin-bottom: 2rem;
+    padding: 0 20px;
     display: flex;
     flex-direction: column;
+
+    .go-back {
+
+    }
 `;
 
 export const Heading = styled.h2`
@@ -65,12 +91,21 @@ export const Label = styled.label`
     font-family: 'Roboto', sans-serif;
     font-size: 2.2rem;
     font-weight: 700;
+`;
 
-    span.light {
-        font-weight: 300;
-        font-size: 2.2rem;
-        font-family: 'Roboto', sans-serif;
-    }
+export const Divider = styled.div`
+    height: 4px;
+    width: 100%;
+    background: #111111;
+    margin-bottom: 4.4rem;
+`;
+
+export const SmallDivider = styled.div`
+    height: 1px;
+    margin-top: 5rem;
+    padding: 0;
+    width: 100%;
+    background: #111111;
 `;
 
 export const Controls = styled.div`
@@ -79,6 +114,42 @@ export const Controls = styled.div`
     flex-direction: column;
     align-items: center;
     margin-top: 5rem;
+`;
+
+/* Email Styling */
+export const EmailParagraph = styled.p`
+    font-family: 'Noto Serif';
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    padding: 0 20px;
+    margin-bottom: 5rem;
+    color: #111111;
+`;
+
+export const EmailLabel = styled.p`
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 1.8rem;
+    line-height; 1.6rem;
+    color: #111111;
+    margin-bottom: 1rem;
+`;
+
+export const EmailForm = styled.form`
+    input[type=text] {
+        width: 100%;
+        height: 4.8rem;
+        background: #ffffff;
+        border-radius: 0.5rem;
+        border: 1px solid #111111;
+        color: #C4C4C4;
+        font-size: 1.8rem;
+        line-height: 1.6rem;
+        font-weight: bold;
+        font-family: 'Roboto', sans-serif;
+        padding-left: 2%;
+    }
 `;
 
 /* QR Component Form Styling */

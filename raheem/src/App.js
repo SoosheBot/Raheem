@@ -7,14 +7,14 @@ import { Route } from 'react-router-dom';
 /* components */
 import QRcode from './components/QRcode';
 import Landing from './components/Landing';
-import Date from './components/Date';
-import Slider from './components/Slider';
+import About from './components/About';
 import Story from './components/Story';
 import Subscribe from './components/Subscribe';
 import ThankYou from './components/ThankYou';
 import Test from './components/TestComponents/Test';
 import Header from './components/layout/Header';
 import Report from './components/Report';
+import Email from './components/Email';
 
 function App() {
 
@@ -33,16 +33,8 @@ function App() {
         < QRcode />
       </Route>
 
-      <Route path="/about">
+      <Route path="/landing">
         <Landing />
-      </Route>
-
-      <Route path="/date">
-        <Date />
-      </Route>
-
-      <Route path="/slider">
-        <Slider />
       </Route>
 
       <Route path="/report">
@@ -53,13 +45,23 @@ function App() {
         <Story />
       </Route>
 
-      <Route path="/subscribe">
-        <Subscribe />
+      <Route path="/email">
+        <Email />
       </Route>
 
       <Route path="/thank-you">
         <ThankYou />
       </Route>
+
+      <Route path="/about">
+        <About />
+      </Route>
+
+      <Route path="/email">
+        <Email />
+      </Route>
+
+      {/* route to officer page in RC2 */}
 
       <Route path="/test">
         <Test />
@@ -76,6 +78,8 @@ const Splash = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #FFF600;
+  margin: 0;
 
   h1 {
     font-size: 4rem;

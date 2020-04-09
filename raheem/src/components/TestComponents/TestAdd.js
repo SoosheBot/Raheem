@@ -26,8 +26,7 @@ const AddItemForm = () => {
         age
       })
       /* .then clears all of the fields after the submit -- resetting the form for another add! */
-      .then(() => setFname(""), setLname(""), setAge(""));
-      
+      .then(function(docRef){console.log(`id: ${docRef.id}`)} , setFname(""), setLname(""), setAge(""));
   };
 
   return (
