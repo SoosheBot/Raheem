@@ -98,7 +98,7 @@ export const ReportForm = styled.div`
     }
 
     input[type=text].incident {
-        width: 33%;
+        width: 33.3%;
         height: 5rem;
         font-weight: 900;
         font-size: 2rem;
@@ -150,7 +150,7 @@ export const ReportForm = styled.div`
 
     input[type=time] {
         margin-top: 2rem;
-        width: 99%;
+        width: 100%;
         height: 5rem;
         font-size: 2rem;
         font-weight: 900;
@@ -182,7 +182,7 @@ export const ReportForm = styled.div`
 
         // Date of birth input styling
         input[type=text].dob {
-            width: 33%;
+            width: 33.3%;
             height: 5rem;
             font-weight: 900;
             font-size: 2rem;
@@ -218,6 +218,45 @@ export const ReportForm = styled.div`
             width: 42px;
             margin-right: 2rem;
             margin-left: 20px;
+        }
+
+        input[type=text].self::placeholder {
+            color: #888888;
+        }
+
+        input[type=text].self {
+            width: 100%;
+            height: 5rem;
+            font-weight: bold;
+            font-size: 2.6rem;
+            margin: 0 20px 0 0;
+            padding-left: 1rem;
+            color: #111111;
+            border-radius: 6px;
+            border: 1px #111111 solid;
+
+            @media (max-width: 440px) {
+                font-size: 1.6rem;
+                padding-left: 0.5rem;
+            }
+
+            @media (max-width: 360px) {
+                font-size: 1.2rem;
+                padding-left: 0.5rem;
+            }
+
+            @media (max-width: 285px) {
+                font-size: 1.2rem;
+            }
+
+            @media (max-width: 265px) {
+                font-size: 1rem;
+            }
+
+            &:focus {
+                outline: none;
+                border: 1px solid #FAEB00;
+            }
         }
 
         // Checkbox styling
