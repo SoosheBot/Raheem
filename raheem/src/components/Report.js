@@ -75,6 +75,7 @@ export default function Report() {
             type: 'REPORT', payload: {
                 race: data.race,
                 gender: data.gender,
+                selfIdentify: data.self_identify,
                 time: data.time,
                 rating: rating,
                 tags: toggledTags,
@@ -91,7 +92,7 @@ export default function Report() {
             {
                 race: data.race,
                 gender: data.gender,
-                transgender: data.transgender,
+                selfIdentify: data.self_identify,
                 time: data.time,
                 rating: rating,
                 tags: toggledTags,
@@ -315,7 +316,7 @@ export default function Report() {
                         <input
                             className="self"
                             type="text"
-                            name="self identify"
+                            name="self_identify"
                             placeholder="Prefer To Self Identify"
                             autoComplete="off"
                             ref={register()} 
