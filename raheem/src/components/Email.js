@@ -1,6 +1,10 @@
 import React from "react";
 import { useHistory } from 'react-router-dom';
 
+
+/*FireStore*/
+import firebase from "../firebase"
+
 //form validation
 import { useForm } from "react-hook-form";
 
@@ -28,7 +32,15 @@ const Email = () => {
     /* configure react-hook-form */
     const { handleSubmit, register, errors } = useForm();
     const onSubmit = values => {
-        console.log("values from email on-submit", values);
+
+        console.log("values from email on-submit",values);
+        firebase
+        .firestore()
+        .collection('emails')
+        .add({
+            emails: values.email
+        })
+
     };
 
     return (

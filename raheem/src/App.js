@@ -57,6 +57,10 @@ function App() {
         <About />
       </Route>
 
+      <Route path="/email">
+        <Email />
+      </Route>
+
       {/* route to officer page in RC2 */}
 
       <Route path="/test">
