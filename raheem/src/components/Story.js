@@ -81,11 +81,11 @@ function Story() {
 
                 <StoryForm>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <textarea name="story" ref={register} />
+                        <textarea data-testid="Story_Body" name="story" ref={register} />
 
                         <Controls>
-                            <LargeButtonPrimary route="email" title="Save For Later" />
-                            <LargeButtonSecondary completed="true" route="thank-you" type="submit" title="Complete Report" />
+                            <LargeButtonPrimary data-testid="BtnSave" route="email" title="Save For Later" />
+                            <LargeButtonSecondary data-testid="BtnComplete" completed="true" route="thank-you" type="submit" title="Complete Report" />
                         </Controls>
                     </form>
                 </StoryForm>

@@ -25,7 +25,7 @@ import LargeButtonSecondary from './buttons/LargeButtonSecondary';
 /* assets */
 import Back from '../assets/Back.svg';
 
-export default function Report() {
+export default function Report(props) {
 
     /* bring in useHistory hook from react-router-dom */
     const history = useHistory();
@@ -110,6 +110,7 @@ export default function Report() {
                         }
                     })
                 })
+                history.push('/story')
     }
 
 
@@ -144,6 +145,7 @@ export default function Report() {
                 <SliderContainer>
                     <Typography gutterBottom></Typography>
                     <TxSlider
+                        data-testid="slider"
                         valueLabelDisplay="auto"
                         aria-label="slider"
                         defaultValue={0}
@@ -162,14 +164,14 @@ export default function Report() {
 
             <Content>
                 <TagContainer>
-                    <Tag data-id="tag" onClick={toggleTag} value="helped">helped</Tag>
-                    <Tag data-id="tag" onClick={toggleTag} value="protected">protected</Tag>
-                    <Tag data-id="tag" onClick={toggleTag} value="profiled">profiled</Tag>
-                    <Tag data-id="tag" onClick={toggleTag} value="neglected">neglected</Tag>
-                    <Tag data-id="tag" onClick={toggleTag} value="harassed">harassed</Tag>
-                    <Tag data-id="tag" onClick={toggleTag} value="wrongly accused">wrongly accused</Tag>
-                    <Tag data-id="tag" onClick={toggleTag} value="disrespected">disrespected</Tag>
-                    <Tag data-id="tag" onClick={toggleTag} value="physically attacked">physically attacked</Tag>
+                    <Tag data-testid="tag1" onClick={toggleTag} value="helped">helped</Tag>
+                    <Tag data-testid="tag2" onClick={toggleTag} value="protected">protected</Tag>
+                    <Tag data-testid="tag3" onClick={toggleTag} value="profiled">profiled</Tag>
+                    <Tag data-testid="tag4" onClick={toggleTag} value="neglected">neglected</Tag>
+                    <Tag data-testid="tag5" onClick={toggleTag} value="harassed">harassed</Tag>
+                    <Tag data-testid="tag6" onClick={toggleTag} value="wrongly accused">wrongly accused</Tag>
+                    <Tag data-testid="tag7" onClick={toggleTag} value="disrespected">disrespected</Tag>
+                    <Tag data-testid="tag8" onClick={toggleTag} value="physically attacked">physically attacked</Tag>
                 </TagContainer>
 
             </Content>
@@ -183,6 +185,7 @@ export default function Report() {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="inputs">
                         <input
+                            data-testid="incidentMonth"
                             className="incident"
                             type="text"
                             name="incidentMonth"
@@ -196,6 +199,7 @@ export default function Report() {
                                 max: 12
                             })} />
                         <input
+                            data-testid="incidentDay"
                             className="incident"
                             type="text"
                             name="incidentDay"
@@ -207,6 +211,7 @@ export default function Report() {
                                 maxLength: 2
                             })} />
                         <input
+                            data-testid="incidentYear"
                             className="incident"
                             type="text"
                             name="incidentYear"
@@ -235,7 +240,7 @@ export default function Report() {
                     {errors.incidentYear && errors.incidentYear.type === "maxLength" && <p className="error">Please enter a valid year.</p>}
 
                     <div className="inputs">
-                        <input type="time" placeholder="time" name="time" ref={register} defaultValue="15:00" />
+                        <input data-testid="incidentTime" type="time" placeholder="time" name="time" ref={register} defaultValue="15:00" />
                     </div>
 
                     <SmallDivider />
@@ -249,43 +254,43 @@ export default function Report() {
                     {/* RACE INPUTS */}
                     <h3>Race</h3>
                     <div className="radio">
-                        <input name="race" type="radio" ref={register({ required: true })} value="asian" />
+                        <input data-testid="asian" name="race" type="radio" ref={register({ required: true })} value="asian" />
                             Asian
                         </div>
                     <div className="radio">
-                        <input name="race" type="radio" ref={register({ required: true })} value="african american" />
+                        <input data-testid="Black_African" name="race" type="radio" ref={register({ required: true })} value="african american" />
                             Black/African
                         </div>
                     <div className="radio">
-                        <input name="race" type="radio" ref={register({ required: true })} value="latinx" />
+                        <input data-testid="Latinx" name="race" type="radio" ref={register({ required: true })} value="latinx" />
                             Latinx
                         </div>
                     <div className="radio">
-                        <input name="race" type="radio" ref={register({ required: true })} value="middle eastern" />
+                        <input data-testid="Middle_Eastern" name="race" type="radio" ref={register({ required: true })} value="middle eastern" />
                             Middle Eastern
                         </div>
                     <div className="radio">
-                        <input name="race" type="radio" ref={register({ required: true })} value="native american" />
+                        <input data-testid="Native_American" name="race" type="radio" ref={register({ required: true })} value="native american" />
                             Native American
                         </div>
                     <div className="radio">
-                        <input name="race" type="radio" ref={register({ required: true })} value="pacific islander" />
+                        <input data-testid="Pacific_Islander" name="race" type="radio" ref={register({ required: true })} value="pacific islander" />
                             Pacific Islander
                         </div>
                     <div className="radio">
-                        <input name="race" type="radio" ref={register({ required: true })} value="south asian" />
+                        <input data-testid="South_Asian" name="race" type="radio" ref={register({ required: true })} value="south asian" />
                             South Asian
                         </div>
                     <div className="radio">
-                        <input name="race" type="radio" ref={register({ required: true })} value="white" />
+                        <input data-testid="White" name="race" type="radio" ref={register({ required: true })} value="white" />
                             White
                         </div>
                     <div className="radio">
-                        <input name="race" type="radio" ref={register({ required: true })} value="multiracial" />
+                        <input data-testid="Multiracial" name="race" type="radio" ref={register({ required: true })} value="multiracial" />
                             Multiracial
                         </div>
                     <div className="radio">
-                        <input name="race" type="radio" ref={register({ required: true })} value="no preference" />
+                        <input data-testid="Prefer_Not_To_Say" name="race" type="radio" ref={register({ required: true })} value="no preference" />
                             Prefer Not To Say
                         </div>
 
@@ -296,25 +301,26 @@ export default function Report() {
                     <h3 style={{ marginTop: '5rem' }}>Gender</h3>
 
                     <div className="radio">
-                        <input name="gender" type="radio" ref={register()} value="female" />
+                        <input data-testid="Female" name="gender" type="radio" ref={register()} value="female" />
                             Female
                         </div>
                     <div className="radio">
-                        <input name="gender" type="radio" ref={register()} value="male" />
+                        <input data-testid="Male" name="gender" type="radio" ref={register()} value="male" />
                             Male
                         </div>
                     <div className="radio">
-                        <input name="gender" type="radio" ref={register()} value="non binary" />
+                        <input data-testid="Non_binary" name="gender" type="radio" ref={register()} value="non binary" />
                             Non-binary
                         </div>
                     <div className="radio">
-                        <input name="gender" type="radio" ref={register()} value="opt out" />
+                        <input data-testid="Prefer_Not_To_Say" name="gender" type="radio" ref={register()} value="opt out" />
                             Prefer Not To Say
                         </div>
                     <div className="radio">
-                        <input name="gender" type="radio" ref={register()} value="self identify" />
+                        <input data-testid="Self_Identify" name="gender" type="radio" ref={register()} value="self identify" />
                         {/* Prefer To Self-Identify */}
                         <input
+                            data-testid="Self_Identify_Value"
                             className="self"
                             type="text"
                             name="self_identify"
@@ -349,6 +355,7 @@ export default function Report() {
                         <h3>Date of Birth</h3>
                         <div className="dob-container">
                             <input
+                                data-testid="DOB_Month"
                                 className="dob incident"
                                 type="text"
                                 name="dobMonth"
@@ -362,6 +369,7 @@ export default function Report() {
                                     max: 12
                                 })} />
                             <input
+                                data-testid="DOB_Day"
                                 className="dob incident"
                                 type="text"
                                 name="dobDay"
@@ -373,6 +381,7 @@ export default function Report() {
                                     maxLength: 2
                                 })} />
                             <input
+                                data-testid="DOB_Year"
                                 className="dob incident"
                                 type="text"
                                 name="dobYear"
@@ -403,7 +412,7 @@ export default function Report() {
 
                     {/* submit the form and continue through the flow */}
                     <div className="inputs">
-                        <LargeButtonSecondary route="story" type="submit" title="Add This Report" />
+                        <LargeButtonSecondary data-testid="submit" type="submit" title="Add This Report" />
                     </div>
 
                     <span>You'll have the opportunity to say more</span>
