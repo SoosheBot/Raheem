@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 
-import Officer from './Officer'
+
+import Officer from './Officer';
 
 //buttons
 import GoBack from './buttons/GoBack.js';
