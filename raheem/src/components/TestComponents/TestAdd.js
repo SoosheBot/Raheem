@@ -27,6 +27,7 @@ const AddItemForm = () => {
       })
       /* .then clears all of the fields after the submit -- resetting the form for another add! */
       .then(() => setFname(""), setLname(""), setAge(""));
+      
   };
 
   return (
