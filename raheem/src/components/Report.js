@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 
 /*FireStore*/
 import firebase from "../firebase"
@@ -20,7 +21,6 @@ import { TextField } from "@material-ui/core";
 
 /* components */
 import Officer from '../components/Officer';
-import LargeButtonSecondary from './buttons/LargeButtonSecondary';
 
 /* assets */
 import Back from '../assets/Back.svg';
@@ -109,6 +109,8 @@ export default function Report() {
                         }
                     })
                 })
+
+        history.push('/story');
     }
 
 
@@ -177,7 +179,7 @@ export default function Report() {
             </HeaderContainer>
 
             <ReportForm>
-                <p className="description">Enter the date and time as best as you can remember.</p>
+                <p style={{ padding: '0 20px' }} className="description">Enter the date and time as best as you can remember.</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="inputs">
                         <input
@@ -313,6 +315,7 @@ export default function Report() {
                         <input name="gender" type="radio" ref={register()} value="self identify" />
                         {/* Prefer To Self-Identify */}
                         <input
+                            style={{ width: '75%' }}
                             className="self"
                             type="text"
                             name="self_identify"
@@ -401,7 +404,7 @@ export default function Report() {
 
                     {/* submit the form and continue through the flow */}
                     <div className="inputs">
-                        <LargeButtonSecondary route="story" type="submit" title="Add This Report" />
+                        <ButtonSecondary type="submit">Add this report</ButtonSecondary>
                     </div>
 
                     <span>You'll have the opportunity to say more</span>
@@ -410,3 +413,48 @@ export default function Report() {
         </Container >
     )
 }
+
+
+const ButtonSecondary = styled.button`
+    width: 100%;
+    height: 5.2rem;
+    border: 1px solid #000000;
+    border-radius: 0.6rem;
+    background: #111111;
+    margin: 0.5rem 0;
+    color: #ffffff;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2.2rem;
+    line-height: 2.4rem;
+    letter-spacing: 0.25;
+    transition: all 300ms;
+
+    &:hover {
+        cursor: pointer;
+        transition: opacity 300ms;
+        opacity: 0.9;
+    }
+`;
+
+const ButtonPrimary = styled.button`
+    width: 100%;
+    height: 5.2rem;
+    border: 1px solid #111111;
+    border-radius: 0.6rem;
+    background: #ffffff;
+    margin: 0.5rem 0;
+    color: #111111;
+    font-weight: bold;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2.2rem;
+    line-height: 2.4rem;
+    letter-spacing: 0.25;
+    transition: all 300ms;
+
+    &:hover {
+        cursor: pointer;
+        transition: opacity 300ms;
+        opacity: 0.9;
+    }
+
+`;
