@@ -9,7 +9,6 @@ import QRcode from './components/QRcode';
 import Landing from './components/Landing';
 import About from './components/About';
 import Story from './components/Story';
-import Subscribe from './components/Subscribe';
 import ThankYou from './components/ThankYou';
 import Test from './components/TestComponents/Test';
 import Header from './components/layout/Header';
@@ -55,10 +54,6 @@ function App() {
 
       <Route path="/about">
         <About />
-      </Route>
-
-      <Route path="/email">
-        <Email />
       </Route>
 
       {/* route to officer page in RC2 */}

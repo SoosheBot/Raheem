@@ -1,12 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 
 export default function LargeButtonSecondary(props) {
 
-    const { title } = props;
+    const { title, route, completed } = props;
+    const history = useHistory();
+
+    const nextPage = (e) => {
+        e.preventDefault();
+        history.push(`/${route}`)
+    }
+
+    if (completed === "true") {
+        localStorage.setItem('completed', true);
+    }
+    else {
+        localStorage.setItem('completed', false);
+    }
 
     return (
-        <Secondary>{title}</Secondary>
+        <Secondary onClick={nextPage}>{title}</Secondary>
     )
 }
 
