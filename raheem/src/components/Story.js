@@ -54,7 +54,7 @@ function Story() {
             <Content>
 
                 {/* {console.log('TESTING. IS STATE UPDATED?', globalState)} */}
-                <div className="go-back">
+                <div data-testid="go-back" className="go-back">
                     <img onClick={() => history.goBack()} src={Back} alt="Go Back" />
                 </div>
                 <Officer profile={{
@@ -81,7 +81,7 @@ function Story() {
                 </Paragraph>
 
                 <StoryForm>
-                    <form onSubmit={handleSubmit(onSubmit)}>
+                    <form onSubmit={handleSubmit(onSubmit)} data-testid='form'>
                         <textarea name="story" ref={register} />
 
                         <Controls>

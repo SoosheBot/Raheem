@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent, wait } from "@testing-library/react";
 import Story from "./Story";
-import { useForm } from "react-hook-form";
+
 
 import "mutationobserver-shim";
 global.MutationObserver = window.MutationObserver;
@@ -46,11 +46,9 @@ describe("tests Story.js page", () => {
   }); 
 });
 
-describe("GoBack button", () => {
-  it('sends the user to the previous page', () => {
-    const onSubmit = jest.fn();
-    const { getAllByAltText } = render(<Story onSubmit={onSubmit} />);
-    fireEvent.click(getAllByAltText("Go Back"));
-    expect(onSubmit).toHaveBeenCalled();
-  });
+it("submits", () => {
+  const onSubmit = jest.fn();
+  const { getByTestId } = render(<Story onSubmit={onSubmit} />);
+  fireEvent.click(getByTestId("form"));
 });
+
