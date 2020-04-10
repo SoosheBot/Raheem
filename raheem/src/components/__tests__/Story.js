@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent, wait } from "@testing-library/react";
-import Story from "./Story";
+import Story from "../Story";
 
 
 import "mutationobserver-shim";
