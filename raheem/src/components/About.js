@@ -22,7 +22,7 @@ function About(props) {
 
             <AboutBackContainer>
                 <div className="go-back">
-                    <img src={Back} alt="Go Back" />
+                    <img data-testid="goBackButton" onClick={() => history.goBack()} src={Back} alt="Go Back" />
                 </div>
             </AboutBackContainer>
 

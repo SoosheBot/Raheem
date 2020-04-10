@@ -1,15 +1,12 @@
 import React from "react";
 import { useHistory } from 'react-router-dom';
-
+import styled from 'styled-components';
 
 /*FireStore*/
 import firebase from "../firebase"
 
 //form validation
 import { useForm } from "react-hook-form";
-
-//buttons
-import GoBack from "./buttons/GoBack.js";
 
 /* styles */
 import { Container, Content, Controls, Divider, EmailParagraph, EmailLabel, EmailForm } from '../styles/global';
@@ -20,8 +17,6 @@ import Back from '../assets/Back.svg';
 
 /* components */
 import Officer from './Officer';
-import LargeButtonPrimary from './buttons/LargeButtonPrimary';
-import LargeButtonSecondary from './buttons/LargeButtonSecondary';
 
 //component for user to submit their email address to save the form for later
 const Email = () => {
@@ -30,24 +25,25 @@ const Email = () => {
     const history = useHistory();
 
     /* configure react-hook-form */
-    const { handleSubmit, register, errors } = useForm();
+    const { handleSubmit, register, errors, watch } = useForm();
     const onSubmit = values => {
 
         console.log("values from email on-submit", values);
-        localStorage.setItem('saved', 'true');
+        localStorage.setItem('completed', false);
         firebase
             .firestore()
             .collection('emails')
             .add({
                 emails: values.email
             })
+        history.push(`/thank-you`);
     };
 
     return (
         <Container>
             <Content>
                 <div className="go-back">
-                    <img onClick={() => history.goBack()} src={Back} alt="Go Back" />
+                    <img data-testid="goBackButton" onClick={() => history.goBack()} src={Back} alt="Go Back" />
                 </div>
 
                 <Officer profile={{
@@ -73,6 +69,7 @@ const Email = () => {
                     <EmailLabel>Email</EmailLabel>
                     <input
                         name="email"
+                        data-testid="emailInput"
                         type="text"
                         placeholder="email@emailaddress.com"
                         ref={register({
@@ -88,8 +85,8 @@ const Email = () => {
                     {/* on submit will need to direct to thank you page with confirmation to check email for next steps */}
 
                     <Controls>
-                        <LargeButtonPrimary route="story" title="Go Back" />
-                        <LargeButtonSecondary completed="true" route="thank-you" type="submit" title="Submit" />
+                        <ButtonPrimary data-testid="goBackLargeButton">Go Back</ButtonPrimary>
+                        <ButtonSecondary data-testid="submitButton" type="submit">Submit</ButtonSecondary>
                     </Controls>
                 </EmailForm>
             </Content>
@@ -98,3 +95,47 @@ const Email = () => {
 };
 
 export default Email;
+
+const ButtonSecondary = styled.button`
+    width: 100%;
+    height: 5.2rem;
+    border: 1px solid #000000;
+    border-radius: 0.6rem;
+    background: #111111;
+    margin: 0.5rem 0;
+    color: #ffffff;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2.2rem;
+    line-height: 2.4rem;
+    letter-spacing: 0.25;
+    transition: all 300ms;
+
+    &:hover {
+        cursor: pointer;
+        transition: opacity 300ms;
+        opacity: 0.9;
+    }
+`;
+
+const ButtonPrimary = styled.button`
+    width: 100%;
+    height: 5.2rem;
+    border: 1px solid #111111;
+    border-radius: 0.6rem;
+    background: #ffffff;
+    margin: 0.5rem 0;
+    color: #111111;
+    font-weight: bold;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2.2rem;
+    line-height: 2.4rem;
+    letter-spacing: 0.25;
+    transition: all 300ms;
+
+    &:hover {
+        cursor: pointer;
+        transition: opacity 300ms;
+        opacity: 0.9;
+    }
+
+`;
