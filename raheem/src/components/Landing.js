@@ -50,8 +50,8 @@ function Landing(props) {
                     }} />
 
                 <Controls>
-                    <ButtonPrimary>View Reports</ButtonPrimary>
-                    <ButtonSecondary onClick={() => history.push(`/report`)}>Add a Report</ButtonSecondary>
+                    <ButtonPrimary data-testid="viewReports">View Reports</ButtonPrimary>
+                    <ButtonSecondary data-testid="addReport" onClick={() => history.push(`/report`)}>Add a Report</ButtonSecondary>
                 </Controls>
             </AboutTextContainer>
         </AboutContainer>
