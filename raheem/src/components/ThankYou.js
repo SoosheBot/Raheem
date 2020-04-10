@@ -36,7 +36,7 @@ function ThankYou() {
         <Container>
             <Content>
                 <div className="go-back">
-                    <img onClick={() => history.goBack()} src={Back} alt="Go Back" />
+                    <img data-testid="goBackButton" onClick={() => history.goBack()} src={Back} alt="Go Back" />
                 </div>
             </Content>
 
@@ -57,8 +57,8 @@ function ThankYou() {
                     <p>Follow the link in your email to complete your story.</p>
 
                     <Controls style={{ paddingLeft: '20px', paddingRight: '20px' }} >
-                        <ButtonPrimary>Home Page</ButtonPrimary>
-                        <ButtonSecondary>Officer Page</ButtonSecondary>
+                        <ButtonPrimary data-testid="homePageButton">Home Page</ButtonPrimary>
+                        <ButtonSecondary data-testid="officerPageButton">Officer Page</ButtonSecondary>
                     </Controls>
                 </Cancelled>}
 
@@ -74,8 +74,8 @@ function ThankYou() {
                         <p>Your story will help end police violence.</p>
 
                         <Controls style={{ paddingLeft: '20px', paddingRight: '20px' }}>
-                            <ButtonPrimary onClick={() => history.push(`/`)}>Home Page</ButtonPrimary>
-                            <ButtonSecondary>Officer Page</ButtonSecondary>
+                            <ButtonPrimary data-testid="homePageButton" onClick={() => history.push(`/`)}>Home Page</ButtonPrimary>
+                            <ButtonSecondary data-testid="officerPageButton">Officer Page</ButtonSecondary>
                         </Controls>
                     </Submitted>
                 </div>}
