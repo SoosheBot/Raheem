@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 /*FireStore*/
-import firebase from "../firebase"
+import firebase from "../firebase";
 
 /* bring in our global form store */
 import { formStore } from '../formStore.js';
@@ -35,8 +35,8 @@ function Story() {
 
     const { handleSubmit, register, errors } = useForm();
     const onSubmit = data => {
-        console.log('firing onSubmit');
-        console.log(`globalState:${globalState.state}`);
+        // console.log('firing onSubmit');
+        // console.log(`globalState:${globalState.state}`);
         dispatch({ type: 'STORY', payload: data });
         firebase
             .firestore()
@@ -53,9 +53,9 @@ function Story() {
         <Container>
             <Content>
 
-                {console.log('TESTING. IS STATE UPDATED?', globalState)}
+                {/* {console.log('TESTING. IS STATE UPDATED?', globalState)} */}
                 <div className="go-back">
-                    <img onClick={() => history.goBack()} src={Back} alt="Go Back" />
+                    <img onClick={() => history.goBack()} src={Back} alt="Go Back" data-testid="go-back"/>
                 </div>
                 <Officer profile={{
                     officer: "Officer Peyton",
@@ -81,7 +81,7 @@ function Story() {
                 </Paragraph>
 
                 <StoryForm>
-                    <form onSubmit={handleSubmit(onSubmit)}>
+                    <form onSubmit={handleSubmit(onSubmit)} data-testid='form'>
                         <textarea name="story" ref={register} />
 
                         <Controls>

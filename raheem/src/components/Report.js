@@ -37,7 +37,7 @@ export default function Report() {
     and our form store */
     const globalState = useContext(formStore);
 
-    console.log(globalState);
+    // console.log(globalState);
 
     /* deconstruct dispatch off globalState to dispatch an action */
     const { dispatch } = globalState;
