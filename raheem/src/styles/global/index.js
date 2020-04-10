@@ -189,7 +189,12 @@ export const QRForm = styled.form`
 `;
 
 export const QRCodeContainer = styled.div`
-    width: 30.27rem;
-    height: 10.87rem;
+    width: 35rem;
+    height: 35rem;
     background: #C4C4C4;
+
+    img {
+        width: 100%;
+        object-fit: contain;
+    }
 `;

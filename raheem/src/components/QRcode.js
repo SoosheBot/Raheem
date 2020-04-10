@@ -6,6 +6,9 @@ import styled from 'styled-components';
 /* styles */
 import { Container, Content, Heading, SubHeading, ContentSep, Label, Controls, QRForm, QRCodeContainer } from '../styles/global';
 
+/* assets */
+import QR from '../assets/QR.svg';
+
 function QRcode() {
 
     const history = useHistory();
@@ -32,7 +35,9 @@ function QRcode() {
                     />
 
                     <Label style={{ margin: '2rem 0' }}>or scan QR code</Label>
-                    <QRCodeContainer />
+                    <QRCodeContainer>
+                        <img src={QR} alt="Example QR Code" />
+                    </QRCodeContainer>
 
                     <Controls>
                         <ButtonSecondary onClick={() => history.push(`/report`)}>Add My Story</ButtonSecondary>
