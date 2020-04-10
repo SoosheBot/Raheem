@@ -54,8 +54,8 @@ function Story() {
             <Content>
 
                 {/* {console.log('TESTING. IS STATE UPDATED?', globalState)} */}
-                <div data-testid="go-back" className="go-back">
-                    <img onClick={() => history.goBack()} src={Back} alt="Go Back" />
+                <div className="go-back">
+                    <img onClick={() => history.goBack()} src={Back} alt="Go Back" data-testid="go-back"/>
                 </div>
                 <Officer profile={{
                     officer: "Officer Peyton",
