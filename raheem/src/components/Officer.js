@@ -10,9 +10,17 @@ const OfficerPic = styled.div`
     height: 186px;
     left: 93px;
     top: 111px;
-    height: 186.4px;
+    // height: 186.4px;
     border-radius: 50%;
     background: grey;
+    border: 1px solid #111111;
+
+    img {
+        object-fit: cover;
+        width: 100%;
+        height: 184px;
+        border-radius: 50%;
+    }
 `;
 
 const OfficerName = styled.p`
@@ -42,7 +50,7 @@ const DivO = styled.div`
 function Officer(props) {
     return (
         <DivO>
-            <OfficerPic><img src={OfficerPlaceholder} alt="Officer Picture" /></OfficerPic>
+            <OfficerPic><img src={props.profile.img} alt="Officer Picture" /></OfficerPic>
             <OfficerName>{props.profile.officer}</OfficerName>
             <OfficerInfo>Precinct: {props.profile.precinct}</OfficerInfo>
             <OfficerInfo>Badge Number: {props.profile.badge}</OfficerInfo>
