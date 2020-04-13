@@ -9,11 +9,11 @@ import QRcode from './components/QRcode';
 import Landing from './components/Landing';
 import About from './components/About';
 import Story from './components/Story';
-import Subscribe from './components/Subscribe';
 import ThankYou from './components/ThankYou';
 import Test from './components/TestComponents/Test';
 import Header from './components/layout/Header';
 import Report from './components/Report';
+import Email from './components/Email';
 
 function App() {
 
@@ -32,7 +32,11 @@ function App() {
         < QRcode />
       </Route>
 
-      <Route path="/landing">
+      <Route exact path="/landing">
+        <Landing />
+      </Route>
+
+      <Route path="/landing/:id">
         <Landing />
       </Route>
 
@@ -44,8 +48,8 @@ function App() {
         <Story />
       </Route>
 
-      <Route path="/subscribe">
-        <Subscribe />
+      <Route path="/email">
+        <Email />
       </Route>
 
       <Route path="/thank-you">

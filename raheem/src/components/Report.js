@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 
 /*FireStore*/
 import firebase from "../firebase"
@@ -20,7 +21,6 @@ import { TextField } from "@material-ui/core";
 
 /* components */
 import Officer from '../components/Officer';
-import LargeButtonSecondary from './buttons/LargeButtonSecondary';
 
 /* assets */
 import Back from '../assets/Back.svg';
@@ -37,7 +37,7 @@ export default function Report() {
     and our form store */
     const globalState = useContext(formStore);
 
-    console.log(globalState);
+    // console.log(globalState);
 
     /* deconstruct dispatch off globalState to dispatch an action */
     const { dispatch } = globalState;
@@ -75,6 +75,7 @@ export default function Report() {
             type: 'REPORT', payload: {
                 race: data.race,
                 gender: data.gender,
+                selfIdentify: data.self_identify,
                 time: data.time,
                 rating: rating,
                 tags: toggledTags,
@@ -91,11 +92,13 @@ export default function Report() {
                 {
                     race: data.race,
                     gender: data.gender,
+                    selfIdentify: data.self_identify,
                     time: data.time,
                     rating: rating,
                     tags: toggledTags,
                     dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}`,
                     incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`
+
                 }
             )
             .then(
@@ -105,10 +108,12 @@ export default function Report() {
                             reportId: doc.id
                         }
                     })
-                }
-            )
-        history.push(`/story`); // push the user to the story component
+                })
+
+        history.push('/story');
     }
+
+
 
     const handleRatingChange = (e, value) => {
         setRating(value);
@@ -120,7 +125,7 @@ export default function Report() {
         <Container>
             <Content>
                 <div className="go-back">
-                    <img src={Back} alt="Go Back" />
+                    <img onClick={() => history.goBack()} src={Back} alt="Go Back" />
                 </div>
                 <Officer profile={{
                     officer: "Officer Peyton",
@@ -175,7 +180,7 @@ export default function Report() {
             </HeaderContainer>
 
             <ReportForm>
-                <p className="description">Enter the date and time as best as you can remember.</p>
+                <p style={{ padding: '0 20px' }} className="description">Enter the date and time as best as you can remember.</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="inputs">
                         <input
@@ -308,17 +313,28 @@ export default function Report() {
                             Prefer Not To Say
                         </div>
                     <div className="radio">
-                    <input name="gender" type="radio" ref={register()} value="self identify" />
+                        <input name="gender" type="radio" ref={register()} value="self identify" />
                         {/* Prefer To Self-Identify */}
                         <input
+                            style={{ width: '75%' }}
                             className="self"
                             type="text"
-                            name="self identify"
+                            name="self_identify"
                             placeholder="Prefer To Self Identify"
                             autoComplete="off"
-                            ref={register()} 
-                        /> 
-                        </div>
+                            ref={register()}
+                        />
+                        {/* {name === "self" && (
+                            <Controller
+                                className="self"
+                                as={ TextField }
+                                name="gender"
+                                placeholder="Prefer To Self Identify"
+                                autoComplete="off"
+                                ref={register()} 
+                                />
+                            )} */}
+                    </div>
 
                     {/* <select name="gender" ref={register({ required: true })}>
                         <option value="">Select gender...</option>
@@ -389,10 +405,8 @@ export default function Report() {
 
                     {/* submit the form and continue through the flow */}
                     <div className="inputs">
-                        <LargeButtonSecondary type="submit" title="Add This Report" />
+                        <ButtonSecondary type="submit">Add this report</ButtonSecondary>
                     </div>
-
-                    {/* <input type="submit" value="Add this report" /> */}
 
                     <span>You'll have the opportunity to say more</span>
                 </form>
@@ -400,3 +414,48 @@ export default function Report() {
         </Container >
     )
 }
+
+
+const ButtonSecondary = styled.button`
+    width: 100%;
+    height: 5.2rem;
+    border: 1px solid #000000;
+    border-radius: 0.6rem;
+    background: #111111;
+    margin: 0.5rem 0;
+    color: #ffffff;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2.2rem;
+    line-height: 2.4rem;
+    letter-spacing: 0.25;
+    transition: all 300ms;
+
+    &:hover {
+        cursor: pointer;
+        transition: opacity 300ms;
+        opacity: 0.9;
+    }
+`;
+
+const ButtonPrimary = styled.button`
+    width: 100%;
+    height: 5.2rem;
+    border: 1px solid #111111;
+    border-radius: 0.6rem;
+    background: #ffffff;
+    margin: 0.5rem 0;
+    color: #111111;
+    font-weight: bold;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2.2rem;
+    line-height: 2.4rem;
+    letter-spacing: 0.25;
+    transition: all 300ms;
+
+    &:hover {
+        cursor: pointer;
+        transition: opacity 300ms;
+        opacity: 0.9;
+    }
+
+`;
