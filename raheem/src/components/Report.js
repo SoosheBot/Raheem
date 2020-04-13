@@ -170,6 +170,7 @@ export default function Report() {
                     <Tag onClick={toggleTag} value="wrongly accused">wrongly accused</Tag>
                     <Tag onClick={toggleTag} value="disrespected">disrespected</Tag>
                     <Tag onClick={toggleTag} value="physically attacked">physically attacked</Tag>
+                    <Tag onClick={toggleTag} value="physically attacked">illegal search</Tag>
                 </TagContainer>
 
             </Content>
@@ -305,7 +306,7 @@ export default function Report() {
                         </div>
                     <div className="radio">
                         <input name="gender" type="radio" ref={register()} value="non binary" />
-                            Non-binary
+                            Non-Binary
                         </div>
                     <div className="radio">
                         <input name="gender" type="radio" ref={register()} value="opt out" />
