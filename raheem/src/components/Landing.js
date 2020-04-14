@@ -1,20 +1,45 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
+import firebase from "../firebase";
 
-//components
+// components
 import Officer from './Officer'
 
-//style
+// styles
 import styled from 'styled-components';
 import { Container, Content, Controls, Divider } from '../styles/global';
 
-//Purpose of this component is to serve as a landing after a user scans a QR code and explain what Raheem is to new users
+// Purpose of this component is to serve as a landing after a user scans a QR code and explain what Raheem is to new users
 function Landing(props) {
 
     const history = useHistory();
+    const params = useParams();
+    const [officer, setOfficer] = useState({});
+
+    useEffect(() => {
+        firebase
+            .firestore()
+            .collection("officers")
+            .get()
+            .then(function (querySnapshot) {
+                querySnapshot.forEach(function (doc) {
+                    if (doc.data().officerBadgeID == params.id) {
+                        setOfficer(doc.data());
+                    }
+                    else {
+                        console.log(`NO MATCH`);
+                    }
+                })
+            })
+            .catch(err => {
+                console.log('FAIL');
+            })
+    }, []);
 
     return (
         <AboutContainer className="container">
+
+            {console.log(officer)}
 
             <AboutStoryContainer>
                 <AboutHeading>
@@ -23,12 +48,9 @@ function Landing(props) {
             </AboutStoryContainer>
 
             <AboutTextContainer>
-
                 <AboutSubHeading>
                     Raheem is an independent service for reporting police conduct to help build safer communities for people of color.
                 </AboutSubHeading>
-
-
 
                 {/* <AboutSubHeading>
                     Raheem is an independent service for reporting police conduct in the United States.
@@ -36,18 +58,23 @@ function Landing(props) {
                 <AboutSubHeading>
                     Submit your report to help track police behavior and build safer communities for people of color.
                 </AboutSubHeading> */}
-
             </AboutTextContainer>
 
             <Divider />
 
             <AboutTextContainer>
-                <Officer
-                    profile={{
-                        officer: "Officer Peyton",
-                        precinct: "#15",
-                        badge: "R4567"
-                    }} />
+                {params.id &&
+                    <Officer
+                        profile={{
+                            officer: `${officer.officerRank} ${officer.officerLName}`,
+                            precinct: officer.officerPoliceDepartment,
+                            badge: officer.officerBadgeID,
+                            img: officer.img
+                        }}
+                    />
+                }
+
+                {!params.id && <p className="error">No officer information loaded. Please try rescanning your QR code.</p>}
 
                 <Controls>
                     <ButtonPrimary data-testid="viewReports">View Reports</ButtonPrimary>
@@ -83,6 +110,13 @@ const AboutTextContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     padding: 0 20px;
+
+    p.error {
+        color: #db4242;
+        font-size: 1.6rem;
+        font-weight: 900;
+        margin: 5rem 0 0;
+    }
 `
 
 const AboutHeading = styled.h2`
