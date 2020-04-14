@@ -38,4 +38,5 @@ const Primary = styled.button`
         opacity: 0.9;
     }
 
+    @media
 `;

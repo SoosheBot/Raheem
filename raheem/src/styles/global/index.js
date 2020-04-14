@@ -3,9 +3,14 @@ import styled from 'styled-components';
 
 
 export const TopBar = styled.div`
-width: 100%;
-height: 3.6rem;
-background: #555555;
+    display: none;
+
+        @media (max-width: 500px) {
+            display: block;
+            width: 100%;
+            height: 3.6rem;
+            background: #555555;
+        }
 `;
 
 export const Container = styled.div`
