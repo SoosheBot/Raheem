@@ -23,6 +23,14 @@ export const HeaderContainer = styled.div`
         font-size: 2.8rem;
         font-weight: 900;
         font-family: 'Roboto', sans-serif;
+
+        @media (max-width: 343px) {
+            font-size: 2.6rem;
+        }
+
+        @media (max-width: 322px) {
+            font-size: 2.4rem;
+        }
     }
 
     span.light {
