@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 /*FireStore*/
@@ -25,6 +25,7 @@ function Story() {
 
     /* bring in useHistory from react-router-dom */
     const history = useHistory();
+    const location = useLocation();
 
     /* bring in our global state using the useContext hook
     and our form store */
@@ -32,6 +33,9 @@ function Story() {
 
     /* deconstruct dispatch off globalState to dispatch an action */
     const { dispatch } = globalState;
+
+    /* state for officer passed in from Report component */
+    const [officer, setOfficer] = useState(location.state);
 
     const { handleSubmit, register, errors } = useForm();
     const onSubmit = data => {
@@ -46,7 +50,7 @@ function Story() {
                 storyBody: data
             })
         localStorage.setItem('completed', true);
-        history.push(`/thank-you`);
+        history.push(`/thank-you`, officer);
     };
 
     return (
@@ -55,13 +59,24 @@ function Story() {
 
                 {/* {console.log('TESTING. IS STATE UPDATED?', globalState)} */}
                 <div className="go-back">
-                    <img onClick={() => history.goBack()} src={Back} alt="Go Back" data-testid="go-back"/>
+                    <img onClick={() => history.goBack()} src={Back} alt="Go Back" data-testid="go-back" />
                 </div>
-                <Officer profile={{
-                    officer: "Officer Peyton",
-                    precinct: "#15",
-                    badge: "R4567"
-                }} />
+
+                {location.state === undefined &&
+                    <div>
+                        <p className="no-officer">No officer information was loaded. Please rescan your QR code or continue submitting
+                            your report with no officer information attached.</p>
+                    </div>
+                }
+
+                {officer && officer.officer !== false &&
+                    <Officer profile={{
+                        officer: `${officer.officerRank} ${officer.officerLName}`,
+                        precinct: officer.PoliceDepartment,
+                        badge: officer.officerBadgeID,
+                        img: officer.img
+                    }} />
+                }
             </Content>
             <Divider />
             <Content>
@@ -87,7 +102,7 @@ function Story() {
                         <Controls>
                             <ButtonPrimary onClick={() => {
                                 localStorage.setItem('completed', false);
-                                history.push(`/email`);
+                                history.push(`/email`, officer);
                             }}>Save For Later</ButtonPrimary>
                             <ButtonSecondary type="submit">Complete Report</ButtonSecondary>
                         </Controls>

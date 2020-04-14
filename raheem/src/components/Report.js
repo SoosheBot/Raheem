@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 /*FireStore*/
@@ -25,10 +25,11 @@ import Officer from '../components/Officer';
 /* assets */
 import Back from '../assets/Back.svg';
 
-export default function Report() {
+export default function Report(props) {
 
     /* bring in useHistory hook from react-router-dom */
     const history = useHistory();
+    const location = useLocation();
 
     /* configure react-hook-form */
     const { register, handleSubmit, errors, watch } = useForm();
@@ -46,6 +47,11 @@ export default function Report() {
     const [toggledTags, setToggledTags] = useState([]);
 
     const [rating, setRating] = useState('');
+
+    /* state for officer passed in from Landing component */
+    const [officer, setOfficer] = useState(location.state);
+
+    console.log(location);
 
     /* function to actually toggle / select a specific tag */
     const toggleTag = (e) => {
@@ -110,7 +116,7 @@ export default function Report() {
                     })
                 })
 
-        history.push('/story');
+        history.push('/story', officer);
     }
 
 
@@ -123,15 +129,28 @@ export default function Report() {
 
     return (
         <Container>
+
             <Content>
                 <div className="go-back">
                     <img onClick={() => history.goBack()} src={Back} alt="Go Back" />
                 </div>
-                <Officer profile={{
-                    officer: "Officer Peyton",
-                    precinct: "#15",
-                    badge: "R4567"
-                }} />
+
+                {location.state === undefined &&
+                    <div>
+                        <p className="no-officer">No officer information was loaded. Please rescan your QR code or continue submitting
+                            your report with no officer information attached.</p>
+                    </div>
+                }
+
+                {officer && officer.officer !== false &&
+                    <Officer profile={{
+                        officer: `${officer.officerRank} ${officer.officerLName}`,
+                        precinct: officer.PoliceDepartment,
+                        badge: officer.officerBadgeID,
+                        img: officer.img
+                    }} />
+                }
+
             </Content>
 
             <Divider />
@@ -324,27 +343,7 @@ export default function Report() {
                             autoComplete="off"
                             ref={register()}
                         />
-                        {/* {name === "self" && (
-                            <Controller
-                                className="self"
-                                as={ TextField }
-                                name="gender"
-                                placeholder="Prefer To Self Identify"
-                                autoComplete="off"
-                                ref={register()} 
-                                />
-                            )} */}
                     </div>
-
-                    {/* <select name="gender" ref={register({ required: true })}>
-                        <option value="">Select gender...</option>
-                        <option value="female">Female</option>
-                        <option value="male">Male</option>
-                        <option value="variant non conforming">Gender Variant/Non Conforming</option>
-                        <option value="not listed">Not Listed</option>
-                        <option value="no preference">Prefer Not to Say</option>
-                        <option value="other">Other</option>
-                    </select> */}
 
                     {/* AGE INPUTS*/}
                     <div className="inputs" style={{ flexDirection: 'column' }}>

@@ -1,5 +1,5 @@
-import React from "react";
-import { useHistory } from 'react-router-dom';
+import React, { useState } from "react";
+import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 /*FireStore*/
@@ -23,6 +23,10 @@ const Email = () => {
 
     /* bring in useHistory hook from react-router-dom */
     const history = useHistory();
+    const location = useLocation();
+
+    /* state for officer from Story component */
+    const [officer, setOfficer] = useState(location.state);
 
     /* configure react-hook-form */
     const { handleSubmit, register, errors, watch } = useForm();
@@ -36,7 +40,7 @@ const Email = () => {
             .add({
                 emails: values.email
             })
-        history.push(`/thank-you`);
+        history.push(`/thank-you`, officer);
     };
 
     return (
@@ -46,11 +50,21 @@ const Email = () => {
                     <img data-testid="goBackButton" onClick={() => history.goBack()} src={Back} alt="Go Back" />
                 </div>
 
-                <Officer profile={{
-                    officer: "Officer Peyton",
-                    precinct: "#15",
-                    badge: "R4567"
-                }} />
+                {location.state === undefined &&
+                    <div>
+                        <p className="no-officer">No officer information was loaded. Please rescan your QR code or continue submitting
+                            your report with no officer information attached.</p>
+                    </div>
+                }
+
+                {officer && officer.officer !== false &&
+                    <Officer profile={{
+                        officer: `${officer.officerRank} ${officer.officerLName}`,
+                        precinct: officer.PoliceDepartment,
+                        badge: officer.officerBadgeID,
+                        img: officer.img
+                    }} />
+                }
             </Content>
 
             <Divider />
@@ -85,7 +99,7 @@ const Email = () => {
                     {/* on submit will need to direct to thank you page with confirmation to check email for next steps */}
 
                     <Controls>
-                        <ButtonPrimary data-testid="goBackLargeButton">Go Back</ButtonPrimary>
+                        <ButtonPrimary onClick={() => history.goBack()} data-testid="goBackLargeButton">Go Back</ButtonPrimary>
                         <ButtonSecondary data-testid="submitButton" type="submit">Submit</ButtonSecondary>
                     </Controls>
                 </EmailForm>

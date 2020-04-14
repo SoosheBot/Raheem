@@ -36,6 +36,12 @@ export const Container = styled.div`
         font-family: 'Roboto', sans-serif;
     }
 
+    p.no-officer {
+        font-size: 1.6rem;
+        margin: 2rem 0 1rem;
+        margin: 0 20px;
+    }
+
 `
 
 export const HeadingContainer = styled.div`
@@ -54,8 +60,9 @@ export const Content = styled.div`
     display: flex;
     flex-direction: column;
 
-    .go-back {
-
+    p.no-officer {
+        font-size: 1.6rem;
+        margin: 2rem 0 1rem;
     }
 `;
 

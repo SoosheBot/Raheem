@@ -74,11 +74,30 @@ function Landing(props) {
                     />
                 }
 
-                {!params.id && <p className="error">No officer information loaded. Please try rescanning your QR code.</p>}
+                {!params.id &&
+                    <div>
+                        <p className="error">No officer information loaded. Please try rescanning your QR code.</p>
+                        <p className="search">Do you want to search for an officer by name?</p>
+                        <input
+                            type="text"
+                            name="searchQuery"
+                            placeholder="Officer Name"
+                            autoComplete="off"
+                        />
+                        <p className="search">If you would like to fill out the survey without adding officer information, please continue.</p>
+                    </div>
+                }
 
                 <Controls>
                     <ButtonPrimary data-testid="viewReports">View Reports</ButtonPrimary>
-                    <ButtonSecondary data-testid="addReport" onClick={() => history.push(`/report`)}>Add a Report</ButtonSecondary>
+                    <ButtonSecondary data-testid="addReport" onClick={() => {
+                        if (params.id) {
+                            history.push(`/report`, officer);
+                        }
+                        else {
+                            history.push(`/report`, { officer: false });
+                        }
+                    }}>Add a Report</ButtonSecondary>
                 </Controls>
             </AboutTextContainer>
         </AboutContainer>
@@ -117,6 +136,27 @@ const AboutTextContainer = styled.div`
         font-weight: 900;
         margin: 5rem 0 0;
     }
+
+    p.search {
+        font-size: 1.6rem;
+        margin: 2rem 0 1rem;
+    }
+
+    input[type=text] {
+        height: 5rem;
+        width: 100%;
+        font-weight: bold;
+        font-size: 1.6rem;
+        padding-left: 1rem;
+        color: #111111;
+        border-radius: 6px;
+        border: 1px #111111 solid;
+
+        &:focus {
+            outline: none;
+            border: 1px solid #FFF600;
+        }
+    }
 `
 
 const AboutHeading = styled.h2`
@@ -153,6 +193,11 @@ const ButtonSecondary = styled.button`
         cursor: pointer;
         transition: opacity 300ms;
         opacity: 0.9;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: default;
     }
 `;
 
