@@ -4,12 +4,11 @@ import { Link } from 'react-router-dom';
 
 /* assets */
 import Logo from '../../assets/Logo.svg';
-import MenuOutlinedIcon from '@material-ui/icons/MenuOutlined';
 
 /* styles */
 import { TopBar } from '../../styles/global';
 
-function Header() {
+function DesktopHeader() {
 
     const [toggle, setToggle] = useState(false);
 
@@ -25,11 +24,9 @@ function Header() {
                     <Link to="/"><img src={Logo} alt="Raheem Logo" /></Link>
                 </div>
 
-                <nav>
-                    <MenuOutlinedIcon onMouseEnter={() => toggleMenu()} style={{ fontSize: '24px' }} />
-                    
+                <nav>                    
                     {toggle === true && 
-                    <div onMouseLeave={() => toggleMenu()} onClick={() => toggleMenu()} className="navigation">
+                    <div onMouseLeave={() => toggleMenu()} onClick={() => toggleMenu()} className="navTags">
                         <Link to="/">Home</Link>
                         <Link to="/QR">QR</Link>
                         <Link to="/landing">Landing</Link>
@@ -45,7 +42,7 @@ function Header() {
     )
 }
 
-export default Header;
+export default DesktopHeader;
 
 const HeaderContainer = styled.div`
     width: 100%;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 /* route */
@@ -11,15 +11,30 @@ import About from './components/About';
 import Story from './components/Story';
 import ThankYou from './components/ThankYou';
 import Test from './components/TestComponents/Test';
+import DesktopHeader from './components/layout/DesktopHeader';
 import Header from './components/layout/Header';
 import Report from './components/Report';
 import Email from './components/Email';
 
 function App() {
+  const [windowWidth, setWindowWidth ] = useState(window.innerWidth);
+
+  const handleWindowResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
+  useEffect(() => {        
+    window.addEventListener('resize', handleWindowResize);         
+  },[]);
 
   return (
     <div>
-      <Header />
+
+      {windowWidth < 500 &&
+      <Header />}
+
+      {windowWidth > 500 &&
+      <DesktopHeader />}
 
       {/* routes using react-router-dom */}
       <Route exact path="/">
