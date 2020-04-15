@@ -1,11 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 /*FireStore*/
 import firebase from "../firebase";
-
 
 /* styles */
 import { Container, Content, Divider, SmallDivider } from "../styles/global";
@@ -18,12 +17,14 @@ import {
   marks,
 } from "../styles/slider";
 
+//buttons
+import { ButtonPrimary, ButtonSecondary } from "../styles/global";
+
 /* bring in our global form store */
 import { formStore } from "../formStore.js";
 
 /* material UI */
 import Typography from "@material-ui/core/Typography";
-import { TextField } from "@material-ui/core";
 
 /* components */
 import Officer from "../components/Officer";
@@ -31,9 +32,10 @@ import Officer from "../components/Officer";
 /* assets */
 import Back from "../assets/Back.svg";
 
-export default function Report() {
+export default function Report(props) {
   /* bring in useHistory hook from react-router-dom */
   const history = useHistory();
+  const location = useLocation();
 
   /* configure react-hook-form */
   const { register, handleSubmit, errors, watch } = useForm();
@@ -51,6 +53,11 @@ export default function Report() {
   const [toggledTags, setToggledTags] = useState([]);
 
   const [rating, setRating] = useState("");
+
+  /* state for officer passed in from Landing component */
+  const [officer, setOfficer] = useState(location.state);
+
+  console.log(location);
 
   /* function to actually toggle / select a specific tag */
   const toggleTag = (e) => {
@@ -86,7 +93,6 @@ export default function Report() {
       },
     }); // update our global state
 
-    
     //send report to firestore
     firebase
       .firestore()
@@ -105,19 +111,47 @@ export default function Report() {
         dispatch({
           type: "REPORT",
           payload: {
-            reportId: doc.id,
+            race: data.race,
+            gender: data.gender,
+            selfIdentify: data.self_identify,
+            time: data.time,
+            rating: rating,
+            tags: toggledTags,
+            dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}`,
+            incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`,
           },
-        });
-      });
+        }); // update our global state
 
-    history.push("/story");
+        //send report to firestore
+        firebase
+          .firestore()
+          .collection("reports")
+          .add({
+            race: data.race,
+            gender: data.gender,
+            selfIdentify: data.self_identify,
+            time: data.time,
+            rating: rating,
+            tags: toggledTags,
+            dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}`,
+            incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`,
+          })
+          .then(function (doc) {
+            dispatch({
+              type: "REPORT",
+              payload: {
+                reportId: doc.id,
+              },
+            });
+          });
+
+        history.push("/story", officer);
+      });
   };
 
   const handleRatingChange = (e, value) => {
     setRating(value);
   };
-
-  const name = watch("self");
 
   return (
     <Container>
@@ -125,13 +159,27 @@ export default function Report() {
         <div className="go-back">
           <img onClick={() => history.goBack()} src={Back} alt="Go Back" />
         </div>
-        <Officer
-          profile={{
-            officer: "Officer Peyton",
-            precinct: "#15",
-            badge: "R4567",
-          }}
-        />
+
+        {location.state === undefined && (
+          <div>
+            <p className="no-officer">
+              No officer information was loaded. Please rescan your QR code or
+              continue submitting your report with no officer information
+              attached.
+            </p>
+          </div>
+        )}
+
+        {officer && officer.officer !== false && (
+          <Officer
+            profile={{
+              officer: `${officer.officerRank} ${officer.officerLName}`,
+              precinct: officer.PoliceDepartment,
+              badge: officer.officerBadgeID,
+              img: officer.img,
+            }}
+          />
+        )}
       </Content>
 
       <Divider />
@@ -190,7 +238,7 @@ export default function Report() {
             physically attacked
           </Tag>
           <Tag onClick={toggleTag} value="physically attacked">
-            illegal search
+            illegally searched
           </Tag>
         </TagContainer>
       </Content>
@@ -442,27 +490,7 @@ export default function Report() {
               autoComplete="off"
               ref={register()}
             />
-            {/* {name === "self" && (
-                            <Controller
-                                className="self"
-                                as={ TextField }
-                                name="gender"
-                                placeholder="Prefer To Self Identify"
-                                autoComplete="off"
-                                ref={register()} 
-                                />
-                            )} */}
           </div>
-
-          {/* <select name="gender" ref={register({ required: true })}>
-                        <option value="">Select gender...</option>
-                        <option value="female">Female</option>
-                        <option value="male">Male</option>
-                        <option value="variant non conforming">Gender Variant/Non Conforming</option>
-                        <option value="not listed">Not Listed</option>
-                        <option value="no preference">Prefer Not to Say</option>
-                        <option value="other">Other</option>
-                    </select> */}
 
           {/* AGE INPUTS*/}
           <div className="inputs" style={{ flexDirection: "column" }}>
@@ -544,55 +572,12 @@ export default function Report() {
 
           {/* submit the form and continue through the flow */}
           <div className="inputs">
-            <ButtonSecondary type="submit">Add this report</ButtonSecondary>
+            <ButtonSecondary type="submit">Continue</ButtonSecondary>
           </div>
 
-          <span>You'll have the opportunity to say more</span>
+          <span> You'll have the opportunity to say more</span>
         </form>
       </ReportForm>
     </Container>
   );
 }
-
-const ButtonSecondary = styled.button`
-  width: 100%;
-  height: 5.2rem;
-  border: 1px solid #000000;
-  border-radius: 0.6rem;
-  background: #111111;
-  margin: 0.5rem 0;
-  color: #ffffff;
-  font-family: "Noto Serif JP", serif;
-  font-size: 2.2rem;
-  line-height: 2.4rem;
-  letter-spacing: 0.25;
-  transition: all 300ms;
-
-  &:hover {
-    cursor: pointer;
-    transition: opacity 300ms;
-    opacity: 0.9;
-  }
-`;
-
-const ButtonPrimary = styled.button`
-  width: 100%;
-  height: 5.2rem;
-  border: 1px solid #111111;
-  border-radius: 0.6rem;
-  background: #ffffff;
-  margin: 0.5rem 0;
-  color: #111111;
-  font-weight: bold;
-  font-family: "Noto Serif JP", serif;
-  font-size: 2.2rem;
-  line-height: 2.4rem;
-  letter-spacing: 0.25;
-  transition: all 300ms;
-
-  &:hover {
-    cursor: pointer;
-    transition: opacity 300ms;
-    opacity: 0.9;
-  }
-`;
