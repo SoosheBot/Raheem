@@ -56,11 +56,26 @@ const HeaderContainer = styled.div`
         justify-content: space-between;
         align-items: center;
         border-bottom: 1px solid #111111;
+        padding-top: 1%;
+        padding-bottom: 1%;
+        /* border: 1px solid blue; */
+
+        @media (min-width: 1074px) {
+            height: 100%;
+        }
 
         .logo {
             width: 15%;
             padding-left: 5%;
             padding-top: 2px;
+            /* border: 1px solid red; */
+
+            @media (min-width: 1074px) {
+            width: 15%;
+            padding-left: 26px;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            }
         }
     
         nav {
@@ -69,7 +84,11 @@ const HeaderContainer = styled.div`
             flex-direction: column;
             align-items: flex-end;
             padding-right: 5%;
-    
+
+            @media (min-width: 1074px) {
+                display: none;
+                }
+   
             div.navigation {
                 position: absolute;
                 right: 0;
