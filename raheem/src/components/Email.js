@@ -12,6 +12,9 @@ import { useForm } from "react-hook-form";
 import { Container, Content, Controls, Divider, EmailParagraph, EmailLabel, EmailForm } from '../styles/global';
 import { HeaderContainer } from '../styles/slider';
 
+//buttons
+import { ButtonPrimary, ButtonSecondary } from '../styles/global';
+
 /* assets */
 import Back from '../assets/Back.svg';
 
@@ -29,7 +32,8 @@ const Email = () => {
     const [officer, setOfficer] = useState(location.state);
 
     /* configure react-hook-form */
-    const { handleSubmit, register, errors, watch } = useForm();
+    const { handleSubmit, register, errors } = useForm();
+    
     const onSubmit = values => {
 
         console.log("values from email on-submit", values);
@@ -109,47 +113,3 @@ const Email = () => {
 };
 
 export default Email;
-
-const ButtonSecondary = styled.button`
-    width: 100%;
-    height: 5.2rem;
-    border: 1px solid #000000;
-    border-radius: 0.6rem;
-    background: #111111;
-    margin: 0.5rem 0;
-    color: #ffffff;
-    font-family: 'Noto Serif JP', serif;
-    font-size: 2.2rem;
-    line-height: 2.4rem;
-    letter-spacing: 0.25;
-    transition: all 300ms;
-
-    &:hover {
-        cursor: pointer;
-        transition: opacity 300ms;
-        opacity: 0.9;
-    }
-`;
-
-const ButtonPrimary = styled.button`
-    width: 100%;
-    height: 5.2rem;
-    border: 1px solid #111111;
-    border-radius: 0.6rem;
-    background: #ffffff;
-    margin: 0.5rem 0;
-    color: #111111;
-    font-weight: bold;
-    font-family: 'Noto Serif JP', serif;
-    font-size: 2.2rem;
-    line-height: 2.4rem;
-    letter-spacing: 0.25;
-    transition: all 300ms;
-
-    &:hover {
-        cursor: pointer;
-        transition: opacity 300ms;
-        opacity: 0.9;
-    }
-
-`;

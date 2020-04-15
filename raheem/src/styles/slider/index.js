@@ -41,6 +41,7 @@ export const HeaderContainer = styled.div`
     }
 `
 
+//styling for slider
 export const TxSlider = withStyles({
     root: {
         color: '#FFF600',

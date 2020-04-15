@@ -12,12 +12,14 @@ import { TagContainer, Tag } from '../styles/tags';
 import { ReportForm } from '../styles/global/forms.js';
 import { SliderContainer, HeaderContainer, TxSlider, marks } from '../styles/slider';
 
+//buttons
+import { ButtonPrimary, ButtonSecondary } from '../styles/global';
+
 /* bring in our global form store */
 import { formStore } from '../formStore.js';
 
 /* material UI */
 import Typography from '@material-ui/core/Typography';
-import { TextField } from "@material-ui/core";
 
 /* components */
 import Officer from '../components/Officer';
@@ -119,13 +121,9 @@ export default function Report(props) {
         history.push('/story', officer);
     }
 
-
-
     const handleRatingChange = (e, value) => {
         setRating(value);
     }
-
-    const name = watch("self");
 
     return (
         <Container>
@@ -189,7 +187,7 @@ export default function Report(props) {
                     <Tag onClick={toggleTag} value="wrongly accused">wrongly accused</Tag>
                     <Tag onClick={toggleTag} value="disrespected">disrespected</Tag>
                     <Tag onClick={toggleTag} value="physically attacked">physically attacked</Tag>
-                    <Tag onClick={toggleTag} value="physically attacked">illegal search</Tag>
+                    <Tag onClick={toggleTag} value="physically attacked">illegally searched</Tag>
                 </TagContainer>
 
             </Content>
@@ -404,57 +402,12 @@ export default function Report(props) {
 
                     {/* submit the form and continue through the flow */}
                     <div className="inputs">
-                        <ButtonSecondary type="submit">Add this report</ButtonSecondary>
+                        <ButtonSecondary type="submit">Continue</ButtonSecondary>
                     </div>
 
-                    <span>You'll have the opportunity to say more</span>
+                    <span> You'll have the opportunity to say more</span>
                 </form>
             </ReportForm>
         </Container >
     )
-}
-
-
-const ButtonSecondary = styled.button`
-    width: 100%;
-    height: 5.2rem;
-    border: 1px solid #000000;
-    border-radius: 0.6rem;
-    background: #111111;
-    margin: 0.5rem 0;
-    color: #ffffff;
-    font-family: 'Noto Serif JP', serif;
-    font-size: 2.2rem;
-    line-height: 2.4rem;
-    letter-spacing: 0.25;
-    transition: all 300ms;
-
-    &:hover {
-        cursor: pointer;
-        transition: opacity 300ms;
-        opacity: 0.9;
-    }
-`;
-
-const ButtonPrimary = styled.button`
-    width: 100%;
-    height: 5.2rem;
-    border: 1px solid #111111;
-    border-radius: 0.6rem;
-    background: #ffffff;
-    margin: 0.5rem 0;
-    color: #111111;
-    font-weight: bold;
-    font-family: 'Noto Serif JP', serif;
-    font-size: 2.2rem;
-    line-height: 2.4rem;
-    letter-spacing: 0.25;
-    transition: all 300ms;
-
-    &:hover {
-        cursor: pointer;
-        transition: opacity 300ms;
-        opacity: 0.9;
-    }
-
-`;
+};
