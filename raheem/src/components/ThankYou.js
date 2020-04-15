@@ -6,8 +6,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import Officer from './Officer';
 
 //styles
-import { Container, Content, Controls } from '../styles/global';
-import { HeaderContainer } from '../styles/slider';
+import { Container, Content, Controls, HeaderContainer } from '../styles/global';
 
 //buttons
 import { ButtonPrimary, ButtonSecondary } from '../styles/global';

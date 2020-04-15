@@ -7,10 +7,10 @@ import styled from 'styled-components';
 import firebase from "../firebase"
 
 /* styles */
-import { Container, Content, Divider, SmallDivider } from '../styles/global';
+import { Container, Content, Divider, SmallDivider, HeaderContainer } from '../styles/global';
 import { TagContainer, Tag } from '../styles/tags';
 import { ReportForm } from '../styles/global/forms.js';
-import { SliderContainer, HeaderContainer, TxSlider, marks } from '../styles/slider';
+import { SliderContainer, TxSlider, marks } from '../styles/slider';
 
 //buttons
 import { ButtonPrimary, ButtonSecondary } from '../styles/global';
@@ -129,9 +129,9 @@ export default function Report(props) {
         <Container>
 
             <Content>
-                <div className="go-back">
+                <backButton className="go-back">
                     <img onClick={() => history.goBack()} src={Back} alt="Go Back" />
-                </div>
+                </backButton>
 
                 {location.state === undefined &&
                     <div>

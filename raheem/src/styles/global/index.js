@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+//grey bar on top of mobile view
 export const TopBar = styled.div`
     display: none;
 
@@ -11,6 +12,9 @@ export const TopBar = styled.div`
         }
 `;
 
+//buttons
+
+//black button
 export const ButtonSecondary = styled.button`
     width: 100%;
     height: 7.5rem;
@@ -45,6 +49,7 @@ export const ButtonSecondary = styled.button`
         }
 `;
 
+//white button
 export const ButtonPrimary = styled.button`
     width: 100%;
     height: 7.5rem;
@@ -77,11 +82,35 @@ export const ButtonPrimary = styled.button`
         }
 `;
 
+//container for back arrow
+export const backButton = styled.div`
+    background-color: yellow;
+    width: 100%;
+    border: 2px solid purple;
+
+    &:hover {
+        cursor: pointer;
+        transition: opacity 300ms;
+        opacity: 0.9;
+    }
+`;
+
+
+export const PageContainer = styled.div`
+    width: 90%; 
+    background: #FFFFFF;
+    display: flex;
+    justify-content: center;
+
+        @media(max-width: 500px){
+            width: 100%
+        }
+`
 
 export const Container = styled.div`
     margin: 1rem 0;
     font-family: 'Noto Serif', serif;
-    width: 100%;
+    width: 45%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -112,16 +141,32 @@ export const Container = styled.div`
         margin: 0 20px;
     }
 
-
+        @media (max-width: 500px){
+            width: 100%;
+        }
 `
 
-export const HeadingContainer = styled.div`
-    width: 80%;
+export const HeaderContainer = styled.div`
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 9% 5%;
-`;
+    align-items: center;
+    width: 100%;
+    height: 4.3rem;
+    padding: 0 20px;
+    background: #FFF600;
+
+    h2 {
+        font-size: 2.8rem;
+        font-weight: 900;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    span.light {
+        font-weight: 300;
+        font-size: 1.6rem;
+        line-height: 2.2rem;
+        font-family: 'Roboto', sans-serif;
+    }
+`
 
 export const Content = styled.div`
     width: 100%;
@@ -158,17 +203,19 @@ export const Paragraph = styled.p`
     line-height: 1.4rem;
 `;
 
+export const Label = styled.label`
+    font-family: 'Roboto', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+`;
+
+
+
 export const ContentSep = styled.div`
     height: 1rem;
     background: #000000;
     width: 100%;
     margin: 3rem 0 5rem;
-`;
-
-export const Label = styled.label`
-    font-family: 'Roboto', sans-serif;
-    font-size: 2.2rem;
-    font-weight: 700;
 `;
 
 export const Divider = styled.div`
@@ -179,11 +226,15 @@ export const Divider = styled.div`
 `;
 
 export const SmallDivider = styled.div`
-    height: 1px;
+    height: 3px;
     margin-top: 5rem;
     padding: 0;
     width: 100%;
     background: #111111;
+
+        @media (max-wdith:500px){
+            height: 1px;
+        }
 `;
 
 export const Controls = styled.div`
@@ -194,7 +245,8 @@ export const Controls = styled.div`
     margin-top: 5rem;
 `;
 
-/* Email Styling */
+
+/* Email Form Specific Styling */
 export const EmailParagraph = styled.p`
     font-family: 'Noto Serif';
     font-weight: 500;
@@ -230,7 +282,8 @@ export const EmailForm = styled.form`
     }
 `;
 
-/* QR Component Form Styling */
+
+/* QR Component Form Specific Styling */
 export const QRForm = styled.form`
     width: 100%;
     display: flex;

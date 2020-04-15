@@ -11,28 +11,6 @@ export const SliderContainer = styled.div`
     margin: 5rem auto 10rem;
 `
 
-export const HeaderContainer = styled.div`
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 4.3rem;
-    padding: 0 20px;
-    background: #FFF600;
-
-    h2 {
-        font-size: 2.8rem;
-        font-weight: 900;
-        font-family: 'Roboto', sans-serif;
-    }
-
-    span.light {
-        font-weight: 300;
-        font-size: 1.6rem;
-        line-height: 2.2rem;
-        font-family: 'Roboto', sans-serif;
-    }
-`
-
 //styling for slider
 export const TxSlider = withStyles({
     root: {

@@ -9,8 +9,7 @@ import firebase from "../firebase"
 import { useForm } from "react-hook-form";
 
 /* styles */
-import { Container, Content, Controls, Divider, EmailParagraph, EmailLabel, EmailForm } from '../styles/global';
-import { HeaderContainer } from '../styles/slider';
+import { PageContainer, Container, Content, Controls, Divider, EmailParagraph, EmailLabel, EmailForm, HeaderContainer } from '../styles/global';
 
 //buttons
 import { ButtonPrimary, ButtonSecondary } from '../styles/global';
@@ -48,6 +47,7 @@ const Email = () => {
     };
 
     return (
+        <PageContainer>
         <Container>
             <Content>
                 <div className="go-back">
@@ -109,6 +109,7 @@ const Email = () => {
                 </EmailForm>
             </Content>
         </Container>
+        </PageContainer>
     );
 };
 

@@ -27,16 +27,18 @@ function QRcode() {
 
                 <ContentSep />
 
-                <Label>Search officer by</Label>
+                <Label>Search for Officer: </Label>
                 <QRForm>
                     <input
                         type="text"
                         name="query"
-                        placeholder="location, name or badge number"
+                        placeholder="officer name or badge number"
                         autoComplete="off"
                     />
 
-                    <Label style={{ margin: '2rem 0' }}>or scan QR code</Label>
+                    <Label style={{ margin: '2rem 0', background: '#FFF600', textAlign: 'center' }}>Or </Label>
+
+                    <Label> Scan QR Code:</Label>
                     <QRCodeContainer>
                         <img src={QR} alt="Example QR Code" />
                     </QRCodeContainer>

@@ -16,8 +16,7 @@ import Officer from "./Officer";
 import Back from '../assets/Back.svg';
 
 /* styles */
-import { Container, Content, SubHeading, Paragraph, Controls, Divider, Label } from '../styles/global';
-import { HeaderContainer } from '../styles/slider';
+import { Container, Content, SubHeading, Paragraph, Controls, Divider, Label, HeaderContainer } from '../styles/global';
 import { StoryForm } from '../styles/global/forms.js';
 
 //buttons

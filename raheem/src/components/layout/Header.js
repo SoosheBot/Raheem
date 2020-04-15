@@ -55,7 +55,11 @@ const HeaderContainer = styled.div`
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 1px solid #111111;
+        border-bottom: 3px solid #111111;
+
+        @media (max-width:500px){
+            border-bottom: 1px solid #111111;
+        }
 
         .logo {
             width: 15%;
