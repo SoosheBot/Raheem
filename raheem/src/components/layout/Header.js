@@ -67,7 +67,7 @@ const HeaderContainer = styled.div`
             padding-top: 2px;
         }
     
-        nav.nOne {
+        nav {
             width: 20%;
             display: flex;
             flex-direction: column;
