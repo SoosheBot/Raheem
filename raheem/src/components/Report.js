@@ -337,7 +337,7 @@ export default function Report(props) {
                             className="self"
                             type="text"
                             name="self_identify"
-                            placeholder="Prefer To Self Identify"
+                            placeholder="Self Identify"
                             autoComplete="off"
                             ref={register()}
                         />
