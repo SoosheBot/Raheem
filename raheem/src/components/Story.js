@@ -92,7 +92,7 @@ function Story() {
             </HeaderContainer>
 
             <Content>
-                <Paragraph className='description'>Describe the incident from start to finish. Be as descriptive
+                <Paragraph>Describe the incident from start to finish. Be as descriptive
                 as possible, and remember to include details about the officer's attitude
                 and actions during this encounter.
                 </Paragraph>

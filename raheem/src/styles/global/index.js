@@ -94,9 +94,10 @@ export const Container = styled.div`
     }
 
     span.thankyou{
-        font-size: 2.4rem;
+        font-size: 2rem;
+        line-height: 2.4rem;
         text-align: left;
-        font-weight: normal;
+        font-weight: bold;
     }
 
     p.description {
@@ -154,8 +155,9 @@ export const SubHeading = styled.h3`
 
 export const Paragraph = styled.p`
     font-family: 'Roboto', sans-serif;
-    font-size: 1.2rem;
-    line-height: 1.4rem;
+    font-size: 1.8rem;
+    line-height: 1.6rem;
+    margin-top: 1rem;
 `;
 
 export const ContentSep = styled.div`
@@ -196,12 +198,11 @@ export const Controls = styled.div`
 
 /* Email Styling */
 export const EmailParagraph = styled.p`
-    font-family: 'Noto Serif';
-    font-weight: 500;
-    font-size: 1.6rem;
-    line-height: 2.4rem;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.8rem;
+    line-height: 1.6rem;
     padding: 0 20px;
-    margin-bottom: 5rem;
+    margin: 1rem 0 5rem;
     color: #111111;
 `;
 
@@ -221,12 +222,16 @@ export const EmailForm = styled.form`
         background: #ffffff;
         border-radius: 0.5rem;
         border: 1px solid #111111;
-        color: #C4C4C4;
+        color: #111111;
         font-size: 1.8rem;
         line-height: 1.6rem;
         font-weight: bold;
         font-family: 'Roboto', sans-serif;
         padding-left: 2%;
+
+        &:placeholder {
+            color: #C4C4C4;
+        }
     }
 `;
 
