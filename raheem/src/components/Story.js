@@ -80,14 +80,14 @@ function Story() {
                 }
             </Content>
             <Divider />
-            <Content>
+            {/* <Content>
                 <span className="thankyou">
                     Thank you for your feedback!
                 </span>
-            </Content>
+            </Content> */}
 
             <HeaderContainer>
-                <h2>Tell Us More</h2>
+                <h2>What Happened?</h2>
             </HeaderContainer>
 
             <Content>
@@ -103,7 +103,7 @@ function Story() {
                         <Controls>
                             <ButtonPrimary onClick={() => {
                                 localStorage.setItem('completed', false);
-                                history.push(`/email`, officer);
+                                history.push(`/thank-you`, officer);
                             }}>Save For Later</ButtonPrimary>
                             <ButtonSecondary type="submit">Complete Report</ButtonSecondary>
                         </Controls>

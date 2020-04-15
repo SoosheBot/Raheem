@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import firebase from "../firebase"
 
 /* styles */
-import { Container, Content, Divider, SmallDivider, HeaderContainer } from '../styles/global';
+import { PageContainer, Container, Content, Divider, SmallDivider, HeaderContainer, Controls } from '../styles/global';
 import { TagContainer, Tag } from '../styles/tags';
 import { ReportForm } from '../styles/global/forms.js';
 import { SliderContainer, TxSlider, marks } from '../styles/slider';
@@ -34,7 +34,7 @@ export default function Report(props) {
     const location = useLocation();
 
     /* configure react-hook-form */
-    const { register, handleSubmit, errors, watch } = useForm();
+    const { register, handleSubmit, errors } = useForm();
 
     /* bring in our global state using the useContext hook
     and our form store */
@@ -77,10 +77,11 @@ export default function Report(props) {
     }
 
     /* handle submit for the demographics form */
-    const onSubmit = (data) => {
+    const onSubmit = (data, values) => {
         // console.log(data);
         dispatch({
             type: 'REPORT', payload: {
+                email: values.email,
                 race: data.race,
                 gender: data.gender,
                 selfIdentify: data.self_identify,
@@ -89,6 +90,7 @@ export default function Report(props) {
                 tags: toggledTags,
                 dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}`,
                 incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`
+                
             }
         }); // update our global state
 
@@ -105,10 +107,14 @@ export default function Report(props) {
                     rating: rating,
                     tags: toggledTags,
                     dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}`,
-                    incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`
-
+                    incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`,
                 }
             )
+            .firestore()
+            .collection('emails')
+            .add({
+                emails: values.email
+            })
             .then(
                 function (doc) {
                     dispatch({
@@ -126,6 +132,7 @@ export default function Report(props) {
     }
 
     return (
+        <PageContainer>
         <Container>
 
             <Content>
@@ -259,9 +266,35 @@ export default function Report(props) {
                     <SmallDivider />
 
                     <HeaderContainer>
-                        <h2>About you</h2>
+                        <h2>Contact Information </h2>
                     </HeaderContainer>
+                    <p className="description">This allows us to contact you in the event that further information is needed.</p>
 
+                    <h3>Email</h3>
+                    <div className="inputs">
+                    <input
+                        className="email"
+                        name="email"
+                        data-testid="emailInput"
+                        type="text"
+                        placeholder="email@example.com"
+                        ref={register({
+                            required: true,
+                            pattern: {
+                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                                message: "invalid e-mail address"
+                            }
+                        })}
+                    />
+                    </div>
+                    {/* error handling for email */}
+                    {errors.email && errors.email.message}
+
+                    <SmallDivider />
+
+                    <HeaderContainer>
+                        <h2>About You</h2>
+                    </HeaderContainer>
                     <p className="description">Help us understand how police treat people like you.</p>
 
                     {/* RACE INPUTS */}
@@ -401,13 +434,14 @@ export default function Report(props) {
                     {errors.dobYear && errors.dobYear.type === "maxLength" && <p className="error">Please enter a valid year.</p>}
 
                     {/* submit the form and continue through the flow */}
-                    <div className="inputs">
+                    <Controls className="inputs">
                         <ButtonSecondary type="submit">Continue</ButtonSecondary>
-                    </div>
-
-                    <span> You'll have the opportunity to say more</span>
+                    
+                    <p className="description"> You'll have the opportunity to say more on the next page.</p>
+                    </Controls>
                 </form>
             </ReportForm>
         </Container >
+        </PageContainer>
     )
 };

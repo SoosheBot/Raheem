@@ -111,6 +111,7 @@ export const Container = styled.div`
     margin: 1rem 0;
     font-family: 'Noto Serif', serif;
     width: 45%;
+    min-width: 500px; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -209,8 +210,6 @@ export const Label = styled.label`
     font-weight: 700;
 `;
 
-
-
 export const ContentSep = styled.div`
     height: 1rem;
     background: #000000;
@@ -243,45 +242,14 @@ export const Controls = styled.div`
     flex-direction: column;
     align-items: center;
     margin-top: 5rem;
-`;
 
-
-/* Email Form Specific Styling */
-export const EmailParagraph = styled.p`
-    font-family: 'Noto Serif';
-    font-weight: 500;
-    font-size: 1.6rem;
-    line-height: 2.4rem;
-    padding: 0 20px;
-    margin-bottom: 5rem;
-    color: #111111;
-`;
-
-export const EmailLabel = styled.p`
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    font-size: 1.8rem;
-    line-height; 1.6rem;
-    color: #111111;
-    margin-bottom: 1rem;
-`;
-
-export const EmailForm = styled.form`
-    input[type=text] {
-        width: 100%;
-        height: 4.8rem;
-        background: #ffffff;
-        border-radius: 0.5rem;
-        border: 1px solid #111111;
-        color: #C4C4C4;
+    p.description {
+        margin: 1.2rem 0 1rem;
         font-size: 1.8rem;
         line-height: 1.6rem;
-        font-weight: bold;
         font-family: 'Roboto', sans-serif;
-        padding-left: 2%;
     }
 `;
-
 
 /* QR Component Form Specific Styling */
 export const QRForm = styled.form`
@@ -329,3 +297,45 @@ export const QRCodeContainer = styled.div`
         object-fit: contain;
     }
 `;
+
+
+
+
+
+
+
+/* Email Form Specific Styling */
+// export const EmailParagraph = styled.p`
+//     font-family: 'Noto Serif';
+//     font-weight: 500;
+//     font-size: 1.6rem;
+//     line-height: 2.4rem;
+//     padding: 0 20px;
+//     margin-bottom: 5rem;
+//     color: #111111;
+// `;
+
+// export const EmailLabel = styled.p`
+//     font-family: 'Roboto', sans-serif;
+//     font-weight: bold;
+//     font-size: 1.8rem;
+//     line-height; 1.6rem;
+//     color: #111111;
+//     margin-bottom: 1rem;
+// `;
+
+// export const EmailForm = styled.form`
+//     input[type=text] {
+//         width: 100%;
+//         height: 4.8rem;
+//         background: #ffffff;
+//         border-radius: 0.5rem;
+//         border: 1px solid #111111;
+//         color: #C4C4C4;
+//         font-size: 1.8rem;
+//         line-height: 1.6rem;
+//         font-weight: bold;
+//         font-family: 'Roboto', sans-serif;
+//         padding-left: 2%;
+//     }
+// `;

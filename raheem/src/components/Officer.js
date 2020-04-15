@@ -24,7 +24,7 @@ const OfficerPic = styled.div`
 `;
 
 const OfficerName = styled.p`
-    font-family: 'Noto Serif', serif;
+    font-family: 'Noto Serif JP', serif;
     text-align: center;
     line-height: 30px;
     font-weight: 900;
@@ -33,7 +33,7 @@ const OfficerName = styled.p`
 `;
 
 const OfficerInfo = styled.p`
-    font-family: 'Noto Serif', serif;
+    font-family: 'Noto Serif JP', serif;
     text-align: center;
     line-height: 24px;
     font-size: 16px;
@@ -53,7 +53,7 @@ function Officer(props) {
             <OfficerPic><img src={props.profile.img} alt="Officer Picture" /></OfficerPic>
             <OfficerName>{props.profile.officer}</OfficerName>
             <OfficerInfo>Precinct: {props.profile.precinct}</OfficerInfo>
-            <OfficerInfo>Badge Number: {props.profile.badge}</OfficerInfo>
+            <OfficerInfo>Department: {props.profile.department}</OfficerInfo>
         </DivO>
     )
 }

@@ -259,14 +259,53 @@ export const ReportForm = styled.div`
             }
         }
 
+        input[type=text].email::placeholder {
+            color: #888888;
+        }
+
+        input[type=text].email {
+            width: 100%;
+            height: 5rem;
+            font-weight: bold;
+            font-size: 2.6rem;
+            padding-left: 1rem;
+            color: #111111;
+            border-radius: 6px;
+            border: 1px #111111 solid;
+
+            @media (max-width: 440px) {
+                font-size: 1.6rem;
+                padding-left: 0.5rem;
+            }
+
+            @media (max-width: 360px) {
+                font-size: 1.2rem;
+                padding-left: 0.5rem;
+            }
+
+            @media (max-width: 285px) {
+                font-size: 1.2rem;
+            }
+
+            @media (max-width: 265px) {
+                font-size: 1rem;
+            }
+
+            &:focus {
+                outline: none;
+                border: 1px solid #FAEB00;
+            }
+        }
+        
+
         // Checkbox styling
         input[type=checkbox] {
             height: 3rem;
             width: 10%;
             border-radius: 50%;
 
-            // mobile breakpoint at 600px
-            @media (max-width: 600px) {
+            // mobile breakpoint at 500px
+            @media (max-width: 500px) {
                 margin-right: 0.5rem;
             }
         }
