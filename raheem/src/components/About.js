@@ -112,9 +112,9 @@ function About(props) {
 
             </AboutTextContainer>
 
-            <ButtonContainer className="landingButtonContainer">
+            {/* <ButtonContainer className="landingButtonContainer">
                 <a href="#top" className="top">Back To Top</a>
-            </ButtonContainer>
+            </ButtonContainer> */}
 
 
         </AboutContainer>
