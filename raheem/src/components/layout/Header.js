@@ -56,11 +56,11 @@ const HeaderContainer = styled.div`
         justify-content: space-between;
         align-items: center;
         border-bottom: 1px solid #111111;
-        margin-bottom: 2rem;
-    
+
         .logo {
             width: 15%;
             padding-left: 5%;
+            padding-top: 2px;
         }
     
         nav {

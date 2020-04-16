@@ -1,17 +1,26 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import PersonIcon from '@material-ui/icons/Person';
+/* assets */
+import OfficerPlaceholder from '../assets/OfficerPlaceholder.png';
 
-const OfficerPic = styled.img`
+const OfficerPic = styled.div`
     margin-bottom: 2rem;
     width: 182px;
     height: 186px;
     left: 93px;
     top: 111px;
-    height: 186.4px;
+    // height: 186.4px;
     border-radius: 50%;
     background: grey;
+    border: 1px solid #111111;
+
+    img {
+        object-fit: cover;
+        width: 100%;
+        height: 184px;
+        border-radius: 50%;
+    }
 `;
 
 const OfficerName = styled.p`
@@ -41,7 +50,7 @@ const DivO = styled.div`
 function Officer(props) {
     return (
         <DivO>
-            <OfficerPic />
+            <OfficerPic><img src={props.profile.img} alt="Officer Picture" /></OfficerPic>
             <OfficerName>{props.profile.officer}</OfficerName>
             <OfficerInfo>Precinct: {props.profile.precinct}</OfficerInfo>
             <OfficerInfo>Badge Number: {props.profile.badge}</OfficerInfo>

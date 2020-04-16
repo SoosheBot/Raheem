@@ -1,6 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
+import styled from 'styled-components';
 
 /*FireStore*/
 import firebase from "../firebase"
@@ -11,16 +12,17 @@ import { TagContainer, Tag } from '../styles/tags';
 import { ReportForm } from '../styles/global/forms.js';
 import { SliderContainer, HeaderContainer, TxSlider, marks } from '../styles/slider';
 
+//buttons
+import { ButtonPrimary, ButtonSecondary } from '../styles/global';
+
 /* bring in our global form store */
 import { formStore } from '../formStore.js';
 
 /* material UI */
 import Typography from '@material-ui/core/Typography';
-import { TextField } from "@material-ui/core";
 
 /* components */
 import Officer from '../components/Officer';
-import LargeButtonSecondary from './buttons/LargeButtonSecondary';
 
 /* assets */
 import Back from '../assets/Back.svg';
@@ -29,6 +31,7 @@ export default function Report(props) {
 
     /* bring in useHistory hook from react-router-dom */
     const history = useHistory();
+    const location = useLocation();
 
     /* configure react-hook-form */
     const { register, handleSubmit, errors, watch } = useForm();
@@ -37,7 +40,7 @@ export default function Report(props) {
     and our form store */
     const globalState = useContext(formStore);
 
-    console.log(globalState);
+    // console.log(globalState);
 
     /* deconstruct dispatch off globalState to dispatch an action */
     const { dispatch } = globalState;
@@ -46,6 +49,11 @@ export default function Report(props) {
     const [toggledTags, setToggledTags] = useState([]);
 
     const [rating, setRating] = useState('');
+
+    /* state for officer passed in from Landing component */
+    const [officer, setOfficer] = useState(location.state);
+
+    console.log(location);
 
     /* function to actually toggle / select a specific tag */
     const toggleTag = (e) => {
@@ -110,29 +118,39 @@ export default function Report(props) {
                         }
                     })
                 })
-                history.push('/story')
+
+        history.push('/story', officer);
     }
-
-
 
     const handleRatingChange = (e, value) => {
         setRating(value);
         console.log(`rating: ${rating}`)
     }
 
-    const name = watch("self");
-
     return (
         <Container>
+
             <Content>
                 <div className="go-back">
                     <img onClick={() => history.goBack()} src={Back} alt="Go Back" />
                 </div>
-                <Officer profile={{
-                    officer: "Officer Peyton",
-                    precinct: "#15",
-                    badge: "R4567"
-                }} />
+
+                {location.state === undefined &&
+                    <div>
+                        <p className="no-officer">No officer information was loaded. Please rescan your QR code or continue submitting
+                            your report with no officer information attached.</p>
+                    </div>
+                }
+
+                {officer && officer.officer !== false &&
+                    <Officer profile={{
+                        officer: `${officer.officerRank} ${officer.officerLName}`,
+                        precinct: officer.PoliceDepartment,
+                        badge: officer.officerBadgeID,
+                        img: officer.img
+                    }} />
+                }
+
             </Content>
 
             <Divider />
@@ -164,14 +182,15 @@ export default function Report(props) {
 
             <Content>
                 <TagContainer>
-                    <Tag data-testid="tag1" onClick={toggleTag} value="helped">helped</Tag>
-                    <Tag data-testid="tag2" onClick={toggleTag} value="protected">protected</Tag>
-                    <Tag data-testid="tag3" onClick={toggleTag} value="profiled">profiled</Tag>
-                    <Tag data-testid="tag4" onClick={toggleTag} value="neglected">neglected</Tag>
-                    <Tag data-testid="tag5" onClick={toggleTag} value="harassed">harassed</Tag>
-                    <Tag data-testid="tag6" onClick={toggleTag} value="wrongly accused">wrongly accused</Tag>
-                    <Tag data-testid="tag7" onClick={toggleTag} value="disrespected">disrespected</Tag>
-                    <Tag data-testid="tag8" onClick={toggleTag} value="physically attacked">physically attacked</Tag>
+                    <Tag onClick={toggleTag} value="helped">helped</Tag>
+                    <Tag onClick={toggleTag} value="protected">protected</Tag>
+                    <Tag onClick={toggleTag} value="profiled">profiled</Tag>
+                    <Tag onClick={toggleTag} value="neglected">neglected</Tag>
+                    <Tag onClick={toggleTag} value="harassed">harassed</Tag>
+                    <Tag onClick={toggleTag} value="wrongly accused">wrongly accused</Tag>
+                    <Tag onClick={toggleTag} value="disrespected">disrespected</Tag>
+                    <Tag onClick={toggleTag} value="physically attacked">physically attacked</Tag>
+                    <Tag onClick={toggleTag} value="physically attacked">illegally searched</Tag>
                 </TagContainer>
 
             </Content>
@@ -181,7 +200,7 @@ export default function Report(props) {
             </HeaderContainer>
 
             <ReportForm>
-                <p className="description">Enter the date and time as best as you can remember.</p>
+                <p style={{ padding: '0 20px' }} className="description">Enter the date and time as best as you can remember.</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="inputs">
                         <input
@@ -309,8 +328,8 @@ export default function Report(props) {
                             Male
                         </div>
                     <div className="radio">
-                        <input data-testid="Non_binary" name="gender" type="radio" ref={register()} value="non binary" />
-                            Non-binary
+                        <input name="gender" type="radio" ref={register()} value="non binary" />
+                            Non-Binary
                         </div>
                     <div className="radio">
                         <input data-testid="Prefer_Not_To_Say" name="gender" type="radio" ref={register()} value="opt out" />
@@ -320,7 +339,7 @@ export default function Report(props) {
                         <input data-testid="Self_Identify" name="gender" type="radio" ref={register()} value="self identify" />
                         {/* Prefer To Self-Identify */}
                         <input
-                            data-testid="Self_Identify_Value"
+                            style={{ width: '75%' }}
                             className="self"
                             type="text"
                             name="self_identify"
@@ -328,27 +347,7 @@ export default function Report(props) {
                             autoComplete="off"
                             ref={register()}
                         />
-                        {/* {name === "self" && (
-                            <Controller
-                                className="self"
-                                as={ TextField }
-                                name="gender"
-                                placeholder="Prefer To Self Identify"
-                                autoComplete="off"
-                                ref={register()} 
-                                />
-                            )} */}
                     </div>
-
-                    {/* <select name="gender" ref={register({ required: true })}>
-                        <option value="">Select gender...</option>
-                        <option value="female">Female</option>
-                        <option value="male">Male</option>
-                        <option value="variant non conforming">Gender Variant/Non Conforming</option>
-                        <option value="not listed">Not Listed</option>
-                        <option value="no preference">Prefer Not to Say</option>
-                        <option value="other">Other</option>
-                    </select> */}
 
                     {/* AGE INPUTS*/}
                     <div className="inputs" style={{ flexDirection: 'column' }}>
@@ -412,12 +411,12 @@ export default function Report(props) {
 
                     {/* submit the form and continue through the flow */}
                     <div className="inputs">
-                        <LargeButtonSecondary data-testid="submit" type="submit" title="Add This Report" />
+                        <ButtonSecondary type="submit">Continue</ButtonSecondary>
                     </div>
 
-                    <span>You'll have the opportunity to say more</span>
+                    <span> You'll have the opportunity to say more</span>
                 </form>
             </ReportForm>
         </Container >
     )
-}
+};

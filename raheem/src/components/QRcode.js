@@ -1,11 +1,19 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 
 /* styles */
-import { Container, Content, Heading, SubHeading, ContentSep, Label, QRForm, QRCodeContainer } from '../styles/global';
+import { Container, Content, Heading, SubHeading, ContentSep, Label, Controls, QRForm, QRCodeContainer } from '../styles/global';
+
+//buttons
+import { ButtonPrimary, ButtonSecondary } from '../styles/global';
+
+/* assets */
+import QR from '../assets/QR.svg';
 
 function QRcode() {
 
+    const history = useHistory();
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = data => {
         console.log(data);
@@ -29,9 +37,13 @@ function QRcode() {
                     />
 
                     <Label style={{ margin: '2rem 0' }}>or scan QR code</Label>
-                    <QRCodeContainer />
+                    <QRCodeContainer>
+                        <img src={QR} alt="Example QR Code" />
+                    </QRCodeContainer>
 
-                    <input type="submit" value="Add My Story" />
+                    <Controls>
+                        <ButtonSecondary onClick={() => history.push(`/report`)}>Add My Story</ButtonSecondary>
+                    </Controls>
                 </QRForm>
             </Content>
         </Container>

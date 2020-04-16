@@ -1,12 +1,82 @@
 import styled from 'styled-components';
 
-
-
 export const TopBar = styled.div`
-width: 100%;
-height: 3.6rem;
-background: #555555;
+    display: none;
+
+        @media (max-width: 500px) {
+            display: block;
+            width: 100%;
+            height: 3.6rem;
+            background: #555555;
+        }
 `;
+
+export const ButtonSecondary = styled.button`
+    width: 100%;
+    height: 7.5rem;
+    border: 1px solid #000000;
+    border-radius: 0.6rem;
+    background: #111111;
+    margin: 0.5rem 0;
+    color: #ffffff;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2.2rem;
+    line-height: 2.4rem;
+    letter-spacing: 0.25;
+    transition: all 300ms;
+
+    &:hover {
+        cursor: pointer;
+        transition: opacity 300ms;
+        opacity: 0.9;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: default;
+    }
+
+        @media (max-width: 500px){
+            height: 5.2rem;
+            font-size: 2.0rem;
+            line-height: 2.4rem;
+            letter-spacing: -0.23809px;
+            margin: 0.5rem 0;
+        }
+`;
+
+export const ButtonPrimary = styled.button`
+    width: 100%;
+    height: 7.5rem;
+    background: #ffffff;
+    border: 1px solid #111111;
+    border-radius: 0.6rem;
+    margin: 1.5rem 0;
+    color: #111111;
+    text-align: center;
+    font-style: normal;
+    font-weight: bold;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2.2rem;
+    line-height: 3.2rem;
+    letter-spacing: -0.261905px;
+    transition: all 300ms;
+
+    &:hover {
+        cursor: pointer;
+        transition: opacity 300ms;
+        opacity: 0.9;
+    }
+
+        @media (max-width: 500px){
+            height: 5.2rem;
+            font-size: 2.0rem;
+            line-height: 2.4rem;
+            letter-spacing: -0.23809px;
+            margin: 0.5rem 0;
+        }
+`;
+
 
 export const Container = styled.div`
     margin: 1rem 0;
@@ -36,6 +106,13 @@ export const Container = styled.div`
         font-family: 'Roboto', sans-serif;
     }
 
+    p.no-officer {
+        font-size: 1.6rem;
+        margin: 2rem 0 1rem;
+        margin: 0 20px;
+    }
+
+
 `
 
 export const HeadingContainer = styled.div`
@@ -54,8 +131,9 @@ export const Content = styled.div`
     display: flex;
     flex-direction: column;
 
-    .go-back {
-
+    p.no-officer {
+        font-size: 1.6rem;
+        margin: 2rem 0 1rem;
     }
 `;
 
@@ -189,7 +267,12 @@ export const QRForm = styled.form`
 `;
 
 export const QRCodeContainer = styled.div`
-    width: 30.27rem;
-    height: 10.87rem;
+    width: 35rem;
+    height: 35rem;
     background: #C4C4C4;
+
+    img {
+        width: 100%;
+        object-fit: contain;
+    }
 `;

@@ -21,13 +21,13 @@ function About(props) {
         <AboutContainer className="container">
 
             <AboutBackContainer>
-            <div className="go-back">
-                    <img src={Back} alt="Go Back" />
-            </div>
+                <div className="go-back">
+                    <img data-testid="goBackButton" onClick={() => history.goBack()} src={Back} alt="Go Back" />
+                </div>
             </AboutBackContainer>
 
             <AboutHeadingContainer>
-                <AboutHeading>
+                <AboutHeading id="top">
                     About Raheem
                 </AboutHeading>
             </AboutHeadingContainer>
@@ -37,7 +37,7 @@ function About(props) {
                     Raheem is an independent service for reporting police conduct in the United States.
                 </AboutSubHeading>
 
-                <AboutContent>  
+                <AboutContent>
                     We work to translate the lived experiences of people impacted by police violence into effective policy, officer accountability, and new narratives about how we keep our communities safe. Partners in our work include community-run oversight structures, public defenders, and advocacy organizations.
                 </AboutContent>
 
@@ -52,7 +52,7 @@ function About(props) {
                 <AboutSubHeading>
                     Our Strategy
                 </AboutSubHeading>
-                
+
                 <AboutContent>
                     Getting killed by police is the sixth leading cause of death for young Black men in America. Yet, we practically know nothing about how the 63 million police interactions every year shape our lives or the lives of our loved ones—until it's too late. There are 18,000 police departments in the country, each with its own unique, complicated process of reporting police misconduct. As a result, 95% of people do not report police violence and oversight boards miss the opportunity to have these experiences shape their policy agenda. We're working to change that.
                 </AboutContent>
@@ -98,25 +98,25 @@ function About(props) {
                 <AboutContent>
                     Ariel Matos, Growth Strategist at Raheem, ran content strategy for FADER and Refinery29 (where she increased revenue over $100 million). Ariel graduated from University of San Francisco in 2013.
                 </AboutContent>
-                
+
                 <AboutTeamSubHeading>
                     Ellie Dehghan
                 </AboutTeamSubHeading>
-                <AboutContent>  
+                <AboutContent>
                     Ellie Dehghan has worked with communities surviving violence and seeking justice through a variety of pathways. She’s currently the Sr. Director of Legal at Callisto, a nonprofit utilizing tech to combat sexual assault & advance justice. Raised in the East Bay by Mexican and Iranian immigrants, Ellie is graduate of Stanford Law School, and UC Berkeley.
                 </AboutContent>
 
                 <AboutContent>
                     Proudly based in Oakland, CA, Raheem is a nonprofit, 501(c)(3) organization operating nationwide for a world in which we all feel safe to live and love freely.
                 </AboutContent>
-                
+
             </AboutTextContainer>
 
-                <ButtonContainer className="landingButtonContainer">
-                    <span>Back To Top</span>
-                </ButtonContainer>
-                
-            
+            {/* <ButtonContainer className="landingButtonContainer">
+                <a href="#top" className="top">Back To Top</a>
+            </ButtonContainer> */}
+
+
         </AboutContainer>
     )
 }
@@ -144,7 +144,7 @@ const AboutTextContainer = styled.div`
     justify-content: center;
 `
 
-const AboutHeadingContainer =styled.div`
+const AboutHeadingContainer = styled.div`
     width: 100%;
     background-color: #FFF600;
     margin-bottom: 1rem;
@@ -193,4 +193,9 @@ const ButtonContainer = styled.div`
     padding: 1rem 20px;
     font-family: 'Neuzeit Grotesk', sans-serif;
     font-size: 1.6rem;
+
+    a.top {
+       color: #FFF600;
+       text-decoration: none; 
+    }
 `

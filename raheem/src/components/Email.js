@@ -1,6 +1,6 @@
-import React from "react";
-import { useHistory } from 'react-router-dom';
-
+import React, { useState } from "react";
+import { useHistory, useLocation } from 'react-router-dom';
+import styled from 'styled-components';
 
 /*FireStore*/
 import firebase from "../firebase"
@@ -8,53 +8,67 @@ import firebase from "../firebase"
 //form validation
 import { useForm } from "react-hook-form";
 
-//buttons
-import GoBack from "./buttons/GoBack.js";
-
 /* styles */
 import { Container, Content, Controls, Divider, EmailParagraph, EmailLabel, EmailForm } from '../styles/global';
 import { HeaderContainer } from '../styles/slider';
+
+//buttons
+import { ButtonPrimary, ButtonSecondary } from '../styles/global';
 
 /* assets */
 import Back from '../assets/Back.svg';
 
 /* components */
 import Officer from './Officer';
-import LargeButtonPrimary from './buttons/LargeButtonPrimary';
-import LargeButtonSecondary from './buttons/LargeButtonSecondary';
 
 //component for user to submit their email address to save the form for later
 const Email = () => {
 
     /* bring in useHistory hook from react-router-dom */
     const history = useHistory();
+    const location = useLocation();
+
+    /* state for officer from Story component */
+    const [officer, setOfficer] = useState(location.state);
 
     /* configure react-hook-form */
     const { handleSubmit, register, errors } = useForm();
+    
     const onSubmit = values => {
 
         console.log("values from email on-submit", values);
-        localStorage.setItem('saved', 'true');
+        localStorage.setItem('completed', false);
         firebase
             .firestore()
             .collection('emails')
             .add({
                 emails: values.email
             })
+        history.push(`/thank-you`, officer);
     };
 
     return (
         <Container>
             <Content>
                 <div className="go-back">
-                    <img onClick={() => history.goBack()} src={Back} alt="Go Back" />
+                    <img data-testid="goBackButton" onClick={() => history.goBack()} src={Back} alt="Go Back" />
                 </div>
 
-                <Officer profile={{
-                    officer: "Officer Peyton",
-                    precinct: "#15",
-                    badge: "R4567"
-                }} />
+                {location.state === undefined &&
+                    <div>
+                        <p className="no-officer">No officer information was loaded. Please rescan your QR code or continue submitting
+                            your report with no officer information attached.</p>
+                    </div>
+                }
+
+                {officer && officer.officer !== false &&
+                    <Officer profile={{
+                        officer: `${officer.officerRank} ${officer.officerLName}`,
+                        precinct: officer.PoliceDepartment,
+                        badge: officer.officerBadgeID,
+                        img: officer.img
+                    }} />
+                }
             </Content>
 
             <Divider />
@@ -73,6 +87,7 @@ const Email = () => {
                     <EmailLabel>Email</EmailLabel>
                     <input
                         name="email"
+                        data-testid="emailInput"
                         type="text"
                         placeholder="email@emailaddress.com"
                         ref={register({
@@ -88,8 +103,8 @@ const Email = () => {
                     {/* on submit will need to direct to thank you page with confirmation to check email for next steps */}
 
                     <Controls>
-                        <LargeButtonPrimary route="story" title="Go Back" />
-                        <LargeButtonSecondary completed="true" route="thank-you" type="submit" title="Submit" />
+                        <ButtonPrimary onClick={() => history.goBack()} data-testid="goBackLargeButton">Go Back</ButtonPrimary>
+                        <ButtonSecondary data-testid="submitButton" type="submit">Submit</ButtonSecondary>
                     </Controls>
                 </EmailForm>
             </Content>

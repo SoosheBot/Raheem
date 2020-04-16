@@ -32,7 +32,11 @@ function App() {
         < QRcode />
       </Route>
 
-      <Route path="/landing">
+      <Route exact path="/landing">
+        <Landing />
+      </Route>
+
+      <Route path="/landing/:id">
         <Landing />
       </Route>
 
