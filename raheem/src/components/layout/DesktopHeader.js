@@ -36,7 +36,7 @@ const HeaderContainer = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
-    border: 2px solid black;
+    border-bottom: 3px solid #111111;
 
     .header {
         width: 90%;
@@ -45,27 +45,22 @@ const HeaderContainer = styled.div`
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 1px solid #111111;
         padding-top: 1%;
         padding-bottom: 1%;
-        border: 2px solid red;
 
         .logo {
             width: 15%;
             padding-left: 26px;
             padding-top: 33px;
             padding-bottom: 33px;
-            border: 2px solid blue;
         }
     
         nav {
-            width: 20%;
             height: 4.1rem;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding-right: 25%;
-            border: 2px solid blue;
+            padding-right: 1%;
     
             a {
                 background: #ffffff;
@@ -83,7 +78,6 @@ const HeaderContainer = styled.div`
                 line-height: 1.8rem;
                 transition: all 300ms;
                 align-self: center;
-                /* border: 1px solid black; */
     
                 &:hover {
                     transition: background 300ms;
@@ -93,3 +87,4 @@ const HeaderContainer = styled.div`
         }
     }
 `;
+
