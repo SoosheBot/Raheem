@@ -25,11 +25,24 @@ export const ReportForm = styled.div`
 
         .about-you {
             padding-bottom: 0;
+            margin-top: 5rem;
 
             @media (max-width: 500px) {
-                margin-top: 10rem;
+                padding-bottom: 0;
+                margin-top: 1rem;
             }
         }
+
+        .page-end-desktop {
+            margin-top: 5rem;
+            margin-bottom: 3rem;
+
+            @media(max-width: 500px){
+                margin-top: 1rem;
+                margin-bottom: 2rem;
+            }
+        }
+
 
         //--Radio Button with Label Container, Label Styling--//
         .radio {

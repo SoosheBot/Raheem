@@ -164,7 +164,7 @@ export default function Report(props) {
 
             <Container>
             <HeadingContainer className="page-top">
-                <h2>How Were You Treated?</h2>
+                <h2>How Were you Treated?</h2>
             </HeadingContainer>
 
             <Content>
@@ -393,7 +393,7 @@ export default function Report(props) {
                         />
                     </div>
                     </Content>
-                    <Content>
+                    <Content className="page-end-desktop">
                     {/* AGE INPUTS*/}
                     <div className="inputs" style={{ flexDirection: 'column' }}>
                         <SmallHeading>Date of Birth</SmallHeading>

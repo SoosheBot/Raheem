@@ -319,9 +319,12 @@ export const HeadingContainer = styled.div`
         font-weight: 900;
         font-family: 'Neuzeit Grotesk', sans-serif;
         background: #FFF600;
+        line-height: 0.4rem;
+        padding: 0 1.2rem 1.8rem 0;
 
         @media(max-width: 500px){
             font-size: 2.6rem;
+            line-height: 2.8rem;
             width: 100%;
             padding: 5px 20px;
         }
@@ -331,7 +334,9 @@ export const HeadingContainer = styled.div`
         font-family: 'Neuzeit Grotesk', sans-serif;
         font-style: normal;
         font-weight: normal;
-        font-size: 2.2rem; 
+        font-size: 2.2rem;
+        line-height: 1.6rem;
+        letter-spacing: 0.19;
         margin: 2rem 0;
 
         @media( max-width: 500px){
@@ -344,7 +349,6 @@ export const HeadingContainer = styled.div`
     span.light {
         font-weight: 300;
         font-size: 1.6rem;
-        line-height: 2.2rem;
         font-family: 'Neuzeit Grotesk', sans-serif;
     }
 `;
@@ -428,7 +432,11 @@ export const SmallHeading = styled.h4`
     font-family: 'Neuzeit Grotesk', sans-serif;
     font-size: 2.2rem;
     font-weight: 700;
-    margin: 1rem 0 .7rem;
+    margin: 1rem 0 3rem;
+
+    @media(max-width: 500px){
+        margin: 0 0 .7rem;
+    }
 `;
 
 export const Label = styled.label`
