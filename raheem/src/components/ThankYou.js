@@ -75,7 +75,7 @@ function ThankYou() {
                     <p>Follow the link in your email to complete your story.</p>
 
                     <Controls style={{ paddingLeft: '20px', paddingRight: '20px' }} >
-                        <ButtonPrimary data-testid="homePageButton">Home Page</ButtonPrimary>
+                        <ButtonPrimary onClick={() => history.push(`/`)} data-testid="homePageButton">Home Page</ButtonPrimary>
                         <ButtonSecondary data-testid="officerPageButton">Officer Page</ButtonSecondary>
                     </Controls>
                 </Cancelled>}
@@ -110,7 +110,7 @@ const ThankYouH2 = styled.h2`
     font-size: 2rem;
     line-height: 2.4rem;
     padding: 0 20px;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 `;
 
 const ThankYouContainer = styled.div`
@@ -155,7 +155,7 @@ const Cancelled = styled.div`
         line-height: 1.6rem;
         font-family: 'Roboto', sans-serif;
         padding: 0 20px;
-        margin-top: 0.5rem;
+        margin-top: 1rem;
     }
 `;
 
@@ -171,6 +171,6 @@ const Submitted = styled.div`
         line-height: 1.6rem;
         font-family: 'Roboto', sans-serif;
         padding: 0 20px;
-        margin-top: 0.5rem;
+        margin-top: 1rem;
     }
 `;
