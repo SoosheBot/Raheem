@@ -7,13 +7,13 @@ import styled from 'styled-components';
 import firebase from "../firebase";
 
 /* bring in our global form store */
-import { formStore } from '../formStore.js';
+import { formStore } from "../formStore.js";
 
 /* components */
 import Officer from "./Officer";
 
 /* assets */
-import Back from '../assets/Back.svg';
+import Back from "../assets/Back.svg";
 
 /* styles */
 import { PageContainer, BackButton, Container, Content, HeaderContainer, HeadingContainer, Controls, Divider, Feedback } from '../styles/global';
@@ -23,6 +23,8 @@ import { StoryForm } from '../styles/global/forms.js';
 import { ButtonPrimary, ButtonSecondary } from '../styles/global';
 
 function Story() {
+  /* bring in useHistory from react-router-dom */
+
 
     /* bring in useHistory from react-router-dom */
     const history = useHistory();
@@ -91,6 +93,7 @@ function Story() {
             </HeadingContainer>
 
             <Content>
+
                 <p className='instruction'>Describe the incident from start to finish. Be as descriptive
                 as possible, and remember to include details about the officer's attitude
                 and actions during this encounter.

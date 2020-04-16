@@ -3,15 +3,36 @@ import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 
 /* styles */
-import { PageContainer, Container, YellowHeaderContainer, HeaderContainer, HeadingContainer,  Content, Heading, Subheading, SmallHeading, Divider, Label, Controls, QRForm, QRCodeContainer } from '../styles/global';
+
+import { 
+  PageContainer, 
+  Container, 
+  YellowHeaderContainer, 
+  HeaderContainer, 
+  HeadingContainer,  
+  Content, 
+  Heading, 
+  Subheading, 
+  SmallHeading, 
+  Divider, 
+  Label, 
+  Controls, 
+  QRForm, 
+  QRCodeContainer } from '../styles/global';
+
 
 //buttons
 import { ButtonPrimary, ButtonSecondary } from '../styles/global';
 
 /* assets */
-import QR from '../assets/QR.svg';
+import QR from "../assets/QR.svg";
 
 function QRcode() {
+  const history = useHistory();
+  const { register, handleSubmit, errors } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
     const history = useHistory();
     const { register, handleSubmit, errors } = useForm();
@@ -61,7 +82,7 @@ function QRcode() {
                     
             </Container>
         </PageContainer>
-    )
+    );
 }
 
 export default QRcode;
