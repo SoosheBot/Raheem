@@ -180,6 +180,50 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
 
+    .about {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    div.about{
+        margin: 1rem 0 0;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 2.2rem;
+        line-height: 3.2rem;
+        font-family: 'Neuzeit Grotesk', sans-serif;
+        padding: 1.5rem 0 7rem;
+
+        @media(max-width: 500px){
+            font-size: 1.8rem;
+            line-height: 2.2rem;
+            padding: 0.5rem 2rem;
+        }
+    }
+
+    h3.about {
+        width: 100%;
+        margin: 0;
+
+        @media (max-width: 500px){
+            padding: 0 20px;
+            width: 100%;
+            margin-top: 1rem;
+        }
+    }
+
+    h4.about {
+        width: 100%;
+        margin: 0;
+
+        @media (max-width: 500px){
+            padding: 0 20px;
+            margin-top: 1.5rem;
+        }
+    }
+
     .page-top{
         margin-top: 10rem;
 
@@ -227,7 +271,7 @@ export const HeaderContainer = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;
-    
+
 
     @media(max-width: 500px){
         width: 100%;
@@ -449,7 +493,7 @@ export const Heading = styled.h2`
     letter-spacing: -0.785714px;
     
     @media(max-width: 500px){
-        margin: 20px;
+        padding: 0 20px;
     }
 `;
 
@@ -459,9 +503,11 @@ export const Subheading = styled.h3`
     font-size: 2.6rem;
     margin: 2% 0px 3%;
     line-height: 2.8rem;
+    width: 100%;
 
     @media(max-width: 500px){
-        margin: 20px;
+        padding: 20px;
+        width: 100%;
     }
 `;
 
