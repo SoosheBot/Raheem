@@ -10,12 +10,6 @@ import { TopBar } from '../../styles/global';
 
 function DesktopHeader() {
 
-    const [toggle, setToggle] = useState(false);
-
-    const toggleMenu = () => {
-        setToggle(!toggle);
-    }
-
     return (
         <HeaderContainer>
             <TopBar />
@@ -26,12 +20,10 @@ function DesktopHeader() {
                     </Link>
                 </div>
 
-                <nav>                    
-                    <div className="navTags">
-                        <Link to="/">Search</Link>
-                        <Link to="/about">About</Link>
-                        <Link to="/report">Reports</Link>
-                    </div>
+                <nav className="navTags">
+                    <Link to="/">Search</Link>
+                    <Link to="/about">About</Link>
+                    <Link to="/report">Reports</Link>
                 </nav>
             </div>
         </HeaderContainer>
@@ -42,6 +34,9 @@ export default DesktopHeader;
 
 const HeaderContainer = styled.div`
     width: 100%;
+    display: flex;
+    justify-content: center;
+    border: 2px solid black;
 
     .header {
         width: 90%;
@@ -53,13 +48,14 @@ const HeaderContainer = styled.div`
         border-bottom: 1px solid #111111;
         padding-top: 1%;
         padding-bottom: 1%;
-        /* border: 2px solid red; */
+        border: 2px solid red;
 
         .logo {
             width: 15%;
             padding-left: 26px;
             padding-top: 33px;
             padding-bottom: 33px;
+            border: 2px solid blue;
         }
     
         nav {
@@ -68,38 +64,30 @@ const HeaderContainer = styled.div`
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
-            padding-right: 5%;
-            /* border: 1px solid blue; */
-
-            div.navTags {
-                position: absolute;
-                right: 0;
+            padding-right: 25%;
+            border: 2px solid blue;
+    
+            a {
+                background: #ffffff;
                 display: flex;
-                /* border: 2px solid red; */
+                justify-content: center;
+                align-items: center;
+                height: 4rem;
+                width: 15rem;
+                text-decoration: none;
+                color: #111111;
+                font-family: 'Roboto', sans-serif;
+                font-size: 2.6rem;
+                font-weight: bold;
+                padding-left: 2rem;
+                line-height: 1.8rem;
+                transition: all 300ms;
+                align-self: center;
+                /* border: 1px solid black; */
     
-                a {
-                    background: #ffffff;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    height: 4rem;
-                    width: 15rem;
-                    text-decoration: none;
-                    color: #111111;
-                    font-family: 'Roboto', sans-serif;
-                    font-size: 2.6rem;
-                    font-weight: bold;
-                    padding-left: 2rem;
-                    line-height: 1.8rem;
-                    transition: all 300ms;
-                    align-self: center;
-                    /* border: 1px solid black; */
-    
-                    &:hover {
-                        transition: background 300ms;
-                        background: #F2F2F2;
-                    }
+                &:hover {
+                    transition: background 300ms;
+                    background: #F2F2F2;
                 }
             }
         }
