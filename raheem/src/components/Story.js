@@ -7,13 +7,13 @@ import styled from 'styled-components';
 import firebase from "../firebase";
 
 /* bring in our global form store */
-import { formStore } from '../formStore.js';
+import { formStore } from "../formStore.js";
 
 /* components */
 import Officer from "./Officer";
 
 /* assets */
-import Back from '../assets/Back.svg';
+import Back from "../assets/Back.svg";
 
 /* styles */
 import { Container, Content, SubHeading, Paragraph, Controls, Divider, Label } from '../styles/global';
@@ -24,6 +24,8 @@ import { StoryForm } from '../styles/global/forms.js';
 import { ButtonPrimary, ButtonSecondary } from '../styles/global';
 
 function Story() {
+  /* bring in useHistory from react-router-dom */
+
 
     /* bring in useHistory from react-router-dom */
     const history = useHistory();
