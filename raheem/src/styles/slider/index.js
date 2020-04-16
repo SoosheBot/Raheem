@@ -5,10 +5,14 @@ import Slider from '@material-ui/core/Slider';
 export const SliderContainer = styled.div`
     display: flex;
     justify-content: center;
-    width: 80%;
-    // padding: 0 0 0 20px;
-    // margin: 3rem 0;
-    margin: 5rem auto 10rem;
+    width: 90%;
+    margin: 4.5rem auto 1rem;
+    
+        
+    @media(max-width: 500px){
+        width: 85%;
+        margin: 5rem auto 1rem;
+    }
 `
 
 //styling for slider
@@ -29,10 +33,9 @@ export const TxSlider = withStyles({
         },
     },
     markLabel: {
-        fontSize: '1.5rem',
+        fontSize: '1.8rem',
         padding: '20px',
-        // paddingLeft: '40px',
-        fontFamily: 'Roboto',
+        fontFamily: 'Neuzeit Grotesk',
         lineHeight: '1.8rem',
         letterSpacing: -0.2,
         color: '#111111'
@@ -41,16 +44,16 @@ export const TxSlider = withStyles({
     valueLabel: {
         left: 'calc(-50% + 4px)',
         color: '#111111',
-        fontFamily: 'Neuzeit Grotesk',
+        fontFamily: 'Roboto',
         fontSize: '1.2rem',
     },
     track: {
-        height: 8,
+        height: 5,
         borderRadius: 10,
         color: '#111111'
     },
     rail: {
-        height: 8,
+        height: 5,
         borderRadius: 10,
         border: '1px solid #111111',
         color: '#555555',

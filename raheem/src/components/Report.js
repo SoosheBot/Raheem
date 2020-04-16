@@ -1,19 +1,18 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { useHistory, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
 
 /*FireStore*/
 import firebase from "../firebase"
 
 /* styles */
-import { PageContainer, Container, HeadingContainer, BackButton, Content, Divider, SmallDivider, HeaderContainer, Controls } from '../styles/global';
+import { PageContainer, Container, HeadingContainer, BackButton, Content, Divider, SmallDivider, HeaderContainer, SmallHeading, Controls } from '../styles/global';
 import { TagContainer, Tag } from '../styles/tags';
 import { ReportForm } from '../styles/global/forms.js';
 import { SliderContainer, TxSlider, marks } from '../styles/slider';
 
 //buttons
-import { ButtonPrimary, ButtonSecondary } from '../styles/global';
+import { ButtonSecondary } from '../styles/global';
 
 /* bring in our global form store */
 import { formStore } from '../formStore.js';
@@ -160,11 +159,11 @@ export default function Report(props) {
                 }
             </HeaderContainer>
             </Container>
-            
+
             <Divider />
 
             <Container>
-            <HeadingContainer>
+            <HeadingContainer className="page-top">
                 <h2>How were you treated?</h2>
             </HeadingContainer>
 
@@ -192,24 +191,25 @@ export default function Report(props) {
                 <TagContainer>
                     <Tag onClick={toggleTag} value="helped">helped</Tag>
                     <Tag onClick={toggleTag} value="protected">protected</Tag>
+                    <Tag onClick={toggleTag} value="physically attacked">illegally searched</Tag>
                     <Tag onClick={toggleTag} value="profiled">profiled</Tag>
-                    <Tag onClick={toggleTag} value="neglected">neglected</Tag>
+                    <Tag onClick={toggleTag} value="physically attacked">physically attacked</Tag>
                     <Tag onClick={toggleTag} value="harassed">harassed</Tag>
                     <Tag onClick={toggleTag} value="wrongly accused">wrongly accused</Tag>
                     <Tag onClick={toggleTag} value="disrespected">disrespected</Tag>
-                    <Tag onClick={toggleTag} value="physically attacked">physically attacked</Tag>
-                    <Tag onClick={toggleTag} value="physically attacked">illegally searched</Tag>
+                    <Tag onClick={toggleTag} value="neglected">neglected</Tag>
                 </TagContainer>
-
             </Content>
 
             <HeadingContainer>
                 <h2>When did this happen?</h2>
+                <p className="description">Enter the date and time as best as you can remember.</p>
             </HeadingContainer>
 
             <ReportForm>
-                <p style={{ padding: '0 20px' }} className="description">Enter the date and time as best as you can remember.</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
+                <Content>
+                <SmallHeading>Date</SmallHeading>
                     <div className="inputs, date">
                         <input
                             className="incident"
@@ -264,19 +264,21 @@ export default function Report(props) {
                     {errors.incidentYear && errors.incidentYear.type === "minLength" && <p className="error">Please enter a valid year.</p>}
                     {errors.incidentYear && errors.incidentYear.type === "maxLength" && <p className="error">Please enter a valid year.</p>}
                     </div>
-
+                    
+                    <SmallHeading>Time</SmallHeading>
                     <div className="inputs">
                         <input type="time" placeholder="time" name="time" ref={register} defaultValue="15:00" />
                     </div>
-
+                    </Content>
+                    
                     <SmallDivider />
-
                     <HeadingContainer>
-                        <h2>Contact Information </h2>
-                    </HeadingContainer>
+                    <h2>Contact Information </h2>
                     <p className="description">This allows us to contact you in the event that further information is needed.</p>
-
-                    <h3>Email</h3>
+                    </HeadingContainer>
+                    
+                    <Content>
+                    <SmallHeading>Email</SmallHeading>
                     <div className="inputs">
                     <input
                         className="email"
@@ -295,16 +297,17 @@ export default function Report(props) {
                     </div>
                     {/* error handling for email */}
                     {errors.email && errors.email.type === "required" && <p className="error">An e-mail is required.</p>}
+                    </Content>
 
                     <SmallDivider />
-
                     <HeadingContainer>
-                        <h2>About You</h2>
-                    </HeadingContainer>
+                    <h2>About You</h2>
                     <p className="description">Help us understand how police treat people like you.</p>
-
+                    </HeadingContainer>
+                    
+                    <Content>
                     {/* RACE INPUTS */}
-                    <h3>Race</h3>
+                    <SmallHeading>Race</SmallHeading>
 
                     <div className="raceDesktop">
                         <div className="raceColumns">
@@ -355,9 +358,10 @@ export default function Report(props) {
 
                     {/* error handling for race inputs */}
                     {errors.race && <p className="error">Please select your race.</p>}
-
+                    </Content>
+                    <Content>
                     {/* GENDER INPUTS */}
-                    <h3 style={{ marginTop: '5rem' }}>Gender</h3>
+                    <SmallHeading>Gender</SmallHeading>
 
                     <div className="radio">
                         <input name="gender" type="radio" ref={register()} value="female" />
@@ -388,10 +392,11 @@ export default function Report(props) {
                             ref={register()}
                         />
                     </div>
-
+                    </Content>
+                    <Content>
                     {/* AGE INPUTS*/}
                     <div className="inputs" style={{ flexDirection: 'column' }}>
-                        <h3>Date of Birth</h3>
+                        <SmallHeading>Date of Birth</SmallHeading>
                         <div className="dob-container, date">
                             <input
                                 className="dob incident"
@@ -447,6 +452,7 @@ export default function Report(props) {
                     {errors.dobYear && errors.dobYear.type === "minLength" && <p className="error">Please enter a valid year.</p>}
                     {errors.dobYear && errors.dobYear.type === "maxLength" && <p className="error">Please enter a valid year.</p>}
                     </div>
+                    </Content>
 
                     {/* submit the form and continue through the flow */}
                     <Controls>

@@ -39,8 +39,8 @@ export const Controls = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 5rem;
-    border: solid purple 1px;
+    margin-top: 3rem;
+    border: solid purple 1p;
 `;
 
 //black button
@@ -119,11 +119,11 @@ export const ButtonPrimary = styled.button`
 export const BackButton = styled.div`
     width: 4rem;
     padding-top: 1rem;
-    margin-right: 5.5rem;
+    margin-right: 6.5rem;
     margin-left: 2rem;
 
     @media (max-width: 500px){
-        margin-right: 3rem;
+        margin-right: 2rem;
     }
 
     &:hover {
@@ -136,7 +136,8 @@ export const BackButton = styled.div`
 //---page containers---//
 //white full background
 export const PageContainer = styled.div`
-    width: 90%; 
+    width: 90%;
+    
     background: #FFFFFF;
     display: flex;
     flex-direction: column;
@@ -151,12 +152,20 @@ export const PageContainer = styled.div`
 //content container (white background)
 export const Container = styled.div`
     font-family: 'Noto Serif JP', serif;
-    width: 45%;
+    width: 55%;
     min-width: 500px; 
     display: flex;
     flex-direction: column;
     align-items: center;
-        border: dashed orange 2px; 
+
+
+    .page-top{
+        margin-top: 10rem;
+
+        @media (max-width: 500px){
+            margin-top: 5rem;
+        }
+    }
 
     span {
         font-family: 'Noto Serif JP', serif;
@@ -210,6 +219,7 @@ export const HeaderContainer = styled.div`
         font-family: 'Neuzeit Grotesk', sans-serif;
         font-size: 1.6rem;
         margin: 1rem 0;
+        width: 100%;
         
         @media (max-width: 500px){
             width: 100%;
@@ -237,7 +247,7 @@ export const OfficerContainer = styled.div`
     @media (max-width: 500px){
         width: 65%;
     }
-`
+`;
 
 export const OfficerPic = styled.div`
     margin-bottom: 2rem;
@@ -275,20 +285,36 @@ export const OfficerInfo = styled.p`
     font-weight: 900;
 `;
 
+
 //yellow highlight heading box
 export const HeadingContainer = styled.div`
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
     width: 100%;
-    height: 4.3rem;
-    padding: 0 20px;
-    background: #FFF600;
     margin-bottom: 1rem;
+    border: pink dashed 2px;
+
+    @media(max-width: 500px){
+        justify-content: center;
+        width: 100%;
+    }
 
     h2 {
         font-size: 2.8rem;
         font-weight: 900;
         font-family: 'Neuzeit Grotesk', sans-serif;
+        background: #FFF600;
+        border: green dashed 2px;
+
+        @media(max-width: 500px){
+            width: 100%;
+            padding: 0 20px;
+    }
+
+    p.description {
+        padding: 0 20px;
     }
 
     span.light {
@@ -303,11 +329,16 @@ export const HeadingContainer = styled.div`
 export const Content = styled.div`
     width: 100%;
     background: #ffffff;
-    margin-bottom: 2rem;
-    padding: 10px 20px;
+    padding-bottom: 10rem;
+    margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
-    border: solid 2px blue;
+    border solid blue 2px;
+
+    @media (max-width: 500px){
+        padding: 0 20px 5rem;
+        margin-bottom: 1rem;
+    }
 
     span {
         font-family: 'Noto Serif JP', serif;
@@ -320,13 +351,6 @@ export const Content = styled.div`
         font-size: 2.4rem;
         text-align: left;
         font-weight: normal;
-    }
-
-    p.description {
-        margin: 1.2rem 0 1rem;
-        font-size: 1.8rem;
-        line-height: 1.6rem;
-        font-family: 'Neuzeit Grotesk', sans-serif;
     }
 
     p.error {
@@ -342,18 +366,6 @@ export const Content = styled.div`
         font-size: 1.6rem;
         font-family: 'Neuzeit Grotesk', sans-serif;
         text-align: left;
-    }
-
-    input[type=text] {
-        margin: 1rem 0;
-        width: 100%;
-        height: 4.6rem;
-        padding-left: 1rem;
-        font-weight: 300;
-        font-size: 1.8rem;
-        color: #ccc;
-        border-radius: 0.6rem;
-        border: 1px solid #111111;
     }
 `;
 
@@ -386,9 +398,11 @@ export const SmallHeading = styled.h4`
     font-family: 'Neuzeit Grotesk', sans-serif;
     font-size: 2.2rem;
     font-weight: 700;
+    margin: 1rem 0 .7rem;
 `;
 
 export const Label = styled.label`
+    margin: 1rem 0 0;
     font-family: 'Neuzeit Grotesk', sans-serif;
     font-size: 2.2rem;
     font-weight: 700;
@@ -464,7 +478,7 @@ export const QRForm = styled.form`
     }
 `;
 
-export const QRCodeContainer = styled.div`
+export const QRCodeContainer = styled.div` 
     width: 35rem;
     height: 35rem;
     background: #C4C4C4;

@@ -94,7 +94,7 @@ function Landing(props) {
                     </Content>
                     </span>
                 }
-                <Content>
+
                 <Controls>
                     <ButtonPrimary data-testid="viewReports">View Reports</ButtonPrimary>
                     <ButtonSecondary data-testid="addReport" onClick={() => {
@@ -106,7 +106,6 @@ function Landing(props) {
                         }
                     }}>Add a Report</ButtonSecondary>
                 </Controls>
-                </Content>
             </Container>
 
         </PageContainer>

@@ -24,6 +24,7 @@ export const ReportForm = styled.div`
             }
         }
 
+        //--Radio Button with Label Container, Label Styling--//
         .radio {
             display: flex;
             flex-direction: row;
@@ -36,21 +37,20 @@ export const ReportForm = styled.div`
             letter-spacing: 0.283636px;
             min-width: 308px;
         }
-
+        //--date input container--//
         .date {
             display: flex;
             flex-direction: row;
         }
-
+        //--date error container--//
         .dateerror {
             width: 100%;
             display: flex;
             flex-direction: row;
             justify-content: space-around;
         }
-
+        //--race input container--//
         .raceDesktop{ 
-
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -59,7 +59,7 @@ export const ReportForm = styled.div`
                 flex-direction: column;
             }
         }
-
+        //--race columns for desktop--//
         .raceColumns {
             width: 50%;
             display: flex;
@@ -70,41 +70,7 @@ export const ReportForm = styled.div`
             }
         }
 
-        .inputs {
-            padding: 0 20px;
-
-            h3 {
-                width: 100%;
-                text-align: left;
-                margin-top: 5rem;
-                padding: 0;
-            }
-        }
-
-    // Top heading
-    h2 {
-        font-size: 2.8rem;
-        font-weight: 900;
-        font-family: 'Neuzeit Grotesk', sans-serif;
-    }
-
-    h3 {
-        font-family: 'Neuzeit Grotesk', sans-serif;
-        font-weight: 700;
-        font-size: 2.4rem;
-        line-height: 1.6rem;
-        margin: 5rem 0 1rem;
-        padding: 0 20px;
-    }
-
-    span {
-        margin-top: 3rem;
-        font-family: 'Neuzeit Grotesk', sans-serif;
-        font-weight: normal;
-        font-size: 1.6rem;
-        line-height: 2.2rem;
-    }
-
+    // Error font styling--//
     .error {
         color: red;
         font-family: 'Neuzeit Grotesk', sans-serif;
@@ -112,6 +78,7 @@ export const ReportForm = styled.div`
         font-weight: 300;
     }
 
+    //--Incident Date Styling--//
     input[type=text].incident::placeholder {
         color: #C4C4C4;
     }
@@ -167,8 +134,8 @@ export const ReportForm = styled.div`
         }
     }
 
+    //---Time Input styling---//
     input[type=time] {
-        margin-top: 2rem;
         width: 100%;
         height: 5rem;
         font-size: 2rem;
@@ -193,14 +160,14 @@ export const ReportForm = styled.div`
         height: 5rem;
     }
 
-
+    //-- DOB Styling --//
         //-- Date of birth container --//
         .dob-container {
             width: 100%;
             margin-bottom: 10rem;
         }
 
-        // Date of birth input styling
+        //-- DOB input styling --//
         input[type=text].dob {
             width: 33.3%;
             height: 5rem;
@@ -238,7 +205,6 @@ export const ReportForm = styled.div`
             height: 42px;
             width: 42px;
             margin-right: 2rem;
-            margin-left: 20px;
         }
 
 
@@ -387,3 +353,18 @@ export const StoryForm = styled.div`
         }
     }
 `;
+
+//-- inout styling for other forms--//
+export const Input = styled.div`
+
+input[type=text] {
+    margin: 1rem 0;
+    width: 100%;
+    height: 4.6rem;
+    padding-left: 1rem;
+    font-weight: 300;
+    font-size: 1.8rem;
+    color: #ccc;
+    border-radius: 0.6rem;
+    border: 1px solid #111111;
+}`

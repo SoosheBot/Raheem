@@ -90,7 +90,7 @@ function Story() {
                 </span>
             </Content> */}
             <Container>
-            <HeadingContainer>
+            <HeadingContainer className="page-top">
                 <h2>What Happened?</h2>
             </HeadingContainer>
 
@@ -116,7 +116,6 @@ function Story() {
             </Content>
         </Container>
         </PageContainer>
-
     )
 }
 
