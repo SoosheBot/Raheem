@@ -39,8 +39,23 @@ export const Controls = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 3rem;
-    border: solid purple 1p;
+    margin: 5rem 0 10rem;
+
+    @media (max-width: 500px){
+        margin: 3rem 0 2rem;
+        padding: 0 2rem;
+    }
+
+    p {
+        font-family: 'Neuzeit Grotesk', sans-serif;
+        font-size: 1.8rem;
+        margin: 1rem 0 0;
+
+        @media (max-width: 500px){
+            font-size: 1.6rem;
+            margin: 1rem 0 2rem; 
+        }
+    }
 `;
 
 //black button
@@ -158,7 +173,6 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
 
-
     .page-top{
         margin-top: 10rem;
 
@@ -180,7 +194,7 @@ export const Container = styled.div`
         font-weight: normal;
     }
 
-    p.description {
+    p.instruction {
         margin: 1.2rem 0 1rem;
         font-size: 1.8rem;
         line-height: 1.6rem;
@@ -294,7 +308,6 @@ export const HeadingContainer = styled.div`
     align-items: flex-start;
     width: 100%;
     margin-bottom: 1rem;
-    border: pink dashed 2px;
 
     @media(max-width: 500px){
         justify-content: center;
@@ -306,15 +319,26 @@ export const HeadingContainer = styled.div`
         font-weight: 900;
         font-family: 'Neuzeit Grotesk', sans-serif;
         background: #FFF600;
-        border: green dashed 2px;
 
         @media(max-width: 500px){
+            font-size: 2.6rem;
             width: 100%;
-            padding: 0 20px;
+            padding: 5px 20px;
+        }
     }
 
-    p.description {
-        padding: 0 20px;
+    p {
+        font-family: 'Neuzeit Grotesk', sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 2.2rem; 
+        margin: 2rem 0;
+
+        @media( max-width: 500px){
+            padding: 0 20px;
+            margin: 0.5rem 0; 
+            font-size: 1.8rem;
+        }
     }
 
     span.light {
@@ -333,7 +357,6 @@ export const Content = styled.div`
     margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
-    border solid blue 2px;
 
     @media (max-width: 500px){
         padding: 0 20px 5rem;
@@ -353,9 +376,9 @@ export const Content = styled.div`
         font-weight: normal;
     }
 
-    p.error {
+    p.officererror {
         font-size: 1.6rem;
-        color: #8A0303;
+        color: red;
         width: 50%;
         margin: 5% auto 10%;
         font-size: 1.6rem;
@@ -383,15 +406,22 @@ export const Heading = styled.h2`
     font-size: 4.4rem;
     line-height: 4.2rem;
     letter-spacing: -0.785714px;
-    margin: 20px;
+    
+    @media(max-width: 500px){
+        margin: 20px;
+    }
 `;
 
 export const Subheading = styled.h3`
     font-family: 'Neuzeit Grotesk', sans-serif;
     font-weight: 900;
     font-size: 2.6rem;
-    margin: 2% 20px 3%;
+    margin: 2% 0px 3%;
     line-height: 2.8rem;
+
+    @media(max-width: 500px){
+        margin: 20px;
+    }
 `;
 
 export const SmallHeading = styled.h4`
@@ -412,6 +442,19 @@ export const Paragraph = styled.p`
     font-family: 'Neuzeit Grotesk', sans-serif;
     font-size: 1.2rem;
     line-height: 1.4rem;
+`;
+
+export const Feedback = styled.h3`
+    font-family: 'Noto Serif JP';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 2rem;
+    line-height: 2.4rem;
+
+    @media(max-width: 500px){
+        padding: 0 20px;
+        margin-bottom: 2rem;
+    }
 `;
 
 //opage/content dividers
@@ -488,42 +531,3 @@ export const QRCodeContainer = styled.div`
         object-fit: contain;
     }
 `;
-
-
-
-
-/* Email Form Specific Styling */
-// export const EmailParagraph = styled.p`
-//     font-family: 'Noto Serif';
-//     font-weight: 500;
-//     font-size: 1.6rem;
-//     line-height: 2.4rem;
-//     padding: 0 20px;
-//     margin-bottom: 5rem;
-//     color: #111111;
-// `;
-
-// export const EmailLabel = styled.p`
-//     font-family: 'Neuzeit Grotesk', sans-serif;
-//     font-weight: bold;
-//     font-size: 1.8rem;
-//     line-height; 1.6rem;
-//     color: #111111;
-//     margin-bottom: 1rem;
-// `;
-
-// export const EmailForm = styled.form`
-//     input[type=text] {
-//         width: 100%;
-//         height: 4.8rem;
-//         background: #ffffff;
-//         border-radius: 0.5rem;
-//         border: 1px solid #111111;
-//         color: #C4C4C4;
-//         font-size: 1.8rem;
-//         line-height: 1.6rem;
-//         font-weight: bold;
-//         font-family: 'Neuzeit Grotesk', sans-serif;
-//         padding-left: 2%;
-//     }
-// `;

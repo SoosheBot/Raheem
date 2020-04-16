@@ -35,7 +35,7 @@ export const TxSlider = withStyles({
     markLabel: {
         fontSize: '1.8rem',
         padding: '20px',
-        fontFamily: 'Neuzeit Grotesk',
+        // fontFamily: "'Neuzeit Grotesk', sans-serif",
         lineHeight: '1.8rem',
         letterSpacing: -0.2,
         color: '#111111'

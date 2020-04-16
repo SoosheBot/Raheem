@@ -38,14 +38,14 @@ function QRcode() {
                             <input
                                 type="text"
                                 name="query"
-                                placeholder="officer name or badge number"
+                                placeholder="Officer Name or Badge Number"
                                 autoComplete="off"
                             />
                         </QRForm>
                     </Content>
 
                     <HeadingContainer> 
-                        <SmallHeading> Or </SmallHeading> 
+                        <h2> Or </h2> 
                     </HeadingContainer>
                     
                     <Content>

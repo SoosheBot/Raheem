@@ -164,7 +164,7 @@ export default function Report(props) {
 
             <Container>
             <HeadingContainer className="page-top">
-                <h2>How were you treated?</h2>
+                <h2>How Were You Treated?</h2>
             </HeadingContainer>
 
             <Content>
@@ -184,7 +184,7 @@ export default function Report(props) {
             </Content>
 
             <HeadingContainer>
-                <h2>I was <span className="light">(click as many as apply)</span></h2>
+                <h2>I was _____. <span className="light">(select as many as apply)</span></h2>
             </HeadingContainer>
 
             <Content>
@@ -202,14 +202,14 @@ export default function Report(props) {
             </Content>
 
             <HeadingContainer>
-                <h2>When did this happen?</h2>
-                <p className="description">Enter the date and time as best as you can remember.</p>
+                <h2>When Did This Happen?</h2>
+                <p> Enter the date and time as best as you can remember.</p>
             </HeadingContainer>
 
             <ReportForm>
                 <form onSubmit={handleSubmit(onSubmit)}>
                 <Content>
-                <SmallHeading>Date</SmallHeading>
+                <SmallHeading>Incident Date</SmallHeading>
                     <div className="inputs, date">
                         <input
                             className="incident"
@@ -265,7 +265,7 @@ export default function Report(props) {
                     {errors.incidentYear && errors.incidentYear.type === "maxLength" && <p className="error">Please enter a valid year.</p>}
                     </div>
                     
-                    <SmallHeading>Time</SmallHeading>
+                    <SmallHeading></SmallHeading>
                     <div className="inputs">
                         <input type="time" placeholder="time" name="time" ref={register} defaultValue="15:00" />
                     </div>
@@ -274,7 +274,7 @@ export default function Report(props) {
                     <SmallDivider />
                     <HeadingContainer>
                     <h2>Contact Information </h2>
-                    <p className="description">This allows us to contact you in the event that further information is needed.</p>
+                    <p>This allows us to contact you in the event that further information is needed.</p>
                     </HeadingContainer>
                     
                     <Content>
@@ -302,10 +302,10 @@ export default function Report(props) {
                     <SmallDivider />
                     <HeadingContainer>
                     <h2>About You</h2>
-                    <p className="description">Help us understand how police treat people like you.</p>
+                    <p>Help us understand how police treat people like you.</p>
                     </HeadingContainer>
                     
-                    <Content>
+                    <Content className="about-you">
                     {/* RACE INPUTS */}
                     <SmallHeading>Race</SmallHeading>
 
@@ -359,7 +359,7 @@ export default function Report(props) {
                     {/* error handling for race inputs */}
                     {errors.race && <p className="error">Please select your race.</p>}
                     </Content>
-                    <Content>
+                    <Content className="about-you">
                     {/* GENDER INPUTS */}
                     <SmallHeading>Gender</SmallHeading>
 

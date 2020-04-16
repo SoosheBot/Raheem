@@ -95,7 +95,7 @@ function Story() {
             </HeadingContainer>
 
             <Content>
-                <Paragraph className='description'>Describe the incident from start to finish. Be as descriptive
+                <Paragraph className='instruction'>Describe the incident from start to finish. Be as descriptive
                 as possible, and remember to include details about the officer's attitude
                 and actions during this encounter.
                 </Paragraph>
@@ -103,7 +103,7 @@ function Story() {
                 <StoryForm>
                     <form onSubmit={handleSubmit(onSubmit)} data-testid='form'>
                         <textarea name="story" ref={register} />
-
+                
                         <Controls>
                             <ButtonPrimary onClick={() => {
                                 localStorage.setItem('completed', false);
@@ -113,7 +113,7 @@ function Story() {
                         </Controls>
                     </form>
                 </StoryForm>
-            </Content>
+                </Content>
         </Container>
         </PageContainer>
     )

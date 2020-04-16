@@ -6,7 +6,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import Officer from './Officer';
 
 //styles
-import { PageContainer, Container, BackButton, Content, Divider, Controls, HeaderContainer, HeadingContainer } from '../styles/global';
+import { PageContainer, Container, BackButton, Feedback, Content, Divider, Controls, HeaderContainer, HeadingContainer } from '../styles/global';
 
 //buttons
 import { ButtonPrimary, ButtonSecondary } from '../styles/global';
@@ -71,111 +71,39 @@ function ThankYou() {
 
             <Container>
             {cancelled === true &&
-                <Cancelled>
-                    <ThankYouH2>Thank you for your feedback!</ThankYouH2>
+                <Content>
+                    <Feedback>Thank you for your feedback!</Feedback>
                     <HeadingContainer>
-                        <h2>Reminder sent</h2>
+                        <h2>Reminder Sent!</h2>
                     </HeadingContainer>
-                    <p>Follow the link in your email to complete your story.</p>
+                    <p className="instruction">Follow the link in your email to complete your story.</p>
 
-                    <Controls style={{ paddingLeft: '20px', paddingRight: '20px' }} >
+                    <Controls >
                         <ButtonPrimary data-testid="homePageButton">Home</ButtonPrimary>
                         <ButtonSecondary data-testid="officerPageButton">Officer Page</ButtonSecondary>
                     </Controls>
-                </Cancelled>}
+                </Content>}
 
             {submitted &&
-                <div style={{ width: '100%' }}>
-                    <Submitted>
-                        <ThankYouH2>Thank you for your feedback!</ThankYouH2>
-                    </Submitted>
-                    <Submitted>
+                <Content >
+                    <div>
+                        <Feedback>Thank you for your feedback!</Feedback>
+                    </div>
+                    <div>
                         <HeaderContainer>
                             <h2>Report Submitted!</h2>
                         </HeaderContainer>
                         <p>Your story will help end police violence.</p>
 
-                        <Controls style={{ paddingLeft: '20px', paddingRight: '20px' }}>
+                        <Controls>
                             <ButtonPrimary data-testid="homePageButton" onClick={() => history.push(`/`)}>Home</ButtonPrimary>
                             <ButtonSecondary data-testid="officerPageButton">Officer Page</ButtonSecondary>
                         </Controls>
-                    </Submitted>
-                </div>}
-        </Container>
+                    </div>
+                </Content>}
+            </Container>
         </PageContainer>
     )
 }
 
 export default ThankYou;
-
-const ThankYouH2 = styled.h2`
-    font-family: 'Noto Serif';
-    font-style: normal;
-    font-weight: bold;
-    font-size: 2rem;
-    line-height: 2.4rem;
-    padding: 0 20px;
-    margin-bottom: 2rem;
-`;
-
-const ThankYouContainer = styled.div`
-    margin: 5rem 0;
-    font-family: 'Noto Serif', serif;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    h2 {
-        font-family: 'Roboto', sans-serif;
-        font-weight: 900;
-        font-size: 4rem;
-        margin-bottom: 2rem;
-    }
-
-    p {
-        font-size: 2rem;
-        line-height: 3.6rem;
-        margin-bottom: 2rem;
-
-        @media (max-width: 490px) {
-            font-size: 1.6rem; 
-        }
-
-        @media (max-width: 375px) {
-            font-size: 1.4rem; 
-        }
-    }
-`;
-
-const Cancelled = styled.div`
-    background: #ffffff;
-    margin: 2rem 0;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-
-    p {
-        font-size: 1.8rem;
-        line-height: 1.6rem;
-        font-family: 'Roboto', sans-serif;
-        padding: 0 20px;
-        margin-top: 0.5rem;
-    }
-`;
-
-const Submitted = styled.div`
-    background: #ffffff;
-    margin: 2rem 0;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-
-    p {
-        font-size: 1.8rem;
-        line-height: 1.6rem;
-        font-family: 'Roboto', sans-serif;
-        padding: 0 20px;
-        margin-top: 0.5rem;
-    }
-`;

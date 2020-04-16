@@ -7,7 +7,7 @@ import Officer from './Officer';
 
 // styles
 import { PageContainer, Container, YellowHeaderContainer, HeaderContainer, Content, Controls, Divider, SmallDivider, Heading, Subheading } from '../styles/global';
-
+import { Input } from '../styles/global/forms';
 //buttons
 import { ButtonPrimary, ButtonSecondary } from '../styles/global';
 
@@ -72,14 +72,14 @@ function Landing(props) {
                 {!params.id &&
                     <span>
                     <Content>
-                        <p className="error">No officer information found. Please try re-scanning your QR code.</p>
+                        <p className="officererror">No officer information found. Please try re-scanning your QR code.</p>
                     </Content>
                         
                     <SmallDivider />
                     
                     <Content>
                         <p className="search">Alternatively, search for an officer by name, badge number, location, or department:</p>
-                        <input
+                        <Input
                             type="text"
                             name="searchQuery"
                             placeholder="Officer Information"

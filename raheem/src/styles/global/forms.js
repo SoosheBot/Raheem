@@ -10,7 +10,6 @@ export const ReportForm = styled.div`
         width: 100%;
         display: flex;
         flex-direction: column;
-        border: solid 2px limegreen
         }
 
         //-- Content and field separation within form --//
@@ -21,6 +20,14 @@ export const ReportForm = styled.div`
 
             @media (max-width: 310px) {
                 font-size: 1.6rem;
+            }
+        }
+
+        .about-you {
+            padding-bottom: 0;
+
+            @media (max-width: 500px) {
+                margin-top: 10rem;
             }
         }
 
@@ -338,7 +345,7 @@ export const StoryForm = styled.div`
             resize: none;
             font-size: 1.3rem;
             font-family: 'Neuzeit Grotesk', sans-serif;
-            padding: 1rem;
+            
             border-radius: 20px;
             border: 1px solid #111111;
 
@@ -349,15 +356,14 @@ export const StoryForm = styled.div`
 
             @media (max-width: 500px){
                 height: 50rem;
+                padding: 1rem;
             }
         }
     }
 `;
 
 //-- inout styling for other forms--//
-export const Input = styled.div`
-
-input[type=text] {
+export const Input = styled.input`
     margin: 1rem 0;
     width: 100%;
     height: 4.6rem;
@@ -367,4 +373,4 @@ input[type=text] {
     color: #ccc;
     border-radius: 0.6rem;
     border: 1px solid #111111;
-}`
+`
