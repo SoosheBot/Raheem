@@ -6,8 +6,7 @@ import firebase from "../firebase";
 import Officer from './Officer';
 
 // styles
-import styled from 'styled-components';
-import { Container, Content, Controls, Divider } from '../styles/global';
+import { PageContainer, Container, YellowHeaderContainer, HeaderContainer, Content, Controls, Divider, SmallDivider, Heading, Subheading } from '../styles/global';
 
 //buttons
 import { ButtonPrimary, ButtonSecondary } from '../styles/global';
@@ -40,25 +39,25 @@ function Landing(props) {
     }, []);
 
     return (
-        <AboutContainer className="container">
-
+        <PageContainer>
             {console.log(officer)}
+            <Container>
+                <YellowHeaderContainer>
+                    <Heading>
+                        Your story can end police violence.
+                    </Heading>
+                </YellowHeaderContainer>
 
-            <AboutStoryContainer>
-                <AboutHeading>
-                    Your story can end police violence.
-                </AboutHeading>
-            </AboutStoryContainer>
-
-            <AboutTextContainer>
-                <AboutSubHeading>
-                    Raheem is an independent service for reporting police conduct to help build safer communities for people of color.
-                </AboutSubHeading>
-            </AboutTextContainer>
+                <HeaderContainer>
+                    <Subheading>
+                        Raheem is an independent service for reporting police conduct to help build safer communities for people of color.
+                    </Subheading>
+                </HeaderContainer>
+            </Container>
 
             <Divider />
 
-            <AboutTextContainer>
+            <Container>
                 {params.id &&
                     <Officer
                         profile={{
@@ -71,8 +70,14 @@ function Landing(props) {
                 }
 
                 {!params.id &&
-                    <div>
+                    <span>
+                    <Content>
                         <p className="error">No officer information found. Please try re-scanning your QR code.</p>
+                    </Content>
+                        
+                    <SmallDivider />
+                    
+                    <Content>
                         <p className="search">Alternatively, search for an officer by name, badge number, location, or department:</p>
                         <input
                             type="text"
@@ -80,10 +85,16 @@ function Landing(props) {
                             placeholder="Officer Information"
                             autoComplete="off"
                         />
-                        <p className="search">If you would like to fill out the survey without adding officer information, please continue.</p>
-                    </div>
-                }
+                    </Content>
 
+
+                    
+                    <Content>
+                        <p className="search">If you would like to fill out a report without adding officer information, please continue by clicking the 'Add a Report' button below.</p>
+                    </Content>
+                    </span>
+                }
+                <Content>
                 <Controls>
                     <ButtonPrimary data-testid="viewReports">View Reports</ButtonPrimary>
                     <ButtonSecondary data-testid="addReport" onClick={() => {
@@ -95,78 +106,11 @@ function Landing(props) {
                         }
                     }}>Add a Report</ButtonSecondary>
                 </Controls>
-            </AboutTextContainer>
-        </AboutContainer>
+                </Content>
+            </Container>
+
+        </PageContainer>
     )
 }
 
 export default Landing;
-
-const AboutContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: 'Roboto', serif;
-    margin: 5rem 0;
-`
-
-const AboutStoryContainer = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: #FFF600;
-`
-
-const AboutTextContainer = styled.div`
-    background: #ffffff;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 20px;
-
-    p.error {
-        color: #db4242;
-        font-size: 1.6rem;
-        font-weight: 900;
-        margin: 5rem 0 0;
-    }
-
-    p.search {
-        font-size: 1.6rem;
-        margin: 2rem 0 1rem;
-    }
-
-    input[type=text] {
-        height: 5rem;
-        width: 100%;
-        font-weight: bold;
-        font-size: 1.6rem;
-        padding-left: 1rem;
-        color: #111111;
-        border-radius: 6px;
-        border: 1px #111111 solid;
-
-        &:focus {
-            outline: none;
-            border: 1px solid #FFF600;
-        }
-    }
-`
-
-const AboutHeading = styled.h2`
-    font-family: 'Roboto', sans-serif;
-    font-weight: 900;
-    font-size: 4.4rem;
-    line-height: 4.2rem;
-    padding: 0 20px;
-    margin: 2% 0 2%;
-`
-
-const AboutSubHeading = styled.h3`
-    font-weight: 900;
-    font-size: 2.6rem;
-    margin: 2.2rem 0;
-    line-height: 2.6rem;
-`

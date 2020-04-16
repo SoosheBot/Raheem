@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 
 /* styles */
-import { Container, Content, Heading, SubHeading, ContentSep, Label, Controls, QRForm, QRCodeContainer } from '../styles/global';
+import { PageContainer, Container, YellowHeaderContainer, HeaderContainer, HeadingContainer,  Content, Heading, Subheading, SmallHeading, Divider, Label, Controls, QRForm, QRCodeContainer } from '../styles/global';
 
 //buttons
 import { ButtonPrimary, ButtonSecondary } from '../styles/global';
@@ -20,24 +20,35 @@ function QRcode() {
     }
 
     return (
-        <Container>
-            <Content>
-                <Heading>Your story can end police violence.</Heading>
-                <SubHeading>Report and track police to build safer communities for people of color</SubHeading>
+        <PageContainer>
+                <Container>
+                <YellowHeaderContainer>
+                    <Heading>Your story can end police violence.</Heading>
+                </YellowHeaderContainer>
+                <HeaderContainer>
+                    <Subheading>Report and track police to build safer communities for people of color</Subheading>
+                </HeaderContainer>
+                </Container>
+                <Divider />
+                
+                <Container>
+                    <Content>
+                    <Label>Search for Officer: </Label>
+                        <QRForm>
+                            <input
+                                type="text"
+                                name="query"
+                                placeholder="officer name or badge number"
+                                autoComplete="off"
+                            />
+                        </QRForm>
+                    </Content>
 
-                <ContentSep />
-
-                <Label>Search for Officer: </Label>
-                <QRForm>
-                    <input
-                        type="text"
-                        name="query"
-                        placeholder="officer name or badge number"
-                        autoComplete="off"
-                    />
-
-                    <Label style={{ margin: '2rem 0', background: '#FFF600', textAlign: 'center' }}>Or </Label>
-
+                    <HeadingContainer> 
+                        <SmallHeading> Or </SmallHeading> 
+                    </HeadingContainer>
+                    
+                    <Content>
                     <Label> Scan QR Code:</Label>
                     <QRCodeContainer>
                         <img src={QR} alt="Example QR Code" />
@@ -46,9 +57,10 @@ function QRcode() {
                     <Controls>
                         <ButtonSecondary onClick={() => history.push(`/report`)}>Add My Story</ButtonSecondary>
                     </Controls>
-                </QRForm>
-            </Content>
-        </Container>
+                    </Content>
+                    
+            </Container>
+        </PageContainer>
     )
 }
 

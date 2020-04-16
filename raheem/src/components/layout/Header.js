@@ -47,9 +47,13 @@ export default Header;
 
 const HeaderContainer = styled.div`
     width: 100%;
+    display: flex;
+    display-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
 
     .header {
-        width: 100%;
+        width: 90%;
         height: 5rem;
         background: #ffffff;
         display: flex;
@@ -59,6 +63,7 @@ const HeaderContainer = styled.div`
 
         @media (max-width:500px){
             border-bottom: 1px solid #111111;
+            width: 100%;
         }
 
         .logo {
@@ -87,7 +92,7 @@ const HeaderContainer = styled.div`
                     width: 15rem;
                     text-decoration: none;
                     color: #111111;
-                    font-family: 'Roboto', sans-serif;
+                    font-family: 'Neuzeit Grotesk', sans-serif;
                     font-size: 1.4rem;
                     padding-left: 2rem;
                     line-height: 4rem;

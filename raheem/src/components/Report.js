@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import firebase from "../firebase"
 
 /* styles */
-import { PageContainer, Container, Content, Divider, SmallDivider, HeaderContainer, Controls } from '../styles/global';
+import { PageContainer, Container, HeadingContainer, BackButton, Content, Divider, SmallDivider, HeaderContainer, Controls } from '../styles/global';
 import { TagContainer, Tag } from '../styles/tags';
 import { ReportForm } from '../styles/global/forms.js';
 import { SliderContainer, TxSlider, marks } from '../styles/slider';
@@ -110,11 +110,12 @@ export default function Report(props) {
                     incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`,
                 }
             )
-            .firestore()
             .collection('emails')
-            .add({
-                emails: values.email
-            })
+            .add(
+                {
+                    emails: values.email
+                }
+            )
             .then(
                 function (doc) {
                     dispatch({
@@ -133,36 +134,39 @@ export default function Report(props) {
 
     return (
         <PageContainer>
-        <Container>
+            <Container>
 
-            <Content>
-                <backButton className="go-back">
+            <HeaderContainer>
+                <BackButton className="go-back">
                     <img onClick={() => history.goBack()} src={Back} alt="Go Back" />
-                </backButton>
+                </BackButton>
 
                 {location.state === undefined &&
-                    <div>
-                        <p className="no-officer">No officer information was loaded. Please rescan your QR code or continue submitting
+                    <div className="no-officer">
+                        <p className="no-officer-text">No officer information was loaded.</p>
+                        <p className="no-officer-text">Please rescan your QR code or continue submitting
                             your report with no officer information attached.</p>
                     </div>
                 }
 
                 {officer && officer.officer !== false &&
-                    <Officer profile={{
-                        officer: `${officer.officerRank} ${officer.officerLName}`,
-                        precinct: officer.PoliceDepartment,
-                        badge: officer.officerBadgeID,
-                        img: officer.img
+                    <Officer 
+                        profile={{
+                            officer: `${officer.officerRank} ${officer.officerLName}`,
+                            precinct: officer.PoliceDepartment,
+                            badge: officer.officerBadgeID,
+                            img: officer.img
                     }} />
                 }
-
-            </Content>
-
+            </HeaderContainer>
+            </Container>
+            
             <Divider />
 
-            <HeaderContainer>
+            <Container>
+            <HeadingContainer>
                 <h2>How were you treated?</h2>
-            </HeaderContainer>
+            </HeadingContainer>
 
             <Content>
                 <SliderContainer>
@@ -180,9 +184,9 @@ export default function Report(props) {
                 </SliderContainer>
             </Content>
 
-            <HeaderContainer>
+            <HeadingContainer>
                 <h2>I was <span className="light">(click as many as apply)</span></h2>
-            </HeaderContainer>
+            </HeadingContainer>
 
             <Content>
                 <TagContainer>
@@ -199,14 +203,14 @@ export default function Report(props) {
 
             </Content>
 
-            <HeaderContainer>
+            <HeadingContainer>
                 <h2>When did this happen?</h2>
-            </HeaderContainer>
+            </HeadingContainer>
 
             <ReportForm>
                 <p style={{ padding: '0 20px' }} className="description">Enter the date and time as best as you can remember.</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="inputs">
+                    <div className="inputs, date">
                         <input
                             className="incident"
                             type="text"
@@ -243,7 +247,8 @@ export default function Report(props) {
                                 maxLength: 4
                             })} />
                     </div>
-
+                    
+                    <div className="dateerror">
                     {/* error handling for month input for incident */}
                     {errors.incidentMonth && errors.incidentMonth.type === "required" && <p className="error">A month is required.</p>}
                     {errors.incidentMonth && errors.incidentMonth.type === "minLength" && <p className="error">Please enter a valid month.</p>}
@@ -258,6 +263,7 @@ export default function Report(props) {
                     {errors.incidentYear && errors.incidentYear.type === "required" && <p className="error">A year is required.</p>}
                     {errors.incidentYear && errors.incidentYear.type === "minLength" && <p className="error">Please enter a valid year.</p>}
                     {errors.incidentYear && errors.incidentYear.type === "maxLength" && <p className="error">Please enter a valid year.</p>}
+                    </div>
 
                     <div className="inputs">
                         <input type="time" placeholder="time" name="time" ref={register} defaultValue="15:00" />
@@ -265,9 +271,9 @@ export default function Report(props) {
 
                     <SmallDivider />
 
-                    <HeaderContainer>
+                    <HeadingContainer>
                         <h2>Contact Information </h2>
-                    </HeaderContainer>
+                    </HeadingContainer>
                     <p className="description">This allows us to contact you in the event that further information is needed.</p>
 
                     <h3>Email</h3>
@@ -288,57 +294,64 @@ export default function Report(props) {
                     />
                     </div>
                     {/* error handling for email */}
-                    {errors.email && errors.email.message}
+                    {errors.email && errors.email.type === "required" && <p className="error">An e-mail is required.</p>}
 
                     <SmallDivider />
 
-                    <HeaderContainer>
+                    <HeadingContainer>
                         <h2>About You</h2>
-                    </HeaderContainer>
+                    </HeadingContainer>
                     <p className="description">Help us understand how police treat people like you.</p>
 
                     {/* RACE INPUTS */}
                     <h3>Race</h3>
-                    <div className="radio">
-                        <input name="race" type="radio" ref={register({ required: true })} value="asian" />
-                            Asian
+
+                    <div className="raceDesktop">
+                        <div className="raceColumns">
+                            <div className="radio">
+                                <input name="race" type="radio" ref={register({ required: true })} value="asian" />
+                                    Asian
+                                </div>
+                            <div className="radio">
+                                <input name="race" type="radio" ref={register({ required: true })} value="african american" />
+                                    Black/African
+                                </div>
+                            <div className="radio">
+                                <input name="race" type="radio" ref={register({ required: true })} value="latinx" />
+                                    Latinx
+                                </div>
+                            <div className="radio">
+                                <input name="race" type="radio" ref={register({ required: true })} value="middle eastern" />
+                                    Middle Eastern
+                                </div>
+                            <div className="radio">
+                                <input name="race" type="radio" ref={register({ required: true })} value="native american" />
+                                    Native American
+                                </div>
                         </div>
-                    <div className="radio">
-                        <input name="race" type="radio" ref={register({ required: true })} value="african american" />
-                            Black/African
+                        <div className="raceColumns">
+                            <div className="radio">
+                                <input name="race" type="radio" ref={register({ required: true })} value="pacific islander" />
+                                    Pacific Islander
+                                </div>
+                            <div className="radio">
+                                <input name="race" type="radio" ref={register({ required: true })} value="south asian" />
+                                    South Asian
+                                </div>
+                            <div className="radio">
+                                <input name="race" type="radio" ref={register({ required: true })} value="white" />
+                                    White
+                                </div>
+                            <div className="radio">
+                                <input name="race" type="radio" ref={register({ required: true })} value="multiracial" />
+                                    Multiracial
+                                </div>
+                            <div className="radio">
+                                <input name="race" type="radio" ref={register({ required: true })} value="no preference" />
+                                    Prefer Not To Say
+                                </div>
                         </div>
-                    <div className="radio">
-                        <input name="race" type="radio" ref={register({ required: true })} value="latinx" />
-                            Latinx
-                        </div>
-                    <div className="radio">
-                        <input name="race" type="radio" ref={register({ required: true })} value="middle eastern" />
-                            Middle Eastern
-                        </div>
-                    <div className="radio">
-                        <input name="race" type="radio" ref={register({ required: true })} value="native american" />
-                            Native American
-                        </div>
-                    <div className="radio">
-                        <input name="race" type="radio" ref={register({ required: true })} value="pacific islander" />
-                            Pacific Islander
-                        </div>
-                    <div className="radio">
-                        <input name="race" type="radio" ref={register({ required: true })} value="south asian" />
-                            South Asian
-                        </div>
-                    <div className="radio">
-                        <input name="race" type="radio" ref={register({ required: true })} value="white" />
-                            White
-                        </div>
-                    <div className="radio">
-                        <input name="race" type="radio" ref={register({ required: true })} value="multiracial" />
-                            Multiracial
-                        </div>
-                    <div className="radio">
-                        <input name="race" type="radio" ref={register({ required: true })} value="no preference" />
-                            Prefer Not To Say
-                        </div>
+                    </div>
 
                     {/* error handling for race inputs */}
                     {errors.race && <p className="error">Please select your race.</p>}
@@ -379,7 +392,7 @@ export default function Report(props) {
                     {/* AGE INPUTS*/}
                     <div className="inputs" style={{ flexDirection: 'column' }}>
                         <h3>Date of Birth</h3>
-                        <div className="dob-container">
+                        <div className="dob-container, date">
                             <input
                                 className="dob incident"
                                 type="text"
@@ -418,6 +431,7 @@ export default function Report(props) {
                         </div>
                     </div>
 
+                    <div className="dateerror">
                     {/* error handling for month input for data of birth */}
                     {errors.dobMonth && errors.dobMonth.type === "required" && <p className="error">A month is required.</p>}
                     {errors.dobMonth && errors.dobMonth.type === "minLength" && <p className="error">Please enter a valid month.</p>}
@@ -432,12 +446,12 @@ export default function Report(props) {
                     {errors.dobYear && errors.dobYear.type === "required" && <p className="error">A year is required.</p>}
                     {errors.dobYear && errors.dobYear.type === "minLength" && <p className="error">Please enter a valid year.</p>}
                     {errors.dobYear && errors.dobYear.type === "maxLength" && <p className="error">Please enter a valid year.</p>}
+                    </div>
 
                     {/* submit the form and continue through the flow */}
-                    <Controls className="inputs">
+                    <Controls>
                         <ButtonSecondary type="submit">Continue</ButtonSecondary>
-                    
-                    <p className="description"> You'll have the opportunity to say more on the next page.</p>
+                        <p> You'll have the opportunity to say more on the next page.</p>
                     </Controls>
                 </form>
             </ReportForm>

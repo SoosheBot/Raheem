@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React from 'react';
+
+/* styles */
+import { Splash, Title } from './styles/global/index'
 
 /* route */
 import { Route } from 'react-router-dom';
@@ -19,69 +21,58 @@ function App() {
 
   return (
     <div>
-      <Header />
 
-      {/* routes using react-router-dom */}
-      <Route exact path="/">
         <Splash>
-          <h1>Raheem</h1>
-        </Splash>
-      </Route>
+        <Header className="home" />
+        {/* routes using react-router-dom */}
 
-      <Route path="/QR">
-        < QRcode />
-      </Route>
+        <Route exact path="/">
+            <div className="home">
+              <Title>Raheem</Title>
+            </div>
+        </Route>
 
-      <Route exact path="/landing">
-        <Landing />
-      </Route>
+        <Route path="/QR">
+          < QRcode />
+        </Route>
 
-      <Route path="/landing/:id">
-        <Landing />
-      </Route>
+        <Route exact path="/landing">
+          <Landing />
+        </Route>
 
-      <Route path="/report">
-        <Report />
-      </Route>
+        <Route path="/landing/:id">
+          <Landing />
+        </Route>
 
-      <Route path="/story">
-        <Story />
-      </Route>
+        <Route path="/report">
+          <Report />
+        </Route>
 
-      <Route path="/email">
-        <Email />
-      </Route>
+        <Route path="/story">
+          <Story />
+        </Route>
 
-      <Route path="/thank-you">
-        <ThankYou />
-      </Route>
+        <Route path="/email">
+          <Email />
+        </Route>
 
-      <Route path="/about">
-        <About />
-      </Route>
+        <Route path="/thank-you">
+          <ThankYou />
+        </Route>
 
-      {/* route to officer page in RC2 */}
+        <Route path="/about">
+          <About />
+        </Route>
 
-      <Route path="/test">
-        <Test />
-      </Route>
+        {/* route to officer page in RC2 */}
+
+        <Route path="/test">
+          <Test />
+        </Route>
+      </Splash>
     </div>
   );
 }
 
 export default App;
 
-const Splash = styled.div`
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #FFF600;
-  margin: 0;
-
-  h1 {
-    font-size: 4rem;
-    font-weight: 900;
-  }
-`;
