@@ -57,10 +57,6 @@ Why did you choose this framework?
 
 #### Firebase
 
--    point one
--    point two
--    point three
-
 # Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
