@@ -231,6 +231,7 @@ export const ReportForm = styled.div`
         //-- self-identify input styling --//
         input[type=text].self::placeholder {
             color: #888888;
+            font-size: 2.6rem;
         }
 
         input[type=text].self {
@@ -285,21 +286,7 @@ export const ReportForm = styled.div`
             border: 1px #111111 solid;
 
             @media (max-width: 440px) {
-                font-size: 1.6rem;
                 padding-left: 0.5rem;
-            }
-
-            @media (max-width: 360px) {
-                font-size: 1.2rem;
-                padding-left: 0.5rem;
-            }
-
-            @media (max-width: 285px) {
-                font-size: 1.2rem;
-            }
-
-            @media (max-width: 265px) {
-                font-size: 1rem;
             }
 
             &:focus {
