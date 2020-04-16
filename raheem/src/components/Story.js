@@ -25,7 +25,7 @@ import { ButtonPrimary, ButtonSecondary } from '../styles/global';
 
 function Story() {
   /* bring in useHistory from react-router-dom */
-  const history = useHistory();
+
 
     /* bring in useHistory from react-router-dom */
     const history = useHistory();
@@ -94,7 +94,7 @@ function Story() {
             </HeaderContainer>
 
             <Content>
-                <Paragraph className='description'>Describe the incident from start to finish. Be as descriptive
+                <Paragraph>Describe the incident from start to finish. Be as descriptive
                 as possible, and remember to include details about the officer's attitude
                 and actions during this encounter.
                 </Paragraph>
