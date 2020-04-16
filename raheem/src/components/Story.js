@@ -16,8 +16,7 @@ import Officer from "./Officer";
 import Back from "../assets/Back.svg";
 
 /* styles */
-import { Container, Content, SubHeading, Paragraph, Controls, Divider, Label } from '../styles/global';
-import { HeaderContainer } from '../styles/slider';
+import { PageContainer, BackButton, Container, Content, HeaderContainer, HeadingContainer, Controls, Divider, Feedback } from '../styles/global';
 import { StoryForm } from '../styles/global/forms.js';
 
 //buttons
@@ -58,63 +57,64 @@ function Story() {
     };
 
     return (
-        <Container>
-            <Content>
-
+        <PageContainer>
+            <Container>
+                <HeaderContainer>
                 {/* {console.log('TESTING. IS STATE UPDATED?', globalState)} */}
-                <div className="go-back">
+                <BackButton className="go-back">
                     <img onClick={() => history.goBack()} src={Back} alt="Go Back" data-testid="go-back" />
-                </div>
+                </BackButton>
 
                 {location.state === undefined &&
-                    <div>
-                        <p className="no-officer">No officer information was loaded. Please rescan your QR code or continue submitting
+                    <div className="no-officer">
+                        <p className="no-officer-text">No officer information was loaded. </p>
+                        <p className="no-officer-text">Please rescan your QR code or continue submitting
                             your report with no officer information attached.</p>
                     </div>
                 }
 
                 {officer && officer.officer !== false &&
-                    <Officer profile={{
-                        officer: `${officer.officerRank} ${officer.officerLName}`,
-                        precinct: officer.PoliceDepartment,
-                        badge: officer.officerBadgeID,
-                        img: officer.img
+                    <Officer
+                        profile={{
+                            officer: `${officer.officerRank} ${officer.officerLName}`,
+                            precinct: officer.PoliceDepartment,
+                            department: officer.officerBadgeID,
+                            img: officer.img
                     }} />
                 }
-            </Content>
+                </HeaderContainer>
+                </Container>
             <Divider />
-            <Content>
-                <span className="thankyou">
-                    Thank you for your feedback!
-                </span>
-            </Content>
 
-            <HeaderContainer>
-                <h2>Tell Us More</h2>
-            </HeaderContainer>
+
+            <Container>
+            <HeadingContainer className="page-top">
+                <h2>What Happened?</h2>
+            </HeadingContainer>
 
             <Content>
-                <Paragraph>Describe the incident from start to finish. Be as descriptive
+
+                <p className='instruction'>Describe the incident from start to finish. Be as descriptive
                 as possible, and remember to include details about the officer's attitude
                 and actions during this encounter.
-                </Paragraph>
+                </p>
 
                 <StoryForm>
                     <form onSubmit={handleSubmit(onSubmit)} data-testid='form'>
                         <textarea name="story" ref={register} />
-
+                
                         <Controls>
                             <ButtonPrimary onClick={() => {
                                 localStorage.setItem('completed', false);
-                                history.push(`/email`, officer);
+                                history.push(`/thank-you`, officer);
                             }}>Save For Later</ButtonPrimary>
                             <ButtonSecondary type="submit">Complete Report</ButtonSecondary>
                         </Controls>
                     </form>
                 </StoryForm>
-            </Content>
+                </Content>
         </Container>
-
+        </PageContainer>
     )
 }
 

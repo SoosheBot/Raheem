@@ -6,8 +6,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import Officer from './Officer';
 
 //styles
-import { Container, Content, Controls } from '../styles/global';
-import { HeaderContainer } from '../styles/slider';
+import { PageContainer, Container, BackButton, Feedback, Content, Divider, Controls, HeaderContainer, HeadingContainer } from '../styles/global';
 
 //buttons
 import { ButtonPrimary, ButtonSecondary } from '../styles/global';
@@ -41,136 +40,67 @@ function ThankYou() {
     }, []);
 
     return (
-        <Container>
-            <Content>
-                <div className="go-back">
-                    <img data-testid="goBackButton" onClick={() => history.goBack()} src={Back} alt="Go Back" />
-                </div>
-            </Content>
+        <PageContainer>
+            <Container>
+                <HeaderContainer>
+                    <BackButton className="go-back">
+                        <img data-testid="goBackButton" onClick={() => history.goBack()} src={Back} alt="Go Back" />
+                    </BackButton>
+                
+                {location.state === undefined &&
+                    <div className="no-officer">
+                        <p className="no-officer-text">No officer information was loaded.</p>
+                        <p className="no-officer-text">Please rescan your QR code or continue submitting
+                                your report with no officer information attached.</p>
+                    </div>
+                }
 
-            {location.state === undefined &&
-                <div>
-                    <p className="no-officer">No officer information was loaded. Please rescan your QR code or continue submitting
-                            your report with no officer information attached.</p>
-                </div>
-            }
-
-            {officer && officer.officer !== false &&
-                <Officer profile={{
-                    officer: `${officer.officerRank} ${officer.officerLName}`,
-                    precinct: officer.PoliceDepartment,
-                    badge: officer.officerBadgeID,
-                    img: officer.img
-                }} />
-            }
-
-            <hr />
+                {officer && officer.officer !== false &&
+                    <Officer profile={{
+                        officer: `${officer.officerRank} ${officer.officerLName}`,
+                        precinct: officer.PoliceDepartment,
+                        badge: officer.officerBadgeID,
+                        img: officer.img
+                    }} />
+                }
+                </HeaderContainer>
+            </Container>
+            <Divider />
 
             {cancelled === true &&
-                <Cancelled>
-                    <ThankYouH2>Thank you for your feedback!</ThankYouH2>
-                    <HeaderContainer>
-                        <h2>Reminder sent</h2>
-                    </HeaderContainer>
-                    <p>Follow the link in your email to complete your story.</p>
-
-                    <Controls style={{ paddingLeft: '20px', paddingRight: '20px' }} >
-                        <ButtonPrimary onClick={() => history.push(`/`)} data-testid="homePageButton">Home Page</ButtonPrimary>
+                <Container className="thank-you">
+                    <HeadingContainer className="page-top">
+                        <h2>Reminder Sent!</h2>
+                    </HeadingContainer>
+                    
+                    <Content className="thanks">
+                    <p className="instruction">Follow the link in your email to complete your story.</p>
+                    </Content>
+                    <Controls >
+                        <ButtonPrimary data-testid="homePageButton">Home</ButtonPrimary>
                         <ButtonSecondary data-testid="officerPageButton">Officer Page</ButtonSecondary>
                     </Controls>
-                </Cancelled>}
-
+                </Container>
+            }
+                
             {submitted &&
-                <div style={{ width: '100%' }}>
-                    <Submitted>
-                        <ThankYouH2>Thank you for your feedback!</ThankYouH2>
-                    </Submitted>
-                    <Submitted>
-                        <HeaderContainer>
-                            <h2>Report Submitted!</h2>
-                        </HeaderContainer>
-                        <p>Your story will help end police violence.</p>
+                <Container className="thank-you">
+                    <HeadingContainer>
+                        <h2>Report Submitted!</h2>
+                    </HeadingContainer>
 
-                        <Controls style={{ paddingLeft: '20px', paddingRight: '20px' }}>
-                            <ButtonPrimary data-testid="homePageButton" onClick={() => history.push(`/`)}>Home Page</ButtonPrimary>
-                            <ButtonSecondary data-testid="officerPageButton">Officer Page</ButtonSecondary>
-                        </Controls>
-                    </Submitted>
-                </div>}
-        </Container>
+                    <Content className="thanks">
+                        <p>Your story will help end police violence.</p>
+                    </Content>
+
+                    <Controls>
+                        <ButtonPrimary data-testid="homePageButton" onClick={() => history.push(`/`)}>Home</ButtonPrimary>
+                        <ButtonSecondary data-testid="officerPageButton">Officer Page</ButtonSecondary>
+                    </Controls>
+                </Container>
+            }
+        </PageContainer>
     )
 }
 
 export default ThankYou;
-
-const ThankYouH2 = styled.h2`
-    font-family: 'Noto Serif';
-    font-style: normal;
-    font-weight: bold;
-    font-size: 2rem;
-    line-height: 2.4rem;
-    padding: 0 20px;
-    margin-bottom: 1rem;
-`;
-
-const ThankYouContainer = styled.div`
-    margin: 5rem 0;
-    font-family: 'Noto Serif', serif;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    h2 {
-        font-family: 'Roboto', sans-serif;
-        font-weight: 900;
-        font-size: 4rem;
-        margin-bottom: 2rem;
-    }
-
-    p {
-        font-size: 2rem;
-        line-height: 3.6rem;
-        margin-bottom: 2rem;
-
-        @media (max-width: 490px) {
-            font-size: 1.6rem; 
-        }
-
-        @media (max-width: 375px) {
-            font-size: 1.4rem; 
-        }
-    }
-`;
-
-const Cancelled = styled.div`
-    background: #ffffff;
-    margin: 2rem 0;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-
-    p {
-        font-size: 1.8rem;
-        line-height: 1.6rem;
-        font-family: 'Roboto', sans-serif;
-        padding: 0 20px;
-        margin-top: 1rem;
-    }
-`;
-
-const Submitted = styled.div`
-    background: #ffffff;
-    margin: 2rem 0;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-
-    p {
-        font-size: 1.8rem;
-        line-height: 1.6rem;
-        font-family: 'Roboto', sans-serif;
-        padding: 0 20px;
-        margin-top: 1rem;
-    }
-`;
