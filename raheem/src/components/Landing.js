@@ -78,19 +78,15 @@ function Landing(props) {
                     <SmallDivider />
                     
                     <Content>
-                        <p className="search">Alternatively, search for an officer by name, badge number, location, or department:</p>
+                        <p className="search-top">Alternatively, search for an officer by name, badge number, location, or department:</p>
                         <Input
                             type="text"
                             name="searchQuery"
                             placeholder="Officer Information"
                             autoComplete="off"
                         />
-                    </Content>
 
-
-                    
-                    <Content>
-                        <p className="search">If you would like to fill out a report without adding officer information, please continue by clicking the 'Add a Report' button below.</p>
+                        <p className="search-bottom">If you would like to fill out a report without adding officer information, please continue by clicking the 'Add a Report' button below.</p>
                     </Content>
                     </span>
                 }

@@ -73,7 +73,7 @@ export const ButtonSecondary = styled.button`
     font-family: 'Noto Serif JP', serif;
     font-size: 2.2rem;
     line-height: 3.2rem;
-    letter-spacing: -0.261905px;
+    letter-spacing: 0.261905rem;
     transition: all 300ms;
 
     &:hover {
@@ -91,7 +91,7 @@ export const ButtonSecondary = styled.button`
             height: 5.2rem;
             font-size: 2.0rem;
             line-height: 2.4rem;
-            letter-spacing: -0.23809px;
+            letter-spacing: 0.23809rem;
             margin: 0.5rem 0;
             width: 100%;
         }
@@ -112,7 +112,7 @@ export const ButtonPrimary = styled.button`
     font-family: 'Noto Serif JP', serif;
     font-size: 2.2rem;
     line-height: 3.2rem;
-    letter-spacing: -0.261905px;
+    letter-spacing: 0.261905rem;
     transition: all 300ms;
 
     &:hover {
@@ -125,7 +125,7 @@ export const ButtonPrimary = styled.button`
             height: 5.2rem;
             font-size: 2.0rem;
             line-height: 2.4rem;
-            letter-spacing: -0.23809px;
+            letter-spacing: 0.23809rem;
             margin: 0.5rem 0;
         }
 `;
@@ -152,7 +152,6 @@ export const BackButton = styled.div`
 //white full background
 export const PageContainer = styled.div`
     width: 90%;
-    
     background: #FFFFFF;
     display: flex;
     flex-direction: column;
@@ -162,6 +161,14 @@ export const PageContainer = styled.div`
         @media(max-width: 500px){
             width: 100%
         }
+    
+    .thank-you {
+        padding-top: 8rem;
+        
+        @media (max-width: 500px){
+            padding-top: 5rem;
+        }
+    }
 `
 
 //content container (white background)
@@ -181,6 +188,10 @@ export const Container = styled.div`
         }
     }
 
+    .thanks{
+        padding-bottom: 20rem;
+    }
+
     span {
         font-family: 'Noto Serif JP', serif;
         font-weight: 900;
@@ -188,17 +199,18 @@ export const Container = styled.div`
         text-align: center;
     }
 
-    span.thankyou{
-        font-size: 2.4rem;
-        text-align: left;
-        font-weight: normal;
-    }
-
     p.instruction {
         margin: 1.2rem 0 1rem;
-        font-size: 1.8rem;
-        line-height: 1.6rem;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 2.2rem;
+        line-height: 3.0rem;
         font-family: 'Neuzeit Grotesk', sans-serif;
+
+        @media(max-width: 500px){
+            font-size: 1.8rem;
+            line-height: 1.6rem;
+        }
     }
 
         @media (max-width: 500px){
@@ -215,6 +227,14 @@ export const HeaderContainer = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;
+    
+
+    @media(max-width: 500px){
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        padding-bottom: .5rem;
+    }
 
     .no-officer{
         width: 50%;
@@ -223,9 +243,12 @@ export const HeaderContainer = styled.div`
         justify-content: center;
         align-items: center;
         margin-left: 1.5rem;
+        margin-top: 4rem;
+        padding-bottom: 5rem;
 
         @media (max-width: 500px){
             width: 65%;
+            margin-top: 0;
         }
     }
 
@@ -250,13 +273,12 @@ export const YellowHeaderContainer = styled.div`
 
 //officer display styling
 export const OfficerContainer = styled.div`
-    padding: 1rem 0;
+    padding: 3rem 0;
     width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: red solid 2px;
 
     @media (max-width: 500px){
         width: 65%;
@@ -381,18 +403,33 @@ export const Content = styled.div`
     }
 
     p.officererror {
-        font-size: 1.6rem;
         color: red;
-        width: 50%;
-        margin: 5% auto 10%;
+        width: 45%;
+        margin: 5rem auto 0;
         font-size: 1.6rem;
         font-family: 'Neuzeit Grotesk', sans-serif;
+
+        @media (max-width: 500px){
+            width: 50%;
+            margin: 3.5rem auto 0;
+        }
+
     }
 
-    p.search {
+    p.search-top {
         font-size: 1.6rem;
         font-family: 'Neuzeit Grotesk', sans-serif;
         text-align: left;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+
+    }
+
+    p.search-bottom {
+        font-size: 1.6rem;
+        font-family: 'Neuzeit Grotesk', sans-serif;
+        text-align: left;
+        margin-top: 2rem;
     }
 `;
 
@@ -444,12 +481,6 @@ export const Label = styled.label`
     font-family: 'Neuzeit Grotesk', sans-serif;
     font-size: 2.2rem;
     font-weight: 700;
-`;
-
-export const Paragraph = styled.p`
-    font-family: 'Neuzeit Grotesk', sans-serif;
-    font-size: 1.2rem;
-    line-height: 1.4rem;
 `;
 
 export const Feedback = styled.h3`

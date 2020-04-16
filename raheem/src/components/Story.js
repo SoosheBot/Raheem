@@ -16,7 +16,7 @@ import Officer from "./Officer";
 import Back from '../assets/Back.svg';
 
 /* styles */
-import { PageContainer, BackButton, Container, Content, HeaderContainer, HeadingContainer, SubHeading, Paragraph, Controls, Divider, Label,  } from '../styles/global';
+import { PageContainer, BackButton, Container, Content, HeaderContainer, HeadingContainer, Controls, Divider, Feedback } from '../styles/global';
 import { StoryForm } from '../styles/global/forms.js';
 
 //buttons
@@ -84,21 +84,17 @@ function Story() {
                 </Container>
             <Divider />
 
-            {/* <Content>
-                <span className="thankyou">
-                    Thank you for your feedback!
-                </span>
-            </Content> */}
+
             <Container>
             <HeadingContainer className="page-top">
                 <h2>What Happened?</h2>
             </HeadingContainer>
 
             <Content>
-                <Paragraph className='instruction'>Describe the incident from start to finish. Be as descriptive
+                <p className='instruction'>Describe the incident from start to finish. Be as descriptive
                 as possible, and remember to include details about the officer's attitude
                 and actions during this encounter.
-                </Paragraph>
+                </p>
 
                 <StoryForm>
                     <form onSubmit={handleSubmit(onSubmit)} data-testid='form'>

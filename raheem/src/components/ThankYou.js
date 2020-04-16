@@ -47,7 +47,6 @@ function ThankYou() {
                         <img data-testid="goBackButton" onClick={() => history.goBack()} src={Back} alt="Go Back" />
                     </BackButton>
                 
-
                 {location.state === undefined &&
                     <div className="no-officer">
                         <p className="no-officer-text">No officer information was loaded.</p>
@@ -66,42 +65,40 @@ function ThankYou() {
                 }
                 </HeaderContainer>
             </Container>
-
             <Divider />
 
-            <Container>
             {cancelled === true &&
-                <Content>
-                    <Feedback>Thank you for your feedback!</Feedback>
-                    <HeadingContainer>
+                <Container className="thank-you">
+                    <HeadingContainer className="page-top">
                         <h2>Reminder Sent!</h2>
                     </HeadingContainer>
+                    
+                    <Content className="thanks">
                     <p className="instruction">Follow the link in your email to complete your story.</p>
-
+                    </Content>
                     <Controls >
                         <ButtonPrimary data-testid="homePageButton">Home</ButtonPrimary>
                         <ButtonSecondary data-testid="officerPageButton">Officer Page</ButtonSecondary>
                     </Controls>
-                </Content>}
-
+                </Container>
+            }
+                
             {submitted &&
-                <Content >
-                    <div>
-                        <Feedback>Thank you for your feedback!</Feedback>
-                    </div>
-                    <div>
-                        <HeaderContainer>
-                            <h2>Report Submitted!</h2>
-                        </HeaderContainer>
-                        <p>Your story will help end police violence.</p>
+                <Container className="thank-you">
+                    <HeadingContainer>
+                        <h2>Report Submitted!</h2>
+                    </HeadingContainer>
 
-                        <Controls>
-                            <ButtonPrimary data-testid="homePageButton" onClick={() => history.push(`/`)}>Home</ButtonPrimary>
-                            <ButtonSecondary data-testid="officerPageButton">Officer Page</ButtonSecondary>
-                        </Controls>
-                    </div>
-                </Content>}
-            </Container>
+                    <Content className="thanks">
+                        <p>Your story will help end police violence.</p>
+                    </Content>
+
+                    <Controls>
+                        <ButtonPrimary data-testid="homePageButton" onClick={() => history.push(`/`)}>Home</ButtonPrimary>
+                        <ButtonSecondary data-testid="officerPageButton">Officer Page</ButtonSecondary>
+                    </Controls>
+                </Container>
+            }
         </PageContainer>
     )
 }
