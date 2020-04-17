@@ -12,9 +12,8 @@ function DesktopHeader() {
 
     return (
         <HeaderContainer>
-            <TopBar />
-            <div className="header">
-                <div className="logo">
+            <div className="desktopheader">
+                <div className="desktoplogo">
                     <Link to="/">
                         <img src={Logo} alt="Raheem Logo" />
                     </Link>
@@ -38,7 +37,7 @@ const HeaderContainer = styled.div`
     justify-content: center;
     border-bottom: 3px solid #111111;
 
-    .header {
+    .desktopheader {
         width: 90%;
         height: 100%;
         background: #ffffff;
@@ -48,7 +47,7 @@ const HeaderContainer = styled.div`
         padding-top: 1%;
         padding-bottom: 1%;
 
-        .logo {
+        .desktoplogo {
             width: 15%;
             padding-left: 26px;
             padding-top: 33px;
@@ -60,24 +59,24 @@ const HeaderContainer = styled.div`
             display: flex;
             justify-content: center;
             align-items: center;
-            padding-right: 1%;
+            padding-right: 8%;
+
+            /* border: 2px solid red; */
     
             a {
-                background: #ffffff;
                 display: flex;
-                justify-content: center;
+                justify-content: space-between;
                 align-items: center;
-                height: 4rem;
-                width: 15rem;
                 text-decoration: none;
                 color: #111111;
                 font-family: 'Roboto', sans-serif;
                 font-size: 2.6rem;
                 font-weight: bold;
-                padding-left: 2rem;
-                line-height: 1.8rem;
+                margin: 7%;
                 transition: all 300ms;
                 align-self: center;
+
+                /* border: 2px solid orange; */
     
                 &:hover {
                     transition: background 300ms;
