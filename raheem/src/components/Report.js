@@ -71,12 +71,12 @@ export default function Report(props) {
   }
 
   /* handle submit for the demographics form */
-  const onSubmit = (data, values) => {
+  const onSubmit = (data) => {
     // console.log(data);
     dispatch({
       type: 'REPORT',
       payload: {
-        email: values.email,
+        email: data.email,
         race: data.race,
         gender: data.gender,
         selfIdentify: data.self_identify,
@@ -97,17 +97,12 @@ export default function Report(props) {
           race: data.race,
           gender: data.gender,
           selfIdentify: data.self_identify,
+          email: data.email,
           time: data.time,
           rating: rating,
           tags: toggledTags,
           dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}`,
           incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`,
-        }
-      )
-      .collection('emails')
-      .add(
-        {
-          emails: values.email
         }
       )
       .then(

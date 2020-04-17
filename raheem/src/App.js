@@ -15,7 +15,7 @@ import ThankYou from './components/ThankYou';
 import Test from './components/TestComponents/Test';
 import Header from './components/layout/Header';
 import Report from './components/Report';
-import Email from './components/Email';
+// import Email from './components/Email';
 
 function App() {
 
@@ -52,9 +52,9 @@ function App() {
           <Story />
         </Route>
 
-        <Route path="/email">
+        {/* <Route path="/email">
           <Email />
-        </Route>
+        </Route> */}
 
         <Route path="/thank-you">
           <ThankYou />

@@ -49,7 +49,7 @@ function Story() {
             .firestore()
             .collection('stories')
             .add({
-                reportRef: `/raheem-b6ed6/reports/${globalState.state.reportId}`,
+                reportRef: `/raheem-mercy/reports/${globalState.state.reportId}`,
                 storyBody: data
             })
         localStorage.setItem('completed', true);
