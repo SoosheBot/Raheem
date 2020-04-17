@@ -77,7 +77,7 @@ export const ReportForm = styled.div`
 
         //-- Content and field separation within form --//
         div {
-            font-family: 'Neuzeit Grotesk', sans-serif;
+            font-family: 'neuzeit-grotesk', sans-serif;
             display: flex;
             flex-direction: column;
 
@@ -156,7 +156,7 @@ export const ReportForm = styled.div`
     // Error font styling--//
     .error {
         color: red;
-        font-family: 'Neuzeit Grotesk', sans-serif;
+        font-family: 'neuzeit-grotesk', sans-serif;
         font-size: 1.2rem;
         font-weight: 300;
     }
@@ -173,6 +173,7 @@ export const ReportForm = styled.div`
         font-size: 2rem;
         padding-left: 1rem;
         color: #111111;
+        font-family: 'neuzeit-grotesk', sans-serif;
 
         &:first-child {
             border-top-left-radius: 0.5rem;
@@ -224,7 +225,7 @@ export const ReportForm = styled.div`
         font-size: 2rem;
         font-weight: 900;
         padding-left: 1rem;
-        font-family: 'Neuzeit Grotesk', sans-serif;
+        font-family: 'neuzeit-grotesk', sans-serif;
         border-radius: 0.5rem;
         border: 1px solid #111111;
         color: #C4C4C4;
@@ -257,6 +258,7 @@ export const ReportForm = styled.div`
             font-weight: 900;
             font-size: 2rem;
             padding-left: 1rem;
+            font-family: 'neuzeit-grotesk', sans-serif;
 
             @media (max-width: 440px) {
                 font-size: 1.6rem;
@@ -307,6 +309,7 @@ export const ReportForm = styled.div`
             color: #111111;
             border-radius: 6px;
             border: 1px #111111 solid;
+            font-family: 'neuzeit-grotesk', sans-serif;
 
             @media (max-width: 440px) {
                 font-size: 1.6rem;
@@ -347,6 +350,7 @@ export const ReportForm = styled.div`
             color: #111111;
             border-radius: 6px;
             border: 1px #111111 solid;
+            font-family: 'neuzeit-grotesk', sans-serif;
 
             @media (max-width: 440px) {
                 padding-left: 0.5rem;
@@ -406,8 +410,8 @@ export const StoryForm = styled.div`
             width: 100%;
             height: 60rem;
             resize: none;
-            font-size: 1.3rem;
-            font-family: 'Neuzeit Grotesk', sans-serif;
+            font-size: 1.6rem;
+            font-family: 'neuzeit-grotesk', sans-serif;
             
             border-radius: 20px;
             border: 1px solid #111111;

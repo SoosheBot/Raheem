@@ -308,46 +308,30 @@ export default function Report(props) {
                     <input type="radio" name="race" ref={register({ required: true })} value="asian" />
                     <span className="checkmark"></span>
                   </label>
-                  {/* <div className="radio">
-                    <input name="race" type="radio" ref={register({ required: true })} value="asian" />
-                                    Asian
-                  </div> */}
+
                   <label className="container">
                     <span className="inp-text">Black/African</span>
                     <input type="radio" name="race" ref={register({ required: true })} value="african american" />
                     <span className="checkmark"></span>
                   </label>
-                  {/* <div className="radio">
-                    <input name="race" type="radio" ref={register({ required: true })} value="african american" />
-                                    Black/African
-                  </div> */}
+
                   <label className="container">
                     <span className="inp-text">Latinx</span>
                     <input type="radio" name="race" ref={register({ required: true })} value="latinx" />
                     <span className="checkmark"></span>
                   </label>
-                  {/* <div className="radio">
-                    <input name="race" type="radio" ref={register({ required: true })} value="latinx" />
-                                    Latinx
-                  </div> */}
+
                   <label className="container">
                     <span className="inp-text">Middle Eastern</span>
                     <input type="radio" name="race" ref={register({ required: true })} value="middle eastern" />
                     <span className="checkmark"></span>
                   </label>
-                  {/* <div className="radio">
-                    <input name="race" type="radio" ref={register({ required: true })} value="middle eastern" />
-                                    Middle Eastern
-                  </div> */}
+
                   <label className="container">
                     <span className="inp-text">Native American</span>
                     <input type="radio" name="race" ref={register({ required: true })} value="native american" />
                     <span className="checkmark"></span>
                   </label>
-                  {/* <div className="radio">
-                    <input name="race" type="radio" ref={register({ required: true })} value="native american" />
-                                    Native American
-                  </div> */}
                 </div>
                 <div className="raceColumns">
                   <label className="container">
@@ -355,46 +339,30 @@ export default function Report(props) {
                     <input type="radio" name="race" ref={register({ required: true })} value="pacific islander" />
                     <span className="checkmark"></span>
                   </label>
-                  {/* <div className="radio">
-                    <input name="race" type="radio" ref={register({ required: true })} value="pacific islander" />
-                                    Pacific Islander
-                  </div> */}
+
                   <label className="container">
                     <span className="inp-text">South Asian</span>
                     <input type="radio" name="race" ref={register({ required: true })} value="south asian" />
                     <span className="checkmark"></span>
                   </label>
-                  {/* <div className="radio">
-                    <input name="race" type="radio" ref={register({ required: true })} value="south asian" />
-                                    South Asian
-                  </div> */}
+
                   <label className="container">
                     <span className="inp-text">White</span>
                     <input type="radio" name="race" ref={register({ required: true })} value="white" />
                     <span className="checkmark"></span>
                   </label>
-                  {/* <div className="radio">
-                    <input name="race" type="radio" ref={register({ required: true })} value="white" />
-                                    White
-                  </div> */}
+
                   <label className="container">
                     <span className="inp-text">Multiracial</span>
                     <input type="radio" name="race" ref={register({ required: true })} value="multiracial" />
                     <span className="checkmark"></span>
                   </label>
-                  {/* <div className="radio">
-                    <input name="race" type="radio" ref={register({ required: true })} value="multiracial" />
-                                    Multiracial
-                  </div> */}
+
                   <label className="container">
                     <span className="inp-text">Prefer Not To Say</span>
                     <input type="radio" name="race" ref={register({ required: true })} value="opt out" />
                     <span className="checkmark"></span>
                   </label>
-                  {/* <div className="radio">
-                    <input name="race" type="radio" ref={register({ required: true })} value="no preference" />
-                                    Prefer Not To Say
-                  </div> */}
                 </div>
               </div>
 
@@ -410,37 +378,25 @@ export default function Report(props) {
                 <input type="radio" name="gender" ref={register({ required: true })} value="female" />
                 <span className="checkmark"></span>
               </label>
-              {/* <div className="radio">
-                <input name="gender" type="radio" ref={register()} value="female" />
-                            Female
-              </div> */}
+
               <label className="container">
                 <span className="inp-text">Male</span>
                 <input type="radio" name="gender" ref={register({ required: true })} value="male" />
                 <span className="checkmark"></span>
               </label>
-              {/* <div className="radio">
-                <input name="gender" type="radio" ref={register()} value="male" />
-                            Male
-              </div> */}
+
               <label className="container">
                 <span className="inp-text">Non-Binary</span>
                 <input type="radio" name="gender" ref={register({ required: true })} value="non binary" />
                 <span className="checkmark"></span>
               </label>
-              {/* <div className="radio">
-                <input name="gender" type="radio" ref={register()} value="non binary" />
-                            Non-Binary
-              </div> */}
+
               <label className="container">
                 <span className="inp-text">Prefer Not To Say</span>
                 <input type="radio" name="gender" ref={register({ required: true })} value="opt out" />
                 <span className="checkmark"></span>
               </label>
-              {/* <div className="radio">
-                <input name="gender" type="radio" ref={register()} value="opt out" />
-                            Prefer Not To Say
-              </div> */}
+
               {/* Prefer To Self-Identify */}
               <label className="container">
                 <input type="radio" name="gender" ref={register({ required: true })} value="female" />
@@ -455,18 +411,6 @@ export default function Report(props) {
                   ref={register()}
                 />
               </label>
-              {/* <div className="radio">
-                <input name="gender" type="radio" ref={register()} value="self identify" />
-                <input
-                  style={{ width: '75%' }}
-                  className="self"
-                  type="text"
-                  name="self_identify"
-                  placeholder="Prefer To Self Identify"
-                  autoComplete="off"
-                  ref={register()}
-                />
-              </div> */}
             </Content>
             <Content className="page-end-desktop">
               {/* AGE INPUTS*/}
