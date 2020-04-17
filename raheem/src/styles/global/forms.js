@@ -4,6 +4,69 @@ export const ReportForm = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
+
+    /* radio input container */
+    .container {
+    position: relative;
+    padding-left: 6.3rem;
+    margin: 1.2rem 0;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    }
+
+    /* hide the browser's default radio input */
+    .container input[type=radio] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    }
+
+    /* custom radio button */
+    .checkmark {
+    position: absolute;
+    top: -2rem;
+    left: 0;
+    height: 40px;
+    width: 40px;
+    background-color: #ffffff;
+    border: 1px solid #888888;
+    border-radius: 50%;
+    }
+
+    /* create the indicator (the dot/circle - hidden when not checked) */
+    .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    }
+
+    /* show the indicator (dot/circle) when checked */
+    .container input[type=radio]:checked ~ .checkmark:after {
+    display: block;
+    }
+
+    /* style the indicator (dot/circle) */
+    .container .checkmark:after {
+        top: 4px;
+        left: 4px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #111111;
+    }
+
+    /* style the actual field text */
+    .container span.inp-text {
+        font-family: 'neuzeit-grotesk';
+        font-size: 2.6rem;
+        line-height: 2.8rem;
+        font-weight: bold;
+        color: #111111;
+        position: relative;
+        top: -1.3rem;
     }
 
     form {

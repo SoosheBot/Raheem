@@ -10,6 +10,10 @@ export const Splash = styled.div`
     background-color: #FFF600;
     margin: 0;
 
+    @media (max-width: 500px) {
+        background: #ffffff;
+    }
+
         .home {
             height: 100vh;
             width: 100%;
@@ -73,7 +77,7 @@ export const ButtonSecondary = styled.button`
     font-family: 'Noto Serif JP', serif;
     font-size: 2.2rem;
     line-height: 3.2rem;
-    letter-spacing: 0.261905rem;
+    letter-spacing: -0.261905px;
     transition: all 300ms;
 
     &:hover {
@@ -91,7 +95,7 @@ export const ButtonSecondary = styled.button`
             height: 5.2rem;
             font-size: 2.0rem;
             line-height: 2.4rem;
-            letter-spacing: 0.23809rem;
+            letter-spacing: -0.23809px;
             margin: 0.5rem 0;
             width: 100%;
         }
@@ -112,7 +116,7 @@ export const ButtonPrimary = styled.button`
     font-family: 'Noto Serif JP', serif;
     font-size: 2.2rem;
     line-height: 3.2rem;
-    letter-spacing: 0.261905rem;
+    letter-spacing: -0.261905px;
     transition: all 300ms;
 
     &:hover {
@@ -125,7 +129,7 @@ export const ButtonPrimary = styled.button`
             height: 5.2rem;
             font-size: 2.0rem;
             line-height: 2.4rem;
-            letter-spacing: 0.23809rem;
+            letter-spacing: -0.23809px;
             margin: 0.5rem 0;
         }
 `;
@@ -157,10 +161,6 @@ export const PageContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-        @media(max-width: 500px){
-            width: 100%
-        }
     
     .thank-you {
         padding-top: 8rem;
@@ -179,6 +179,11 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    // mention to KP
+    @media (max-width: 500px) {
+        min-width: 100%;
+    }
 
     .about {
         display: flex;
@@ -323,6 +328,7 @@ export const OfficerContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border: 1px solid red;
 
     @media (max-width: 500px){
         width: 65%;
@@ -331,20 +337,23 @@ export const OfficerContainer = styled.div`
 
 export const OfficerPic = styled.div`
     margin-bottom: 2rem;
-    width: 182px;
-    height: 186px;
+    // width: 182px;
+    // height: 186px;
+    width: 104px;
+    height: 104px;
     left: 93px; 
     top: 111px;
-    // height: 186.4px;
-    border-radius: 50%;
+    // border-radius: 50%;
     background: grey;
-    border: 1px solid #111111;
+    // border: 1px solid #111111;
 
     img {
         object-fit: cover;
-        width: 100%;
-        height: 184px;
-        border-radius: 50%;
+        // width: 100%;
+        // height: 184px;
+        width: 104px;
+        height: 104px;
+        // border-radius: 50%;
     }
 `;
 
@@ -375,7 +384,7 @@ export const HeadingContainer = styled.div`
     width: 100%;
     margin-bottom: 1rem;
 
-    @media(max-width: 500px){
+    @media(max-width: 500px) {
         justify-content: center;
         width: 100%;
     }

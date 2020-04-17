@@ -15,21 +15,20 @@ import ThankYou from './components/ThankYou';
 import Test from './components/TestComponents/Test';
 import Header from './components/layout/Header';
 import Report from './components/Report';
-import Email from './components/Email';
 
 function App() {
 
   return (
     <div>
 
-        <Splash>
+      <Splash>
         <Header className="home" />
         {/* routes using react-router-dom */}
 
         <Route exact path="/">
-            <div className="home">
-              <Title>Raheem</Title>
-            </div>
+          <div className="home">
+            <Title>Raheem</Title>
+          </div>
         </Route>
 
         <Route path="/QR">
@@ -50,10 +49,6 @@ function App() {
 
         <Route path="/story">
           <Story />
-        </Route>
-
-        <Route path="/email">
-          <Email />
         </Route>
 
         <Route path="/thank-you">
