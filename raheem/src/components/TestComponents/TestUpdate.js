@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 
+//NOTE -- THIS COLLECTION HAS BEEN DISABLED IN FIREBASE FOR PRODUCTION, USERS WILL HAVE ADD AND GET PERMISSIONS ONLY--NO PUT/DELETE
 
 const TestUpdate = ({ setEditing, currentItem, updateItem }) => {
     const [item, setItem] = useState(currentItem);

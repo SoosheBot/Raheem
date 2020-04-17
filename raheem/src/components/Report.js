@@ -257,7 +257,10 @@ export default function Report(props) {
 
               <SmallHeading></SmallHeading>
               <div className="inputs">
-                <input type="time" placeholder="time" name="time" ref={register} defaultValue="15:00" />
+                <input type="time" 
+                placeholder="time" 
+                name="time" ref={register} 
+                defaultValue="15:00" />
               </div>
             </Content>
 
