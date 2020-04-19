@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory, useLocation } from 'react-router-dom';
-// import styled from 'styled-components';
 
 /*FireStore*/
 import firebase from "../config/firebase";
@@ -16,7 +15,6 @@ import Officer from "./Officer";
 import Back from "../assets/Back.svg";
 
 /* styles */
-// import { PageContainer, BackButton, Container, Content, HeaderContainer, HeadingContainer, Controls, Divider, Feedback } from '../styles/global';
 import { PageContainer, BackButton, Container, Content, HeaderContainer, HeadingContainer, Controls, Divider } from '../styles/global';
 import { StoryForm } from '../styles/global/forms.js';
 
@@ -24,7 +22,7 @@ import { StoryForm } from '../styles/global/forms.js';
 import { ButtonPrimary, ButtonSecondary } from '../styles/global';
 
 function Story() {
-  /* bring in useHistory from react-router-dom */
+    /* bring in useHistory from react-router-dom */
 
 
     /* bring in useHistory from react-router-dom */
@@ -42,7 +40,6 @@ function Story() {
     // const [officer, setOfficer] = useState(location.state);
     const [officer] = useState(location.state);
 
-    // const { handleSubmit, register, errors } = useForm();
     const { handleSubmit, register } = useForm();
     const onSubmit = data => {
         // console.log('firing onSubmit');
@@ -63,60 +60,59 @@ function Story() {
         <PageContainer>
             <Container>
                 <HeaderContainer>
-                {/* {console.log('TESTING. IS STATE UPDATED?', globalState)} */}
-                <BackButton className="go-back">
-                    <img onClick={() => history.goBack()} src={Back} alt="Go Back" data-testid="go-back" />
-                </BackButton>
+                    {/* {console.log('TESTING. IS STATE UPDATED?', globalState)} */}
+                    <BackButton className="go-back">
+                        <img onClick={() => history.goBack()} src={Back} alt="Go Back" data-testid="go-back" />
+                    </BackButton>
 
-                {location.state === undefined &&
-                    <div className="no-officer">
-                        <p className="no-officer-text">No officer information was loaded. </p>
-                        <p className="no-officer-text">Please rescan your QR code or continue submitting
+                    {location.state === undefined &&
+                        <div className="no-officer">
+                            <p className="no-officer-text">No officer information was loaded. </p>
+                            <p className="no-officer-text">Please rescan your QR code or continue submitting
                             your report with no officer information attached.</p>
-                    </div>
-                }
+                        </div>
+                    }
 
-                {officer && officer.officer !== false &&
-                    <Officer
-                        profile={{
-                            officer: `${officer.officerRank} ${officer.officerLName}`,
-                            precinct: officer.PoliceDepartment,
-                            department: officer.officerBadgeID,
-                            img: officer.img
-                    }} />
-                }
+                    {officer && officer.officer !== false &&
+                        <Officer
+                            profile={{
+                                officer: `${officer.officerRank} ${officer.officerLName}`,
+                                department: officer.officerPoliceDepartment,
+                                img: officer.img
+                            }} />
+                    }
                 </HeaderContainer>
-                </Container>
+            </Container>
             <Divider />
 
 
             <Container>
-            <HeadingContainer className="page-top">
-                <h2>What Happened?</h2>
-            </HeadingContainer>
+                <HeadingContainer className="page-top">
+                    <h2>What Happened?</h2>
+                </HeadingContainer>
 
-            <Content>
+                <Content>
 
-                <p className='instruction'>Describe the incident from start to finish. Be as descriptive
-                as possible, and remember to include details about the officer's attitude
-                and actions during this encounter.
+                    <p className='instruction'>Describe the incident from start to finish. Be as descriptive
+                    as possible, and remember to include details about the officer's attitude
+                    and actions during this encounter.
                 </p>
 
-                <StoryForm>
-                    <form onSubmit={handleSubmit(onSubmit)} data-testid='form'>
-                        <textarea name="story" ref={register} />
-                
-                        <Controls>
-                            <ButtonPrimary onClick={() => {
-                                localStorage.setItem('completed', false);
-                                history.push(`/thank-you`, officer);
-                            }}>Save For Later</ButtonPrimary>
-                            <ButtonSecondary type="submit">Complete Report</ButtonSecondary>
-                        </Controls>
-                    </form>
-                </StoryForm>
+                    <StoryForm>
+                        <form onSubmit={handleSubmit(onSubmit)} data-testid='form'>
+                            <textarea name="story" ref={register} />
+
+                            <Controls>
+                                <ButtonPrimary onClick={() => {
+                                    localStorage.setItem('completed', false);
+                                    history.push(`/thank-you`, officer);
+                                }}>Save For Later</ButtonPrimary>
+                                <ButtonSecondary type="submit">Complete Report</ButtonSecondary>
+                            </Controls>
+                        </form>
+                    </StoryForm>
                 </Content>
-        </Container>
+            </Container>
         </PageContainer>
     )
 }
