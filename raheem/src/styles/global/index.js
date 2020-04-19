@@ -381,7 +381,7 @@ export const OfficerPic = styled.div`
     }
 
     img {
-        object-fit: contain;
+        object-fit: cover;
         width: 104px;
         height: 104px;
 
@@ -389,6 +389,10 @@ export const OfficerPic = styled.div`
             width: 95px;
             height: 95px;
         }
+    }
+
+    .no-img {
+        display: none;
     }
 `;
 

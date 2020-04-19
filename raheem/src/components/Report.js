@@ -73,6 +73,7 @@ export default function Report(props) {
   /* handle submit for the demographics form */
   const onSubmit = (data) => {
     console.log(`DATA: `, data);
+    const date = new Date().toLocaleString();
     dispatch({
       type: 'REPORT',
       payload: {
@@ -85,7 +86,8 @@ export default function Report(props) {
         rating: rating,
         tags: toggledTags,
         dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}`,
-        incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`
+        incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`,
+        reportDate: date
       }
     }); // update our global state
 
@@ -105,6 +107,7 @@ export default function Report(props) {
           tags: toggledTags,
           dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}`,
           incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`,
+          reportDate: date
         }
       )
       .then(
@@ -144,8 +147,7 @@ export default function Report(props) {
             <Officer
               profile={{
                 officer: `${officer.officerRank} ${officer.officerLName}`,
-                precinct: officer.PoliceDepartment,
-                badge: officer.officerBadgeID,
+                department: officer.officerPoliceDepartment,
                 img: officer.img
               }} />
           }
@@ -399,7 +401,6 @@ export default function Report(props) {
 
               {/* Prefer To Self-Identify */}
               <label className="container">
-                <input type="radio" name="gender" ref={register({ required: true })} value="female" />
                 <span className="checkmark"></span>
                 <input
                   style={{ width: '90%', position: 'relative', top: '-2.5rem' }}

@@ -13,8 +13,9 @@ function Officer(props) {
             <OfficerPic><img src={props.profile.img} alt="Officer Picture" /></OfficerPic>
             <div className="officer-info">
                 <OfficerName>{props.profile.officer}</OfficerName>
-                <OfficerInfo>Precinct: {props.profile.precinct}</OfficerInfo>
-                <OfficerInfo>Department: {props.profile.department}</OfficerInfo>
+                <OfficerInfo>{props.profile.department}</OfficerInfo>
+                {/* <OfficerInfo>Precinct: {props.profile.precinct}</OfficerInfo>
+                <OfficerInfo>Department: {props.profile.department}</OfficerInfo> */}
             </div>
         </OfficerContainer>
     )

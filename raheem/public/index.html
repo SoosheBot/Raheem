@@ -53,17 +53,6 @@
   <!-- The following content in the <script> tag adds Google Analytics tracking and some minor integration functionality to the Raheem page. It is copied from the Firebase app when "Analytics" was enabled. -->
 
   <script>
-    // Your web app's Firebase configuration
-    var firebaseConfig = {
-      apiKey: process.env.REACT_APP_apiKey,
-      authDomain: process.env.REACT_APP_authDomain,
-      databaseURL: process.env.REACT_APP_databaseURL,
-      projectId: process.env.REACT_APP_projectId,
-      storageBucket: process.env.REACT_APP_storageBucket,
-      messagingSenderId: process.env.REACT_APP_messagingSenderId,
-      appId: process.env.REACT_APP_appId,
-      measurementId: process.env.REACT_APP_measurementId
-    };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();

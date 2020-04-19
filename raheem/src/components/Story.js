@@ -76,8 +76,7 @@ function Story() {
                         <Officer
                             profile={{
                                 officer: `${officer.officerRank} ${officer.officerLName}`,
-                                precinct: officer.PoliceDepartment,
-                                department: officer.officerBadgeID,
+                                department: officer.officerPoliceDepartment,
                                 img: officer.img
                             }} />
                     }

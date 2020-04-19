@@ -58,7 +58,7 @@ function Landing(props) {
                     <Officer
                         profile={{
                             officer: `${officer.officerRank} ${officer.officerLName}`,
-                            precinct: officer.officerPoliceDepartment,
+                            department: officer.officerPoliceDepartment,
                             badge: officer.officerBadgeID,
                             img: officer.img
                         }}
