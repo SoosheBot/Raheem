@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import firebase from "../firebase";
+
+//*FireStore*
+import firebase from "../config/firebase";
 
 // components
 import Officer from './Officer';
@@ -25,7 +27,7 @@ function Landing(props) {
             .get()
             .then(function (querySnapshot) {
                 querySnapshot.forEach(function (doc) {
-                    if (doc.data().officerBadgeID == params.id) {
+                    if (doc.data().officerBadgeID === params.id) {
                         setOfficer(doc.data());
                     }
                     else {

@@ -3,7 +3,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { useHistory, useLocation } from 'react-router-dom';
 
 /*FireStore*/
-import firebase from "../firebase";
+import firebase from "../config/firebase";
 
 /* styles */
 import { PageContainer, Container, HeadingContainer, BackButton, Content, Divider, SmallDivider, HeaderContainer, SmallHeading, Controls } from '../styles/global';

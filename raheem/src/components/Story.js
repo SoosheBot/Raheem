@@ -4,7 +4,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 /*FireStore*/
-import firebase from "../firebase";
+import firebase from "../config/firebase";
 
 /* bring in our global form store */
 import { formStore } from "../formStore.js";
