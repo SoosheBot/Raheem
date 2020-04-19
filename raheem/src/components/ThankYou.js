@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import { useHistory, useLocation } from 'react-router-dom';
 
 
@@ -46,23 +45,23 @@ function ThankYou() {
                     <BackButton className="go-back">
                         <img data-testid="goBackButton" onClick={() => history.goBack()} src={Back} alt="Go Back" />
                     </BackButton>
-                
-                {location.state === undefined &&
-                    <div className="no-officer">
-                        <p className="no-officer-text">No officer information was loaded.</p>
-                        <p className="no-officer-text">Please rescan your QR code or continue submitting
-                                your report with no officer information attached.</p>
-                    </div>
-                }
 
-                {officer && officer.officer !== false &&
-                    <Officer profile={{
-                        officer: `${officer.officerRank} ${officer.officerLName}`,
-                        precinct: officer.PoliceDepartment,
-                        badge: officer.officerBadgeID,
-                        img: officer.img
-                    }} />
-                }
+                    {location.state === undefined &&
+                        <div className="no-officer">
+                            <p className="no-officer-text">No officer information was loaded.</p>
+                            <p className="no-officer-text">Please rescan your QR code or continue submitting
+                                your report with no officer information attached.</p>
+                        </div>
+                    }
+
+                    {officer && officer.officer !== false &&
+                        <Officer profile={{
+                            officer: `${officer.officerRank} ${officer.officerLName}`,
+                            precinct: officer.PoliceDepartment,
+                            badge: officer.officerBadgeID,
+                            img: officer.img
+                        }} />
+                    }
                 </HeaderContainer>
             </Container>
             <Divider />
@@ -72,9 +71,9 @@ function ThankYou() {
                     <HeadingContainer className="page-top">
                         <h2>Reminder Sent!</h2>
                     </HeadingContainer>
-                    
+
                     <Content className="thanks">
-                    <p className="instruction">Follow the link in your email to complete your story.</p>
+                        <p className="instruction">Follow the link in your email to complete your story.</p>
                     </Content>
                     <Controls >
                         <ButtonPrimary data-testid="homePageButton">Home</ButtonPrimary>
@@ -82,7 +81,7 @@ function ThankYou() {
                     </Controls>
                 </Container>
             }
-                
+
             {submitted &&
                 <Container className="thank-you">
                     <HeadingContainer>

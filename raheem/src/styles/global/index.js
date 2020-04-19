@@ -3,12 +3,17 @@ import styled from 'styled-components';
 //---yellow background container---///
 export const Splash = styled.div`
     width: 100%;
+    // min-width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #FFF600;
     margin: 0;
+
+    // @media (max-width: 500px) {
+    //     background: #ffffff;
+    // }
 
         .home {
             height: 100vh;
@@ -47,7 +52,7 @@ export const Controls = styled.div`
     }
 
     p {
-        font-family: 'Neuzeit Grotesk', sans-serif;
+        font-family: 'neuzeit-grotesk', sans-serif;
         font-size: 1.8rem;
         margin: 1rem 0 0;
 
@@ -73,7 +78,7 @@ export const ButtonSecondary = styled.button`
     font-family: 'Noto Serif JP', serif;
     font-size: 2.2rem;
     line-height: 3.2rem;
-    letter-spacing: 0.261905rem;
+    letter-spacing: -0.261905px;
     transition: all 300ms;
 
     &:hover {
@@ -91,7 +96,7 @@ export const ButtonSecondary = styled.button`
             height: 5.2rem;
             font-size: 2.0rem;
             line-height: 2.4rem;
-            letter-spacing: 0.23809rem;
+            letter-spacing: -0.23809px;
             margin: 0.5rem 0;
             width: 100%;
         }
@@ -112,7 +117,7 @@ export const ButtonPrimary = styled.button`
     font-family: 'Noto Serif JP', serif;
     font-size: 2.2rem;
     line-height: 3.2rem;
-    letter-spacing: 0.261905rem;
+    letter-spacing: -0.261905px;
     transition: all 300ms;
 
     &:hover {
@@ -125,7 +130,7 @@ export const ButtonPrimary = styled.button`
             height: 5.2rem;
             font-size: 2.0rem;
             line-height: 2.4rem;
-            letter-spacing: 0.23809rem;
+            letter-spacing: -0.23809px;
             margin: 0.5rem 0;
         }
 `;
@@ -138,7 +143,9 @@ export const BackButton = styled.div`
     margin-left: 2rem;
 
     @media (max-width: 500px){
-        margin-right: 2rem;
+        margin: 0;
+        margin-left: 20px;
+        width: 100%;
     }
 
     &:hover {
@@ -158,9 +165,9 @@ export const PageContainer = styled.div`
     justify-content: center;
     align-items: center;
 
-        @media(max-width: 500px){
-            width: 100%
-        }
+    @media (max-width: 500px) {
+        min-width: 100%;
+    }
     
     .thank-you {
         padding-top: 8rem;
@@ -179,6 +186,10 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media (max-width: 500px) {
+        min-width: 100%;
+    }
 
     .about {
         display: flex;
@@ -234,6 +245,16 @@ export const Container = styled.div`
 
     .thanks{
         padding-bottom: 20rem;
+
+        p {
+            font-family: 'neuzeit-grotesk', sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 1.8rem;
+            line-height: 1.6rem;
+            letter-spacing: -0.196364px;
+            color: #111111;
+        }
     }
 
     span {
@@ -249,7 +270,7 @@ export const Container = styled.div`
         font-weight: normal;
         font-size: 2.2rem;
         line-height: 3.0rem;
-        font-family: 'Neuzeit Grotesk', sans-serif;
+        font-family: 'neuzeit-grotesk', sans-serif;
 
         @media(max-width: 500px){
             font-size: 1.8rem;
@@ -273,10 +294,18 @@ export const HeaderContainer = styled.div`
     flex-direction: row;
 
 
+    // @media(max-width: 500px){
+    //     width: 100%;
+    //     display: flex;
+    //     flex-direction: row;
+    //     padding-bottom: .5rem;
+    // }
+
     @media(max-width: 500px){
         width: 100%;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        align-items: center;
         padding-bottom: .5rem;
     }
 
@@ -297,7 +326,7 @@ export const HeaderContainer = styled.div`
     }
 
     p.no-officer-text {
-        font-family: 'Neuzeit Grotesk', sans-serif;
+        font-family: 'neuzeit-grotesk', sans-serif;
         font-size: 1.6rem;
         margin: 1rem 0;
         width: 100%;
@@ -317,54 +346,85 @@ export const YellowHeaderContainer = styled.div`
 
 //officer display styling
 export const OfficerContainer = styled.div`
+    margin-top: 2rem;
     padding: 3rem 0;
-    width: 50%;
+    width: 70%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 
+    @media (max-width: 1200px) {
+        width: 90%;
+    }
+
     @media (max-width: 500px){
-        width: 65%;
+        width: 100%;
+        margin: 5rem 0 3rem; 
+        padding: 0 20px;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    @media (max-width: 422px){
+        padding: 0 10px;
     }
 `;
 
 export const OfficerPic = styled.div`
-    margin-bottom: 2rem;
-    width: 182px;
-    height: 186px;
-    left: 93px; 
-    top: 111px;
-    // height: 186.4px;
-    border-radius: 50%;
+    width: 104px;
+    height: 104px;
     background: grey;
-    border: 1px solid #111111;
+
+    @media (max-width: 400px) {
+        width: 95px;
+        height: 95px;
+    }
 
     img {
         object-fit: cover;
-        width: 100%;
-        height: 184px;
-        border-radius: 50%;
+        width: 104px;
+        height: 104px;
+
+        @media (max-width: 400px) {
+            width: 95px;
+            height: 95px;
+        }
+    }
+
+    .no-img {
+        display: none;
     }
 `;
 
 export const OfficerName = styled.p`
-    font-family: 'Noto Serif JP', serif;
-    text-align: center;
-    line-height: 30px;
+    font-family: 'neuzeit-grotesk', sans-serif;
     font-weight: 900;
-    font-size: 22px;
-    font-weight: bold;
+    font-size: 2.6rem;
+    line-height: 2.8rem;
+    letter-spacing: -0.283636px;
+    color: #000;
+
+    @media (max-width: 400px) {
+        font-size: 2rem;
+    }
 `;
 
 export const OfficerInfo = styled.p`
-    font-family: 'Noto Serif JP', serif;
-    text-align: center;
-    line-height: 24px;
-    font-size: 16px;
-    font-weight: 900;
+    font-family: 'neuzeit-grotesk', sans-serif;
+    line-height: 2.4rem;
+    font-weight: normal;
+    font-size: 1.8rem;
+    color: #000;
+    letter-spacing: -0.196364px;
+
+    @media (max-width: 400px) {
+        font-size: 1.4rem;
+    }
 `;
 
+// export const ReportHeading = styled.div`
+
+// `;
 
 //yellow highlight heading box
 export const HeadingContainer = styled.div`
@@ -375,7 +435,7 @@ export const HeadingContainer = styled.div`
     width: 100%;
     margin-bottom: 1rem;
 
-    @media(max-width: 500px){
+    @media(max-width: 500px) {
         justify-content: center;
         width: 100%;
     }
@@ -383,7 +443,7 @@ export const HeadingContainer = styled.div`
     h2 {
         font-size: 2.8rem;
         font-weight: 900;
-        font-family: 'Neuzeit Grotesk', sans-serif;
+        font-family: 'neuzeit-grotesk', sans-serif;
         background: #FFF600;
         line-height: 0.4rem;
         padding: 0 1.2rem 1.8rem 0;
@@ -397,7 +457,7 @@ export const HeadingContainer = styled.div`
     }
 
     p {
-        font-family: 'Neuzeit Grotesk', sans-serif;
+        font-family: 'neuzeit-grotesk', sans-serif;
         font-style: normal;
         font-weight: normal;
         font-size: 2.2rem;
@@ -415,7 +475,7 @@ export const HeadingContainer = styled.div`
     span.light {
         font-weight: 300;
         font-size: 1.6rem;
-        font-family: 'Neuzeit Grotesk', sans-serif;
+        font-family: 'neuzeit-grotesk', sans-serif;
     }
 `;
 
@@ -486,7 +546,7 @@ export const Title = styled.h1`
 `;
 
 export const Heading = styled.h2`
-    font-family: 'Neuzeit Grotesk', sans-serif;
+    font-family: 'neuzeit-grotesk', sans-serif;
     font-weight: 900;
     font-size: 4.4rem;
     line-height: 4.2rem;
@@ -498,7 +558,7 @@ export const Heading = styled.h2`
 `;
 
 export const Subheading = styled.h3`
-    font-family: 'Neuzeit Grotesk', sans-serif;
+    font-family: 'neuzeit-grotesk', sans-serif;
     font-weight: 900;
     font-size: 2.6rem;
     margin: 2% 0px 3%;
@@ -512,7 +572,7 @@ export const Subheading = styled.h3`
 `;
 
 export const SmallHeading = styled.h4`
-    font-family: 'Neuzeit Grotesk', sans-serif;
+    font-family: 'neuzeit-grotesk', sans-serif;
     font-size: 2.2rem;
     font-weight: 700;
     margin: 1rem 0 3rem;

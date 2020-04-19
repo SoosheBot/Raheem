@@ -26,7 +26,7 @@ export const Tag = styled.button`
     color: #111111;
     font-size: 1.8rem;
     line-height: 2.4rem;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'neuzeit-grotesk', sans-serif;
     transition: all 300ms;
 
     @media (max-width: 1000px){

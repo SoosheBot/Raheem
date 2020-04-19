@@ -28,19 +28,15 @@ function Landing(props) {
                     if (doc.data().officerBadgeID == params.id) {
                         setOfficer(doc.data());
                     }
-                    else {
-                        console.log(`NO MATCH`);
-                    }
                 })
             })
             .catch(err => {
                 console.log('FAIL');
             })
-    }, []);
+    }, [params.id]);
 
     return (
         <PageContainer>
-            {console.log(officer)}
             <Container>
                 <YellowHeaderContainer>
                     <Heading>
@@ -62,7 +58,7 @@ function Landing(props) {
                     <Officer
                         profile={{
                             officer: `${officer.officerRank} ${officer.officerLName}`,
-                            precinct: officer.officerPoliceDepartment,
+                            department: officer.officerPoliceDepartment,
                             badge: officer.officerBadgeID,
                             img: officer.img
                         }}
@@ -71,23 +67,23 @@ function Landing(props) {
 
                 {!params.id &&
                     <span>
-                    <Content>
-                        <p className="officererror">No officer information found. Please try re-scanning your QR code.</p>
-                    </Content>
-                        
-                    <SmallDivider />
-                    
-                    <Content>
-                        <p className="search-top">Alternatively, search for an officer by name, badge number, location, or department:</p>
-                        <Input
-                            type="text"
-                            name="searchQuery"
-                            placeholder="Officer Information"
-                            autoComplete="off"
-                        />
+                        <Content>
+                            <p className="officererror">No officer information found. Please try re-scanning your QR code.</p>
+                        </Content>
 
-                        <p className="search-bottom">If you would like to fill out a report without adding officer information, please continue by clicking the 'Add a Report' button below.</p>
-                    </Content>
+                        <SmallDivider />
+
+                        <Content>
+                            <p className="search-top">Alternatively, search for an officer by name, badge number, location, or department:</p>
+                            <Input
+                                type="text"
+                                name="searchQuery"
+                                placeholder="Officer Information"
+                                autoComplete="off"
+                            />
+
+                            <p className="search-bottom">If you would like to fill out a report without adding officer information, please continue by clicking the 'Add a Report' button below.</p>
+                        </Content>
                     </span>
                 }
 
