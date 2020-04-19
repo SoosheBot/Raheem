@@ -12,9 +12,12 @@ import Landing from './components/Landing';
 import About from './components/About';
 import Story from './components/Story';
 import ThankYou from './components/ThankYou';
-import Test from './components/TestComponents/Test';
+
 import Header from './components/layout/Header';
 import Report from './components/Report';
+
+// unused paths
+// import Test from './components/TestComponents/Test';
 // import Email from './components/Email';
 
 function App() {

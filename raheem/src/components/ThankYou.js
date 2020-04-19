@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import { useHistory, useLocation } from 'react-router-dom';
 
 
 import Officer from './Officer';
 
 //styles
-import { PageContainer, Container, BackButton, Feedback, Content, Divider, Controls, HeaderContainer, HeadingContainer } from '../styles/global';
+// import { PageContainer, Container, BackButton, Feedback, Content, Divider, Controls, HeaderContainer, HeadingContainer } from '../styles/global';
+import { PageContainer, Container, BackButton, Content, Divider, Controls, HeaderContainer, HeadingContainer } from '../styles/global';
 
 //buttons
 import { ButtonPrimary, ButtonSecondary } from '../styles/global';
@@ -28,7 +29,8 @@ function ThankYou() {
     const [submitted, setSubmitted] = useState(false);
 
     /* state for officer from Story or Email component */
-    const [officer, setOfficer] = useState(location.state);
+    // const [officer, setOfficer] = useState(location.state);
+    const [officer] = useState(location.state);
 
     useEffect(() => {
         if (localStorage.getItem('completed') === 'true') {

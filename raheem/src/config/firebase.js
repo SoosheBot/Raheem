@@ -16,7 +16,7 @@ import 'firebase/firestore';
 //   measurementId: "G-3H9BJ0D7SR"
 // };
 
-const firebaseConfig = {
+var firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
   databaseURL: process.env.REACT_APP_FIREBASE_DATABASEURL,

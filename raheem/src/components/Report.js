@@ -1,5 +1,7 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+// import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
+// import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useHistory, useLocation } from 'react-router-dom';
 
 /*FireStore*/
@@ -49,7 +51,8 @@ export default function Report(props) {
   const [rating, setRating] = useState("");
 
   /* state for officer passed in from Landing component */
-  const [officer, setOfficer] = useState(location.state);
+  // const [officer, setOfficer] = useState(location.state);
+  const [ officer ] = useState(location.state);
 
   console.log(location);
 

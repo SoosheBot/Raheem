@@ -37,7 +37,7 @@ function Landing(props) {
             })
             .catch(err => {
                 console.log('FAIL');
-            })
+            }) // eslint-disable-next-line
     }, []);
 
     return (

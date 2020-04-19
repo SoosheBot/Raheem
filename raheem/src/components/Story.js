@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 
 /*FireStore*/
 import firebase from "../config/firebase";
@@ -16,7 +16,8 @@ import Officer from "./Officer";
 import Back from "../assets/Back.svg";
 
 /* styles */
-import { PageContainer, BackButton, Container, Content, HeaderContainer, HeadingContainer, Controls, Divider, Feedback } from '../styles/global';
+// import { PageContainer, BackButton, Container, Content, HeaderContainer, HeadingContainer, Controls, Divider, Feedback } from '../styles/global';
+import { PageContainer, BackButton, Container, Content, HeaderContainer, HeadingContainer, Controls, Divider } from '../styles/global';
 import { StoryForm } from '../styles/global/forms.js';
 
 //buttons
@@ -38,9 +39,11 @@ function Story() {
     const { dispatch } = globalState;
 
     /* state for officer passed in from Report component */
-    const [officer, setOfficer] = useState(location.state);
+    // const [officer, setOfficer] = useState(location.state);
+    const [officer] = useState(location.state);
 
-    const { handleSubmit, register, errors } = useForm();
+    // const { handleSubmit, register, errors } = useForm();
+    const { handleSubmit, register } = useForm();
     const onSubmit = data => {
         // console.log('firing onSubmit');
         // console.log(`globalState:${globalState.state}`);
