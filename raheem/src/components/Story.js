@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useHistory, useLocation } from 'react-router-dom';
 
 /*FireStore*/
-import firebase from "../firebase";
+import firebase from "../config/firebase";
 
 /* bring in our global form store */
 import { formStore } from "../formStore.js";
@@ -37,7 +37,8 @@ function Story() {
     const { dispatch } = globalState;
 
     /* state for officer passed in from Report component */
-    const [officer, setOfficer] = useState(location.state);
+    // const [officer, setOfficer] = useState(location.state);
+    const [officer] = useState(location.state);
 
     const { handleSubmit, register } = useForm();
     const onSubmit = data => {
@@ -48,7 +49,7 @@ function Story() {
             .firestore()
             .collection('stories')
             .add({
-                reportRef: `/raheem-b6ed6/reports/${globalState.state.reportId}`,
+                reportRef: `/raheem-mercy/reports/${globalState.state.reportId}`,
                 storyBody: data
             })
         localStorage.setItem('completed', true);

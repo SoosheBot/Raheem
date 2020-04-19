@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+// import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 
 /* styles */
@@ -13,7 +13,7 @@ import {
     Content,
     Heading,
     Subheading,
-    SmallHeading,
+    // SmallHeading,
     Divider,
     Label,
     Controls,
@@ -23,7 +23,9 @@ import {
 
 
 //buttons
-import { ButtonPrimary, ButtonSecondary } from '../styles/global';
+// commented this out -- ButtonPrimary not used
+// import { ButtonPrimary, ButtonSecondary } from '../styles/global';
+import { ButtonSecondary } from '../styles/global';
 
 /* assets */
 import QR from "../assets/QR.svg";
@@ -31,10 +33,11 @@ import QR from "../assets/QR.svg";
 function QRcode() {
 
     const history = useHistory();
-    const { register, handleSubmit, errors } = useForm();
-    const onSubmit = data => {
-        console.log(data);
-    }
+    // unused -- commented out to avoid errors
+    // const { register, handleSubmit, errors } = useForm();
+    // const onSubmit = data => {
+    //     console.log(data);
+    // }
 
     return (
         <PageContainer>

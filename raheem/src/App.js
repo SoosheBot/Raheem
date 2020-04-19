@@ -12,7 +12,7 @@ import Landing from './components/Landing';
 import About from './components/About';
 import Story from './components/Story';
 import ThankYou from './components/ThankYou';
-import Test from './components/TestComponents/Test';
+
 import Header from './components/layout/Header';
 import Report from './components/Report';
 
@@ -60,10 +60,10 @@ function App() {
         </Route>
 
         {/* route to officer page in RC2 */}
-
-        <Route path="/test">
+        {/* test path removed after successful trial */}
+        {/* <Route path="/test">
           <Test />
-        </Route>
+        </Route> */}
       </Splash>
     </div>
   );

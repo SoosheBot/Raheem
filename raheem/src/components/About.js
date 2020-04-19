@@ -2,8 +2,9 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 //styles
-import styled from 'styled-components';
-import { PageContainer, Container, YellowHeaderContainer, Content, BackButton, SmallHeading, Heading, Subheading, HeadingContainer, HeaderContainer } from '../styles/global';
+// import styled from 'styled-components';
+// import { PageContainer, Container, YellowHeaderContainer, Content, BackButton, SmallHeading, Heading, Subheading, HeadingContainer, HeaderContainer } from '../styles/global';
+import { PageContainer, Container, Content, BackButton, SmallHeading, Heading, Subheading, HeadingContainer, HeaderContainer } from '../styles/global';
 
 /* assets */
 import Back from '../assets/Back.svg';
@@ -14,9 +15,9 @@ function About(props) {
     /* bring in useHistory hook from react-router-dom */
     const history = useHistory();
 
-    const onSubmit = () => {
-        history.push(`/details`);
-    }
+    // const onSubmit = () => {
+    //     history.push(`/details`);
+    // }
 
     return (
         <PageContainer>
@@ -119,16 +120,16 @@ function About(props) {
 
 export default About;
 
-const ButtonContainer = styled.div`
-    width: 100%;
-    background-color: #111111;
-    color: #FFF600;
-    padding: 1rem 20px;
-    font-family: 'Neuzeit Grotesk', sans-serif;
-    font-size: 1.6rem;
+// const ButtonContainer = styled.div`
+//     width: 100%;
+//     background-color: #111111;
+//     color: #FFF600;
+//     padding: 1rem 20px;
+//     font-family: 'Neuzeit Grotesk', sans-serif;
+//     font-size: 1.6rem;
 
-    a.top {
-        color: #FFF600;
-        text-decoration: none; 
-    }
-`
+//     a.top {
+//         color: #FFF600;
+//         text-decoration: none; 
+//     }
+// `

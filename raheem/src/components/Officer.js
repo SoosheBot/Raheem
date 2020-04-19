@@ -1,8 +1,8 @@
 import React from 'react'
-import styled from 'styled-components'
+// import styled from 'styled-components'
 
 /* assets */
-import OfficerPlaceholder from '../assets/OfficerPlaceholder.png';
+// import OfficerPlaceholder from '../assets/OfficerPlaceholder.png';
 
 //styles
 import { OfficerContainer, OfficerPic, OfficerName, OfficerInfo } from '../styles/global'
@@ -10,7 +10,7 @@ import { OfficerContainer, OfficerPic, OfficerName, OfficerInfo } from '../style
 function Officer(props) {
     return (
         <OfficerContainer>
-            <OfficerPic><img src={props.profile.img} alt="Officer Picture" /></OfficerPic>
+            <OfficerPic><img src={props.profile.img} alt="Officer Profile" /></OfficerPic>
             <div className="officer-info">
                 <OfficerName>{props.profile.officer}</OfficerName>
                 <OfficerInfo>{props.profile.department}</OfficerInfo>

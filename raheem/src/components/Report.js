@@ -1,9 +1,11 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+// import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
+// import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useHistory, useLocation } from 'react-router-dom';
 
 /*FireStore*/
-import firebase from "../firebase";
+import firebase from "../config/firebase";
 
 /* styles */
 import { PageContainer, Container, HeadingContainer, BackButton, Content, Divider, SmallDivider, HeaderContainer, SmallHeading, Controls } from '../styles/global';
@@ -49,7 +51,8 @@ export default function Report(props) {
   const [rating, setRating] = useState("");
 
   /* state for officer passed in from Landing component */
-  const [officer, setOfficer] = useState(location.state);
+  // const [officer, setOfficer] = useState(location.state);
+  const [ officer ] = useState(location.state);
 
   console.log(location);
 
@@ -261,7 +264,10 @@ export default function Report(props) {
 
               <SmallHeading></SmallHeading>
               <div className="inputs">
-                <input type="time" placeholder="time" name="time" ref={register} defaultValue="15:00" />
+                <input type="time" 
+                placeholder="time" 
+                name="time" ref={register} 
+                defaultValue="15:00" />
               </div>
             </Content>
 

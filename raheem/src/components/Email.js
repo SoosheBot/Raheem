@@ -3,7 +3,7 @@
 // import styled from 'styled-components';
 
 // /*FireStore*/
-// import firebase from "../firebase"
+// import firebase from "../config/firebase";
 
 // //form validation
 // import { useForm } from "react-hook-form";
