@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
 //*FireStore*
-import firebase from "../config/firebase";
+import firebase from '../config/firebase';
 
 // components
 import Officer from './Officer';

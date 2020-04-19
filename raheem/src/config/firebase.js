@@ -16,11 +16,11 @@ import 'firebase/firestore';
 //   measurementId: "G-3H9BJ0D7SR"
 // };
 
-var firebaseConfig = {
+const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
   databaseURL: process.env.REACT_APP_FIREBASE_DATABASEURL,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
+  projectId: "raheem-mercy",
   storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
 
   // may not be using the following, commenting it out if so

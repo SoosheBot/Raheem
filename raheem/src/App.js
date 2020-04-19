@@ -65,10 +65,10 @@ function App() {
         </Route>
 
         {/* route to officer page in RC2 */}
-
-        <Route path="/test">
+        {/* test path removed after successful trial */}
+        {/* <Route path="/test">
           <Test />
-        </Route>
+        </Route> */}
       </Splash>
     </div>
   );
