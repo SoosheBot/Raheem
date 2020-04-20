@@ -16,7 +16,7 @@ var firebaseConfig = {
   // Initialize Firebase -- prevent "firebase has already been called" error with the 'if' statement
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig)
-}
+  }
 
 export default firebase;
 
