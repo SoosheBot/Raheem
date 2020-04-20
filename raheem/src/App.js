@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 /* styles */
 import { Splash, Title } from './styles/global/index'
@@ -15,16 +15,34 @@ import ThankYou from './components/ThankYou';
 import Dashboard from './components/Dashboard/Dashboard';
 
 import Header from './components/layout/Header';
+import DesktopHeader from './components/layout/DesktopHeader';
 import Report from './components/Report';
 
 function App() {
+  const [windowWidth, setWindowWidth ] = useState(window.innerWidth);
+
+  const handleWindowResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
+  useEffect(() => {        
+    window.addEventListener('resize', handleWindowResize);  
+    // console.log(windowWidth)       
+    // return () => {            
+    //   window.removeEventListener('resize', handleWindowResize);      
+    // }  
+  },[]);
 
   return (
     <div>
 
       <Splash>
-        <Header className="home" />
+        {windowWidth < 500 &&
+        <Header className="home" />}
         {/* routes using react-router-dom */}
+
+        {windowWidth > 500 &&
+        <DesktopHeader className="home"/>}
 
         <Route exact path="/">
           <div className="home">
