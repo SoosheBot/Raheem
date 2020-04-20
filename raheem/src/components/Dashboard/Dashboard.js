@@ -2,16 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
 /* firebase */
-import firebase from '../config/firebase';
+import firebase from '../../config/firebase';
 
 /* styles */
-import { PageContainer, Container, Content, BackButton, SmallHeading, Heading, Subheading, HeadingContainer, HeaderContainer } from '../../styles/global';
+import { PageContainer } from '../../styles/global';
 import { DashboardOfficer, DashboardView, DashboardTitle, DashboardSearch, DashboardMainTitle, DashboardTagSearch } from '../../styles/dashboard';
 
 export default function Dashboard() {
 
     const history = useHistory();
     const params = useParams();
+    const [officer, setOfficer] = useState({});
 
     useEffect(() => {
         firebase
