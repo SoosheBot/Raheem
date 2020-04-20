@@ -1,5 +1,4 @@
 import firebase from 'firebase/app';
-import 'firebase/database';
 import 'firebase/firestore';
 
 
@@ -14,17 +13,9 @@ var firebaseConfig = {
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID
 };
   
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+  // Initialize Firebase -- prevent "firebase has already been called" error with the 'if' statement
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig)
+}
 
-//   const googleProvider = new firebase.auth.GoogleAuthProvider();
-
-  // const database = firebase.database().ref();
-
-// export const authRef = firebase.auth();
-// export const loginGoogle = () => firebaseAuth(googleProvider);
-// export const raheemRef = database.child('raheem-mercy');
-// export const reportsRef = database.child('reports');
-
-
-  export default firebase;
+export default firebase;
