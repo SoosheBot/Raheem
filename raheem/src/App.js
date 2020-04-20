@@ -12,6 +12,7 @@ import Landing from './components/Landing';
 import About from './components/About';
 import Story from './components/Story';
 import ThankYou from './components/ThankYou';
+import Dashboard from './components/Dashboard/Dashboard';
 
 import Header from './components/layout/Header';
 import Report from './components/Report';
@@ -59,7 +60,11 @@ function App() {
           <About />
         </Route>
 
-        {/* route to officer page in RC2 */}
+        {/* route to officer dashboard in RC2 */}
+        <Route path="/officers/:id">
+          <Dashboard />
+        </Route>
+
         {/* test path removed after successful trial */}
         {/* <Route path="/test">
           <Test />
