@@ -1,10 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
+
+/* firebase */
+import firebase from '../config/firebase';
 
 /* styles */
 import { PageContainer, Container, Content, BackButton, SmallHeading, Heading, Subheading, HeadingContainer, HeaderContainer } from '../../styles/global';
 import { DashboardOfficer, DashboardView, DashboardTitle, DashboardSearch, DashboardMainTitle, DashboardTagSearch } from '../../styles/dashboard';
 
 export default function Dashboard() {
+
+    const history = useHistory();
+    const params = useParams();
+
+    useEffect(() => {
+        firebase
+            .firestore()
+            .collection("officers")
+            .get()
+            .then(function (querySnapshot) {
+                querySnapshot.forEach(function (doc) {
+                    if (doc.data().officerBadgeID == params.id) {
+                        setOfficer(doc.data());
+                    }
+                })
+            })
+            .catch(err => {
+                console.log('FAIL');
+            })
+    }, [params.id]);
+
     return (
         <PageContainer>
             <DashboardOfficer>
