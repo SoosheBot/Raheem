@@ -19,3 +19,4 @@ var firebaseConfig = {
 }
 
 export default firebase;
+
