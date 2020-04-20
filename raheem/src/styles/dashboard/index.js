@@ -99,7 +99,7 @@ export const DashboardSearch = styled.div`
     }
 `;
 
-export const DashboardMainTitle = styled.h2`
+export const DashboardMainTitle = styled.div`
     padding: 0 20px;
     margin-bottom: 2rem;
     width: 100%;
