@@ -7,15 +7,22 @@ import { Splash, Title } from './styles/global/index'
 import { Route } from 'react-router-dom';
 
 /* components */
+//global
+import About from './components/About';
+import Header from './components/layout/Header';
+
+//form
 import QRcode from './components/QRcode';
 import Landing from './components/Landing';
-import About from './components/About';
+import Report from './components/Report';
 import Story from './components/Story';
 import ThankYou from './components/ThankYou';
-import Dashboard from './components/Dashboard/Dashboard';
 
-import Header from './components/layout/Header';
-import Report from './components/Report';
+//officer dashboard
+import Dashboard from './components/Dashboard/Dashboard';
+import Stories from './components/Dashboard/Stories';
+import Stats from './components/Dashboard/Stats';
+import Map from './components/Dashboard/Map';
 
 function App() {
 
@@ -63,6 +70,18 @@ function App() {
         {/* route to officer dashboard in RC2 */}
         <Route path="/officers/:id">
           <Dashboard />
+        </Route>
+
+        <Route path="/officers/:id/stories">
+          <Stories />
+        </Route>
+
+        <Route path="/officers/:id/stats">
+          <Stats />
+        </Route>
+
+        <Route path="/officers/:id/map">
+          <Map />
         </Route>
 
         {/* test path removed after successful trial */}

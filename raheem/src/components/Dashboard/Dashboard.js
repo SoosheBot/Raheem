@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams, NavLink } from 'react-router-dom';
 
 /* firebase */
 import firebase from '../../config/firebase';
@@ -54,9 +54,15 @@ export default function Dashboard() {
 
             <DashboardView>
                 <div className="title-container">
-                    <DashboardTitle>Stories</DashboardTitle>
-                    <DashboardTitle>Stats</DashboardTitle>
-                    <DashboardTitle>Map</DashboardTitle>
+                    <NavLink to="/officers/:id/stories">
+                        <DashboardTitle>Stories</DashboardTitle>
+                    </NavLink>
+                    <NavLink to="/officers/:id/stats">
+                        <DashboardTitle>Stats</DashboardTitle>
+                    </NavLink>
+                    <NavLink to="/officers/:id/map">
+                        <DashboardTitle>Map</DashboardTitle>
+                    </NavLink>
                 </div>
             </DashboardView>
         </PageContainer>
