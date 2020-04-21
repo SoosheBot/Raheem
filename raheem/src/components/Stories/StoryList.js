@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+/* victory */
+import { VictoryBar, VictoryChart, VictoryContainer } from 'victory';
+
 /* firebase */
 import firebase from '../../config/firebase';
 
@@ -29,6 +32,19 @@ export default function StoryList() {
         disrespected: 0,
         neglected: 0
     })
+
+    /* mock data for tags */
+    const tagData = [
+        { tag: 'helped', total: 3 },
+        { tag: 'protected', total: 5 },
+        { tag: 'illegally_searched', total: 10 },
+        { tag: 'profiled', total: 7 },
+        { tag: 'physically_attacked', total: 9 },
+        { tag: 'harassed', total: 3 },
+        { tag: 'wrongly_accused', total: 6 },
+        { tag: 'disrespected', total: 8 },
+        { tag: 'neglected', total: 2 }
+    ]
 
     /* useEffect to grab all reports */
     useEffect(() => {
@@ -104,7 +120,9 @@ export default function StoryList() {
                 <SliderContainer />
 
                 <TagStatContainer>
-
+                    <VictoryChart style={{ parent: { maxWidth: '50%' } }}>
+                        <VictoryBar data={tagData} horizontal="true" y="total" x="tag" />
+                    </VictoryChart>
                 </TagStatContainer>
 
                 <p className="see-more"><Link to="#">See More</Link></p>
@@ -139,6 +157,6 @@ export default function StoryList() {
                     })}
                 </div>
             </StoryListContainer>
-        </PageContainer>
+        </PageContainer >
     )
 }

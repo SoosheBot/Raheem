@@ -85,6 +85,7 @@ const HeaderContainer = styled.div`
                 margin-top: 4rem;
                 display: flex;
                 flex-direction: column;
+                z-index: 1;
     
                 a {
                     background: #ffffff;

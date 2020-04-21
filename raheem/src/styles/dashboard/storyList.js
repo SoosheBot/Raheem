@@ -74,15 +74,18 @@ export const TopContainer = styled.div`
 export const SliderContainer = styled.div`
     margin-top: 3.6rem;
     width: 100%;
-    height: 5rem;
     background: #C4C4C4;
 `;
 
 export const TagStatContainer = styled.div`
     margin-top: 4.1rem;
+    padding: 1rem;
     width: 100%;
     height: 17rem;
     background: #C4C4C4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 export const StoryListSearch = styled.div`
