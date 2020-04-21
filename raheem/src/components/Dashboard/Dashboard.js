@@ -21,7 +21,7 @@ export default function Dashboard() {
             .get()
             .then(function (querySnapshot) {
                 querySnapshot.forEach(function (doc) {
-                    if (doc.data().officerBadgeID == params.id) {
+                    if (doc.data().officerBadgeID === params.id) {
                         setOfficer(doc.data());
                     }
                 })
