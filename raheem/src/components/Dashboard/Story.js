@@ -36,13 +36,6 @@ export default function Story(props) {
         return age;
     }
 
-    // const newLine = () => {
-    //     let storyLength = story.storyBody.story.length;
-    //     if(storyLength % 10 == 0) {
-
-    //     }
-    // }
-
     useEffect(() => {
         fetchStory();
     }, []);

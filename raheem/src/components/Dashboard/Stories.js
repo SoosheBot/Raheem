@@ -13,7 +13,6 @@ export default function Stories(props) {
     const params = useParams();
     const [reports, setReports] = useState([]);
     const [stories, setStories] = useState([]);
-    const [combined, setCombined] = useState([]);
 
     /* useEffect to grab all reports made on the specific officer */
     useEffect(() => {
@@ -55,7 +54,6 @@ export default function Stories(props) {
 
     return (
         <div>
-            {/* {console.log('REPORTS ', reports)} */}
             {reports.map((report, idx) => {
                 return (
                     <Story key={idx} report={report} />
