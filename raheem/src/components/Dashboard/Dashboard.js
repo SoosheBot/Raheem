@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams, Route } from 'react-router-dom';
 
 /* firebase */
 import firebase from '../../config/firebase';
@@ -7,6 +7,9 @@ import firebase from '../../config/firebase';
 /* styles */
 import { PageContainer } from '../../styles/global';
 import { DashboardOfficer, DashboardView, DashboardTitle, DashboardSearch, DashboardMainTitle, DashboardTagSearch } from '../../styles/dashboard';
+
+/* components */
+import Stories from './Stories';
 
 export default function Dashboard() {
 
@@ -35,19 +38,26 @@ export default function Dashboard() {
         <PageContainer>
             <DashboardOfficer>
                 <DashboardMainTitle>
-                    <h2>Officer Name</h2>
+                    <h2>{`${officer.officerFName} ${officer.officerLName}`}</h2>
                 </DashboardMainTitle>
                 <div className="db-officer-info">
                     <div className="db-officer-img">
-                        <div className="img"></div>
+                        <img src={officer.img} alt="Officer" />
                     </div>
 
                     <div className="db-officer-info">
-                        <div className="placeholder"></div>
-                        <div className="placeholder"></div>
-                        <div className="placeholder"></div>
-                        <div className="placeholder"></div>
-                        <div className="placeholder"></div>
+                        <div className="placeholder">
+                            <h3>{officer.officerRank}</h3>
+                        </div>
+                        <div className="placeholder">
+                            <h3>{officer.officerPoliceDepartment}</h3>
+                        </div>
+                        <div className="placeholder">
+                            <h3>Salary: ${officer.officerSalary}</h3>
+                        </div>
+                        <div className="placeholder">
+                            <h3>First Employed: {officer.firstEmployed}</h3>
+                        </div>
                     </div>
                 </div>
             </DashboardOfficer>
@@ -58,6 +68,10 @@ export default function Dashboard() {
                     <DashboardTitle>Stats</DashboardTitle>
                     <DashboardTitle>Map</DashboardTitle>
                 </div>
+
+                <Route exact path="/officers/:id/stories">
+                    <Stories officerBadgeID={officer.officerBadgeID} />
+                </Route>
             </DashboardView>
         </PageContainer>
     )

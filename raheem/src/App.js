@@ -6,43 +6,47 @@ import { Splash, Title } from './styles/global/index'
 /* route */
 import { Route } from 'react-router-dom';
 
-/* components */
+/* report components */
 import QRcode from './components/QRcode';
 import Landing from './components/Landing';
 import About from './components/About';
 import Story from './components/Story';
 import ThankYou from './components/ThankYou';
-import Dashboard from './components/Dashboard/Dashboard';
-
-import Header from './components/layout/Header';
-import DesktopHeader from './components/layout/DesktopHeader';
 import Report from './components/Report';
 
+/* dashboard components */
+import Dashboard from './components/Dashboard/Dashboard';
+import StoryList from './components/Stories/StoryList';
+
+/* structural styling components */
+import Header from './components/layout/Header';
+import DesktopHeader from './components/layout/DesktopHeader';
+
 function App() {
-  const [windowWidth, setWindowWidth ] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const handleWindowResize = () => {
     setWindowWidth(window.innerWidth);
   };
 
-  useEffect(() => {        
-    window.addEventListener('resize', handleWindowResize);  
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowResize);
     // console.log(windowWidth)       
     // return () => {            
     //   window.removeEventListener('resize', handleWindowResize);      
     // }  
-  },[]);
+  }, []);
 
   return (
     <div>
 
       <Splash>
         {windowWidth < 500 &&
-        <Header className="home" />}
+          <Header className="home" />}
         {/* routes using react-router-dom */}
 
         {windowWidth > 500 &&
-        <DesktopHeader className="home"/>}
+          <DesktopHeader className="home" />}
 
         <Route exact path="/">
           <div className="home">
@@ -79,6 +83,10 @@ function App() {
         </Route>
 
         {/* route to officer dashboard in RC2 */}
+        <Route path="/dashboard/stories">
+          <StoryList />
+        </Route>
+
         <Route path="/officers/:id">
           <Dashboard />
         </Route>
