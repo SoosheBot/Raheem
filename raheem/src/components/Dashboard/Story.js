@@ -36,13 +36,19 @@ export default function Story(props) {
         return age;
     }
 
+    // const newLine = () => {
+    //     let storyLength = story.storyBody.story.length;
+    //     if(storyLength % 10 == 0) {
+
+    //     }
+    // }
+
     useEffect(() => {
         fetchStory();
     }, []);
 
     return (
         <StoryContainer>
-            {console.log(report)}
             <div className="story-header">
                 <h3>Rating</h3>
                 <h3>{report.reportDate}</h3>
@@ -68,8 +74,9 @@ export default function Story(props) {
             </div>
 
             <StoryTagContainer>
-                <StoryTag>Illegally Searched</StoryTag>
-                <StoryTag>Harassed</StoryTag>
+                {report.tags.map((tag, idx) => {
+                    return <StoryTag key={idx}>{tag}</StoryTag>
+                })}
             </StoryTagContainer>
             {story.storyBody !== undefined && <StoryContent>Story: {story.storyBody.story}</StoryContent>}
         </StoryContainer>

@@ -46,11 +46,18 @@ export default function Dashboard() {
                     </div>
 
                     <div className="db-officer-info">
-                        <div className="placeholder"></div>
-                        <div className="placeholder"></div>
-                        <div className="placeholder"></div>
-                        <div className="placeholder"></div>
-                        <div className="placeholder"></div>
+                        <div className="placeholder">
+                            <h3>{officer.officerRank}</h3>
+                        </div>
+                        <div className="placeholder">
+                            <h3>{officer.officerPoliceDepartment}</h3>
+                        </div>
+                        <div className="placeholder">
+                            <h3>Salary: ${officer.officerSalary}</h3>
+                        </div>
+                        <div className="placeholder">
+                            <h3>First Employed: {officer.firstEmployed}</h3>
+                        </div>
                     </div>
                 </div>
             </DashboardOfficer>

@@ -28,7 +28,7 @@ export const DashboardOfficer = styled.div`
         }
 
         .db-officer-img {
-            width: 50%;
+            width: 45%;
 
             @media (min-width: 1440px) {
                 width: 30.8rem;
@@ -43,14 +43,39 @@ export const DashboardOfficer = styled.div`
         }
 
         .db-officer-info {
-            width: 50%;
+            width: 55%;
             display: flex;
             flex-direction: column;
+            justify-content: center;
 
             .placeholder {
+                font-family: 'neuzeit-grotesk', sans-serif;
                 width: 100%;
-                background: #C4C4C4;
                 height: 2.6rem;
+                display: flex;
+                align-items: center;
+                margin-bottom: 1rem;
+                border-bottom: 1px solid #555555;
+
+                &:last-child {
+                    border: none;
+                    margin-top: none;
+                }
+
+                .officer-info-sm {
+                    font-size: 1.8rem;
+                    line-height: 2.4rem;
+                    letter-spacing: -0.196363px;
+                    padding-left: 1rem;
+                }
+
+                h3 {
+                    font-size: 1.8rem;
+                    line-height: 2.4rem;
+                    font-weight: 900;
+                    font-family: 'neuzeit-grotesk', sans-serif;
+                    font-size: 1.6rem;
+                }
             }
         }
     }
@@ -145,7 +170,7 @@ export const DashboardTagSearch = styled.div`
 export const StoryContainer = styled.div`
     width: 100%;
     padding: 0 20px;
-    margin: 1rem 0 3rem;
+    margin: 5rem 0;
 
     .story-header {
         width: 100%;
