@@ -5,9 +5,6 @@ import { Link } from 'react-router-dom';
 /* assets */
 import Logo from '../../assets/Logo.svg';
 
-/* styles */
-import { TopBar } from '../../styles/global';
-
 function DesktopHeader() {
 
     return (

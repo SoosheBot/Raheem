@@ -143,6 +143,10 @@ export const StoryListSearch = styled.div`
             width: 45%;
             text-align: center;
 
+            &:hover {
+                cursor: pointer;
+            }
+
             p {
                 font-size: 1.4rem;
                 line-height: 3.4rem;

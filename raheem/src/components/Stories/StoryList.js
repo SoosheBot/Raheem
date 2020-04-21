@@ -17,21 +17,33 @@ import Search from '../../assets/Search.svg';
 
 /* components */
 import Story from '../Dashboard/Story';
+import Filter from './Filter';
 
 export default function StoryList() {
 
     const [reports, setReports] = useState([]);
-    const [tagTotals, setTagTotals] = useState({
-        helped: 0,
-        protected: 0,
-        illegally_searched: 0,
-        profiled: 0,
-        physically_attacked: 0,
-        harassed: 0,
-        wrongly_accused: 0,
-        disrespected: 0,
-        neglected: 0
-    })
+    const [filtering, setFiltering] = useState(false);
+    const [queries, setQueries] = useState([]);
+    // const [tagTotals, setTagTotals] = useState({
+    //     helped: 0,
+    //     protected: 0,
+    //     illegally_searched: 0,
+    //     profiled: 0,
+    //     physically_attacked: 0,
+    //     harassed: 0,
+    //     wrongly_accused: 0,
+    //     disrespected: 0,
+    //     neglected: 0
+    // })
+
+    useEffect(() => {
+        if (filtering === true) {
+            document.body.classList.add('no-scroll');
+        }
+        else if (filtering === false) {
+            document.body.classList.remove('no-scroll');
+        }
+    }, [filtering, setFiltering])
 
     /* mock data for tags */
     const tagData = [
@@ -64,27 +76,27 @@ export default function StoryList() {
             })
     }, []);
 
-    const getTagTotals = (tagName) => {
-        const count = reports.reduce((total, report) => {
-            report.tags.map((tag) => {
-                if (tag === tagName) {
-                    return total = total + 1;
-                }
-                else {
-                    return null;
-                }
-            })
+    // const getTagTotals = (tagName) => {
+    //     const count = reports.reduce((total, report) => {
+    //         report.tags.map((tag) => {
+    //             if (tag === tagName) {
+    //                 return total = total + 1;
+    //             }
+    //             else {
+    //                 return null;
+    //             }
+    //         })
 
-            return total;
-        }, 0)
+    //         return total;
+    //     }, 0)
 
-        setTagTotals({
-            ...tagTotals,
-            [tagName]: count
-        })
+    //     setTagTotals({
+    //         ...tagTotals,
+    //         [tagName]: count
+    //     })
 
-        return count;
-    }
+    //     return count;
+    // }
 
     // useEffect(() => {
     //     /* iterate through our reports and total up the tags */
@@ -103,8 +115,9 @@ export default function StoryList() {
 
     return (
         <PageContainer>
-            {console.log(`REPORTS COMING BACK `, reports)}
-            {console.log(`TAG TOTALS `, tagTotals)}
+            {filtering === true && <Filter filtering={filtering} setFiltering={setFiltering} queries={queries} setQueries={setQueries} />}
+            {/* {console.log(`REPORTS COMING BACK `, reports)}
+            {console.log(`TAG TOTALS `, tagTotals)} */}
             <StoryListContainer>
                 <div className="title-container">
                     <Title className="active">Stories</Title>
@@ -140,7 +153,10 @@ export default function StoryList() {
                     </div>
 
                     <div className="filter">
-                        <div>
+                        <div onClick={() => {
+                            window.scroll(0, 0);
+                            setFiltering(true);
+                        }}>
                             <p>Filter <img src={CarotDown} alt="Drop Down" /></p>
                         </div>
                         <div>
