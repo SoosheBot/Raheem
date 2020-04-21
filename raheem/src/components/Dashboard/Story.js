@@ -8,9 +8,11 @@ import { StoryContainer, StoryContent, StoryTagContainer, StoryTag } from '../..
 
 export default function Story(props) {
 
+    /* bring in our report as props and create a slice of state for our story */
     const { report } = props;
     const [story, setStory] = useState({});
 
+    /* fetch story based on report id (document id in Firebase) */
     const fetchStory = () => {
         firebase
             .firestore()
@@ -28,6 +30,7 @@ export default function Story(props) {
             })
     }
 
+    /* get the age of the user who submitted the report */
     const getAge = () => {
         const d = new Date();
         const year = d.getFullYear();
@@ -37,13 +40,13 @@ export default function Story(props) {
     }
 
     useEffect(() => {
-        fetchStory();
+        fetchStory(); // fetch our story when the Story component is rendered
     }, []);
 
     return (
         <StoryContainer>
             <div className="story-header">
-                <h3>Rating</h3>
+                <h3>Rating {report.rating}</h3>
                 <h3>{report.reportDate}</h3>
             </div>
 
