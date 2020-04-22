@@ -95,102 +95,174 @@ export default function Stats(props) {
         e.preventDefault(); // prevent default refresh from button clicks
 
     }
-    
-    const togglePositivity = (e) => {
-        e.preventDefault(); // prevent default refresh from button clicks
-        e.target.classList.toggle("toggled"); // toggle the 'toggled' class for styling when clicked
-
-    }
-    
 
     //function to toggle between visual and list views
     const toggleDisplay = (e) => {
-        // e.target.classList.toggle("toggled")
         const list = document.getElementById("list-view")
         const display = document.getElementById("visual-view")
-    if ( list.style.display === "none"){
-        list.style.display = 'block';
-        display.style.display = 'none';
+        if ( list.style.display === "none"){
+            list.style.display = 'block';
+            display.style.display = 'none';
         } else {
-            list.style.display = 'none';
-            display.style.display = 'block';
+                list.style.display = 'none';
+                display.style.display = 'block';
+        }
+    }
+
+    //list view positive and negative toggle
+    const negative = document.getElementsByClassName("neg")[0]
+    const positive = document.getElementsByClassName("pos")[0]
+
+    const togglePositive = (e) => {
+        e.preventDefault();
+        if (positive.style.display === 'block'){
+            positive.style.display = 'block';
+            negative.style.display = 'none';
+        } else if(positive.style.display === "none") {
+            positive.style.display = 'block';
+            negative.style.display = 'none';
+        } else {
+            negative.style.display = 'none';
+        }
+    }
+
+    const toggleNegative = (e) => {
+        e.preventDefault();
+        if (negative.style.display === 'block'){
+            negative.style.display = 'block';
+            positive.style.display = 'none';
+        } else if(negative.style.display === "none") {
+            negative.style.display = 'block';
+            positive.style.display = 'none';
+        } else {
+            positive.style.display = 'none';
+        }
+    }
+
+    //visual view positive and negative toggle
+    const visnegative = document.getElementsByClassName("visneg")[0]
+    const vispositive = document.getElementsByClassName("vispos")[0]
+
+    const toggleVisPositive = (e) => {
+        e.preventDefault();
+        if (vispositive.style.display === 'block'){
+            vispositive.style.display = 'block';
+            visnegative.style.display = 'none';
+        } else if(vispositive.style.display === "none") {
+            vispositive.style.display = 'block';
+            visnegative.style.display = 'none';
+        } else {
+            visnegative.style.display = 'none';
+        }
+    }
+
+    const toggleVisNegative = (e) => {
+        e.preventDefault();
+        if (visnegative.style.display === 'block'){
+            visnegative.style.display = 'block';
+            vispositive.style.display = 'none';
+        } else if(visnegative.style.display === "none") {
+            visnegative.style.display = 'block';
+            vispositive.style.display = 'none';
+        } else {
+            vispositive.style.display = 'none';
         }
     }
 
     return (
         <StatsContainer>
         <FormGroup>
-        <StatsContentContainer className="page-top">
-        {/* toggle */}
-            <SwitchContainer>
-            <label>List View</label>
-                <YellowSwitch 
-                    checked={displayed.checkedA} 
-                    onChange={toggleDisplay} 
-                    name="display" />
-            <label>Visual View</label>
-            </SwitchContainer>
-
-            <div className="tags">
-                <Tag onClick={togglePositivity, toggleTag}>Negative Interactions</Tag>
-                <Tag onClick={togglePositivity, toggleTag}>Positive Interactions</Tag>
-            </div>
-        </StatsContentContainer>
-
-        {/* list view */}
-        <div id="list-view">
-        <StatsContentContainer >
+            
+            <StatsContentContainer className="page-top">
+                {/* toggle */}
+                <SwitchContainer >
+                <label>List View</label>
+                    <YellowSwitch 
+                        checked={displayed.checkedA} 
+                        onChange={toggleDisplay} 
+                        name="display" />
+                <label>Visual View</label>
+                </SwitchContainer>
+            </StatsContentContainer>
+            
+            {/* list view */}
+            <div id="list-view">
+            <StatsContentContainer>
+                <StatsListContainer>
+                    <h3>Rating</h3>
+                        <StatsListGrid>
+                            <p>Officer's Rating</p>
+                            <p className="values"></p>
+                        </StatsListGrid>
+                        <StatsListGrid>
+                            <p>Precint Average</p>
+                            <p className="values"></p>
+                        </StatsListGrid>
+                        <StatsListGrid>
+                            <p>Department Average</p>
+                            <p className="values"></p>
+                        </StatsListGrid>
+                        <StatsListGrid>
+                            <p>Self-Identify</p>
+                            <p className="values"></p>
+                        </StatsListGrid>
+                </StatsListContainer>
+            
             <StatsListContainer className="report-type">
+            <div className="tags">
+                <Tag onClick={toggleNegative}>Negative Interactions</Tag>
+                <Tag onClick={togglePositive}>Positive Interactions</Tag>
+            </div>            
             {/* dynamically render compliments with positivity toggle */}
-
-            <div>    
+            <div className="neg">    
                 <h3>Complaints </h3> 
-                <p className="values"> 
-                    
-                </p>
-                <StatsListGrid>
-                    <p>Profiled</p>
-                    <p className="values"></p>
+                {/* total complaints for officer */}
+                <p className="values"> TOTAL</p>
+
+                    {/* break down of types of complaints */}
+                    <StatsListGrid>
+                        <p>Profiled</p>
+                        <p className="values"></p>
                     </StatsListGrid>
-                        <StatsListGrid>
-                    <p>Harrassed</p>
-                    <p className="values"></p>
+                    <StatsListGrid>
+                        <p>Harrassed</p>
+                        <p className="values"></p>
                     </StatsListGrid>
-                        <StatsListGrid>
-                    <p>Neglected</p>
-                    <p className="values"></p>
+                    <StatsListGrid>
+                        <p>Neglected</p>
+                        <p className="values"></p>
                     </StatsListGrid>
-                        <StatsListGrid>
-                    <p>Disrespected</p>
-                    <p className="values"></p>
+                    <StatsListGrid>
+                        <p>Disrespected</p>
+                        <p className="values"></p>
                     </StatsListGrid>
-                        <StatsListGrid>
-                    <p>Physically Attacked</p>
-                    <p className="values"></p>
+                    <StatsListGrid>
+                        <p>Physically Attacked</p>
+                        <p className="values"></p>
                     </StatsListGrid>
-                        <StatsListGrid>
-                    <p>Wrongly Accused</p>
-                    <p className="values"></p>
+                    <StatsListGrid>
+                        <p>Wrongly Accused</p>
+                        <p className="values"></p>
                     </StatsListGrid>
-                        <StatsListGrid>
-                    <p>Illegally Searched</p>
-                    <p className="values"></p>
+                    <StatsListGrid>
+                        <p>Illegally Searched</p>
+                        <p className="values"></p>
                 </StatsListGrid>
             </div>
             {/* closes negative reports */}
             
-                <div className="positivity">
-                    <h3 >Compliments</h3>
+            <div className="pos">
+                <h3 >Compliments</h3>
                     <StatsListGrid>
                         <p>Helped</p>
                         <p className="values"></p>
-                        </StatsListGrid>
-                        <StatsListGrid>
+                    </StatsListGrid>
+                    <StatsListGrid>
                         <p>Protected</p>
                         <p className="values"></p>
                     </StatsListGrid>
-                </div>
-                {/* closes positive reports */}
+            </div>
+            {/* closes positive reports */}
             </StatsListContainer>
             </StatsContentContainer>
             
@@ -199,106 +271,116 @@ export default function Stats(props) {
                     <h3>Race</h3>
 
                         <StatsListGrid>
-                        <p>Asian</p>
-                        <p className="values"></p>
+                            <p>Asian</p>
+                            <p className="values"></p>
                         </StatsListGrid>
                         <StatsListGrid>
-                        <p>Black/African</p>
-                        <p className="values"></p>
+                            <p>Black/African</p>
+                            <p className="values"></p>
                         </StatsListGrid>
                         <StatsListGrid>
-                        <p>Latinx</p>
-                        <p className="values"></p>
+                            <p>Latinx</p>
+                            <p className="values"></p>
                         </StatsListGrid>
                         <StatsListGrid>
-                        <p>Middle Eastern</p>
-                        <p className="values"></p>
+                            <p>Middle Eastern</p>
+                            <p className="values"></p>
                         </StatsListGrid>
                         <StatsListGrid>
-                        <p>Native American</p>
-                        <p className="values"></p>
+                            <p>Native American</p>
+                            <p className="values"></p>
                         </StatsListGrid>
                         <StatsListGrid>
-                        <p>Pacific Islander</p>
-                        <p className="values"></p>
+                            <p>Pacific Islander</p>
+                            <p className="values"></p>
                         </StatsListGrid>
                         <StatsListGrid>
-                        <p>South Asian</p>
-                        <p className="values"></p>
+                            <p>South Asian</p>
+                            <p className="values"></p>
                         </StatsListGrid>
                         <StatsListGrid>
-                        <p>White</p>
-                        <p className="values"></p>
+                            <p>White</p>
+                            <p className="values"></p>
                         </StatsListGrid>
                         <StatsListGrid>
-                        <p>Multiracial</p>
-                        <p className="values"></p>
+                            <p>Multiracial</p>
+                            <p className="values"></p>
                         </StatsListGrid>
                 </StatsListContainer>
 
                 <StatsListContainer>
-                <h3>Gender</h3>
-                    <StatsListGrid>
-                        <p>Female</p>
-                        <p className="values"></p>
+                    <h3>Gender</h3>
+                        <StatsListGrid>
+                            <p>Female</p>
+                            <p className="values"></p>
                         </StatsListGrid>
                         <StatsListGrid>
-                        <p>Male</p>
-                        <p className="values"></p>
+                            <p>Male</p>
+                            <p className="values"></p>
                         </StatsListGrid>
                         <StatsListGrid>
-                        <p>Non-Binary</p>
-                        <p className="values"></p>
+                            <p>Non-Binary</p>
+                            <p className="values"></p>
                         </StatsListGrid>
                         <StatsListGrid>
-                        <p>Self-Identify</p>
-                        <p className="values"></p>
-                    </StatsListGrid>
+                            <p>Self-Identify</p>
+                            <p className="values"></p>
+                        </StatsListGrid>
                 </StatsListContainer>
 
                 <StatsListContainer>
-                <h3>Age</h3>
-                    <StatsListGrid>
-                        <p>18-25</p>
-                        <p className="values"></p>
+                    <h3>Age</h3>
+                        <StatsListGrid>
+                            <p>18-25</p>
+                            <p className="values"></p>
                         </StatsListGrid>
                         <StatsListGrid>
-                        <p>26-35</p>
-                        <p className="values"></p>
+                            <p>26-35</p>
+                            <p className="values"></p>
                         </StatsListGrid>
                         <StatsListGrid>
-                        <p>36-45</p>
-                        <p className="values"></p>
+                            <p>36-45</p>
+                            <p className="values"></p>
                         </StatsListGrid>
                         <StatsListGrid>
-                        <p>46-55</p>
-                        <p className="values"></p>
+                            <p>46-55</p>
+                            <p className="values"></p>
                         </StatsListGrid>
                         <StatsListGrid>
-                        <p>56-65</p>
-                        <p className="values"></p>
+                            <p>56-65</p>
+                            <p className="values"></p>
                         </StatsListGrid>
                         <StatsListGrid>
-                        <p>66-75</p>
-                        <p className="values"></p>
+                            <p>66-75</p>
+                            <p className="values"></p>
                         </StatsListGrid>
                         <StatsListGrid>
-                        <p>75+</p>
-                        <p className="values"></p>
+                            <p>75+</p>
+                            <p className="values"></p>
                     </StatsListGrid>
-
                 </StatsListContainer>
         </StatsContentContainer>
+
         {/* closes list view */}
         </div>
 
 
+
+
+
         {/* visual view */}
         <div id="visual-view">
-        <div className="report-type">
-            {/* dynamically render compliments with positivity toggle */}
-            
+    
             <div>
+                {/* ranking visualization */}
+            </div>
+            <div className="report-type">
+            <div className="tags">
+                <Tag onClick={toggleVisNegative}>Negative Interactions</Tag>
+                <Tag onClick={toggleVisPositive}>Positive Interactions</Tag>
+            </div>
+
+            <div className="visneg">
                 <h3>Complaints </h3>
                 <PieContainer>
                     <VictoryPie
@@ -320,8 +402,8 @@ export default function Stats(props) {
             </div>
             {/* closes negative reports */}
             
-            <div>
-                <h3 className="positivity">Compliments</h3>
+            <div className="vispos">
+                <h3 >Compliments</h3>
                 <PieContainer>
                     <VictoryPie
                         style={{ labels: { fill: "white" } }}
@@ -344,7 +426,7 @@ export default function Stats(props) {
         </div>
         {/* closes report-type */}
         
-        <div className="visual, demographics">
+        <div className="demographics">
             <div>
                 <h3>Race</h3>
                 <PieContainer>
@@ -412,8 +494,8 @@ export default function Stats(props) {
             {/* closes age */}
         </div>
         {/* closes demographics */}
-        </div>
-        {/* closes visual view */}
+    </div>
+    {/* closes visual view */}
 
             <StatsContentContainer>
             <h3>Report Date</h3>

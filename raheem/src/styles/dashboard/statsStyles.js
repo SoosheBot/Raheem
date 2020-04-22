@@ -30,19 +30,6 @@ export const StatsContainer = styled.div`
             padding-top: 0.7rem;
         }
         
-`
-
-export const StatsContentContainer = styled.div`
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    margin: 20px 0;
-
-        @media (max-width: 500px){
-            width: 100%;
-            padding: 0 20px
-        }
-
         h3 {
             font-family: 'Neuzeit Grotesk', sans-serif;
             font-style: normal;
@@ -60,6 +47,19 @@ export const StatsContentContainer = styled.div`
         div.heading {
 
         },
+        
+`
+
+export const StatsContentContainer = styled.div`
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+
+        @media (max-width: 500px){
+            width: 100%;
+            padding: 0 20px
+        }
 
         p {
             font-family: 'Neuzeit Grotesk', sans-serif;
