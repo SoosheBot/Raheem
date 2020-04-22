@@ -36,14 +36,14 @@ export default function StoryList() {
     //     neglected: 0
     // })
 
-    useEffect(() => {
-        if (filtering === true) {
-            document.body.classList.add('no-scroll');
-        }
-        else if (filtering === false) {
-            document.body.classList.remove('no-scroll');
-        }
-    }, [filtering, setFiltering])
+    // useEffect(() => {
+    //     if (filtering === true) {
+    //         document.body.classList.add('no-scroll');
+    //     }
+    //     else if (filtering === false) {
+    //         document.body.classList.remove('no-scroll');
+    //     }
+    // }, [filtering, setFiltering])
 
     /* mock data for tags */
     const tagData = [
@@ -133,9 +133,9 @@ export default function StoryList() {
                 <SliderContainer />
 
                 <TagStatContainer>
-                    <VictoryChart style={{ parent: { maxWidth: '50%' } }}>
+                    {/* <VictoryChart style={{ parent: { maxWidth: '50%' } }}>
                         <VictoryBar data={tagData} horizontal="true" y="total" x="tag" />
-                    </VictoryChart>
+                    </VictoryChart> */}
                 </TagStatContainer>
 
                 <p className="see-more"><Link to="#">See More</Link></p>

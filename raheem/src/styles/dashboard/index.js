@@ -263,3 +263,78 @@ export const StoryContent = styled.p`
     font-weight: normal;
     line-height: 1.8rem;
 `;
+
+export const LongStoryContent = styled.div`
+    margin-top: 1rem;
+    font-size: 1.6rem;
+    font-family: 'neuzeit-grotesk', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.8rem;
+
+    span {
+        display: block;
+        margin-top: 1.1rem;
+        width: 100%;
+        text-align: right;
+        color: #0000EE;
+        font-size: 1.4rem;
+        line-height: 2.1rem;
+        letter-spacing: -0.283636px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+`;
+
+export const SmallButtonPrimary = styled.button`
+    font-family: Noto Serif;
+    font-weight: bold;
+    font-size: 2rem;
+    line-height: 2.4rem;
+    letter-spacing: -0.238095px;
+    width: 15.6rem;
+    height: 5.2rem;
+    background: #111111;
+    border-radius: 0.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    border: none;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:focus {
+        outline: none;
+        border: 1px solid #FFF600;
+    }
+`;
+
+export const SmallButtonSecondary = styled.button`
+    font-family: Noto Serif;
+    font-weight: bold;
+    font-size: 2rem;
+    line-height: 2.4rem;
+    letter-spacing: -0.238095px;
+    width: 15.6rem;
+    height: 5.2rem;
+    background: #ffffff;
+    border-radius: 0.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #111111;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:focus {
+        outline: none;
+        border: 1px solid #FFF600;
+    }
+`;

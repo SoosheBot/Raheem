@@ -69,6 +69,10 @@ export default function Dashboard() {
                     <DashboardTitle>Map</DashboardTitle>
                 </div>
 
+                <Route exact path="/officers/:id">
+                    <Stories officerBadgeID={officer.officerBadgeID} />
+                </Route>
+
                 <Route exact path="/officers/:id/stories">
                     <Stories officerBadgeID={officer.officerBadgeID} />
                 </Route>
