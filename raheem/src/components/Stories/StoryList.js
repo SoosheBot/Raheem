@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 /* victory */
@@ -6,6 +6,9 @@ import { VictoryBar, VictoryChart, VictoryContainer } from 'victory';
 
 /* firebase */
 import firebase from '../../config/firebase';
+
+/* bring in our global form store */
+import { formStore } from "../../formStore.js";
 
 /* styles */
 import { PageContainer } from '../../styles/global';
@@ -18,12 +21,22 @@ import Search from '../../assets/Search.svg';
 /* components */
 import Story from '../Dashboard/Story';
 import Filter from './Filter';
+import Sort from './Sort';
 
 export default function StoryList() {
 
+    /* bring in our global state using the useContext hook
+    and our form store */
+    const globalState = useContext(formStore);
+
+    /* deconstruct dispatch off globalState to dispatch an action */
+    const { dispatch } = globalState;
+
     const [reports, setReports] = useState([]);
     const [filtering, setFiltering] = useState(false);
+    const [sorting, setSorting] = useState(false);
     const [queries, setQueries] = useState([]);
+
     // const [tagTotals, setTagTotals] = useState({
     //     helped: 0,
     //     protected: 0,
@@ -35,15 +48,6 @@ export default function StoryList() {
     //     disrespected: 0,
     //     neglected: 0
     // })
-
-    // useEffect(() => {
-    //     if (filtering === true) {
-    //         document.body.classList.add('no-scroll');
-    //     }
-    //     else if (filtering === false) {
-    //         document.body.classList.remove('no-scroll');
-    //     }
-    // }, [filtering, setFiltering])
 
     /* mock data for tags */
     const tagData = [
@@ -75,6 +79,129 @@ export default function StoryList() {
                 console.log('FAIL');
             })
     }, []);
+
+    /* check globalState for search filters and render reports based
+        on any selected filters by the user */
+    useEffect(() => {
+
+        /* query for reports based specifically on gender */
+        if (globalState.state.gender !== '') {
+            firebase
+                .firestore()
+                .collection("reports")
+                .where('gender', '==', `${globalState.state.gender}`)
+                .get()
+                .then(function (querySnapshot) {
+                    const data = [];
+                    querySnapshot.forEach(function (doc) {
+                        data.push({ id: doc.id, ...doc.data() });
+                    })
+                    setReports(data);
+                })
+                .catch(err => {
+                    console.log('FAIL');
+                })
+        }
+
+        /* query for reports based specifically on race */
+        if (globalState.state.race !== '') {
+            firebase
+                .firestore()
+                .collection("reports")
+                .where('race', '==', `${globalState.state.race}`)
+                .get()
+                .then(function (querySnapshot) {
+                    const data = [];
+                    querySnapshot.forEach(function (doc) {
+                        data.push({ id: doc.id, ...doc.data() });
+                    })
+                    setReports(data);
+                })
+                .catch(err => {
+                    console.log('FAIL');
+                })
+        }
+
+        /* query for reports specifically based on tags */
+        if (globalState.state.tag !== undefined && globalState.state.tag.length) {
+            firebase
+                .firestore()
+                .collection("reports")
+                .where('tags', 'array-contains-any', globalState.state.tag)
+                .get()
+                .then(function (querySnapshot) {
+                    const data = [];
+                    querySnapshot.forEach(function (doc) {
+                        data.push({ id: doc.id, ...doc.data() });
+                    })
+                    setReports(data);
+                })
+                .catch(err => {
+                    console.log('FAIL');
+                })
+        }
+
+        /* query for reports based on tags and race */
+        if (globalState.state.tag !== undefined && globalState.state.tag.length && globalState.state.race !== '') {
+            firebase
+                .firestore()
+                .collection("reports")
+                .where('tags', 'array-contains-any', globalState.state.tag)
+                .where('race', '==', `${globalState.state.race}`)
+                .get()
+                .then(function (querySnapshot) {
+                    const data = [];
+                    querySnapshot.forEach(function (doc) {
+                        data.push({ id: doc.id, ...doc.data() });
+                    })
+                    setReports(data);
+                })
+                .catch(err => {
+                    console.log('FAIL');
+                })
+        }
+
+        /* query for reports based on tags and gender */
+        if (globalState.state.tag !== undefined && globalState.state.tag.length && globalState.state.gender !== '') {
+            firebase
+                .firestore()
+                .collection("reports")
+                .where('tags', 'array-contains-any', globalState.state.tag)
+                .where('gender', '==', `${globalState.state.gender}`)
+                .get()
+                .then(function (querySnapshot) {
+                    const data = [];
+                    querySnapshot.forEach(function (doc) {
+                        data.push({ id: doc.id, ...doc.data() });
+                    })
+                    setReports(data);
+                })
+                .catch(err => {
+                    console.log('FAIL');
+                })
+        }
+
+        /* query reports based on tags, race, and gender */
+        if (globalState.state.tag !== undefined && globalState.state.tag.length && globalState.state.gender !== '' && globalState.state.race !== '') {
+            firebase
+                .firestore()
+                .collection("reports")
+                .where('tags', 'array-contains-any', globalState.state.tag)
+                .where('gender', '==', `${globalState.state.gender}`)
+                .where('race', '==', `${globalState.state.race}`)
+                .get()
+                .then(function (querySnapshot) {
+                    const data = [];
+                    querySnapshot.forEach(function (doc) {
+                        data.push({ id: doc.id, ...doc.data() });
+                    })
+                    setReports(data);
+                })
+                .catch(err => {
+                    console.log('FAIL');
+                })
+        }
+    }, [globalState]);
 
     // const getTagTotals = (tagName) => {
     //     const count = reports.reduce((total, report) => {
@@ -115,7 +242,9 @@ export default function StoryList() {
 
     return (
         <PageContainer>
-            {filtering === true && <Filter filtering={filtering} setFiltering={setFiltering} queries={queries} setQueries={setQueries} />}
+            {console.log(`GLOBAL STATE FROM STORYLIST `, globalState)}
+            {filtering === true && <Filter filtering={filtering} setFiltering={setFiltering} queries={queries} setQueries={setQueries} reports={reports} setReports={setReports} />}
+            {sorting === true && <Sort sorting={sorting} setSorting={setSorting} queries={queries} setQueries={setQueries} />}
             {/* {console.log(`REPORTS COMING BACK `, reports)}
             {console.log(`TAG TOTALS `, tagTotals)} */}
             <StoryListContainer>
@@ -159,7 +288,10 @@ export default function StoryList() {
                         }}>
                             <p>Filter <img src={CarotDown} alt="Drop Down" /></p>
                         </div>
-                        <div>
+                        <div onClick={() => {
+                            window.scroll(0, 0);
+                            setSorting(true);
+                        }}>
                             <p>Sort: <span>Newest</span> <img src={CarotDown} alt="Drop Down" /></p>
                         </div>
                     </div>

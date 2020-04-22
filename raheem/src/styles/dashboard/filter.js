@@ -263,3 +263,129 @@ export const Controls = styled.div`
     align-items: center;
     margin: 11.9rem 0 3.2rem;
 `;
+
+export const SortContainer = styled.div`
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+
+    .inputs {
+        width: 100%;
+        margin-top: 1rem;
+
+        /* Customize the label (the container) */
+        .container {
+        font-family: 'neuzeit-grotesk', sans-serif;
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 1.6rem;
+        line-height: 2.2rem;
+        color: #111111;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        border-bottom: 1px solid #C4C4C4;
+        padding-top: 1rem;
+
+        .inp-text {
+            position: relative;
+            top: -8px;
+        }
+    }
+
+        /* Hide the browser's default radio button */
+        .container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+        }
+
+        /* Create a custom radio button */
+        .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+        }
+
+        /* When the radio button is checked, add a blue background */
+        .container input:checked ~ .checkmark {
+        // background-color: #111111;
+        }
+
+        /* Create the indicator (the dot/circle - hidden when not checked) */
+        .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+        }
+
+        /* Show the indicator (dot/circle) when checked */
+        .container input:checked ~ .checkmark:after {
+        display: block;
+        }
+
+        /* Style the indicator (dot/circle) */
+        .container .checkmark:after {
+        top: 9px;
+        left: 9px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #111111;
+        }
+    }
+`;
+
+export const SortTop = styled.div`
+    font-family: 'neuzeit-grotesk', sans-serif;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .close {
+        font-family: 'neuzeit-grotesk', sans-serif;
+        width: 100%;
+        padding: 0 20px;
+        height: 4.7rem;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #C4C4C4;
+
+        .exit {
+            width: 15%;
+            height: 4.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-size: 2rem;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    
+        .top-text {
+            width: 85%;
+            height: 4.7rem;
+            display: flex;
+            align-items: center;
+    
+            p {
+                font-size: 1.8rem;
+                line-height: 2.4rem;
+                letter-spacing: -0.196364px;
+                color: #111111;
+            }
+        }
+    }
+`;

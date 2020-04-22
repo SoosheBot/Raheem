@@ -233,6 +233,10 @@ export const StoryTagContainer = styled.div`
     margin: 2rem 0;
     display: flex;
     justify-content: flex-start;
+    flex-wrap: wrap;
+    // display: grid;
+    // grid-template-columns: repeat(auto-fill, 25% 25% 25% 25%);
+    // border: 1px solid red;
 `;
 
 export const StoryTag = styled.div`
@@ -248,7 +252,7 @@ export const StoryTag = styled.div`
     font-style: normal;
     font-weight: normal;
     padding: 0.5rem 1rem;
-    margin: 0 1rem;
+    margin: 0 1rem 0;
 
     &:first-child {
         margin: 0;
@@ -328,6 +332,28 @@ export const SmallButtonSecondary = styled.button`
     justify-content: center;
     align-items: center;
     border: 1px solid #111111;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:focus {
+        outline: none;
+        border: 1px solid #FFF600;
+    }
+`;
+
+export const LargeButtonPrimary = styled.button`
+    width: 33.5rem;
+    height: 5.2rem;
+    background: #111111;
+    color: #ffffff;
+    border-radius: 0.6rem;
+    border: none;
+    font-family: Noto Serif;
+    font-size: 2rem;
+    line-height: 2.4rem;
+    letter-spacing: -0.238095px;
 
     &:hover {
         cursor: pointer;
