@@ -14,6 +14,17 @@ export const StatsContainer = styled.div`
             justify-content: space-between;
             padding-top: 2rem;
         }
+        div.date-tags {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            width: 70%;
+        }
+        p.date-tags {
+            padding-right: 1rem;
+
+        }
         div.page-top {
             border-top: 1px solid #C4C4C4;
             padding-top: 0.7rem;
@@ -93,6 +104,13 @@ export const StatsListGrid = styled.div`
 export const StatsVisualContainer = styled.div`
     
 ` 
+
+export const PieContainer = styled.div`
+    display: flex;
+    flex-wrap: none;
+    border: blue dashed 2px;
+    margin: 20px;
+`
 
 export const SwitchContainer = styled.div`
     width: 18rem;

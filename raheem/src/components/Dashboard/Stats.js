@@ -8,7 +8,7 @@ import { VictoryPie, VictoryTooltip, VictoryBar, VictoryChart, VictoryAxis } fro
 //global styles
 import { HeadingContainer } from '../../styles/global'
 import { Tag } from '../../styles/tags';
-import { SwitchContainer, StatsContainer, StatsContentContainer, StatsListContainer, StatsListGrid, StatsVisualContainer  } from '../../styles/dashboard/statsStyles'
+import { SwitchContainer, StatsContainer, StatsContentContainer, StatsListContainer, StatsListGrid, StatsVisualContainer, PieContainer  } from '../../styles/dashboard/statsStyles'
 
 //other styles
 import { Switch, Grid, FormGroup, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails} from '@material-ui/core';
@@ -63,7 +63,8 @@ export default function Stats(props) {
     const [positivity, setPositivity] = useState(false);
     //state to set report data
     const [reportData, setReportData] = useState([]);
-
+    const [toggledTags, setToggledTags] = useState([]);
+    
     //params to match officer to reports
     const params = useParams();
     const { officerBadgeID } = props;
@@ -90,15 +91,30 @@ export default function Stats(props) {
 
 
    //function to toggle between positive and negative interactions
+    const toggleTag = (e) => {
+        e.preventDefault(); // prevent default refresh from button clicks
+
+    }
+    
     const togglePositivity = (e) => {
         e.preventDefault(); // prevent default refresh from button clicks
         e.target.classList.toggle("toggled"); // toggle the 'toggled' class for styling when clicked
+
     }
     
 
     //function to toggle between visual and list views
     const toggleDisplay = (e) => {
-        e.target.classList.toggle("list-view"); // toggle the 'toggled' class for styling when clicked
+        // e.target.classList.toggle("toggled")
+        const list = document.getElementById("list-view")
+        const display = document.getElementById("visual-view")
+    if ( list.style.display === "none"){
+        list.style.display = 'block';
+        display.style.display = 'none';
+        } else {
+            list.style.display = 'none';
+            display.style.display = 'block';
+        }
     }
 
     return (
@@ -116,13 +132,14 @@ export default function Stats(props) {
             </SwitchContainer>
 
             <div className="tags">
-                <Tag>Negative Interactions</Tag>
-                <Tag>Positive Interactions</Tag>
+                <Tag onClick={togglePositivity, toggleTag}>Negative Interactions</Tag>
+                <Tag onClick={togglePositivity, toggleTag}>Positive Interactions</Tag>
             </div>
         </StatsContentContainer>
 
         {/* list view */}
-        <StatsContentContainer className="list-view">
+        <div id="list-view">
+        <StatsContentContainer >
             <StatsListContainer className="report-type">
             {/* dynamically render compliments with positivity toggle */}
 
@@ -177,7 +194,7 @@ export default function Stats(props) {
             </StatsListContainer>
             </StatsContentContainer>
             
-                <StatsContentContainer className="demographics">
+            <StatsContentContainer className="demographics">
                 <StatsListContainer>
                     <h3>Race</h3>
 
@@ -273,16 +290,17 @@ export default function Stats(props) {
                 </StatsListContainer>
         </StatsContentContainer>
         {/* closes list view */}
+        </div>
 
 
         {/* visual view */}
-        <div className="visual-view">
+        <div id="visual-view">
         <div className="report-type">
             {/* dynamically render compliments with positivity toggle */}
             
             <div>
                 <h3>Complaints </h3>
-                <div>
+                <PieContainer>
                     <VictoryPie
                         style={{ labels: { fill: "white" } }}
                         innerRadius={100}
@@ -298,13 +316,13 @@ export default function Stats(props) {
                             { x: 5, y: 1 }
                     ]}
                     />
-                </div>
+                </PieContainer>
             </div>
             {/* closes negative reports */}
             
             <div>
                 <h3 className="positivity">Compliments</h3>
-                <div>
+                <PieContainer>
                     <VictoryPie
                         style={{ labels: { fill: "white" } }}
                         innerRadius={100}
@@ -320,7 +338,7 @@ export default function Stats(props) {
                             { x: 5, y: 1 }
                     ]}
                     />
-                </div>
+                </PieContainer>
             </div>
             {/* closes positive reports */}
         </div>
@@ -329,7 +347,7 @@ export default function Stats(props) {
         <div className="visual, demographics">
             <div>
                 <h3>Race</h3>
-                <div>
+                <PieContainer>
                     <VictoryPie
                         style={{ labels: { fill: "white" } }}
                         innerRadius={100}
@@ -345,13 +363,13 @@ export default function Stats(props) {
                             { x: 5, y: 1 }
                     ]}
                     />
-                </div>
+                </PieContainer>
             </div>
             {/* closes race */}
 
             <div>
                 <h3>Gender</h3>
-                <div>
+                <PieContainer>
                     <VictoryPie
                         style={{ labels: { fill: "white" } }}
                         innerRadius={100}
@@ -367,13 +385,13 @@ export default function Stats(props) {
                             { x: 5, y: 1 }
                     ]}
                     />
-                </div>
+                </PieContainer>
             </div>
             {/* closes gender */}
 
             <div>
                 <h3>Age</h3>
-                <div>
+                <PieContainer>
                     <VictoryPie
                         style={{ labels: { fill: "white" } }}
                         innerRadius={100}
@@ -389,7 +407,7 @@ export default function Stats(props) {
                             { x: 5, y: 1 }
                     ]}
                     />
-                </div>
+                </PieContainer>
             </div>
             {/* closes age */}
         </div>
@@ -400,12 +418,13 @@ export default function Stats(props) {
             <StatsContentContainer>
             <h3>Report Date</h3>
                 <div>
-                    <div className="tags">
-                    View: 
-                    <Tag>Day</Tag>
-                    <Tag>Month</Tag>
-                    <Tag>Year</Tag>
+                    <div className="date-tags">
+                    <p className="date-tags">View: </p>
+                    <Tag onclick={toggleTag}>Day</Tag>
+                    <Tag onclick={toggleTag}>Month</Tag>
+                    <Tag onclick={toggleTag}>Year</Tag>
                     </div>
+
                     <VictoryChart>
                     <VictoryAxis tickCount={8}/>
                     <VictoryBar
