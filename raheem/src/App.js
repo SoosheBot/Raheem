@@ -18,9 +18,11 @@ import Report from './components/Report';
 import Dashboard from './components/Dashboard/Dashboard';
 import StoryList from './components/Stories/StoryList';
 
+
 /* structural styling components */
 import Header from './components/layout/Header';
 import DesktopHeader from './components/layout/DesktopHeader';
+
 
 function App() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);

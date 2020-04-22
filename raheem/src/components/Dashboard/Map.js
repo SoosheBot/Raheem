@@ -7,3 +7,5 @@ export default function Map() {
         </div>
     )
 }
+
+export default Map;
