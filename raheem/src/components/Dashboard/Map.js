@@ -1,34 +1,35 @@
 import React, { useState } from 'react';
-import ReactMapGL from 'react-map-gl';
+import ReactMapGL, { Marker } from 'react-map-gl';
 
 import styled from 'styled-components';
 
 export default function Map() {
     const [viewport, setViewport] = useState ({
-        latitude: 37.616936,
-        longitute: -122.383789,
+        latitude: 41.0635,
+        longitude: -96.2706,
         width: "100vw",
         height: "100vh",
-        zoom: 10
+        zoom: 4
     })
 
     return (
         <div>
-            <StarEnd>Map Start</StarEnd>
-            <ReactMapGL 
-                {...viewport} 
-                mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}                
-                mapStyle="mapbox://styles/chernandez85/ck98v7h9609z31irsyoa7undo"
-                onViewportChange={viewport => {
-                    setViewport(viewport);
-                }}>
-            </ReactMapGL>
-            <StarEnd>Map End</StarEnd>
+            <StartEnd>Map Start</StartEnd>
+                <ReactMapGL className="MapBox"
+                    {...viewport} 
+                    mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+                    // mapStyle can be changed to another map style at https://www.mapbox.com/gallery/
+                    mapStyle="mapbox://styles/chernandez85/ck9ah2a5t1u461ir5hlb8m3zc"
+                    onViewportChange={viewport => {
+                        setViewport(viewport);
+                    }}>
+                </ReactMapGL>
+            <StartEnd>Map End</StartEnd>
         </div>
     )
 }
 
-const StarEnd = styled.h1`
+const StartEnd = styled.h1`
     font-size: 4em;
     font-weight: bold;
     padding-top: 50px;

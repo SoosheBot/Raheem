@@ -6,6 +6,9 @@ import { Splash, Title } from './styles/global/index'
 /* route */
 import { Route } from 'react-router-dom';
 
+// temporary route, delete later once finished testing map component
+import DisplayMap from './components/Dashboard/DisplayMap';
+
 /* components */
 import QRcode from './components/QRcode';
 import Landing from './components/Landing';
@@ -48,6 +51,11 @@ function App() {
           <div className="home">
             <Title>Raheem</Title>
           </div>
+        </Route>
+
+        {/* temporary route, delete later once finished testing map component */}
+        <Route path="/testmap">
+          <DisplayMap />
         </Route>
 
         <Route path="/QR">

@@ -8,6 +8,8 @@ import firebase from '../../config/firebase';
 import { PageContainer } from '../../styles/global';
 import { DashboardOfficer, DashboardView, DashboardTitle, DashboardSearch, DashboardMainTitle, DashboardTagSearch } from '../../styles/dashboard';
 
+import Map from './Map';
+
 export default function Dashboard() {
 
     const history = useHistory();
@@ -59,6 +61,7 @@ export default function Dashboard() {
                     <DashboardTitle>Map</DashboardTitle>
                 </div>
             </DashboardView>
+            <Map />
         </PageContainer>
     )
 }

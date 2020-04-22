@@ -1,4 +1,6 @@
 import React from 'react'
+
+import Map from './Dashboard/Map'
 // import styled from 'styled-components'
 
 /* assets */
