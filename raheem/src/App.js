@@ -26,6 +26,7 @@ import DesktopHeader from './components/layout/DesktopHeader';
 // temporary route, delete later once finished testing map component
 import DisplayMap from './components/Dashboard/DisplayMap';
 
+
 function App() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
