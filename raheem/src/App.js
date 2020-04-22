@@ -23,6 +23,8 @@ import StoryList from './components/Stories/StoryList';
 import Header from './components/layout/Header';
 import DesktopHeader from './components/layout/DesktopHeader';
 
+// temporary route, delete later once finished testing map component
+import DisplayMap from './components/Dashboard/DisplayMap';
 
 function App() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -33,10 +35,6 @@ function App() {
 
   useEffect(() => {
     window.addEventListener('resize', handleWindowResize);
-    // console.log(windowWidth)       
-    // return () => {            
-    //   window.removeEventListener('resize', handleWindowResize);      
-    // }  
   }, []);
 
   return (
@@ -54,6 +52,11 @@ function App() {
           <div className="home">
             <Title>Raheem</Title>
           </div>
+        </Route>
+
+        {/* temporary route, delete later once finished testing map component */}
+        <Route path="/testmap">
+          <DisplayMap />
         </Route>
 
         <Route path="/QR">
