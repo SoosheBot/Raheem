@@ -73,7 +73,7 @@ export default function Story(props) {
                     return <StoryTag key={idx}>{tag}</StoryTag>
                 })}
             </StoryTagContainer>
-            {story.storyBody !== undefined && story.storyBody.story.length < 500 && <StoryContent>Story: {story.storyBody.story}</StoryContent>}
+            {story.storyBody !== undefined && story.storyBody.story.length < 500 && <StoryContent>{story.storyBody.story}</StoryContent>}
             {story.storyBody !== undefined && story.storyBody.story.length > 500 && storyToggle === false &&
                 <LongStoryContent>
                     <p>{story.storyBody.story.substring(0, 200)}</p>

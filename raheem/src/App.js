@@ -97,6 +97,10 @@ function App() {
           <StoryList />
         </Route>
 
+        <Route exact path="/dashboard">
+          <StoryList />
+        </Route>
+
         <Route path="/officers/:id">
           <Dashboard />
         </Route>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, useParams, Route } from 'react-router-dom';
+import { useHistory, useParams, Route, NavLink } from 'react-router-dom';
 
 /* firebase */
 import firebase from '../../config/firebase';
@@ -64,9 +64,9 @@ export default function Dashboard() {
 
             <DashboardView>
                 <div className="title-container">
-                    <DashboardTitle>Stories</DashboardTitle>
-                    <DashboardTitle>Stats</DashboardTitle>
-                    <DashboardTitle>Map</DashboardTitle>
+                    <DashboardTitle><NavLink to={`/officers/${officer.officerBadgeID}`} activeClassName="highlighted">Stories</NavLink></DashboardTitle>
+                    <DashboardTitle><NavLink to={`/officers/${officer.officerBadgeID}/stats`}>Stats</NavLink></DashboardTitle>
+                    <DashboardTitle><NavLink to={`/officers/${officer.officerBadgeID}/map`}>Map</NavLink></DashboardTitle>
                 </div>
 
                 <Route exact path="/officers/:id">

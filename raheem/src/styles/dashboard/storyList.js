@@ -91,10 +91,7 @@ export const SliderContainer = styled.div`
 
 export const TagStatContainer = styled.div`
     margin-top: 4.1rem;
-    padding: 1rem;
     width: 100%;
-    height: 17rem;
-    background: #C4C4C4;
     display: flex;
     justify-content: center;
     align-items: center;

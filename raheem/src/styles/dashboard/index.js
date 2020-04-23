@@ -89,6 +89,15 @@ export const DashboardView = styled.div`
         display: flex;
         width: 100%;
         justify-content: space-evenly;
+
+        a {
+            text-decoration: none;
+            color: #000000;
+        }
+
+        a.highlighted {
+            background: #FFF600;
+        }
     }
 `;
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 /* victory */
-import { VictoryBar, VictoryChart, VictoryContainer } from 'victory';
+import { VictoryBar, VictoryChart, VictoryAxis } from 'victory';
 
 /* firebase */
 import firebase from '../../config/firebase';
@@ -36,9 +36,9 @@ export default function StoryList() {
     /* configure react-hook-form for searching */
     const { register, handleSubmit, errors } = useForm();
 
-    const [reports, setReports] = useState([]);
-    const [filtering, setFiltering] = useState(false);
-    const [sorting, setSorting] = useState(false);
+    const [reports, setReports] = useState([]); // state for reports
+    const [filtering, setFiltering] = useState(false); // toggleable filter state
+    const [sorting, setSorting] = useState(false); // toggleable sorting state
     const [queries, setQueries] = useState([]);
 
     /* handle search input on submission */
@@ -219,8 +219,12 @@ export default function StoryList() {
         }
     }, [globalState]);
 
-    /* get the total amount of total tags in the reports */
+    /* get the total amount of total tags in the reports
+        not performant at all. need to refactor to utilize a more efficient
+        way of totaling up our tag counts */
     const getTagTotals = () => {
+
+        /* temporary state to hold tag totals as they're being calculated */
         let helpedTag = 0;
         let protectedTag = 0;
         let illegallySearchedTag = 0;
@@ -303,17 +307,19 @@ export default function StoryList() {
             })
         });
 
-        const updatedState = {
-            helped: helpedTag,
-            protected: protectedTag,
-            illegally_searched: illegallySearchedTag,
-            profiled: profiledTag,
-            physically_attacked: physicallyAttackedTag,
-            harassed: harassedTag,
-            wrongly_accused: wronglyAccusedTag,
-            disrespected: disrespectedTag,
-            neglected: neglectedTag
-        }
+        /* create an updated state object to pass into state to
+            populate the tags graph */
+        const updatedState = [
+            { tag: 'helped', total: helpedTag },
+            { tag: 'protected', total: protectedTag },
+            { tag: 'illegally searched', total: illegallySearchedTag },
+            { tag: 'profiled', total: profiledTag },
+            { tag: 'physically attacked', total: physicallyAttackedTag },
+            { tag: 'harassed', total: harassedTag },
+            { tag: 'wrongly accused', total: wronglyAccusedTag },
+            { tag: 'disrespected', total: disrespectedTag },
+            { tag: 'neglected', total: neglectedTag }
+        ]
 
         setTagTotals(updatedState);
     }
@@ -324,11 +330,8 @@ export default function StoryList() {
 
     return (
         <PageContainer>
-            {console.log(`GLOBAL STATE FROM STORYLIST `, globalState)}
             {filtering === true && <Filter filtering={filtering} setFiltering={setFiltering} queries={queries} setQueries={setQueries} reports={reports} setReports={setReports} />}
             {sorting === true && <Sort sorting={sorting} setSorting={setSorting} queries={queries} setQueries={setQueries} />}
-            {console.log(`TAG TOTALS `, tagTotals)}
-            {console.log(`CURRENT REPORTS IN STATE `, reports)}
             <StoryListContainer>
                 <div className="title-container">
                     <Title className="active"><Link to="/dashboard/stories">Stories</Link></Title>
@@ -344,9 +347,11 @@ export default function StoryList() {
                 <SliderContainer />
 
                 <TagStatContainer>
-                    {/* <VictoryChart style={{ parent: { maxWidth: '50%' } }}>
-                        <VictoryBar data={tagData} horizontal="true" y="total" x="tag" />
-                    </VictoryChart> */}
+                    {tagTotals.length &&
+                        <VictoryChart padding={{ left: 120, top: 20, bottom: 30, right: 30 }}>
+                            <VictoryBar data={tagTotals} horizontal="true" y="total" x="tag" />
+                        </VictoryChart>
+                    }
                 </TagStatContainer>
 
                 <p className="see-more"><Link to="/dashboard/stats">See More</Link></p>
@@ -384,7 +389,7 @@ export default function StoryList() {
 
                 <div className="list">
                     {
-                        reports !== undefined && reports.length ? (reports.map((report, index) => <Story key={index} report={report} />)) : (<p className="no-reports">There are no reports. Please try searching again.</p>)
+                        reports !== undefined && reports.length ? (reports.map((report, index) => <Story key={index} report={report} />)) : (<p className="no-reports">Stories are loading or are unavailable. Please try refreshing the page.</p>)
                     }
                 </div>
             </StoryListContainer>
