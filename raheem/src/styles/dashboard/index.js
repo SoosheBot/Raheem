@@ -231,15 +231,13 @@ export const StoryContainer = styled.div`
 export const StoryTagContainer = styled.div`
     width: 100%;
     margin: 2rem 0;
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    // display: grid;
-    // grid-template-columns: repeat(auto-fill, 25% 25% 25% 25%);
-    // border: 1px solid red;
+    display: grid;
+    grid-template-columns: 40% 40%;
+    grid-row-gap: 1rem;
 `;
 
 export const StoryTag = styled.div`
+    width: 15rem;
     background: #111111;
     border-radius: 100px;
     height: 3rem;
@@ -252,7 +250,6 @@ export const StoryTag = styled.div`
     font-style: normal;
     font-weight: normal;
     padding: 0.5rem 1rem;
-    margin: 0 1rem 0;
 
     &:first-child {
         margin: 0;
