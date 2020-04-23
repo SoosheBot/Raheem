@@ -4,31 +4,16 @@ import React, { useEffect, useState } from 'react';
 import firebase from '../../config/firebase';
 
 /* styles */
-import { StoryContainer, StoryContent, StoryTagContainer, StoryTag } from '../../styles/dashboard';
+import { StoryContainer, StoryContent, LongStoryContent, StoryTagContainer, StoryTag } from '../../styles/dashboard';
 
 export default function Story(props) {
 
-    /* bring in our report as props and create a slice of state for our story */
+    /* bring in our report as props and create a slice of state for our story
+        as well as a toggleable state for our story to prevent long
+        stories from taking up too much of the view */
     const { report } = props;
     const [story, setStory] = useState({});
-
-    /* fetch story based on report id (document id in Firebase) */
-    const fetchStory = () => {
-        firebase
-            .firestore()
-            .collection("stories")
-            .where('reportRef', '==', `/raheem-mercy/reports/${report.id}`)
-            .get()
-            .then(function (querySnapshot) {
-                const data = [];
-                querySnapshot.forEach(function (doc) {
-                    setStory(doc.data());
-                })
-            })
-            .catch(err => {
-                console.log('FAIL');
-            })
-    }
+    const [storyToggle, setStoryToggle] = useState(false);
 
     /* get the age of the user who submitted the report */
     const getAge = () => {
@@ -39,9 +24,23 @@ export default function Story(props) {
         return age;
     }
 
+    /* when our component mounts, fetch our story that matches the report
+        passed in as props */
     useEffect(() => {
-        fetchStory(); // fetch our story when the Story component is rendered
-    }, []);
+        firebase
+            .firestore()
+            .collection("stories")
+            .where('reportRef', '==', `/raheem-mercy/reports/${report.id}`)
+            .get()
+            .then(function (querySnapshot) {
+                querySnapshot.forEach(function (doc) {
+                    setStory(doc.data());
+                })
+            })
+            .catch(err => {
+                console.log('FAIL');
+            })
+    }, [report]);
 
     return (
         <StoryContainer>
@@ -74,7 +73,17 @@ export default function Story(props) {
                     return <StoryTag key={idx}>{tag}</StoryTag>
                 })}
             </StoryTagContainer>
-            {story.storyBody !== undefined && <StoryContent>Story: {story.storyBody.story}</StoryContent>}
+            {story.storyBody !== undefined && story.storyBody.story.length < 500 && <StoryContent>Story: {story.storyBody.story}</StoryContent>}
+            {story.storyBody !== undefined && story.storyBody.story.length > 500 && storyToggle === false &&
+                <LongStoryContent>
+                    <p>{story.storyBody.story.substring(0, 200)}</p>
+                    <span onClick={() => setStoryToggle(!storyToggle)}>See more</span>
+                </LongStoryContent>}
+            {story.storyBody !== undefined && story.storyBody.story.length > 500 && storyToggle === true &&
+                <LongStoryContent>
+                    <p>{story.storyBody.story}</p>
+                    <span onClick={() => setStoryToggle(!storyToggle)}>See less</span>
+                </LongStoryContent>}
         </StoryContainer>
     )
 }

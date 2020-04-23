@@ -1,6 +1,4 @@
-// import React, { useState, useContext, useEffect } from 'react';
 import React, { useState, useContext } from 'react';
-// import { useForm, Controller } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { useHistory, useLocation } from 'react-router-dom';
 
@@ -52,7 +50,7 @@ export default function Report(props) {
 
   /* state for officer passed in from Landing component */
   // const [officer, setOfficer] = useState(location.state);
-  const [ officer ] = useState(location.state);
+  const [officer] = useState(location.state);
 
   console.log(location);
 
@@ -189,7 +187,7 @@ export default function Report(props) {
           <TagContainer>
             <Tag onClick={toggleTag} value="helped">helped</Tag>
             <Tag onClick={toggleTag} value="protected">protected</Tag>
-            <Tag onClick={toggleTag} value="physically attacked">illegally searched</Tag>
+            <Tag onClick={toggleTag} value="illegally searched">illegally searched</Tag>
             <Tag onClick={toggleTag} value="profiled">profiled</Tag>
             <Tag onClick={toggleTag} value="physically attacked">physically attacked</Tag>
             <Tag onClick={toggleTag} value="harassed">harassed</Tag>
@@ -265,10 +263,10 @@ export default function Report(props) {
 
               <SmallHeading></SmallHeading>
               <div className="inputs">
-                <input type="time" 
-                placeholder="time" 
-                name="time" ref={register} 
-                defaultValue="15:00" />
+                <input type="time"
+                  placeholder="time"
+                  name="time" ref={register}
+                  defaultValue="15:00" />
               </div>
             </Content>
 
