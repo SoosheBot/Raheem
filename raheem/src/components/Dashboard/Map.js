@@ -21,9 +21,17 @@ export default function Map() {
     zoom: 4,
   });
 
+  //get location data and send to firebase.
+
+  const ColectLocation = (lat, lon) =>{
+    const dataLat = lat;
+    const dataLon = lon;
+    console.log(`lat:${dataLat}  lon:${dataLon}`); 
+  }
+
   //refactored for DRYness in return
 
-  const _onViewportChange = (viewport) => setViewport({ ...viewport });
+  const _onViewportChange = (viewport) => {setViewport({ ...viewport }); ColectLocation(viewport.latitude,viewport.longitude)};
 
   return (
     <div>
@@ -36,7 +44,7 @@ export default function Map() {
         // mapStyle can be changed to another map style at https://www.mapbox.com/gallery/
         // changed mapstyle for visualizing it more easily in test -- can change back in prod
         mapStyle="mapbox://styles/mapbox/streets-v11"
-        onViewportChange={_onViewportChange}
+        //onViewportChange={_onViewportChange}
       >
         {/* built-in functionality for geolocation in react-map-gl */}
         <GeolocateControl
