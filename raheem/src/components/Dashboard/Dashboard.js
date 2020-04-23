@@ -6,7 +6,7 @@ import firebase from '../../config/firebase';
 
 /* styles */
 import { PageContainer } from '../../styles/global';
-import { DashboardOfficer, DashboardView, DashboardTitle, DashboardSearch, DashboardMainTitle, DashboardTagSearch } from '../../styles/dashboard';
+import { DashboardOfficer, DashboardView, DashboardTitle, DashboardMainTitle, DashboardTagSearch } from '../../styles/dashboard';
 
 /* components */
 import Stories from './Stories';
