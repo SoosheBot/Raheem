@@ -39,7 +39,7 @@ export default function Map() {
         onViewportChange={_onViewportChange}
       >
         {/* built-in functionality for geolocation in react-map-gl */}
-        <GeolocateControl
+        <GeolocateControl test-id='geolocate-button'
           style={geolocateStyle}
           positionOptions={{ enableHighAccuracy: true }}
           trackUserLocation={true}

@@ -17,7 +17,8 @@ import Report from './components/Report';
 /* dashboard components */
 import Dashboard from './components/Dashboard/Dashboard';
 import StoryList from './components/Stories/StoryList';
-
+//temporary dashboard component
+import Stats from './components/Dashboard/Stats';
 
 /* structural styling components */
 import Header from './components/layout/Header';
