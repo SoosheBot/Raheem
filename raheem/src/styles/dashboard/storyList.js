@@ -21,6 +21,11 @@ export const StoryListContainer = styled.div`
     flex-direction: column;
     padding: 0 20px;
 
+    a {
+        text-decoration: none;
+        color: #000000;
+    }
+
     .title-container {
         display: flex;
         justify-content: space-between;
@@ -45,6 +50,13 @@ export const StoryListContainer = styled.div`
     .list {
         width: 100%;
         margin-top: 5rem;
+
+        p.no-reports {
+            color: red;
+            font-family: 'neuzeit-grotesk', sans-serif;
+            font-size: 1.6rem;
+            line-height: 1.8rem;
+        }
     }
 `;
 
@@ -99,6 +111,23 @@ export const StoryListSearch = styled.div`
         width: 100%;
         display: flex;
 
+        form {
+            display: flex;
+        }
+
+        button {
+            border: none;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            &:focus {
+                outline: none;
+                border: 1px solid #FFF600; 
+            }
+        }
+
         input[type=text] {
             width: 85%;
             height: 3.6rem;
@@ -142,6 +171,10 @@ export const StoryListSearch = styled.div`
         div {
             width: 45%;
             text-align: center;
+
+            &:hover {
+                cursor: pointer;
+            }
 
             p {
                 font-size: 1.4rem;

@@ -33,6 +33,11 @@ const StateProvider = ({ children }) => {
                     ...state,
                     ...action.payload
                 }
+            case 'FILTER':
+                return {
+                    ...state,
+                    ...action.payload
+                }
             default:
                 return state;
         };

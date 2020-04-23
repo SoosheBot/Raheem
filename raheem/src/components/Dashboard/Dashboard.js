@@ -6,7 +6,7 @@ import firebase from '../../config/firebase';
 
 /* styles */
 import { PageContainer } from '../../styles/global';
-import { DashboardOfficer, DashboardView, DashboardTitle, DashboardSearch, DashboardMainTitle, DashboardTagSearch } from '../../styles/dashboard';
+import { DashboardOfficer, DashboardView, DashboardTitle, DashboardMainTitle } from '../../styles/dashboard';
 
 /* components */
 import Stories from './Stories';
@@ -68,6 +68,10 @@ export default function Dashboard() {
                     <DashboardTitle>Stats</DashboardTitle>
                     <DashboardTitle>Map</DashboardTitle>
                 </div>
+
+                <Route exact path="/officers/:id">
+                    <Stories officerBadgeID={officer.officerBadgeID} />
+                </Route>
 
                 <Route exact path="/officers/:id/stories">
                     <Stories officerBadgeID={officer.officerBadgeID} />
