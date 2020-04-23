@@ -42,6 +42,9 @@ export default function Report(props) {
 
   // console.log(globalState);
 
+  // location state
+  const [coords, setCoords] = useState({lat: 0,lon: 0});
+
   /* deconstruct dispatch off globalState to dispatch an action */
   const { dispatch } = globalState;
 
@@ -90,7 +93,8 @@ export default function Report(props) {
         tags: toggledTags,
         dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}`,
         incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`,
-        reportDate: date
+        reportDate: date,
+        location: coords
       }
     }); // update our global state
 
@@ -110,7 +114,8 @@ export default function Report(props) {
           tags: toggledTags,
           dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}`,
           incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`,
-          reportDate: date
+          reportDate: date,
+          location: new firebase.firestore.GeoPoint(coords.lat, coords.lon)
         }
       )
       .then(
@@ -125,12 +130,32 @@ export default function Report(props) {
     history.push('/story', officer);
   }
 
+  // saveing change of rating when the user moves the slider
   const handleRatingChange = (e, value) => {
     setRating(value);
   }
 
+  // getting the users current location. if user blocks access the location services the coords will default to 0,0
+  //#region GeoLocator
+  const getLoctaion = () =>{
+    navigator.geolocation.getCurrentPosition(geoSuccess,geoError);
+  }
+
+  const geoSuccess = (pos) =>{
+
+    var crd = pos.coords;
+
+    setCoords({lat: crd.latitude, lon: crd.longitude})
+    console.log(crd.latitude, "--------", crd.longitude)
+  }
+
+  const geoError = (err) =>{
+    setCoords({lat: -0, lon: -0});
+  }
+  //#endregion
+
   return (
-    <PageContainer>
+    <PageContainer onLoad={getLoctaion}>
       <Container>
 
         <HeaderContainer>

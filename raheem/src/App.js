@@ -13,10 +13,11 @@ import About from './components/About';
 import Story from './components/Story';
 import ThankYou from './components/ThankYou';
 import Report from './components/Report';
-
+import Testgeo from './components/testGeo'; 
 /* dashboard components */
 import Dashboard from './components/Dashboard/Dashboard';
 import StoryList from './components/Stories/StoryList';
+
 
 /* structural styling components */
 import Header from './components/layout/Header';
@@ -24,6 +25,7 @@ import DesktopHeader from './components/layout/DesktopHeader';
 
 // temporary route, delete later once finished testing map component
 import DisplayMap from './components/Dashboard/DisplayMap';
+
 
 function App() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -56,6 +58,10 @@ function App() {
         {/* temporary route, delete later once finished testing map component */}
         <Route path="/testmap">
           <DisplayMap />
+        </Route>
+        {/* temporary route, delete later once finished testing map component */}
+        <Route path="/testgeo">
+          <Testgeo />
         </Route>
 
         <Route path="/QR">

@@ -10,7 +10,8 @@ const initialState = {
     rating: '',
     dob: '',
     incidentDate: '',
-    time: ''
+    time: '',
+    location:''
 }
 
 /* create our context object using the createContext hook */
