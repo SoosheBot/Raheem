@@ -88,7 +88,8 @@ export default function Report(props) {
         tags: toggledTags,
         dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}`,
         incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`,
-        reportDate: date
+        reportDate: date,
+        location: data.location
       }
     }); // update our global state
 
