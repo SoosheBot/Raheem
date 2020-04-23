@@ -1,87 +1,108 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
+
+/* styles */
+import { Splash, Title } from './styles/global/index'
 
 /* route */
 import { Route } from 'react-router-dom';
 
-/* components */
+/* report components */
 import QRcode from './components/QRcode';
 import Landing from './components/Landing';
 import About from './components/About';
 import Story from './components/Story';
 import ThankYou from './components/ThankYou';
-import Test from './components/TestComponents/Test';
-import Header from './components/layout/Header';
 import Report from './components/Report';
-import Email from './components/Email';
+
+/* dashboard components */
+import Dashboard from './components/Dashboard/Dashboard';
+import StoryList from './components/Stories/StoryList';
+
+/* structural styling components */
+import Header from './components/layout/Header';
+import DesktopHeader from './components/layout/DesktopHeader';
+
+// temporary route, delete later once finished testing map component
+import DisplayMap from './components/Dashboard/DisplayMap';
 
 function App() {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  const handleWindowResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowResize);
+  }, []);
 
   return (
     <div>
-      <Header />
 
-      {/* routes using react-router-dom */}
-      <Route exact path="/">
-        <Splash>
-          <h1>Raheem</h1>
-        </Splash>
-      </Route>
+      <Splash>
+        {windowWidth < 500 &&
+          <Header className="home" />}
+        {/* routes using react-router-dom */}
 
-      <Route path="/QR">
-        < QRcode />
-      </Route>
+        {windowWidth > 500 &&
+          <DesktopHeader className="home" />}
 
-      <Route exact path="/landing">
-        <Landing />
-      </Route>
+        <Route exact path="/">
+          <div className="home">
+            <Title>Raheem</Title>
+          </div>
+        </Route>
 
-      <Route path="/landing/:id">
-        <Landing />
-      </Route>
+        {/* temporary route, delete later once finished testing map component */}
+        <Route path="/testmap">
+          <DisplayMap />
+        </Route>
 
-      <Route path="/report">
-        <Report />
-      </Route>
+        <Route path="/QR">
+          < QRcode />
+        </Route>
 
-      <Route path="/story">
-        <Story />
-      </Route>
+        <Route exact path="/landing">
+          <Landing />
+        </Route>
 
-      <Route path="/email">
-        <Email />
-      </Route>
+        <Route path="/landing/:id">
+          <Landing />
+        </Route>
 
-      <Route path="/thank-you">
-        <ThankYou />
-      </Route>
+        <Route path="/report">
+          <Report />
+        </Route>
 
-      <Route path="/about">
-        <About />
-      </Route>
+        <Route path="/story">
+          <Story />
+        </Route>
 
-      {/* route to officer page in RC2 */}
+        <Route path="/thank-you">
+          <ThankYou />
+        </Route>
 
-      <Route path="/test">
-        <Test />
-      </Route>
+        <Route path="/about">
+          <About />
+        </Route>
+
+        {/* route to officer dashboard in RC2 */}
+        <Route path="/dashboard/stories">
+          <StoryList />
+        </Route>
+
+        <Route path="/officers/:id">
+          <Dashboard />
+        </Route>
+
+        {/* test path removed after successful trial */}
+        {/* <Route path="/test">
+          <Test />
+        </Route> */}
+      </Splash>
     </div>
   );
 }
 
 export default App;
 
-const Splash = styled.div`
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #FFF600;
-  margin: 0;
-
-  h1 {
-    font-size: 4rem;
-    font-weight: 900;
-  }
-`;

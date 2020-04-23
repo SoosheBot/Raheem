@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import firebase from "../../firebase";
+import firebase from "../../config/firebase";
 
 import TestUpdate from "./TestUpdate";
 import TestAdd from "./TestAdd";
 import TestList from "./TestList";
 
+//NOTE -- THIS COLLECTION HAS BEEN DISABLED IN FIREBASE FOR PRODUCTION, USERS WILL HAVE ADD AND GET PERMISSIONS ONLY--NO PUT/DELETE 
 function Test() {
- 
-
   const initialItemState = [{ Fname: "", Lname: "", age: 0 }];
   const [editing, setEditing] = useState(false);
   const [currentItem, setCurrentItem] = useState(initialItemState);

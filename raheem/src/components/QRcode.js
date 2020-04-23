@@ -1,42 +1,75 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+// import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 
 /* styles */
-import { Container, Content, Heading, SubHeading, ContentSep, Label, Controls, QRForm, QRCodeContainer } from '../styles/global';
+
+import {
+    PageContainer,
+    Container,
+    YellowHeaderContainer,
+    HeaderContainer,
+    HeadingContainer,
+    Content,
+    Heading,
+    Subheading,
+    // SmallHeading,
+    Divider,
+    Label,
+    Controls,
+    QRForm,
+    QRCodeContainer
+} from '../styles/global';
+
 
 //buttons
-import { ButtonPrimary, ButtonSecondary } from '../styles/global';
+// commented this out -- ButtonPrimary not used
+// import { ButtonPrimary, ButtonSecondary } from '../styles/global';
+import { ButtonSecondary } from '../styles/global';
 
 /* assets */
-import QR from '../assets/QR.svg';
+import QR from "../assets/QR.svg";
 
 function QRcode() {
 
     const history = useHistory();
-    const { register, handleSubmit, errors } = useForm();
-    const onSubmit = data => {
-        console.log(data);
-    }
+    // unused -- commented out to avoid errors
+    // const { register, handleSubmit, errors } = useForm();
+    // const onSubmit = data => {
+    //     console.log(data);
+    // }
 
     return (
-        <Container>
-            <Content>
-                <Heading>Your story can end police violence.</Heading>
-                <SubHeading>Report and track police to build safer communities for people of color</SubHeading>
+        <PageContainer>
+            <Container>
+                <YellowHeaderContainer>
+                    <Heading>Your story can end police violence.</Heading>
+                </YellowHeaderContainer>
+                <HeaderContainer>
+                    <Subheading>Report and track police to build safer communities for people of color</Subheading>
+                </HeaderContainer>
+            </Container>
+            <Divider />
 
-                <ContentSep />
+            <Container>
+                <Content>
+                    <Label>Search for Officer: </Label>
+                    <QRForm>
+                        <input
+                            type="text"
+                            name="query"
+                            placeholder="Officer Name or Badge Number"
+                            autoComplete="off"
+                        />
+                    </QRForm>
+                </Content>
 
-                <Label>Search officer by</Label>
-                <QRForm>
-                    <input
-                        type="text"
-                        name="query"
-                        placeholder="location, name or badge number"
-                        autoComplete="off"
-                    />
+                <HeadingContainer>
+                    <h2> Or </h2>
+                </HeadingContainer>
 
-                    <Label style={{ margin: '2rem 0' }}>or scan QR code</Label>
+                <Content>
+                    <Label> Scan QR Code:</Label>
                     <QRCodeContainer>
                         <img src={QR} alt="Example QR Code" />
                     </QRCodeContainer>
@@ -44,10 +77,11 @@ function QRcode() {
                     <Controls>
                         <ButtonSecondary onClick={() => history.push(`/report`)}>Add My Story</ButtonSecondary>
                     </Controls>
-                </QRForm>
-            </Content>
-        </Container>
-    )
+                </Content>
+
+            </Container>
+        </PageContainer>
+    );
 }
 
 export default QRcode;

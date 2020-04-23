@@ -1,98 +1,167 @@
 import styled from 'styled-components';
 
 export const ReportForm = styled.div`
-    margin: 1rem 0;
-    font-family: 'Noto Serif', serif;
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    
-    p.description {
-        margin: 0 0 1rem;
-        font-size: 1.8rem;
-        line-height: 1.6rem;
-        font-family: 'Roboto', sans-serif;
+
+    /* radio input container */
+    .container {
+    position: relative;
+    padding-left: 6.3rem;
+    margin: 1.2rem 0;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    }
+
+    /* hide the browser's default radio input */
+    .container input[type=radio] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    }
+
+    /* custom radio button */
+    .checkmark {
+    position: absolute;
+    top: -2rem;
+    left: 0;
+    height: 40px;
+    width: 40px;
+    background-color: #ffffff;
+    border: 1px solid #888888;
+    border-radius: 50%;
+    }
+
+    /* create the indicator (the dot/circle - hidden when not checked) */
+    .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    }
+
+    /* show the indicator (dot/circle) when checked */
+    .container input[type=radio]:checked ~ .checkmark:after {
+    display: block;
+    }
+
+    /* style the indicator (dot/circle) */
+    .container .checkmark:after {
+        top: 4px;
+        left: 4px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #111111;
+    }
+
+    /* style the actual field text */
+    .container span.inp-text {
+        font-family: 'neuzeit-grotesk';
+        font-size: 2.6rem;
+        line-height: 2.8rem;
+        font-weight: bold;
+        color: #111111;
+        position: relative;
+        top: -1.3rem;
     }
 
     form {
-        background: #ffffff;
+        width: 100%;
         display: flex;
         flex-direction: column;
-        width: 100%;
-
-        .description {
-            margin: 1rem 0;
-            padding: 0 20px;
-            font-size: 1.8rem;
-            line-height: 1.6rem;
-            font-family: 'Roboto', sans-serif; 
         }
 
-        // Content and field separation within form
+        //-- Content and field separation within form --//
         div {
-            font-family: 'Roboto', sans-serif;
-            font-size: 2rem;
-            font-weight: 900;
+            font-family: 'neuzeit-grotesk', sans-serif;
             display: flex;
-            align-items: center;
+            flex-direction: column;
 
             @media (max-width: 310px) {
                 font-size: 1.6rem;
             }
         }
 
+        .about-you {
+            padding-bottom: 0;
+            margin-top: 5rem;
+
+            @media (max-width: 500px) {
+                padding-bottom: 0;
+                margin-top: 1rem;
+            }
+        }
+
+        .page-end-desktop {
+            margin-top: 5rem;
+            margin-bottom: 3rem;
+
+            @media(max-width: 500px){
+                margin-top: 1rem;
+                margin-bottom: 2rem;
+            }
+        }
+
+
+        //--Radio Button with Label Container, Label Styling--//
         .radio {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
             margin: 6px 0 6px;
             font-size: 2.6rem;
             line-height: 2.8rem;
             font-weight: bold;
             color: #888888;
             letter-spacing: 0.283636px;
+            min-width: 308px;
         }
+        //--date input container--//
+        .date {
+            display: flex;
+            flex-direction: row;
+        }
+        //--date error container--//
+        .dateerror {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        //--race input container--//
+        .raceDesktop{ 
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
 
-        .inputs {
-            padding: 0 20px;
+            @media (max-width: 1050px) {
+                flex-direction: column;
+            }
+        }
+        //--race columns for desktop--//
+        .raceColumns {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
 
-            h3 {
+            @media (max-width: 500px){
                 width: 100%;
-                text-align: left;
-                margin-top: 5rem;
-                padding: 0;
             }
         }
 
-    // Top heading
-    h2 {
-        font-size: 2.8rem;
-        font-weight: 900;
-        font-family: 'Roboto', sans-serif;
-    }
-
-    h3 {
-        font-family: 'Roboto', sans-serif;
-        font-weight: 700;
-        font-size: 2.4rem;
-        line-height: 1.6rem;
-        margin: 5rem 0 1rem;
-        padding: 0 20px;
-    }
-
-    span {
-        margin-top: 3rem;
-        font-family: 'Roboto', sans-serif;
-        font-weight: normal;
-        font-size: 1.6rem;
-        line-height: 2.2rem;
-    }
-
+    // Error font styling--//
     .error {
         color: red;
-        font-family: 'Roboto', sans-serif;
+        font-family: 'neuzeit-grotesk', sans-serif;
         font-size: 1.2rem;
         font-weight: 300;
     }
 
+    //--Incident Date Styling--//
     input[type=text].incident::placeholder {
         color: #C4C4C4;
     }
@@ -104,6 +173,7 @@ export const ReportForm = styled.div`
         font-size: 2rem;
         padding-left: 1rem;
         color: #111111;
+        font-family: 'neuzeit-grotesk', sans-serif;
 
         &:first-child {
             border-top-left-radius: 0.5rem;
@@ -148,14 +218,14 @@ export const ReportForm = styled.div`
         }
     }
 
+    //---Time Input styling---//
     input[type=time] {
-        margin-top: 2rem;
         width: 100%;
         height: 5rem;
         font-size: 2rem;
         font-weight: 900;
         padding-left: 1rem;
-        font-family: 'Roboto', sans-serif;
+        font-family: 'neuzeit-grotesk', sans-serif;
         border-radius: 0.5rem;
         border: 1px solid #111111;
         color: #C4C4C4;
@@ -174,19 +244,21 @@ export const ReportForm = styled.div`
         height: 5rem;
     }
 
-        // Date of birth container
+    //-- DOB Styling --//
+        //-- Date of birth container --//
         .dob-container {
             width: 100%;
             margin-bottom: 10rem;
         }
 
-        // Date of birth input styling
+        //-- DOB input styling --//
         input[type=text].dob {
             width: 33.3%;
             height: 5rem;
             font-weight: 900;
             font-size: 2rem;
             padding-left: 1rem;
+            font-family: 'neuzeit-grotesk', sans-serif;
 
             @media (max-width: 440px) {
                 font-size: 1.6rem;
@@ -212,15 +284,16 @@ export const ReportForm = styled.div`
             }
         }
 
-        // Radio button styling
+
+        //-- Radio button styling --//
         input[type=radio] {
             height: 42px;
             width: 42px;
             margin-right: 2rem;
-            margin-left: 20px;
-            min-width: 42px;
         }
 
+
+        //-- self-identify input styling --//
         input[type=text].self::placeholder {
             color: #888888;
             font-size: 2.6rem;
@@ -232,10 +305,52 @@ export const ReportForm = styled.div`
             font-weight: bold;
             font-size: 2.6rem;
             margin: 0 20px 0 0;
+            padding-left: .5rem;
+            color: #111111;
+            border-radius: 6px;
+            border: 1px #111111 solid;
+            font-family: 'neuzeit-grotesk', sans-serif;
+
+            @media (max-width: 440px) {
+                font-size: 1.6rem;
+                padding-left: 0.5rem;
+            }
+
+            @media (max-width: 360px) {
+                font-size: 1.2rem;
+                padding-left: 0.5rem;
+            }
+
+            @media (max-width: 285px) {
+                font-size: 1.2rem;
+            }
+
+            @media (max-width: 265px) {
+                font-size: 1rem;
+            }
+
+            &:focus {
+                outline: none;
+                border: 1px solid #FAEB00;
+            }
+        }
+
+
+        //-- E-mail input styling --//
+        input[type=text].email::placeholder {
+            color: #888888;
+        }
+
+        input[type=text].email {
+            width: 100%;
+            height: 5rem;
+            font-weight: bold;
+            font-size: 2.6rem;
             padding-left: 1rem;
             color: #111111;
             border-radius: 6px;
             border: 1px #111111 solid;
+            font-family: 'neuzeit-grotesk', sans-serif;
 
             @media (max-width: 440px) {
                 padding-left: 0.5rem;
@@ -246,20 +361,21 @@ export const ReportForm = styled.div`
                 border: 1px solid #FAEB00;
             }
         }
+        
 
-        // Checkbox styling
+        //-- Checkbox styling --//
         input[type=checkbox] {
             height: 3rem;
             width: 10%;
             border-radius: 50%;
 
-            // mobile breakpoint at 600px
-            @media (max-width: 600px) {
+            // mobile breakpoint at 500px
+            @media (max-width: 500px) {
                 margin-right: 0.5rem;
             }
         }
 
-        // Select input styling
+        //-- Select input styling --//
         select {
             margin: 1rem 0 0.5rem;
             height: 5rem;
@@ -280,37 +396,10 @@ export const ReportForm = styled.div`
                 font-size: 1.2rem;
             }
         }
-
-        // Submit button styling
-        input[type=submit] {
-            font-family: 'Noto Serif', serif;
-            font-weight: 700;
-            font-size: 2rem;
-            height: 5rem;
-            border: none;
-            border-radius: 0.5rem;
-            background: #FFF600;
-            padding: 0.5rem 1rem;
-            transition: all 300ms;
-            margin: 3rem 0 0;
-
-            @media (max-width: 340px) {
-                font-size: 1.6rem;
-            }
-
-            @media (max-width: 265px) {
-                font-size: 1.4rem;
-            }
-
-            &:hover {
-                transition: background 300ms;
-                background: #FAEB00;
-                cursor: pointer;
-            }
-        }
     }
 `;
 
+//-- styling for story input --//
 export const StoryForm = styled.div`
     margin: 2rem 0 0;
 
@@ -319,11 +408,11 @@ export const StoryForm = styled.div`
 
         textarea {
             width: 100%;
-            height: 50rem;
+            height: 60rem;
             resize: none;
-            font-size: 1.3rem;
-            font-family: 'Roboto', sans-serif;
-            padding: 1rem;
+            font-size: 1.6rem;
+            font-family: 'neuzeit-grotesk', sans-serif;
+            
             border-radius: 20px;
             border: 1px solid #111111;
 
@@ -331,6 +420,24 @@ export const StoryForm = styled.div`
                 outline: none;
                 border: 1px solid #FAEB00;
             }
+
+            @media (max-width: 500px){
+                height: 50rem;
+                padding: 1rem;
+            }
         }
     }
 `;
+
+//-- inout styling for other forms--//
+export const Input = styled.input`
+    margin: 1rem 0;
+    width: 100%;
+    height: 4.6rem;
+    padding-left: 1rem;
+    font-weight: 300;
+    font-size: 1.8rem;
+    color: #ccc;
+    border-radius: 0.6rem;
+    border: 1px solid #111111;
+`
