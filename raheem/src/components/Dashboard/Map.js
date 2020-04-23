@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from "react";
 import ReactMapGL, { Marker, Popup, GeolocateControl } from "react-map-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 import styled from "styled-components";
 
 const TOKEN = process.env.REACT_APP_MAPBOX_ACCESSTOKEN;
+
+const geolocateStyle = {
+  float: "left",
+  margin: "50px",
+  padding: "10px",
+};
 
 export default function Map() {
   const [viewport, setViewport] = useState({
@@ -11,10 +18,11 @@ export default function Map() {
     height: "100vh",
     latitude: 37,
     longitude: -112,
-    zoom: 10,
+    zoom: 4,
   });
 
   //refactored for DRYness in return
+
   const _onViewportChange = (viewport) => setViewport({ ...viewport });
 
   return (
@@ -32,6 +40,7 @@ export default function Map() {
       >
         {/* built-in functionality for geolocation in react-map-gl */}
         <GeolocateControl
+          style={geolocateStyle}
           positionOptions={{ enableHighAccuracy: true }}
           trackUserLocation={true}
           onViewportChange={_onViewportChange}
