@@ -9,7 +9,7 @@ const TOKEN = process.env.REACT_APP_MAPBOX_ACCESSTOKEN;
 const geolocateStyle = {
   float: "left",
   margin: "50px",
-  padding: "10px",
+  padding: "10px"
 };
 
 export default function Map() {
@@ -44,6 +44,7 @@ export default function Map() {
           positionOptions={{ enableHighAccuracy: true }}
           trackUserLocation={true}
           onViewportChange={_onViewportChange}
+          latitude='{viewport.latitude}'
         />
       </ReactMapGL>
 
