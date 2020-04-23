@@ -29,9 +29,6 @@ export default function Map() {
         // changed mapstyle for visualizing it more easily in test -- can change back in prod
         mapStyle="mapbox://styles/mapbox/streets-v11"
         onViewportChange={_onViewportChange}
-        latitude={0}
-        logitude={0}
-        // onLoad={location}
       >
         {/* built-in functionality for geolocation in react-map-gl */}
         <GeolocateControl
