@@ -50,27 +50,27 @@ export default function Sort(props) {
                     <div className="inputs">
                         <label className="container">
                             <p className="inp-text">Newest</p>
-                            <input type="radio" name="sort" value="newest" ref={register()} />
+                            <input type="radio" name="sort" value="Newest" ref={register()} />
                             <span className="checkmark"></span>
                         </label>
                         <label className="container">
                             <p className="inp-text">Oldest</p>
-                            <input type="radio" name="sort" value="oldest" ref={register()} />
+                            <input type="radio" name="sort" value="Oldest" ref={register()} />
                             <span className="checkmark"></span>
                         </label>
                         <label className="container">
                             <p className="inp-text">Highest rated</p>
-                            <input type="radio" name="sort" value="highest rated" ref={register()} />
+                            <input type="radio" name="sort" value="Highest rated" ref={register()} />
                             <span className="checkmark"></span>
                         </label>
                         <label className="container">
                             <p className="inp-text">Lowest rated</p>
-                            <input type="radio" name="sort" value="lowest rated" ref={register()} />
+                            <input type="radio" name="sort" value="Lowest rated" ref={register()} />
                             <span className="checkmark"></span>
                         </label>
                         <label className="container">
                             <p className="inp-text">Most solidarity</p>
-                            <input type="radio" name="sort" value="most solidarity" ref={register()} />
+                            <input type="radio" name="sort" value="Most solidarity" ref={register()} />
                             <span className="checkmark"></span>
                         </label>
                     </div>

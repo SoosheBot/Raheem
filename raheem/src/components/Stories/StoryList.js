@@ -219,7 +219,7 @@ export default function StoryList() {
         }
 
         /* sort reports by highest rated first */
-        if (globalState.state.sort !== undefined && globalState.state.sort === 'highest rated') {
+        if (globalState.state.sort !== undefined && globalState.state.sort === 'Highest rated') {
             firebase
                 .firestore()
                 .collection("reports")
@@ -238,11 +238,49 @@ export default function StoryList() {
         }
 
         /* sort reports by lowest rated first */
-        if (globalState.state.sort !== undefined && globalState.state.sort === 'lowest rated') {
+        if (globalState.state.sort !== undefined && globalState.state.sort === 'Lowest rated') {
             firebase
                 .firestore()
                 .collection("reports")
                 .orderBy('rating', 'asc')
+                .get()
+                .then(function (querySnapshot) {
+                    const data = [];
+                    querySnapshot.forEach(function (doc) {
+                        data.push({ id: doc.id, ...doc.data() });
+                    })
+                    setReports(data);
+                })
+                .catch(err => {
+                    console.log('FAIL');
+                })
+        }
+
+        /* sort reports by newest first */
+        if (globalState.state.sort !== undefined && globalState.state.sort === 'Newest') {
+            firebase
+                .firestore()
+                .collection("reports")
+                .orderBy('reportDate', 'asc')
+                .get()
+                .then(function (querySnapshot) {
+                    const data = [];
+                    querySnapshot.forEach(function (doc) {
+                        data.push({ id: doc.id, ...doc.data() });
+                    })
+                    setReports(data);
+                })
+                .catch(err => {
+                    console.log('FAIL');
+                })
+        }
+
+        /* sort reports by oldest first */
+        if (globalState.state.sort !== undefined && globalState.state.sort === 'Oldest') {
+            firebase
+                .firestore()
+                .collection("reports")
+                .orderBy('reportDate', 'desc')
                 .get()
                 .then(function (querySnapshot) {
                     const data = [];
@@ -421,7 +459,9 @@ export default function StoryList() {
                             window.scroll(0, 0);
                             setSorting(true);
                         }}>
-                            <p>Sort: <span>Newest</span> <img src={CarotDown} alt="Drop Down" /></p>
+                            {/* <p>Sort: <span>Newest</span> <img src={CarotDown} alt="Drop Down" /></p> */}
+                            {globalState.state.sort !== undefined && globalState.state.sort !== '' && <p>Sort: <span>{globalState.state.sort}</span> <img src={CarotDown} alt="Drop Down" /></p>}
+                            {globalState.state.sort === undefined && <p>Sort: <span>Newest</span> <img src={CarotDown} alt="Drop Down" /></p>}
                         </div>
                     </div>
                 </StoryListSearch>

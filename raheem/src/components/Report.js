@@ -90,7 +90,7 @@ export default function Report(props) {
         rating: rating,
         tags: toggledTags,
         dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}`,
-        birthYear: data.dobYear,
+        birthYear: Number(data.dobYear),
         incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`,
         reportDate: date,
         location: coords
@@ -112,7 +112,7 @@ export default function Report(props) {
           rating: rating,
           tags: toggledTags,
           dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}`,
-          birthYear: data.dobYear,
+          birthYear: Number(data.dobYear),
           incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`,
           reportDate: date,
           location: new firebase.firestore.GeoPoint(coords.lat, coords.lon)
