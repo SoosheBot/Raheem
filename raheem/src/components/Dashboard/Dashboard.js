@@ -70,7 +70,7 @@ export default function Dashboard() {
                 </div>
 
                 <Route exact path="/officers/:id">
-                    <Stories officerBadgeID={officer.officerBadgeID} />
+                    <Stories officer={officer} />
                 </Route>
 
                 <Route exact path="/officers/:id/stories">
