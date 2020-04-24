@@ -14,7 +14,7 @@ export const DashboardOfficer = styled.div`
     @media (min-width: 1440px) {
         width: 35.6rem;
     }
-
+        
     .db-officer-info {
         width: 100%;
         padding: 0 20px;

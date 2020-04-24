@@ -3,12 +3,11 @@ import { useParams } from 'react-router-dom';
 
 //data visualization libraru
 import CustomLabel from './CustomLabel';
-import { VictoryPie, VictoryTooltip, VictoryBar, VictoryChart, VictoryAxis } from 'victory';
+import { VictoryPie, VictoryTooltip, VictoryBar, VictoryStack, VictoryChart, VictoryAxis } from 'victory';
 
 //global styles
-import { HeadingContainer } from '../../styles/global'
 import { Tag } from '../../styles/tags';
-import { SwitchContainer, StatsContainer, StatsContentContainer, StatsListContainer, StatsListGrid, StatsVisualContainer, PieContainer  } from '../../styles/dashboard/statsStyles'
+import { SwitchContainer, StatsContainer, StatsContentContainer, StatsListContainer, StatsDivider, StatsListGrid, StatsVisualContainer, PieContainer  } from '../../styles/dashboard/statsStyles'
 
 //other styles
 import { Switch, Grid, FormGroup, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails} from '@material-ui/core';
@@ -21,7 +20,7 @@ export default function Stats(props) {
     //sets events to custom tooltip
     CustomLabel.defaultEvents = VictoryTooltip.defaultEvents;
 
-    //toggle switch
+    //custom material UI toggle switch
         const YellowSwitch = withStyles(() => ({
             root: {
                 width: 28,
@@ -59,17 +58,17 @@ export default function Stats(props) {
     // state //
     //toggle switch state to control list view vs graph view
     const [displayed, setDisplayed] = useState(true);
-    //toggle state for positive v negative interactions
-    const [positivity, setPositivity] = useState(false);
+    
     //state to set report data
-    const [reportData, setReportData] = useState([]);
-    const [toggledTags, setToggledTags] = useState([]);
+    const [officerData, setOfficerData] = useState([]);
+    const [departmentData, setDepartmentData] = useState([]);
+    // const [precinctData, setPrecinctData] = useState([]);
     
     //params to match officer to reports
     const params = useParams();
-    const { officerBadgeID } = props;
 
     //set data to state from firebase
+    //fetch officer specific reports
     useEffect(() => {
         firebase
             .firestore()
@@ -81,20 +80,95 @@ export default function Stats(props) {
                 querySnapshot.forEach(function (doc) {
                     statsData.push({ id: doc.id, ...doc.data() });
                 })
-                setReportData(statsData);
-                console.log('stats data call', statsData)
+                setOfficerData(statsData);
+                console.log('officer data call', statsData)
             })
             .catch(err => {
                 console.log('FAIL');
             })
-    }, [officerBadgeID]);
+    }, [params.id]);
 
+    //fetches reports by precinct - doesn't work due to restrictions with firebase
+    // useEffect(() => {
+    //     firebase
+    //         .firestore()
+    //         .collection("officers")
+    //         .where('officerPrecinct', '==', '#23')
+    //         .get()
+    //         .then(function (querySnapshot) {
+    //             const precData = [];
+    //             querySnapshot.forEach(function (doc) {
+    //                 precData.push({ id: doc.id, ...doc.data() });
+    //             })
+    //             setPrecinctData(precData);
+    //             console.log('precinct data call', precData)
+    //         })
+    //         .catch(err => {
+    //             console.log('FAIL');
+    //         })
+    // }, []);
 
-   //function to toggle between positive and negative interactions
-    const toggleTag = (e) => {
-        e.preventDefault(); // prevent default refresh from button clicks
+    //fetch all reports (currently used as department data due to the assumption that all QR codes, could later add a .where to add specificity by department)
+    useEffect(() => {
+        firebase
+            .firestore()
+            .collection("reports")
+            .get()
+            .then(function (querySnapshot) {
+                const deptData = [];
+                querySnapshot.forEach(function (doc) {
+                    deptData.push({ id: doc.id, ...doc.data() });
+                })
+                setDepartmentData(deptData);
+                console.log('dept data call', deptData)
+            })
+            .catch(err => {
+                console.log('FAIL');
+            })
+    }, []);
 
+    //data manipulation for stats
+    console.log("Officer Data", officerData)
+    console.log("Department Data", departmentData)
+    // console.log("Precinct Data", precinctData)
+    
+    //average rating
+    function officerAvg() {
+    const getOfficerRatings = officerData.reduce((acc, officer) => acc + officer.rating, 0);
+            return(
+                (getOfficerRatings)/
+                (officerData.length)
+            );
     }
+
+    function departmentAvg() {
+        const getDeptRatings = departmentData.reduce((acc, officer) => acc + officer.rating, 0);
+
+                return(
+                    (getDeptRatings)/
+                    (departmentData.length)
+                );
+    }
+
+    
+    // //average precinct rating
+    // const precAvgEmpty = []
+    // const precRatingArray = precinctData.map((data) => {
+    //     return precAvgEmpty.push(data.rating)
+    // })
+    // function precAvg() { 
+    // const getprecAvg = precRatingArray.reduce((acc, c) => acc + c, 0);
+    //     return (
+    //         getprecAvg/
+    //         precRatingArray.length
+    //     )
+    // }
+
+    //average department rating
+
+    //complaint avg
+    
+    //dept complaint avg
 
     //function to toggle between visual and list views
     const toggleDisplay = (e) => {
@@ -106,66 +180,6 @@ export default function Stats(props) {
         } else {
                 list.style.display = 'none';
                 display.style.display = 'block';
-        }
-    }
-
-    //list view positive and negative toggle
-    const negative = document.getElementsByClassName("neg")[0]
-    const positive = document.getElementsByClassName("pos")[0]
-
-    const togglePositive = (e) => {
-        e.preventDefault();
-        if (positive.style.display === 'block'){
-            positive.style.display = 'block';
-            negative.style.display = 'none';
-        } else if(positive.style.display === "none") {
-            positive.style.display = 'block';
-            negative.style.display = 'none';
-        } else {
-            negative.style.display = 'none';
-        }
-    }
-
-    const toggleNegative = (e) => {
-        e.preventDefault();
-        if (negative.style.display === 'block'){
-            negative.style.display = 'block';
-            positive.style.display = 'none';
-        } else if(negative.style.display === "none") {
-            negative.style.display = 'block';
-            positive.style.display = 'none';
-        } else {
-            positive.style.display = 'none';
-        }
-    }
-
-    //visual view positive and negative toggle
-    const visnegative = document.getElementsByClassName("visneg")[0]
-    const vispositive = document.getElementsByClassName("vispos")[0]
-
-    const toggleVisPositive = (e) => {
-        e.preventDefault();
-        if (vispositive.style.display === 'block'){
-            vispositive.style.display = 'block';
-            visnegative.style.display = 'none';
-        } else if(vispositive.style.display === "none") {
-            vispositive.style.display = 'block';
-            visnegative.style.display = 'none';
-        } else {
-            visnegative.style.display = 'none';
-        }
-    }
-
-    const toggleVisNegative = (e) => {
-        e.preventDefault();
-        if (visnegative.style.display === 'block'){
-            visnegative.style.display = 'block';
-            vispositive.style.display = 'none';
-        } else if(visnegative.style.display === "none") {
-            visnegative.style.display = 'block';
-            vispositive.style.display = 'none';
-        } else {
-            vispositive.style.display = 'none';
         }
     }
 
@@ -189,36 +203,41 @@ export default function Stats(props) {
             <div id="list-view">
             <StatsContentContainer>
                 <StatsListContainer>
-                    <h3>Rating</h3>
+                    <h2 className="context">Average Rating</h2>
+                    {/* stats based on slider from form */}
+                    <p className="context">Rating Out of 10</p>
                         <StatsListGrid>
                             <p>Officer's Rating</p>
-                            <p className="values"></p>
+                            <p className="values"> {officerAvg()}</p>
                         </StatsListGrid>
                         <StatsListGrid>
-                            <p>Precint Average</p>
+                            <p>Precinct Average</p>
                             <p className="values"></p>
                         </StatsListGrid>
                         <StatsListGrid>
                             <p>Department Average</p>
-                            <p className="values"></p>
-                        </StatsListGrid>
-                        <StatsListGrid>
-                            <p>Self-Identify</p>
-                            <p className="values"></p>
+                            <p className="values"> {departmentAvg()} </p>
                         </StatsListGrid>
                 </StatsListContainer>
             
-            <StatsListContainer className="report-type">
-            <div className="tags">
-                <Tag onClick={toggleNegative}>Negative Interactions</Tag>
-                <Tag onClick={togglePositive}>Positive Interactions</Tag>
-            </div>            
-            {/* dynamically render compliments with positivity toggle */}
-            <div className="neg">    
-                <h3>Complaints </h3> 
-                {/* total complaints for officer */}
-                <p className="values"> TOTAL</p>
-
+            <div className="report-type">                    
+            <StatsListContainer>    
+                <h2>Complaints </h2> 
+                <h3>Average of Complaints</h3>
+                        <StatsListGrid>
+                            <p>Total Complaints</p>
+                            <p className="values"> </p>
+                        </StatsListGrid>
+                        <StatsListGrid>
+                            <p>Average Complaints</p>
+                            <p className="values"></p>
+                        </StatsListGrid>
+                        <StatsListGrid>
+                            <p>Department Average</p>
+                            <p className="values">  </p>
+                        </StatsListGrid>
+                <StatsDivider />
+                <h3>Complaint Total by Type</h3>
                     {/* break down of types of complaints */}
                     <StatsListGrid>
                         <p>Profiled</p>
@@ -248,11 +267,27 @@ export default function Stats(props) {
                         <p>Illegally Searched</p>
                         <p className="values"></p>
                 </StatsListGrid>
-            </div>
+            </StatsListContainer>
             {/* closes negative reports */}
             
-            <div className="pos">
-                <h3 >Compliments</h3>
+            <StatsListContainer>
+                <h2 >Compliments </h2>
+               {/* total compliments for officer */}
+                <h3>Average of Compliments </h3>
+                <StatsListGrid>
+                        <p>Total Compliments</p>
+                        <p className="values"></p>
+                    </StatsListGrid>
+                    <StatsListGrid>
+                        <p>Average Compliments</p>
+                        <p className="values"></p>
+                    </StatsListGrid>
+                    <StatsListGrid>
+                        <p>Department Average </p>
+                        <p className="values"></p>
+                </StatsListGrid>
+                <StatsDivider />
+                <h3>Compliment Total by Type </h3>
                     <StatsListGrid>
                         <p>Helped</p>
                         <p className="values"></p>
@@ -261,15 +296,14 @@ export default function Stats(props) {
                         <p>Protected</p>
                         <p className="values"></p>
                     </StatsListGrid>
-            </div>
-            {/* closes positive reports */}
             </StatsListContainer>
+            {/* closes positive reports */}
+            </div>
             </StatsContentContainer>
             
             <StatsContentContainer className="demographics">
                 <StatsListContainer>
-                    <h3>Race</h3>
-
+                    <h2>Race</h2>
                         <StatsListGrid>
                             <p>Asian</p>
                             <p className="values"></p>
@@ -307,81 +341,58 @@ export default function Stats(props) {
                             <p className="values"></p>
                         </StatsListGrid>
                 </StatsListContainer>
-
-                <StatsListContainer>
-                    <h3>Gender</h3>
-                        <StatsListGrid>
-                            <p>Female</p>
-                            <p className="values"></p>
-                        </StatsListGrid>
-                        <StatsListGrid>
-                            <p>Male</p>
-                            <p className="values"></p>
-                        </StatsListGrid>
-                        <StatsListGrid>
-                            <p>Non-Binary</p>
-                            <p className="values"></p>
-                        </StatsListGrid>
-                        <StatsListGrid>
-                            <p>Self-Identify</p>
-                            <p className="values"></p>
-                        </StatsListGrid>
-                </StatsListContainer>
-
-                <StatsListContainer>
-                    <h3>Age</h3>
-                        <StatsListGrid>
-                            <p>18-25</p>
-                            <p className="values"></p>
-                        </StatsListGrid>
-                        <StatsListGrid>
-                            <p>26-35</p>
-                            <p className="values"></p>
-                        </StatsListGrid>
-                        <StatsListGrid>
-                            <p>36-45</p>
-                            <p className="values"></p>
-                        </StatsListGrid>
-                        <StatsListGrid>
-                            <p>46-55</p>
-                            <p className="values"></p>
-                        </StatsListGrid>
-                        <StatsListGrid>
-                            <p>56-65</p>
-                            <p className="values"></p>
-                        </StatsListGrid>
-                        <StatsListGrid>
-                            <p>66-75</p>
-                            <p className="values"></p>
-                        </StatsListGrid>
-                        <StatsListGrid>
-                            <p>75+</p>
-                            <p className="values"></p>
-                    </StatsListGrid>
-                </StatsListContainer>
         </StatsContentContainer>
-
         {/* closes list view */}
         </div>
 
 
 
-
-
         {/* visual view */}
-        <div id="visual-view">
-    
+        <StatsContentContainer className="displayView" id="visual-view">
+        <StatsVisualContainer>
+        <h2>Average Overall Rating </h2>
             <div>
-                {/* ranking visualization */}
-            </div>
-            <div className="report-type">
-            <div className="tags">
-                <Tag onClick={toggleVisNegative}>Negative Interactions</Tag>
-                <Tag onClick={toggleVisPositive}>Positive Interactions</Tag>
-            </div>
+            <VictoryChart
+                domainPadding={{ x: 10 }}
+                >
+                <VictoryStack horizontal
+                    colorScale={['#242424', '#fff']}>
+                        
 
-            <div className="visneg">
-                <h3>Complaints </h3>
+                </VictoryStack>
+                <VictoryAxis dependentAxis
+                    tickFormat={(tick) => `${tick}`}
+                    />
+                    <VictoryAxis
+                    tickFormat={["Officer Rating", "Precinct Rating", "Department Rating",]}
+                    />
+                </VictoryChart>
+            </div>
+            </StatsVisualContainer>
+            
+            
+            <div className="report-type">                
+            <StatsVisualContainer className="visneg">
+                <h2>Complaints </h2>
+                <h3>Averages</h3>
+                <div>
+                    <VictoryChart
+                        domainPadding={{ x: 10 }}
+                        >
+                        <VictoryStack horizontal
+                            colorScale={['#242424', '#fff']}>
+                                
+
+                        </VictoryStack>
+                        <VictoryAxis dependentAxis
+                            tickFormat={(tick) => `${tick}`}
+                            />
+                            <VictoryAxis
+                            tickFormat={["Officer Rating", "Precinct Rating", "Department Rating",]}
+                            />
+                    </VictoryChart>
+                </div>
+                <h3>Type</h3>
                 <PieContainer>
                     <VictoryPie
                         style={{ labels: { fill: "white" } }}
@@ -399,11 +410,34 @@ export default function Stats(props) {
                     ]}
                     />
                 </PieContainer>
-            </div>
+            </StatsVisualContainer>
             {/* closes negative reports */}
             
-            <div className="vispos">
-                <h3 >Compliments</h3>
+            <StatsVisualContainer className="vispos">
+                <h2 >Compliments</h2>
+                <h3>
+                    Averages
+                </h3>
+                <div>
+                    <VictoryChart
+                        domainPadding={{ x: 10 }}
+                        >
+                        <VictoryStack horizontal
+                            colorScale={['#242424', '#fff']}>
+                                
+
+                        </VictoryStack>
+                        <VictoryAxis dependentAxis
+                            tickFormat={(tick) => `${tick}`}
+                            />
+                            <VictoryAxis
+                            tickFormat={["Officer Rating", "Precinct Rating", "Department Rating",]}
+                            />
+                    </VictoryChart>
+                </div>
+                <h3>
+                    Type
+                </h3>
                 <PieContainer>
                     <VictoryPie
                         style={{ labels: { fill: "white" } }}
@@ -421,14 +455,14 @@ export default function Stats(props) {
                     ]}
                     />
                 </PieContainer>
-            </div>
+            </StatsVisualContainer>
             {/* closes positive reports */}
         </div>
         {/* closes report-type */}
         
         <div className="demographics">
-            <div>
-                <h3>Race</h3>
+            <StatsVisualContainer>
+                <h2>Race</h2>
                 <PieContainer>
                     <VictoryPie
                         style={{ labels: { fill: "white" } }}
@@ -446,65 +480,19 @@ export default function Stats(props) {
                     ]}
                     />
                 </PieContainer>
-            </div>
+            </StatsVisualContainer>
             {/* closes race */}
-
-            <div>
-                <h3>Gender</h3>
-                <PieContainer>
-                    <VictoryPie
-                        style={{ labels: { fill: "white" } }}
-                        innerRadius={100}
-                        labelRadius={120}
-                        labels={({ datum }) => `# ${datum.y}`}
-                        labelComponent={<CustomLabel />}
-                        data={[
-                            // set this to data from firebase
-                            { x: 1, y: 5 },
-                            { x: 2, y: 4 },
-                            { x: 3, y: 2 },
-                            { x: 4, y: 3 },
-                            { x: 5, y: 1 }
-                    ]}
-                    />
-                </PieContainer>
-            </div>
-            {/* closes gender */}
-
-            <div>
-                <h3>Age</h3>
-                <PieContainer>
-                    <VictoryPie
-                        style={{ labels: { fill: "white" } }}
-                        innerRadius={100}
-                        labelRadius={120}
-                        labels={({ datum }) => `# ${datum.y}`}
-                        labelComponent={<CustomLabel />}
-                        data={[
-                            // set this to data from firebase
-                            { x: 1, y: 5 },
-                            { x: 2, y: 4 },
-                            { x: 3, y: 2 },
-                            { x: 4, y: 3 },
-                            { x: 5, y: 1 }
-                    ]}
-                    />
-                </PieContainer>
-            </div>
-            {/* closes age */}
         </div>
         {/* closes demographics */}
-    </div>
+    </StatsContentContainer>
     {/* closes visual view */}
 
-            <StatsContentContainer>
-            <h3>Report Date</h3>
-                <div>
+    <StatsContentContainer>
+        <StatsVisualContainer>
+            <h2>Report Date</h2>
+
                     <div className="date-tags">
-                    <p className="date-tags">View: </p>
-                    <Tag onclick={toggleTag}>Day</Tag>
-                    <Tag onclick={toggleTag}>Month</Tag>
-                    <Tag onclick={toggleTag}>Year</Tag>
+
                     </div>
 
                     <VictoryChart>
@@ -519,15 +507,13 @@ export default function Stats(props) {
                         style={{ data: { fill: "#FFF600", stroke: "black", strokeWidth: 2 }}}
                     />
                     </VictoryChart>
-                </div>
-            </StatsContentContainer>
-            {/* closes report date */}
+                </StatsVisualContainer>
+    </StatsContentContainer>
+    {/* closes report date */}
 
-
-
-        </FormGroup>
-        {/* closes toggle switch form */}
-        </StatsContainer>
-        // closes container
+    </FormGroup>
+    {/* closes toggle switch form */}
+    </StatsContainer>
+    // closes container
     )
 }

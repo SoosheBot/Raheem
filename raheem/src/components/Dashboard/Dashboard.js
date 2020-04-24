@@ -5,7 +5,7 @@ import { useHistory, useParams, NavLink } from 'react-router-dom';
 import firebase from '../../config/firebase';
 
 /* styles */
-import { PageContainer } from '../../styles/global';
+import { PageContainer, ButtonSecondary } from '../../styles/global';
 import { DashboardOfficer, DashboardView, DashboardTitle, DashboardSearch, DashboardMainTitle, DashboardTagSearch } from '../../styles/dashboard';
 
 export default function Dashboard() {
