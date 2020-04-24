@@ -24,6 +24,31 @@ export default function Story(props) {
         return age;
     }
 
+    /* format dates for listing reports and stories */
+    const convertTime = () => {
+        const convertedDate = new Date(report.reportDate);
+        const year = convertedDate.getFullYear();
+        const month = convertedDate.getMonth();
+
+        /* set month string */
+        let monthString = ''
+        if (month === 0) { monthString = 'Jan' }
+        else if (month === 1) { monthString = 'Feb' }
+        else if (month === 2) { monthString = 'Mar' }
+        else if (month === 3) { monthString = 'Apr' }
+        else if (month === 4) { monthString = 'May' }
+        else if (month === 5) { monthString = 'June' }
+        else if (month === 6) { monthString = 'Jul' }
+        else if (month === 7) { monthString = 'Aug' }
+        else if (month === 8) { monthString = 'Sept' }
+        else if (month === 9) { monthString = 'Oct' }
+        else if (month === 10) { monthString = 'Nov' }
+        else if (month === 11) { monthString = 'Dec' }
+
+        const updatedDate = convertedDate.toUTCString();
+        return `${monthString} ${year}`;
+    }
+
     /* when our component mounts, fetch our story that matches the report
         passed in as props */
     useEffect(() => {
@@ -46,7 +71,7 @@ export default function Story(props) {
         <StoryContainer>
             <div className="story-header">
                 <h3>Rating {report.rating}</h3>
-                <h3>{report.reportDate}</h3>
+                <h3>{convertTime()}</h3>
             </div>
 
             <div className="story-demographics">
@@ -61,10 +86,6 @@ export default function Story(props) {
                 <div>
                     <h4>Age</h4>
                     <p>{getAge()}</p>
-                </div>
-                <div>
-                    <h4>Location</h4>
-                    <p>{report.location}</p>
                 </div>
             </div>
 

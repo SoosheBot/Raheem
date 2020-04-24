@@ -217,6 +217,44 @@ export default function StoryList() {
                     console.log('FAIL');
                 })
         }
+
+        /* sort reports by highest rated first */
+        if (globalState.state.sort !== undefined && globalState.state.sort === 'highest rated') {
+            firebase
+                .firestore()
+                .collection("reports")
+                .orderBy('rating', 'desc')
+                .get()
+                .then(function (querySnapshot) {
+                    const data = [];
+                    querySnapshot.forEach(function (doc) {
+                        data.push({ id: doc.id, ...doc.data() });
+                    })
+                    setReports(data);
+                })
+                .catch(err => {
+                    console.log('FAIL');
+                })
+        }
+
+        /* sort reports by lowest rated first */
+        if (globalState.state.sort !== undefined && globalState.state.sort === 'lowest rated') {
+            firebase
+                .firestore()
+                .collection("reports")
+                .orderBy('rating', 'asc')
+                .get()
+                .then(function (querySnapshot) {
+                    const data = [];
+                    querySnapshot.forEach(function (doc) {
+                        data.push({ id: doc.id, ...doc.data() });
+                    })
+                    setReports(data);
+                })
+                .catch(err => {
+                    console.log('FAIL');
+                })
+        }
     }, [globalState]);
 
     /* get the total amount of total tags in the reports
@@ -330,6 +368,7 @@ export default function StoryList() {
 
     return (
         <PageContainer>
+            {console.log(`GLOBAL STATE ON STORYLIST `, globalState)}
             {filtering === true && <Filter filtering={filtering} setFiltering={setFiltering} queries={queries} setQueries={setQueries} reports={reports} setReports={setReports} />}
             {sorting === true && <Sort sorting={sorting} setSorting={setSorting} queries={queries} setQueries={setQueries} />}
             <StoryListContainer>

@@ -41,7 +41,7 @@ export default function Report(props) {
   // console.log(globalState);
 
   // location state
-  const [coords, setCoords] = useState({lat: 0,lon: 0});
+  const [coords, setCoords] = useState({ lat: 0, lon: 0 });
 
   /* deconstruct dispatch off globalState to dispatch an action */
   const { dispatch } = globalState;
@@ -77,7 +77,7 @@ export default function Report(props) {
   /* handle submit for the demographics form */
   const onSubmit = (data) => {
     console.log(`DATA: `, data);
-    const date = new Date().toLocaleString();
+    const date = Date.now();
     dispatch({
       type: 'REPORT',
       payload: {
@@ -90,6 +90,7 @@ export default function Report(props) {
         rating: rating,
         tags: toggledTags,
         dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}`,
+        birthYear: data.dobYear,
         incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`,
         reportDate: date,
         location: coords
@@ -111,6 +112,7 @@ export default function Report(props) {
           rating: rating,
           tags: toggledTags,
           dob: `${data.dobMonth}/${data.dobDay}/${data.dobYear}`,
+          birthYear: data.dobYear,
           incidentDate: `${data.incidentMonth}/${data.incidentDay}/${data.incidentYear}`,
           reportDate: date,
           location: new firebase.firestore.GeoPoint(coords.lat, coords.lon)
@@ -135,20 +137,20 @@ export default function Report(props) {
 
   // getting the users current location. if user blocks access the location services the coords will default to 0,0
   //#region GeoLocator
-  const getLoctaion = () =>{
-    navigator.geolocation.getCurrentPosition(geoSuccess,geoError);
+  const getLoctaion = () => {
+    navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
   }
 
-  const geoSuccess = (pos) =>{
+  const geoSuccess = (pos) => {
 
     var crd = pos.coords;
 
-    setCoords({lat: crd.latitude, lon: crd.longitude})
+    setCoords({ lat: crd.latitude, lon: crd.longitude })
     console.log(crd.latitude, "--------", crd.longitude)
   }
 
-  const geoError = (err) =>{
-    setCoords({lat: -0, lon: -0});
+  const geoError = (err) => {
+    setCoords({ lat: -0, lon: -0 });
   }
   //#endregion
 

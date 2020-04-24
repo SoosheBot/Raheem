@@ -23,8 +23,6 @@ export default function Filter(props) {
     /* deconstruct dispatch off globalState to dispatch an action */
     const { dispatch } = globalState;
 
-    console.log(`CURRENT GLOBAL STATE `, globalState);
-
     /* configure react-hook-form */
     const { register, handleSubmit, errors } = useForm();
     const { filtering, setFiltering, reports, setReports } = props;
