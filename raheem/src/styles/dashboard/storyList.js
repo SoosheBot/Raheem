@@ -64,22 +64,14 @@ export const TopContainer = styled.div`
     margin-top: 3.2rem;
     width: 100%;
     display: flex;
+    justify-content: flex-start;
     font-family: 'neuzeit-grotesk', sans-serif;
     
     p {
-        width: 50%;
-        font-size: 1.4rem;
-        line-height: 1.8rem;
-        letter-spacing: -0.166667px;
-
-        &:last-child {
-            text-align: right;
-        }
-    }
-
-    a {
-        text-decoration: none;
-        color: #0000EE;
+        font-size: 1.8rem;
+        line-height: 2.4rem;
+        letter-spacing: -0.196364px;
+        font-weight: bold;
     }
 `;
 
@@ -104,9 +96,18 @@ export const StoryListSearch = styled.div`
     align-items: center;
     margin-top: 5rem;
 
+    @media (min-width: 600px) {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
+
     .query {
         width: 100%;
         display: flex;
+   
+        @media (min-width: 600px) {
+            width: 33.5rem;
+        }
 
         form {
             display: flex;
@@ -164,6 +165,11 @@ export const StoryListSearch = styled.div`
         font-family: 'neuzeit-grotesk', sans-serif;
         display: flex;
         justify-content: space-evenly;
+
+        @media (min-width: 600px) {
+            width: 33.5rem;
+            margin-top: 0;
+        }
         
         div {
             width: 45%;

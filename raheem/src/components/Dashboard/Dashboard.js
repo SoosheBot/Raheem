@@ -6,7 +6,7 @@ import firebase from '../../config/firebase';
 
 /* styles */
 import { PageContainer } from '../../styles/global';
-import { DashboardOfficer, DashboardView, DashboardTitle, DashboardMainTitle } from '../../styles/dashboard';
+import { DashboardOfficer, DashboardView, DashboardTitle, DashboardMainTitle, ReportButton } from '../../styles/dashboard';
 
 /* components */
 import Stories from './Stories';
@@ -36,30 +36,33 @@ export default function Dashboard() {
 
     return (
         <PageContainer>
+            {console.log(`CURRENT OFFICER `, officer)}
             <DashboardOfficer>
                 <DashboardMainTitle>
-                    <h2>{`${officer.officerFName} ${officer.officerLName}`}</h2>
+                    <h2>{`${officer.officerRank} ${officer.officerLName}`}</h2>
                 </DashboardMainTitle>
                 <div className="db-officer-info">
                     <div className="db-officer-img">
-                        <img src={officer.img} alt="Officer" />
+                        {officer.img !== undefined && officer.img !== '' && <img src={officer.img} alt="Officer" />}
+                        {officer.img === '' && <img src="https://i.imgur.com/JaXjOlX.png" alt="OPD" />}
                     </div>
 
                     <div className="db-officer-info">
                         <div className="placeholder">
-                            <h3>{officer.officerRank}</h3>
+                            <h3><span className="bold">Race: </span> {officer.officerRace}</h3>
                         </div>
                         <div className="placeholder">
-                            <h3>{officer.officerPoliceDepartment}</h3>
+                            <h3><span className="bold">Gender: </span>{officer.officerGender}</h3>
                         </div>
                         <div className="placeholder">
-                            <h3>Salary: ${officer.officerSalary}</h3>
+                            <h3><span className="bold">Salary: </span> ${officer.officerSalary}</h3>
                         </div>
                         <div className="placeholder">
-                            <h3>First Employed: {officer.firstEmployed}</h3>
+                            <h3><span className="bold">First Employed: </span> {officer.firstEmployed}</h3>
                         </div>
                     </div>
                 </div>
+                <ReportButton onClick={() => history.push(`/report`)}>Add a report</ReportButton>
             </DashboardOfficer>
 
             <DashboardView>

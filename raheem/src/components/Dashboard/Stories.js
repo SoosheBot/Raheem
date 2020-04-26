@@ -12,8 +12,8 @@ import firebase from '../../config/firebase';
 import { formStore } from "../../formStore.js";
 
 /* styles */
-import { PageContainer } from '../../styles/global';
-import { Title, StoryListContainer, TopContainer, SliderContainer, TagStatContainer, StoryListSearch } from '../../styles/dashboard/storyList';
+import { StoryListContainer, TopContainer, SliderContainer, TagStatContainer, StoryListSearch } from '../../styles/dashboard/storyList';
+import { DashboardPageContainer } from '../../styles/dashboard';
 
 /* assets */
 import CarotDown from '../../assets/CarotDown.svg';
@@ -426,14 +426,14 @@ export default function Stories(props) {
     }, [reports]);
 
     return (
-        <PageContainer>
+        <DashboardPageContainer>
             {console.log(`GLOBAL STATE ON STORYLIST `, globalState)}
             {filtering === true && <Filter filtering={filtering} setFiltering={setFiltering} queries={queries} setQueries={setQueries} reports={reports} setReports={setReports} />}
             {sorting === true && <Sort sorting={sorting} setSorting={setSorting} queries={queries} setQueries={setQueries} />}
             <StoryListContainer>
                 <TopContainer>
                     {reports.length && reports !== undefined ? (<p>{reports.length} reports</p>) : (<p>0 reports</p>)}
-                    <p><Link to="/report">Write a Story</Link></p>
+                    {/* <p><Link to="/report">Write a Story</Link></p> */}
                 </TopContainer>
 
                 <SliderContainer />
@@ -487,7 +487,7 @@ export default function Stories(props) {
                     }
                 </div>
             </StoryListContainer>
-        </PageContainer >
+        </DashboardPageContainer>
     )
 }
 

@@ -1,5 +1,26 @@
 import styled from 'styled-components';
 
+export const DashboardPageContainer = styled.div`
+    width: 100%;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    @media (max-width: 500px) {
+        min-width: 100%;
+    }
+    
+    .thank-you {
+        padding-top: 8rem;
+        
+        @media (max-width: 500px){
+            padding-top: 5rem;
+        }
+    }
+`
+
 export const DashboardContainer = styled.div`
     width: 100%;
     display: flex;
@@ -11,8 +32,8 @@ export const DashboardOfficer = styled.div`
     flex-direction: column;
     margin-top: 5rem;
 
-    @media (min-width: 1440px) {
-        width: 35.6rem;
+    @media (min-width: 1000px) {
+        width: 50%;
     }
 
     .db-officer-info {
@@ -21,24 +42,27 @@ export const DashboardOfficer = styled.div`
         display: flex;
         justify-content: space-evenly;
 
-        @media (min-width: 1440px) {
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
+        span.bold {
+            font-weight: 900;
         }
 
         .db-officer-img {
-            width: 45%;
+            width: 35%;
 
-            @media (min-width: 1440px) {
-                width: 30.8rem;
-                height: 21.2rem;
+            @media (min-width: 501px) {
+                width: 28.4rem;
+                height: 29.1rem;
             }
 
             img {
                 object-fit: cover;
                 height: auto;
                 width: 100%;
+
+                @media (min-width: 501px) {
+                    height: 29.1rem;
+                }
+    
             }
         }
 
@@ -48,6 +72,10 @@ export const DashboardOfficer = styled.div`
             flex-direction: column;
             justify-content: center;
 
+            @media (max-width: 500px) {
+                width: 65%;
+            }
+
             .placeholder {
                 font-family: 'neuzeit-grotesk', sans-serif;
                 width: 100%;
@@ -56,11 +84,7 @@ export const DashboardOfficer = styled.div`
                 align-items: center;
                 margin-bottom: 1rem;
                 border-bottom: 1px solid #555555;
-
-                &:last-child {
-                    border: none;
-                    margin-top: none;
-                }
+                padding: 1.7rem 0;
 
                 .officer-info-sm {
                     font-size: 1.8rem;
@@ -72,9 +96,13 @@ export const DashboardOfficer = styled.div`
                 h3 {
                     font-size: 1.8rem;
                     line-height: 2.4rem;
-                    font-weight: 900;
+                    font-weight: 300;
                     font-family: 'neuzeit-grotesk', sans-serif;
                     font-size: 1.6rem;
+
+                    @media (max-width: 500px) {
+                        font-size: 1.4rem;
+                    }
                 }
             }
         }
@@ -368,5 +396,32 @@ export const LargeButtonPrimary = styled.button`
     &:focus {
         outline: none;
         border: 1px solid #FFF600;
+    }
+`;
+
+export const ReportButton = styled.button`
+   width: 80%;
+   height: 7.5rem;
+   background: #111111;
+   border-radius: 0.6rem;
+   border: none;
+   font-family: Noto Serif, serif;
+   font-size: 2.2rem;
+   line-height: 3.2rem;
+   letter-spacing: -0.261905px; 
+   color: #ffffff;
+   margin: 5rem auto 1rem;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:focus {
+        outline: none;
+        border: 1px solid #FFF600;
+    }
+
+    @media (max-width: 500px) {
+        height: 5.2rem;
     }
 `;
