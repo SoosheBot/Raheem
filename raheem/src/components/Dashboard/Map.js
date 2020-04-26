@@ -23,7 +23,7 @@ export default function Map() {
 
   //get location data and send to firebase.
 
-  const ColectLocation = (lat, lon) =>{
+  const CollectLocation = (lat, lon) =>{
     const dataLat = lat;
     const dataLon = lon;
     console.log(`lat:${dataLat}  lon:${dataLon}`); 
@@ -31,12 +31,10 @@ export default function Map() {
 
   //refactored for DRYness in return
 
-  const _onViewportChange = (viewport) => {setViewport({ ...viewport }); ColectLocation(viewport.latitude,viewport.longitude)};
+  const _onViewportChange = (viewport) => {setViewport({ ...viewport }); CollectLocation(viewport.latitude,viewport.longitude)};
 
   return (
     <div>
-      {/* <StartEnd>Map Start</StartEnd> */}
-
       <ReactMapGL
         className="MapBox"
         {...viewport}
@@ -47,7 +45,7 @@ export default function Map() {
         //onViewportChange={_onViewportChange}
       >
         {/* built-in functionality for geolocation in react-map-gl */}
-        <GeolocateControl test-id='geolocate-button'
+        <GeolocateControl
           style={geolocateStyle}
           positionOptions={{ enableHighAccuracy: true }}
           trackUserLocation={true}
@@ -55,17 +53,6 @@ export default function Map() {
           latitude='{viewport.latitude}'
         />
       </ReactMapGL>
-
-      {/* <StartEnd>Map End</StartEnd> */}
     </div>
   );
-}
-
-// const StartEnd = styled.h1`
-//   font-size: 4em;
-//   font-weight: bold;
-//   padding-top: 50px;
-//   padding-bottom: 50px;
-//   text-align: center;
-//   border: 5px solid purple;
-// `;
+};

@@ -1,6 +1,8 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 
+
+
 import About from '../About';
 
 const mockHistoryPush = jest.fn();
@@ -15,7 +17,7 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('<About />', () => {
-    it('renders successfully', () => {
+    it('renders without crashing', () => {
         render(<About />);
     });
 });

@@ -1,37 +1,37 @@
 import React, {useContext}from 'react';
 import { render, fireEvent, wait, queryAllByTestId, getByTitle } from '@testing-library/react';
 import Report from "../Report";
-import "mutationobserver-shim";
-import { ExpansionPanelActions, Input } from '@material-ui/core';
-import { formStore, StateProvider } from '../../formStore.js';
+// import "mutationobserver-shim";
+// import { ExpansionPanelActions, Input } from '@material-ui/core';
+// import { formStore, StateProvider } from '../../formStore.js';
 
-global.MutationObserver = window.MutationObserver;
+// global.MutationObserver = window.MutationObserver;
 
 
-jest.mock('react-router-dom', () => ({
-      ...jest.requireActual('react-router-dom'),
-    useHistory: () => ({
-      push: jest.fn()
+// jest.mock('react-router-dom', () => ({
+//       ...jest.requireActual('react-router-dom'),
+//     useHistory: () => ({
+//       push: jest.fn()
+//     })
+//   }));
+
+describe('<Report />', () => {
+    it('renders without crashing', () => {
+        render(<Report />);
     })
-  }));
-
-// describe('<Report />', () => {
-//     it('renders without crashing', () => {
-//         render(<Report />);
-//     })
-//     it('submits a report', () => {
-//       const { getByText } = render(<Report />)
-//       act(() => {
-//         fireEvent(
-//           getByText('Add This Report'),
-//           new MouseEvent('click', {
-//             cancelable: true,
-//           })
-//         )
-//       })
+    // it('submits a report', () => {
+    //   const { getByText } = render(<Report />)
+    //   act(() => {
+    //     fireEvent(
+    //       getByText('Add This Report'),
+    //       new MouseEvent('click', {
+    //         cancelable: true,
+    //       })
+    //     )
+    //   })
       
-//     })
-// })
+    // })
+})
 
 // const document = render(<Report />)
 // const cont = document.getByTestId('allmytags')
@@ -74,13 +74,13 @@ jest.mock('react-router-dom', () => ({
 
 const val = {value:3}
 
-describe("report", ()=>{
-  test("Slider Test", ()=>{
-    const { getByTestId } = render(<Report />);
-    //console.log(`Element: ${getByTestId("slider")}`);
-    fireEvent.change(getByTestId("slider"), {
-      target:val
-    })
+// describe("report", ()=>{
+//   test("Slider Test", ()=>{
+//     const { getByTestId } = render(<Report />);
+//     //console.log(`Element: ${getByTestId("slider")}`);
+//     fireEvent.change(getByTestId("slider"), {
+//       target:val
+//     })
     
-  })
-})
+//   })
+// })
