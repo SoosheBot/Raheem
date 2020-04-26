@@ -17,43 +17,6 @@ import { withStyles } from '@material-ui/core/styles';
 import firebase from '../../config/firebase';
 
 export default function Stats(props) {
-    //sets events to custom tooltip
-    CustomLabel.defaultEvents = VictoryTooltip.defaultEvents;
-
-    //custom material UI toggle switch
-        const YellowSwitch = withStyles(() => ({
-            root: {
-                width: 28,
-                height: 16,
-                padding: 0,
-                display: 'flex',
-            },
-            switchBase: {
-                padding: 2,
-                color: '',
-                '&$checked': {
-                    transform: 'translateX(12px)',
-                    color: '#fff',
-                    '& + $track': {
-                    opacity: 1,
-                    backgroundColor: '#FAEB00',
-                    borderColor: '#FAEB00',
-                    },
-                },
-            },
-            thumb: {
-                width: 12,
-                height: 12,
-                boxShadow: 'none',
-            },
-            track: {
-                border: `1px solid #111111`,
-                borderRadius: 16 / 2,
-                opacity: 1,
-                backgroundColor: '#525252',
-            },
-            checked: {},
-        }))(Switch);
 
     // state //
     //toggle switch state to control list view vs graph view
@@ -127,21 +90,22 @@ export default function Stats(props) {
             })
     }, []);
 
-    //data manipulation for stats
+    //---DATA MANIPULATION FOR STATS--//
     console.log("Officer Data", officerData)
     console.log("Department Data", departmentData)
     // console.log("Precinct Data", precinctData)
     
-    //average rating
-    function officerAvg() {
-    const getOfficerRatings = officerData.reduce((acc, officer) => acc + officer.rating, 0);
+    //-----RATING CALCULATIONS-----//
+    //---average rating---//
+    function officerAvgRating() {
+        const getOfficerRatings = officerData.reduce((acc, officer) => acc + officer.rating, 0);
             return(
                 (getOfficerRatings)/
                 (officerData.length)
             );
     }
 
-    function departmentAvg() {
+    function departmentAvgRating() {
         const getDeptRatings = departmentData.reduce((acc, officer) => acc + officer.rating, 0);
 
                 return(
@@ -149,26 +113,223 @@ export default function Stats(props) {
                     (departmentData.length)
                 );
     }
+    //need to calculate avg rating by precinct//
 
+
+    //-----TAGS CALCULATIONS-----//
+    const officerTags = officerData.map(officer => officer.tags);
+    const officerTagsArray = officerTags.flat().sort();
+    console.log("officer flat", officerTagsArray)
+
+    const deptTags = departmentData.map(officer => officer.tags);
+    const deptTagsArray = deptTags.flat().sort();
+    console.log("department flat", deptTagsArray)
+
+    //----complaints----//
+    //--totals and averages--//
     
-    // //average precinct rating
-    // const precAvgEmpty = []
-    // const precRatingArray = precinctData.map((data) => {
-    //     return precAvgEmpty.push(data.rating)
-    // })
-    // function precAvg() { 
-    // const getprecAvg = precRatingArray.reduce((acc, c) => acc + c, 0);
-    //     return (
-    //         getprecAvg/
-    //         precRatingArray.length
-    //     )
-    // }
+    //officer//
 
-    //average department rating
+    //total complaints
+    const countOfficerComplaintTags = officerTagsArray.filter(x => x !== 'helped' && x !== 'protected').length
+    //average per report
+    function avgOfficerComplaint() {
+        return(
+            countOfficerComplaintTags/(officerTagsArray.length)
+        )
+    }
 
-    //complaint avg
+    //department//
     
-    //dept complaint avg
+    //total complaints
+    const countDeptComplaintTags = deptTagsArray.filter(x => x !== 'helped' && x !== 'protected').length
+    //average per report
+    function avgDeptComplaint() {
+        return(
+            countDeptComplaintTags/(deptTagsArray.length)
+        )
+    }
+
+    //--breakdown of Tag Types--//
+    //officer
+    
+    //totals
+    const officerIllegalSearch = officerTagsArray.filter(x => x === 'illegally searched').length
+    const officerProfiled = officerTagsArray.filter(x => x === 'profiled').length
+    const officerPhysAtt = officerTagsArray.filter(x => x === 'physically attacked').length
+    const officerHarassed = officerTagsArray.filter(x => x === 'harassed').length
+    const officerWronglyAccused = officerTagsArray.filter(x => x === 'wrongly accused').length
+    const officerDisrespected = officerTagsArray.filter(x => x === 'disrespected').length
+    const officerNeglected = officerTagsArray.filter(x => x === 'neglected').length
+    
+    //percentages
+    const percentIllegalSearch = (officerIllegalSearch/(officerTagsArray.length))*100
+    const percentProfiled = (officerProfiled/(officerTagsArray.length))*100
+    const percentPhysAtt = (officerPhysAtt/(officerTagsArray.length))*100
+    const percentHarassed = (officerHarassed/(officerTagsArray.length))*100
+    const percentWronglyAccused = (officerWronglyAccused/(officerTagsArray.length))*100
+    const percentDisrespected = (officerDisrespected/(officerTagsArray.length))*100
+    const percentNeglected = (officerNeglected/(officerTagsArray.length))*100
+        
+    //--breakdown of Tag Types--//
+    //department totals//
+    const deptIllegalSearch = deptTagsArray.filter(x => x === 'illegally searched').length
+    const deptProfile = deptTagsArray.filter(x => x === 'profiled').length
+    const deptPhysAtt = deptTagsArray.filter(x => x === 'physically attacked').length
+    const deptHarass = deptTagsArray.filter(x => x === 'harassed').length
+    const deptWrongAccuse = deptTagsArray.filter(x => x === 'wrongly accused').length
+    const deptDisrespect = deptTagsArray.filter(x => x === 'disrespected').length
+    const deptNeglect = deptTagsArray.filter(x => x === 'neglected').length
+
+
+    //----compliments----//
+    //--officer
+    
+    //totals
+    const countOfficerProtectedTags = officerTagsArray.filter(x => x === 'protected').length
+    const countOfficerHelpedTags = officerTagsArray.filter(x => x === 'helped').length
+    
+    //percentages
+    const percentProtected = (countOfficerProtectedTags/(officerTagsArray.length))*100
+    const percentHelped = (countOfficerHelpedTags/(officerTagsArray.length))*100
+
+    //total compliments
+    const countOfficerComplimentTags = officerTagsArray.filter(x => x === 'helped' || x === 'protected').length
+
+    //average per report
+    function avgOfficerCompliments() {
+        return(
+            countOfficerComplimentTags/(officerTagsArray.length)
+        )
+    }
+
+    //--department--//
+    const countDeptProtectedTags = deptTagsArray.filter(x => x === 'protected').length
+    function countDeptHelpedTags() {
+        return(deptTagsArray.filter(x => x === 'helped').length)
+    }    
+    //total compliments
+    const countDeptComplimentTags = deptTagsArray.filter(x => x === 'helped' || x === 'protected').length
+    
+    //average per report
+    function avgDeptCompliments() {
+        return(
+            countDeptComplimentTags/(deptTagsArray.length)
+        )
+    }
+    //--------------------------------------------------//
+
+    //---- RACE CALCULATIONS ----//
+    //department
+    const reporterRaceDept = departmentData.map(reporter => reporter.race)
+    
+    //officer
+    const reporterRace = officerData.map(reporter => reporter.race)
+    
+    //breakdown totals
+    const countRaceAsian = reporterRace.filter(x => x === 'asian').length
+    const countRaceBlack = reporterRace.filter(x => x === 'african american').length
+    const countRaceLatinx = reporterRace.filter(x => x === 'latinx').length
+    const countRaceMiddleEastern = reporterRace.filter(x => x === 'middle eastern').length
+    const countRaceNativeAmerican = reporterRace.filter(x => x === 'native american').length
+    const countRacePacificIslander = reporterRace.filter(x => x === 'pacific islander').length
+    const countRaceSouthAsian = reporterRace.filter(x => x === 'south asian').length
+    const countRaceWhite = reporterRace.filter(x => x === 'white').length
+    const countRaceMultiracial = reporterRace.filter(x => x === 'multiracial').length
+
+    //breakdown percent
+    function percentAsian() {
+        return(
+            (countRaceAsian/(officerData.length))*100
+        )
+    }
+
+    function percentBlack() {
+        return(
+            (countRaceBlack/(officerData.length))*100
+        )
+    }
+
+    function percentLatinx() {
+        return(
+            (countRaceLatinx/(officerData.length))*100
+        )
+    }
+
+    function percentMiddleEastern() {
+        return(
+            (countRaceMiddleEastern/(officerData.length))*100
+        )
+    }
+
+    function percentNativeAmerican() {
+        return(
+            (countRaceNativeAmerican/(officerData.length))*100
+        )
+    }
+
+    function percentPacificIslander() {
+        return(
+            (countRacePacificIslander/(officerData.length))*100
+        )
+    }
+
+    function percentSouthAsian() {
+        return(
+            (countRaceSouthAsian/(officerData.length))*100
+        )
+    }
+
+    function percentWhite() {
+        return(
+            (countRaceWhite/(officerData.length))*100
+        )
+    }
+
+    function percentMultiracial() {
+        return(
+            (countRaceMultiracial/(officerData.length))*100
+        )
+    }
+    //----------------------------------------------------//
+
+    //sets events to custom tooltip
+    CustomLabel.defaultEvents = VictoryTooltip.defaultEvents;
+
+    //custom material UI toggle switch
+        const YellowSwitch = withStyles(() => ({
+            root: {
+                width: 28,
+                height: 16,
+                padding: 0,
+                display: 'flex',
+            },
+            switchBase: {
+                padding: 2,
+                color: '',
+                '&$checked': {
+                    transform: 'translateX(12px)',
+                    color: '#fff',
+                    '& + $track': {
+                    opacity: 1,
+                    backgroundColor: '#FAEB00',
+                    borderColor: '#FAEB00',
+                    },
+                },
+            },
+            thumb: {
+                width: 12,
+                height: 12,
+                boxShadow: 'none',
+            },
+            track: {
+                border: `1px solid #111111`,
+                borderRadius: 16 / 2,
+                opacity: 1,
+                backgroundColor: '#525252',
+            },
+            checked: {},
+        }))(Switch);
 
     //function to toggle between visual and list views
     const toggleDisplay = (e) => {
@@ -203,12 +364,18 @@ export default function Stats(props) {
             <div id="list-view">
             <StatsContentContainer>
                 <StatsListContainer>
+                <StatsListGrid className="totals">
+                    <h2 className="context">Total Reports</h2>
+                    <p className="values">{officerData.length}</p>
+                </StatsListGrid>
+                </StatsListContainer>
+                <StatsListContainer>
                     <h2 className="context">Average Rating</h2>
                     {/* stats based on slider from form */}
                     <p className="context">Rating Out of 10</p>
                         <StatsListGrid>
                             <p>Officer's Rating</p>
-                            <p className="values"> {officerAvg()}</p>
+                            <p className="values"> {officerAvgRating()}</p>
                         </StatsListGrid>
                         <StatsListGrid>
                             <p>Precinct Average</p>
@@ -216,7 +383,7 @@ export default function Stats(props) {
                         </StatsListGrid>
                         <StatsListGrid>
                             <p>Department Average</p>
-                            <p className="values"> {departmentAvg()} </p>
+                            <p className="values"> {departmentAvgRating()} </p>
                         </StatsListGrid>
                 </StatsListContainer>
             
@@ -226,47 +393,52 @@ export default function Stats(props) {
                 <h3>Average of Complaints</h3>
                         <StatsListGrid>
                             <p>Total Complaints</p>
-                            <p className="values"> </p>
+                            <p className="values"> {countOfficerComplaintTags} </p>
                         </StatsListGrid>
                         <StatsListGrid>
                             <p>Average Complaints</p>
-                            <p className="values"></p>
+                            <p className="values">{avgOfficerComplaint()}</p>
+                        </StatsListGrid>
+                        <StatsListGrid>
+                            <p>Department Total </p>
+                            <p className="values">{countDeptComplimentTags}</p>
                         </StatsListGrid>
                         <StatsListGrid>
                             <p>Department Average</p>
-                            <p className="values">  </p>
+                            <p className="values"> {avgDeptComplaint()} </p>
                         </StatsListGrid>
                 <StatsDivider />
-                <h3>Complaint Total by Type</h3>
+                <h3>Complaint Totals by Type</h3>
                     {/* break down of types of complaints */}
                     <StatsListGrid>
+                        <p>Illegally Searched</p>
+                        <p className="values">{officerIllegalSearch}</p>
+                    </StatsListGrid>
+                    <StatsListGrid>
                         <p>Profiled</p>
-                        <p className="values"></p>
-                    </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Harrassed</p>
-                        <p className="values"></p>
-                    </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Neglected</p>
-                        <p className="values"></p>
-                    </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Disrespected</p>
-                        <p className="values"></p>
+                        <p className="values">{officerProfiled}</p>
                     </StatsListGrid>
                     <StatsListGrid>
                         <p>Physically Attacked</p>
-                        <p className="values"></p>
+                        <p className="values">{officerPhysAtt}</p>
+                    </StatsListGrid>
+                    <StatsListGrid>
+                        <p>Harrassed</p>
+                        <p className="values">{officerHarassed}</p>
                     </StatsListGrid>
                     <StatsListGrid>
                         <p>Wrongly Accused</p>
-                        <p className="values"></p>
+                        <p className="values">{officerWronglyAccused}</p>
                     </StatsListGrid>
                     <StatsListGrid>
-                        <p>Illegally Searched</p>
-                        <p className="values"></p>
-                </StatsListGrid>
+                        <p>Disrespected</p>
+                        <p className="values">{officerDisrespected}</p>
+                    </StatsListGrid>
+                    <StatsListGrid>
+                        <p>Neglected</p>
+                        <p className="values">{officerNeglected}</p>
+                    </StatsListGrid>
+
             </StatsListContainer>
             {/* closes negative reports */}
             
@@ -274,27 +446,31 @@ export default function Stats(props) {
                 <h2 >Compliments </h2>
                {/* total compliments for officer */}
                 <h3>Average of Compliments </h3>
-                <StatsListGrid>
+                    <StatsListGrid>
                         <p>Total Compliments</p>
-                        <p className="values"></p>
+                        <p className="values">{countOfficerComplimentTags}</p>
                     </StatsListGrid>
                     <StatsListGrid>
                         <p>Average Compliments</p>
-                        <p className="values"></p>
+                        <p className="values">{avgOfficerCompliments()}</p>
+                    </StatsListGrid>
+                    <StatsListGrid>
+                        <p>Department Total </p>
+                        <p className="values">{countDeptComplimentTags}</p>
                     </StatsListGrid>
                     <StatsListGrid>
                         <p>Department Average </p>
-                        <p className="values"></p>
-                </StatsListGrid>
+                        <p className="values">{avgDeptCompliments()}</p>
+                    </StatsListGrid>
                 <StatsDivider />
-                <h3>Compliment Total by Type </h3>
+                <h3>Compliment Totals by Type </h3>
                     <StatsListGrid>
                         <p>Helped</p>
-                        <p className="values"></p>
+                        <p className="values">{countOfficerHelpedTags}</p>
                     </StatsListGrid>
                     <StatsListGrid>
                         <p>Protected</p>
-                        <p className="values"></p>
+                        <p className="values">{countOfficerProtectedTags}</p>
                     </StatsListGrid>
             </StatsListContainer>
             {/* closes positive reports */}
@@ -306,39 +482,39 @@ export default function Stats(props) {
                     <h2>Race</h2>
                         <StatsListGrid>
                             <p>Asian</p>
-                            <p className="values"></p>
+                            <p className="values">{countRaceAsian}</p>
                         </StatsListGrid>
                         <StatsListGrid>
                             <p>Black/African</p>
-                            <p className="values"></p>
+                            <p className="values">{countRaceBlack}</p>
                         </StatsListGrid>
                         <StatsListGrid>
                             <p>Latinx</p>
-                            <p className="values"></p>
+                            <p className="values">{countRaceLatinx}</p>
                         </StatsListGrid>
                         <StatsListGrid>
                             <p>Middle Eastern</p>
-                            <p className="values"></p>
+                            <p className="values">{countRaceMiddleEastern}</p>
                         </StatsListGrid>
                         <StatsListGrid>
                             <p>Native American</p>
-                            <p className="values"></p>
+                            <p className="values">{countRaceNativeAmerican}</p>
                         </StatsListGrid>
                         <StatsListGrid>
                             <p>Pacific Islander</p>
-                            <p className="values"></p>
+                            <p className="values">{countRacePacificIslander}</p>
                         </StatsListGrid>
                         <StatsListGrid>
                             <p>South Asian</p>
-                            <p className="values"></p>
+                            <p className="values">{countRaceSouthAsian}</p>
                         </StatsListGrid>
                         <StatsListGrid>
                             <p>White</p>
-                            <p className="values"></p>
+                            <p className="values">{countRaceWhite}</p>
                         </StatsListGrid>
                         <StatsListGrid>
                             <p>Multiracial</p>
-                            <p className="values"></p>
+                            <p className="values">{countRaceMultiracial}</p>
                         </StatsListGrid>
                 </StatsListContainer>
         </StatsContentContainer>

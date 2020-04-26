@@ -188,7 +188,7 @@ export default function Report(props) {
           <TagContainer>
             <Tag onClick={toggleTag} value="helped">helped</Tag>
             <Tag onClick={toggleTag} value="protected">protected</Tag>
-            <Tag onClick={toggleTag} value="physically attacked">illegally searched</Tag>
+            <Tag onClick={toggleTag} value="illegally searched">illegally searched</Tag>
             <Tag onClick={toggleTag} value="profiled">profiled</Tag>
             <Tag onClick={toggleTag} value="physically attacked">physically attacked</Tag>
             <Tag onClick={toggleTag} value="harassed">harassed</Tag>

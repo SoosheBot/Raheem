@@ -75,6 +75,20 @@ export const StatsListContainer = styled.div`
     padding-bottom: 3.2rem;
     border-bottom: 1px solid #C4C4C4;
     margin-bottom: 1.5rem;
+    
+    .totals {
+        border-bottom: none;
+
+        h2{
+            width: 51%;
+            
+        }
+        
+        p.values{
+            font-height: 2.6rem;
+            font-weight: 900;
+        }
+    }
 
     @media (max-width: 500px){
         padding: 0 2rem 3.2rem 2rem
