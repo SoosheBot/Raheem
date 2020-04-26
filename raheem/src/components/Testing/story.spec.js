@@ -3,12 +3,12 @@ import { render, fireEvent } from "@testing-library/react";
 import Story from "../Story";
 
 //allows test to pass useHistory state without mutation-observer error
-// import "mutationobserver-shim";
-// global.MutationObserver = window.MutationObserver;
-// const mockHistoryGoBack = jest.fn();
+import "mutationobserver-shim";
+global.MutationObserver = window.MutationObserver;
+const mockHistoryGoBack = jest.fn();
 
 //mock the Firestore database
-// const { FakeFirestore } = require("firestore-jest-mock");
+const { FakeFirestore } = require("firestore-jest-mock");
 
 //mock the useHistory
 // jest.mock("react-router-dom", () => ({
@@ -20,36 +20,36 @@ import Story from "../Story";
 // }));
 
 //create a new Fakefirestore database
-// const db = new FakeFirestore({
-//   fakeCollection: [
-//     { id: "1abc", storyBody: "Was protected" },
-//     { id: "2def", storyBody: "Officer was rude" },
-//   ],
-// });
+const db = new FakeFirestore({
+  fakeCollection: [
+    { id: "1abc", storyBody: "Was protected" },
+    { id: "2def", storyBody: "Officer was rude" },
+  ],
+});
 
 //mock adding a new record to a collection, like you would in realtime on Firebase
-// test("adds new record to a fakeCollection collection (database)", () => {
-//   db.collection("fakeCollection")
-//     .add({
-//       id: "3ghi",
-//       storyBody: "Bad experience",
-//     })
-//     .then(function (docs) {
-//       expect(docs.exists).toBe(true);
-//       const data = docs.data();
+test("adds new record to a fakeCollection collection (database)", () => {
+  db.collection("fakeCollection")
+    .add({
+      id: "3ghi",
+      storyBody: "Bad experience",
+    })
+    .then(function (docs) {
+      expect(docs.exists).toBe(true);
+      const data = docs.data();
 
-//       expect(data).toHaveProperty("storyBody", "Bad experience");
-//     })
-//     .catch((err) => {
-//       console.log("error adding to fakeCollection database", err);
-//     });
-// });
-
-describe("Story page", () => {
-  it("renders without crashing", () => {
-    render(<Story />);
-  });
+      expect(data).toHaveProperty("storyBody", "Bad experience");
+    })
+    .catch((err) => {
+      console.log("error adding to fakeCollection database", err);
+    });
 });
+
+// describe("Story page", () => {
+//   it("renders without crashing", () => {
+//     render(<Story />);
+//   });
+// });
 
 // it("submits the Story.js form", () => {
 //   const onSubmit = jest.fn();

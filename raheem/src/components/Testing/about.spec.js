@@ -17,7 +17,7 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('<About />', () => {
-    it('renders without crashing', () => {
+    it('renders', () => {
         render(<About />);
     });
 });
