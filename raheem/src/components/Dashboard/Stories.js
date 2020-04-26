@@ -433,7 +433,6 @@ export default function Stories(props) {
             <StoryListContainer>
                 <TopContainer>
                     {reports.length && reports !== undefined ? (<p>{reports.length} reports</p>) : (<p>0 reports</p>)}
-                    {/* <p><Link to="/report">Write a Story</Link></p> */}
                 </TopContainer>
 
                 <SliderContainer />
