@@ -42,6 +42,11 @@ export const DashboardOfficer = styled.div`
         display: flex;
         justify-content: space-evenly;
 
+        @media (max-width: 400px) {
+            flex-direction: column;
+            align-items: center;
+        }
+
         span.bold {
             font-weight: 900;
         }
@@ -74,6 +79,10 @@ export const DashboardOfficer = styled.div`
 
             @media (max-width: 500px) {
                 width: 65%;
+            }
+
+            @media (max-width: 500px) {
+                margin-top: 2rem;
             }
 
             .placeholder {
@@ -180,6 +189,10 @@ export const DashboardMainTitle = styled.div`
         font-size: 2.6rem;
         background: #FFF600;
         padding: 0 1.2rem 1.8rem 0;
+
+        @media (max-width: 405px) {
+            font-size: 2rem;
+        }
     }
 `;
 

@@ -49,7 +49,7 @@ export default function Filter(props) {
                         </div>
 
                         <div className="matched-stories">
-                            <p>84 stories match selected filters</p>
+                            <p>Find stories that match the selected filters below</p>
                         </div>
 
                     </FilterTop>

@@ -97,12 +97,56 @@ export const TagStatContainer = styled.div`
     justify-content: flex-start;
     font-family: 'neuzeit-grotesk', sans-serif;
 
-    // div.stats-grid {
-    //     width: 100%;
-    //     border: 1px solid red;
-    //     display: grid;
-    //     grid-template-columns: 25% 25%;
-    // }
+    @media (min-width: 500px) {
+        flex-direction: row-reverse;
+        justify-content: space-evenly;
+    }
+
+    .officer-stats {
+
+        @media (min-width: 500px) {
+            width: 45%;
+        }
+    }
+
+    .officer-rating {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 3rem;
+
+        @media (min-width: 500px) {
+            width: 50%;
+        }
+
+        div.circle {
+            width: 8rem;
+            height: 8rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background: #FFF600;
+            border: #888888;
+        }
+
+        p.rating {
+            font-size: 3.5rem;
+            line-height: 4rem;
+            font-weight: bold;
+            letter-spacing: -0.196364px;
+            text-align: center;
+            border-bottom: none;
+            margin-top: 1rem;
+        }
+
+        h4 {
+            @media (max-width: 733px) {
+                text-align: center;
+            }
+        }
+    }
 
     h4 {
         font-size: 3rem;
@@ -209,6 +253,10 @@ export const StoryListSearch = styled.div`
         div {
             width: 45%;
             text-align: center;
+
+            &:first-child {
+                border-right: 1px solid #C4C4C4;
+            }
 
             &:hover {
                 cursor: pointer;

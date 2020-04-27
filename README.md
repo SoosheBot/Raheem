@@ -1,6 +1,6 @@
 # Raheem
 
-You can find the deployed project at https://master.d3c4fc9noj9pz0.amplifyapp.com/
+You can find the deployed project at https://master.d2qsd1m3f8a69k.amplifyapp.com/
 
 ## Contributors
 

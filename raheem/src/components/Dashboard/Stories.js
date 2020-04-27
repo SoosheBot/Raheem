@@ -23,6 +23,7 @@ import Search from '../../assets/Search.svg';
 import Story from '../Dashboard/Story';
 import Filter from '../Stories/Filter';
 import Sort from '../Stories/Sort';
+import { getByPlaceholderText } from '@testing-library/react';
 
 export default function Stories(props) {
 
@@ -43,10 +44,62 @@ export default function Stories(props) {
     const [filtering, setFiltering] = useState(false); // toggleable filter state
     const [sorting, setSorting] = useState(false); // toggleable sorting state
     const [queries, setQueries] = useState([]);
+    const [officerRatingAvg, setOfficerRatingAvg] = useState(0); // current officer's average rating
 
     /* handle search input on submission */
-    const onSubmit = (data) => {
-        console.log(data);
+    const onSubmit = (data, e) => {
+        /* search for specific races */
+        if (data.query.toLowerCase() === 'asian'
+            || data.query.toLowerCase() === 'african american'
+            || data.query.toLowerCase() === 'white'
+            || data.query.toLowerCase() === 'south asian'
+            || data.query.toLowerCase() === 'latinx'
+            || data.query.toLowerCase() === 'pacific islander'
+            || data.query.toLowerCase() === 'middle eastern'
+            || data.query.toLowerCase() === 'multiracial'
+            || data.query.toLowerCase() === 'native american'
+        ) {
+            firebase
+                .firestore()
+                .collection('reports')
+                .where('officerId', '==', officer.officerBadgeID)
+                .where('race', '==', data.query)
+                .get()
+                .then(function (querySnapshot) {
+                    const data = [];
+                    querySnapshot.forEach(function (doc) {
+                        data.push({ id: doc.id, ...doc.data() });
+                    })
+                    setReports(data);
+                })
+                .catch(err => {
+                    console.log('FAIL');
+                })
+        }
+        /* search for specific genders */
+        else if (data.query.toLowerCase() === 'male'
+            || data.query.toLowerCase() === 'female'
+            || data.query.toLowerCase() === 'non binary'
+            || data.query.toLowerCase() === 'self identify'
+        ) {
+            firebase
+                .firestore()
+                .collection('reports')
+                .where('officerId', '==', officer.officerBadgeID)
+                .where('gender', '==', data.query)
+                .get()
+                .then(function (querySnapshot) {
+                    const data = [];
+                    querySnapshot.forEach(function (doc) {
+                        data.push({ id: doc.id, ...doc.data() });
+                    })
+                    setReports(data);
+                })
+                .catch(err => {
+                    console.log('FAIL');
+                })
+        }
+        e.target.reset();
     }
 
     /* state for totaling up the tags coming back in the reports */
@@ -228,12 +281,16 @@ export default function Stories(props) {
                 .firestore()
                 .collection("reports")
                 .orderBy('rating', 'desc')
-                .where('officerId', '==', officer.officerBadgeID)
                 .get()
                 .then(function (querySnapshot) {
                     const data = [];
                     querySnapshot.forEach(function (doc) {
-                        data.push({ id: doc.id, ...doc.data() });
+                        if (doc.data().officerId === officer.officerBadgeID) {
+                            data.push({ id: doc.id, ...doc.data() });
+                        }
+                        else {
+                            console.log('Not a match.');
+                        }
                     })
                     setReports(data);
                 })
@@ -248,12 +305,16 @@ export default function Stories(props) {
                 .firestore()
                 .collection("reports")
                 .orderBy('rating', 'asc')
-                .where('officerId', '==', officer.officerBadgeID)
                 .get()
                 .then(function (querySnapshot) {
                     const data = [];
                     querySnapshot.forEach(function (doc) {
-                        data.push({ id: doc.id, ...doc.data() });
+                        if (doc.data().officerId === officer.officerBadgeID) {
+                            data.push({ id: doc.id, ...doc.data() });
+                        }
+                        else {
+                            console.log('Not a match.');
+                        }
                     })
                     setReports(data);
                 })
@@ -267,13 +328,17 @@ export default function Stories(props) {
             firebase
                 .firestore()
                 .collection("reports")
-                .where('officerId', '==', officer.officerBadgeID)
                 .orderBy('reportDate', 'asc')
                 .get()
                 .then(function (querySnapshot) {
                     const data = [];
                     querySnapshot.forEach(function (doc) {
-                        data.push({ id: doc.id, ...doc.data() });
+                        if (doc.data().officerId === officer.officerBadgeID) {
+                            data.push({ id: doc.id, ...doc.data() });
+                        }
+                        else {
+                            console.log('Not a match.');
+                        }
                     })
                     setReports(data);
                 })
@@ -287,13 +352,153 @@ export default function Stories(props) {
             firebase
                 .firestore()
                 .collection("reports")
-                .where('officerId', '==', officer.officerBadgeID)
                 .orderBy('reportDate', 'desc')
                 .get()
                 .then(function (querySnapshot) {
                     const data = [];
                     querySnapshot.forEach(function (doc) {
-                        data.push({ id: doc.id, ...doc.data() });
+                        if (doc.data().officerId === officer.officerBadgeID) {
+                            data.push({ id: doc.id, ...doc.data() });
+                        }
+                        else {
+                            console.log('Not a match.');
+                        }
+                    })
+                    setReports(data);
+                })
+                .catch(err => {
+                    console.log('FAIL');
+                })
+        }
+
+        /* filter by age range */
+        if (globalState.state.age !== undefined
+            && globalState.state.age !== ''
+            && globalState.state.race === ''
+            && globalState.state.gender === ''
+            && (globalState.state.tag.length === 0
+                || globalState.state.tag === undefined)) {
+
+            const year = getYear();
+            let start;
+            let end;
+
+            if (globalState.state.age === '<18') {
+                start = year - 18;
+                end = year;
+            }
+            else if (globalState.state.age === '19-25') {
+                start = year - 25;
+                end = year - 19;
+            }
+            else if (globalState.state.age === '26-35') {
+                start = year - 35;
+                end = year - 26;
+            }
+            else if (globalState.state.age === '36-45') {
+                start = year - 45;
+                end = year - 36;
+            }
+            else if (globalState.state.age === '46-55') {
+                start = year - 55;
+                end = year - 46;
+            }
+            else if (globalState.state.age === '56-65') {
+                start = year - 65;
+                end = year - 56;
+            }
+            else if (globalState.state.age === '66-75') {
+                start = year - 75;
+                end = year - 66;
+            }
+            else if (globalState.state.age === '76+') {
+                start = 1;
+                end = year - 76;
+            }
+
+            firebase
+                .firestore()
+                .collection("reports")
+                .orderBy('birthYear')
+                .startAt(start)
+                .endAt(end)
+                .get()
+                .then(function (querySnapshot) {
+                    const data = [];
+                    querySnapshot.forEach(function (doc) {
+                        if (doc.data().officerId === officer.officerBadgeID) {
+                            data.push({ id: doc.id, ...doc.data() });
+                        }
+                        else {
+                            console.log('Not a match.');
+                        }
+                    })
+                    setReports(data);
+                })
+                .catch(err => {
+                    console.log('FAIL');
+                })
+        }
+
+        /* filter by age range and other filters */
+        if (globalState.state.age !== undefined
+            && globalState.state.age !== ''
+            && globalState.state.race !== '') {
+
+            const year = getYear();
+            let start;
+            let end;
+
+            if (globalState.state.age === '<18') {
+                start = year - 18;
+                end = year;
+            }
+            else if (globalState.state.age === '19-25') {
+                start = year - 25;
+                end = year - 19;
+            }
+            else if (globalState.state.age === '26-35') {
+                start = year - 35;
+                end = year - 26;
+            }
+            else if (globalState.state.age === '36-45') {
+                start = year - 45;
+                end = year - 36;
+            }
+            else if (globalState.state.age === '46-55') {
+                start = year - 55;
+                end = year - 46;
+            }
+            else if (globalState.state.age === '56-65') {
+                start = year - 65;
+                end = year - 56;
+            }
+            else if (globalState.state.age === '66-75') {
+                start = year - 75;
+                end = year - 66;
+            }
+            else if (globalState.state.age === '76+') {
+                start = 1;
+                end = year - 76;
+            }
+
+            firebase
+                .firestore()
+                .collection("reports")
+                .orderBy('birthYear')
+                .startAt(start)
+                .endAt(end)
+                .where('race', '==', `${globalState.state.race}`)
+                .get()
+                .then(function (querySnapshot) {
+                    const data = [];
+                    querySnapshot.forEach(function (doc) {
+                        if (doc.data().officerId === officer.officerBadgeID) {
+                            data.push({ id: doc.id, ...doc.data() });
+                        }
+                        else {
+                            console.log('Not a match.');
+                        }
                     })
                     setReports(data);
                 })
@@ -444,12 +649,33 @@ export default function Stories(props) {
         setTagTotals(updatedState);
     }
 
+    /* get officer's average rating */
+    const getAvgRating = () => {
+        let avg = 0;
+        reports.map((report) => {
+            avg += report.rating;
+        })
+
+        avg /= reports.length;
+        setOfficerRatingAvg(Math.round(avg));
+        return;
+    }
+
+    /* get current year */
+    const getYear = () => {
+        const d = new Date();
+        const year = d.getFullYear();
+        return year;
+    }
+
     useEffect(() => {
         getTagTotals();
+        getAvgRating();
     }, [reports]);
 
     return (
         <DashboardPageContainer>
+            {console.log(`CURRENT GLOBAL STATE `, globalState)}
             {filtering === true && <Filter filtering={filtering} setFiltering={setFiltering} queries={queries} setQueries={setQueries} reports={reports} setReports={setReports} />}
             {sorting === true && <Sort sorting={sorting} setSorting={setSorting} queries={queries} setQueries={setQueries} />}
             <StoryListContainer>
@@ -460,22 +686,30 @@ export default function Stories(props) {
                 <SliderContainer />
 
                 <TagStatContainer>
-                    <h4>{officer.officerRank} {officer.officerLName}</h4>
-                    {tagTotals.length &&
-                        // <VictoryChart padding={{ left: 120, top: 20, bottom: 30, right: 30 }}>
-                        //     <VictoryBar data={tagTotals} horizontal="true" y="total" x="tag" />
-                        // </VictoryChart>
-                        <div className="stats-grid">
-                            {tagTotals.map((tag, idx) => {
-                                if (tag.total === 1) {
-                                    return <p key={idx}>{tag.tag} <span className="bold">{tag.total}</span> person.</p>
-                                }
-                                else {
-                                    return <p key={idx}>{tag.tag} <span className="bold">{tag.total}</span> people.</p>
-                                }
-                            })}
+                    <div className="officer-rating">
+                        <h4>Officer rating average</h4>
+                        <div className="circle">
+                            <p className="rating">{officerRatingAvg}</p>
                         </div>
-                    }
+                    </div>
+                    <div className="officer-stats">
+                        <h4>{officer.officerRank} {officer.officerLName}</h4>
+                        {tagTotals.length &&
+                            // <VictoryChart padding={{ left: 120, top: 20, bottom: 30, right: 30 }}>
+                            //     <VictoryBar data={tagTotals} horizontal="true" y="total" x="tag" />
+                            // </VictoryChart>
+                            <div className="stats-grid">
+                                {tagTotals.map((tag, idx) => {
+                                    if (tag.total === 1) {
+                                        return <p key={idx}>{tag.tag} <span className="bold">{tag.total}</span> person.</p>
+                                    }
+                                    else if (tag.total !== 0) {
+                                        return <p key={idx}>{tag.tag} <span className="bold">{tag.total}</span> people.</p>
+                                    }
+                                })}
+                            </div>
+                        }
+                    </div>
                 </TagStatContainer>
 
                 <p className="see-more"><Link to="/dashboard/stats">See More</Link></p>
@@ -521,63 +755,3 @@ export default function Stories(props) {
         </DashboardPageContainer>
     )
 }
-
-
-
-
-
-// import React, { useEffect, useState } from 'react';
-// import { useParams } from 'react-router-dom';
-
-// /* firebase */
-// import firebase from '../../config/firebase';
-
-// /* components */
-// import Story from './Story';
-
-// export default function Stories(props) {
-
-//     /* descructure the officer's badge id from props */
-//     const { officerBadgeID } = props;
-
-//     /* grab our id from params to ensure we're still referring to the
-//         same officer as before */
-//     const params = useParams();
-
-//     /* state for reports after hitting Firebase */
-//     const [reports, setReports] = useState([]);
-
-//     /* grab all reports made on the specific officer
-//         from Firebase when our component mounts */
-//     useEffect(() => {
-//         firebase
-//             .firestore()
-//             .collection("reports")
-//             .where('officerId', '==', Number(params.id))
-//             .get()
-//             .then(function (querySnapshot) {
-//                 const data = [];
-//                 querySnapshot.forEach(function (doc) {
-//                     data.push({ id: doc.id, ...doc.data() });
-//                 })
-//                 setReports(data);
-//             })
-//             .catch(err => {
-//                 console.log('FAIL');
-//             })
-//     }, [officerBadgeID, params.id]);
-
-//     return (
-//         <div>
-//             {/* map over reports and return a Story component for each
-//                 report. we fetch the matching story for the report
-//                 within the Story component */}
-//             {reports.map((report, idx) => {
-//                 return (
-//                     <Story key={idx} report={report} />
-//                 )
-//             })}
-
-//         </div>
-//     )
-// }
