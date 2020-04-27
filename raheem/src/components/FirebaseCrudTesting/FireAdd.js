@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import firebase from "../../config/firebase";
 
-//NOTE -- THIS COLLECTION HAS BEEN DISABLED IN FIREBASE FOR PRODUCTION, USERS WILL HAVE ADD AND GET PERMISSIONS ONLY--NO PUT/DELETE
-const AddItemForm = () => {
+//Testing the firebase collection functionality Add
+
+const FireAdd = () => {
   //useState() hook captures the value from the input value
   const [Fname, setFname] = useState("");
   const [Lname, setLname] = useState("");
@@ -57,4 +58,4 @@ const AddItemForm = () => {
     </form>
   );
 };
-export default AddItemForm;
+export default FireAdd;
