@@ -23,6 +23,7 @@ import Search from '../../assets/Search.svg';
 import Story from '../Dashboard/Story';
 import Filter from '../Stories/Filter';
 import Sort from '../Stories/Sort';
+import { getByPlaceholderText } from '@testing-library/react';
 
 export default function Stories(props) {
 
@@ -318,6 +319,71 @@ export default function Stories(props) {
                     console.log('FAIL');
                 })
         }
+
+        /* filter by age range */
+        if (globalState.state.age !== undefined && globalState.state.age !== '') {
+
+            const year = getYear();
+            let start;
+            let end;
+
+            if (globalState.state.age === '<18') {
+                start = year - 18;
+                end = year;
+            }
+            else if (globalState.state.age === '19-25') {
+                start = year - 25;
+                end = year - 19;
+            }
+            else if (globalState.state.age === '26-35') {
+                start = year - 35;
+                end = year - 26;
+            }
+            else if (globalState.state.age === '36-45') {
+                start = year - 45;
+                end = year - 36;
+            }
+            else if (globalState.state.age === '46-55') {
+                start = year - 55;
+                end = year - 46;
+            }
+            else if (globalState.state.age === '56-65') {
+                start = year - 65;
+                end = year - 56;
+            }
+            else if (globalState.state.age === '66-75') {
+                start = year - 75;
+                end = year - 66;
+            }
+            else if (globalState.state.age === '76+') {
+                start = 1;
+                end = year - 76;
+            }
+
+            firebase
+                .firestore()
+                .collection("reports")
+                // .where('birthYear', '>', 1994)
+                .orderBy('birthYear')
+                .startAt(start)
+                .endAt(end)
+                .get()
+                .then(function (querySnapshot) {
+                    const data = [];
+                    querySnapshot.forEach(function (doc) {
+                        if (doc.data().officerId === officer.officerBadgeID) {
+                            data.push({ id: doc.id, ...doc.data() });
+                        }
+                        else {
+                            console.log('Not a match.');
+                        }
+                    })
+                    setReports(data);
+                })
+                .catch(err => {
+                    console.log('FAIL');
+                })
+        }
     }, [globalState]);
 
     /* get the total amount of total tags in the reports
@@ -473,6 +539,13 @@ export default function Stories(props) {
         return;
     }
 
+    /* get current year */
+    const getYear = () => {
+        const d = new Date();
+        const year = d.getFullYear();
+        return year;
+    }
+
     useEffect(() => {
         getTagTotals();
         getAvgRating();
@@ -508,7 +581,7 @@ export default function Stories(props) {
                                     if (tag.total === 1) {
                                         return <p key={idx}>{tag.tag} <span className="bold">{tag.total}</span> person.</p>
                                     }
-                                    else {
+                                    else if (tag.total !== 0) {
                                         return <p key={idx}>{tag.tag} <span className="bold">{tag.total}</span> people.</p>
                                     }
                                 })}
@@ -560,63 +633,3 @@ export default function Stories(props) {
         </DashboardPageContainer>
     )
 }
-
-
-
-
-
-// import React, { useEffect, useState } from 'react';
-// import { useParams } from 'react-router-dom';
-
-// /* firebase */
-// import firebase from '../../config/firebase';
-
-// /* components */
-// import Story from './Story';
-
-// export default function Stories(props) {
-
-//     /* descructure the officer's badge id from props */
-//     const { officerBadgeID } = props;
-
-//     /* grab our id from params to ensure we're still referring to the
-//         same officer as before */
-//     const params = useParams();
-
-//     /* state for reports after hitting Firebase */
-//     const [reports, setReports] = useState([]);
-
-//     /* grab all reports made on the specific officer
-//         from Firebase when our component mounts */
-//     useEffect(() => {
-//         firebase
-//             .firestore()
-//             .collection("reports")
-//             .where('officerId', '==', Number(params.id))
-//             .get()
-//             .then(function (querySnapshot) {
-//                 const data = [];
-//                 querySnapshot.forEach(function (doc) {
-//                     data.push({ id: doc.id, ...doc.data() });
-//                 })
-//                 setReports(data);
-//             })
-//             .catch(err => {
-//                 console.log('FAIL');
-//             })
-//     }, [officerBadgeID, params.id]);
-
-//     return (
-//         <div>
-//             {/* map over reports and return a Story component for each
-//                 report. we fetch the matching story for the report
-//                 within the Story component */}
-//             {reports.map((report, idx) => {
-//                 return (
-//                     <Story key={idx} report={report} />
-//                 )
-//             })}
-
-//         </div>
-//     )
-// }
