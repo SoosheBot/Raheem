@@ -13,9 +13,10 @@ import About from './components/About';
 import Story from './components/Story';
 import ThankYou from './components/ThankYou';
 import Report from './components/Report';
-import Testgeo from './components/testGeo'; 
+
 /* dashboard components */
 import Dashboard from './components/Dashboard/Dashboard';
+import TestGeo from './components/Dashboard/TestGeo'; 
 import StoryList from './components/Stories/StoryList';
 
 
@@ -61,7 +62,7 @@ function App() {
         </Route>
         {/* temporary route, delete later once finished testing map component */}
         <Route path="/testgeo">
-          <Testgeo />
+          <TestGeo />
         </Route>
 
         <Route path="/QR">
@@ -101,10 +102,6 @@ function App() {
           <Dashboard />
         </Route>
 
-        {/* test path removed after successful trial */}
-        {/* <Route path="/test">
-          <Test />
-        </Route> */}
       </Splash>
     </div>
   );
