@@ -43,6 +43,7 @@ export default function Stories(props) {
     const [filtering, setFiltering] = useState(false); // toggleable filter state
     const [sorting, setSorting] = useState(false); // toggleable sorting state
     const [queries, setQueries] = useState([]);
+    const [officerRatingAvg, setOfficerRatingAvg] = useState(0); // current officer's average rating
 
     /* handle search input on submission */
     const onSubmit = (data) => {
@@ -444,8 +445,21 @@ export default function Stories(props) {
         setTagTotals(updatedState);
     }
 
+    /* get officer's average rating */
+    const getAvgRating = () => {
+        let avg = 0;
+        reports.map((report) => {
+            avg += report.rating;
+        })
+
+        avg /= reports.length;
+        setOfficerRatingAvg(avg);
+        return;
+    }
+
     useEffect(() => {
         getTagTotals();
+        getAvgRating();
     }, [reports]);
 
     return (
@@ -460,22 +474,28 @@ export default function Stories(props) {
                 <SliderContainer />
 
                 <TagStatContainer>
-                    <h4>{officer.officerRank} {officer.officerLName}</h4>
-                    {tagTotals.length &&
-                        // <VictoryChart padding={{ left: 120, top: 20, bottom: 30, right: 30 }}>
-                        //     <VictoryBar data={tagTotals} horizontal="true" y="total" x="tag" />
-                        // </VictoryChart>
-                        <div className="stats-grid">
-                            {tagTotals.map((tag, idx) => {
-                                if (tag.total === 1) {
-                                    return <p key={idx}>{tag.tag} <span className="bold">{tag.total}</span> person.</p>
-                                }
-                                else {
-                                    return <p key={idx}>{tag.tag} <span className="bold">{tag.total}</span> people.</p>
-                                }
-                            })}
-                        </div>
-                    }
+                    <div className="officer-rating">
+                        <h4>Officer rating average</h4>
+                        <p className="rating">{officerRatingAvg}</p>
+                    </div>
+                    <div className="officer-stats">
+                        <h4>{officer.officerRank} {officer.officerLName}</h4>
+                        {tagTotals.length &&
+                            // <VictoryChart padding={{ left: 120, top: 20, bottom: 30, right: 30 }}>
+                            //     <VictoryBar data={tagTotals} horizontal="true" y="total" x="tag" />
+                            // </VictoryChart>
+                            <div className="stats-grid">
+                                {tagTotals.map((tag, idx) => {
+                                    if (tag.total === 1) {
+                                        return <p key={idx}>{tag.tag} <span className="bold">{tag.total}</span> person.</p>
+                                    }
+                                    else {
+                                        return <p key={idx}>{tag.tag} <span className="bold">{tag.total}</span> people.</p>
+                                    }
+                                })}
+                            </div>
+                        }
+                    </div>
                 </TagStatContainer>
 
                 <p className="see-more"><Link to="/dashboard/stats">See More</Link></p>
