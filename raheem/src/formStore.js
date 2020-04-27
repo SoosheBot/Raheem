@@ -10,7 +10,8 @@ const initialState = {
     rating: '',
     dob: '',
     incidentDate: '',
-    time: ''
+    time: '',
+    location: ''
 }
 
 /* create our context object using the createContext hook */
@@ -28,6 +29,16 @@ const StateProvider = ({ children }) => {
                     ...action.payload
                 }
             case 'STORY':
+                return {
+                    ...state,
+                    ...action.payload
+                }
+            case 'FILTER':
+                return {
+                    ...state,
+                    ...action.payload
+                }
+            case 'SORT':
                 return {
                     ...state,
                     ...action.payload

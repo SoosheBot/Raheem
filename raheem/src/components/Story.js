@@ -42,14 +42,13 @@ function Story() {
 
     const { handleSubmit, register } = useForm();
     const onSubmit = data => {
-        // console.log('firing onSubmit');
-        // console.log(`globalState:${globalState.state}`);
         dispatch({ type: 'STORY', payload: data });
         firebase
             .firestore()
             .collection('stories')
             .add({
                 reportRef: `/raheem-mercy/reports/${globalState.state.reportId}`,
+                officerId: officer.officerBadgeID,
                 storyBody: data
             })
         localStorage.setItem('completed', true);

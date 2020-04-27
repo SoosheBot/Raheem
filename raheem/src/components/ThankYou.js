@@ -96,7 +96,7 @@ function ThankYou() {
 
                     <Controls>
                         <ButtonPrimary data-testid="homePageButton" onClick={() => history.push(`/`)}>Home</ButtonPrimary>
-                        <ButtonSecondary data-testid="officerPageButton">Officer Page</ButtonSecondary>
+                        <ButtonSecondary data-testid="officerPageButton" onClick={() => history.push(`/officers/${officer.officerBadgeID}`)}>Officer Page</ButtonSecondary>
                     </Controls>
                 </Container>
             }

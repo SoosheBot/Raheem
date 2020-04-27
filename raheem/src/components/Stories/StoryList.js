@@ -12,8 +12,8 @@ import firebase from '../../config/firebase';
 import { formStore } from "../../formStore.js";
 
 /* styles */
-import { StoryListContainer, TopContainer, SliderContainer, TagStatContainer, StoryListSearch } from '../../styles/dashboard/storyList';
-import { DashboardPageContainer } from '../../styles/dashboard';
+import { PageContainer } from '../../styles/global';
+import { Title, StoryListContainer, TopContainer, SliderContainer, TagStatContainer, StoryListSearch } from '../../styles/dashboard/storyList';
 
 /* assets */
 import CarotDown from '../../assets/CarotDown.svg';
@@ -21,23 +21,20 @@ import Search from '../../assets/Search.svg';
 
 /* components */
 import Story from '../Dashboard/Story';
-import Filter from '../Stories/Filter';
-import Sort from '../Stories/Sort';
+import Filter from './Filter';
+import Sort from './Sort';
 
-export default function Stories(props) {
-
-    /* bring in the officer as props */
-    const { officer } = props;
+export default function StoryList() {
 
     /* bring in our global state using the useContext hook
     and our form store */
     const globalState = useContext(formStore);
 
     /* deconstruct dispatch off globalState to dispatch an action */
-    const { dispatch } = globalState;
+    // const { dispatch } = globalState;
 
     /* configure react-hook-form for searching */
-    const { register, handleSubmit, errors } = useForm();
+    const { register, handleSubmit } = useForm();
 
     const [reports, setReports] = useState([]); // state for reports
     const [filtering, setFiltering] = useState(false); // toggleable filter state
@@ -49,29 +46,35 @@ export default function Stories(props) {
         console.log(data);
     }
 
-    /* state for totaling up the tags coming back in the reports */
-    const [tagTotals, setTagTotals] = useState([]);
+    const [tagTotals, setTagTotals] = useState({
+        helped: 0,
+        protected: 0,
+        illegally_searched: 0,
+        profiled: 0,
+        physically_attacked: 0,
+        harassed: 0,
+        wrongly_accused: 0,
+        disrespected: 0,
+        neglected: 0
+    })
 
     /* useEffect to grab all reports */
     useEffect(() => {
-        if (officer.officerBadgeID !== undefined && officer.officerBadgeID !== '') {
-            firebase
-                .firestore()
-                .collection('reports')
-                .where('officerId', '==', officer.officerBadgeID)
-                .get()
-                .then(function (querySnapshot) {
-                    const data = [];
-                    querySnapshot.forEach(function (doc) {
-                        data.push({ id: doc.id, ...doc.data() });
-                    })
-                    setReports(data);
+        firebase
+            .firestore()
+            .collection("reports")
+            .get()
+            .then(function (querySnapshot) {
+                const data = [];
+                querySnapshot.forEach(function (doc) {
+                    data.push({ id: doc.id, ...doc.data() });
                 })
-                .catch(err => {
-                    console.log('FAIL');
-                })
-        }
-    }, [officer]);
+                setReports(data);
+            })
+            .catch(err => {
+                console.log('FAIL');
+            })
+    }, []);
 
     /* check globalState for search filters and render reports based
         on any selected filters by the user */
@@ -82,7 +85,6 @@ export default function Stories(props) {
             firebase
                 .firestore()
                 .collection("reports")
-                .where('officerId', '==', officer.officerBadgeID)
                 .where('gender', '==', `${globalState.state.gender}`)
                 .get()
                 .then(function (querySnapshot) {
@@ -102,7 +104,6 @@ export default function Stories(props) {
             firebase
                 .firestore()
                 .collection("reports")
-                .where('officerId', '==', officer.officerBadgeID)
                 .where('race', '==', `${globalState.state.race}`)
                 .get()
                 .then(function (querySnapshot) {
@@ -122,7 +123,6 @@ export default function Stories(props) {
             firebase
                 .firestore()
                 .collection("reports")
-                .where('officerId', '==', officer.officerBadgeID)
                 .where('tags', 'array-contains-any', globalState.state.tag)
                 .get()
                 .then(function (querySnapshot) {
@@ -142,7 +142,6 @@ export default function Stories(props) {
             firebase
                 .firestore()
                 .collection("reports")
-                .where('officerId', '==', officer.officerBadgeID)
                 .where('tags', 'array-contains-any', globalState.state.tag)
                 .where('race', '==', `${globalState.state.race}`)
                 .get()
@@ -163,7 +162,6 @@ export default function Stories(props) {
             firebase
                 .firestore()
                 .collection("reports")
-                .where('officerId', '==', officer.officerBadgeID)
                 .where('tags', 'array-contains-any', globalState.state.tag)
                 .where('gender', '==', `${globalState.state.gender}`)
                 .get()
@@ -184,7 +182,6 @@ export default function Stories(props) {
             firebase
                 .firestore()
                 .collection("reports")
-                .where('officerId', '==', officer.officerBadgeID)
                 .where('tags', 'array-contains-any', globalState.state.tag)
                 .where('gender', '==', `${globalState.state.gender}`)
                 .where('race', '==', `${globalState.state.race}`)
@@ -206,7 +203,6 @@ export default function Stories(props) {
             firebase
                 .firestore()
                 .collection("reports")
-                .where('officerId', '==', officer.officerBadgeID)
                 .where('gender', '==', `${globalState.state.gender}`)
                 .where('race', '==', `${globalState.state.race}`)
                 .get()
@@ -228,7 +224,6 @@ export default function Stories(props) {
                 .firestore()
                 .collection("reports")
                 .orderBy('rating', 'desc')
-                .where('officerId', '==', officer.officerBadgeID)
                 .get()
                 .then(function (querySnapshot) {
                     const data = [];
@@ -248,7 +243,6 @@ export default function Stories(props) {
                 .firestore()
                 .collection("reports")
                 .orderBy('rating', 'asc')
-                .where('officerId', '==', officer.officerBadgeID)
                 .get()
                 .then(function (querySnapshot) {
                     const data = [];
@@ -267,7 +261,6 @@ export default function Stories(props) {
             firebase
                 .firestore()
                 .collection("reports")
-                .where('officerId', '==', officer.officerBadgeID)
                 .orderBy('reportDate', 'asc')
                 .get()
                 .then(function (querySnapshot) {
@@ -287,7 +280,6 @@ export default function Stories(props) {
             firebase
                 .firestore()
                 .collection("reports")
-                .where('officerId', '==', officer.officerBadgeID)
                 .orderBy('reportDate', 'desc')
                 .get()
                 .then(function (querySnapshot) {
@@ -449,10 +441,16 @@ export default function Stories(props) {
     }, [reports]);
 
     return (
-        <DashboardPageContainer>
+        <PageContainer>
             {filtering === true && <Filter filtering={filtering} setFiltering={setFiltering} queries={queries} setQueries={setQueries} reports={reports} setReports={setReports} />}
             {sorting === true && <Sort sorting={sorting} setSorting={setSorting} queries={queries} setQueries={setQueries} />}
             <StoryListContainer>
+                <div className="title-container">
+                    <Title className="active"><Link to="/dashboard/stories">Stories</Link></Title>
+                    <Title><Link to="/dashboard/stats">Stats</Link></Title>
+                    <Title><Link to="/dashboard/map">Map</Link></Title>
+                </div>
+
                 <TopContainer>
                     {reports.length && reports !== undefined ? (<p>{reports.length} reports</p>) : (<p>0 reports</p>)}
                 </TopContainer>
@@ -460,7 +458,6 @@ export default function Stories(props) {
                 <SliderContainer />
 
                 <TagStatContainer>
-                    <h4>{officer.officerRank} {officer.officerLName}</h4>
                     {tagTotals.length &&
                         // <VictoryChart padding={{ left: 120, top: 20, bottom: 30, right: 30 }}>
                         //     <VictoryBar data={tagTotals} horizontal="true" y="total" x="tag" />
@@ -468,10 +465,10 @@ export default function Stories(props) {
                         <div className="stats-grid">
                             {tagTotals.map((tag, idx) => {
                                 if (tag.total === 1) {
-                                    return <p key={idx}>{tag.tag} <span className="bold">{tag.total}</span> person.</p>
+                                    return <p key={idx}><span className="bold">{tag.total}</span> person has been {tag.tag}</p>
                                 }
                                 else {
-                                    return <p key={idx}>{tag.tag} <span className="bold">{tag.total}</span> people.</p>
+                                    return <p key={idx}><span className="bold">{tag.total}</span> people have been {tag.tag}</p>
                                 }
                             })}
                         </div>
@@ -506,6 +503,7 @@ export default function Stories(props) {
                             window.scroll(0, 0);
                             setSorting(true);
                         }}>
+                            {/* <p>Sort: <span>Newest</span> <img src={CarotDown} alt="Drop Down" /></p> */}
                             {globalState.state.sort !== undefined && globalState.state.sort !== '' && <p>Sort: <span>{globalState.state.sort}</span> <img src={CarotDown} alt="Drop Down" /></p>}
                             {globalState.state.sort === undefined && <p>Sort: <span>Newest</span> <img src={CarotDown} alt="Drop Down" /></p>}
                         </div>
@@ -518,66 +516,6 @@ export default function Stories(props) {
                     }
                 </div>
             </StoryListContainer>
-        </DashboardPageContainer>
+        </PageContainer >
     )
 }
-
-
-
-
-
-// import React, { useEffect, useState } from 'react';
-// import { useParams } from 'react-router-dom';
-
-// /* firebase */
-// import firebase from '../../config/firebase';
-
-// /* components */
-// import Story from './Story';
-
-// export default function Stories(props) {
-
-//     /* descructure the officer's badge id from props */
-//     const { officerBadgeID } = props;
-
-//     /* grab our id from params to ensure we're still referring to the
-//         same officer as before */
-//     const params = useParams();
-
-//     /* state for reports after hitting Firebase */
-//     const [reports, setReports] = useState([]);
-
-//     /* grab all reports made on the specific officer
-//         from Firebase when our component mounts */
-//     useEffect(() => {
-//         firebase
-//             .firestore()
-//             .collection("reports")
-//             .where('officerId', '==', Number(params.id))
-//             .get()
-//             .then(function (querySnapshot) {
-//                 const data = [];
-//                 querySnapshot.forEach(function (doc) {
-//                     data.push({ id: doc.id, ...doc.data() });
-//                 })
-//                 setReports(data);
-//             })
-//             .catch(err => {
-//                 console.log('FAIL');
-//             })
-//     }, [officerBadgeID, params.id]);
-
-//     return (
-//         <div>
-//             {/* map over reports and return a Story component for each
-//                 report. we fetch the matching story for the report
-//                 within the Story component */}
-//             {reports.map((report, idx) => {
-//                 return (
-//                     <Story key={idx} report={report} />
-//                 )
-//             })}
-
-//         </div>
-//     )
-// }
