@@ -47,8 +47,59 @@ export default function Stories(props) {
     const [officerRatingAvg, setOfficerRatingAvg] = useState(0); // current officer's average rating
 
     /* handle search input on submission */
-    const onSubmit = (data) => {
-        console.log(data);
+    const onSubmit = (data, e) => {
+        /* search for specific races */
+        if (data.query.toLowerCase() === 'asian'
+            || data.query.toLowerCase() === 'african american'
+            || data.query.toLowerCase() === 'white'
+            || data.query.toLowerCase() === 'south asian'
+            || data.query.toLowerCase() === 'latinx'
+            || data.query.toLowerCase() === 'pacific islander'
+            || data.query.toLowerCase() === 'middle eastern'
+            || data.query.toLowerCase() === 'multiracial'
+            || data.query.toLowerCase() === 'native american'
+        ) {
+            firebase
+                .firestore()
+                .collection('reports')
+                .where('officerId', '==', officer.officerBadgeID)
+                .where('race', '==', data.query)
+                .get()
+                .then(function (querySnapshot) {
+                    const data = [];
+                    querySnapshot.forEach(function (doc) {
+                        data.push({ id: doc.id, ...doc.data() });
+                    })
+                    setReports(data);
+                })
+                .catch(err => {
+                    console.log('FAIL');
+                })
+        }
+        /* search for specific genders */
+        else if (data.query.toLowerCase() === 'male'
+            || data.query.toLowerCase() === 'female'
+            || data.query.toLowerCase() === 'non binary'
+            || data.query.toLowerCase() === 'self identify'
+        ) {
+            firebase
+                .firestore()
+                .collection('reports')
+                .where('officerId', '==', officer.officerBadgeID)
+                .where('gender', '==', data.query)
+                .get()
+                .then(function (querySnapshot) {
+                    const data = [];
+                    querySnapshot.forEach(function (doc) {
+                        data.push({ id: doc.id, ...doc.data() });
+                    })
+                    setReports(data);
+                })
+                .catch(err => {
+                    console.log('FAIL');
+                })
+        }
+        e.target.reset();
     }
 
     /* state for totaling up the tags coming back in the reports */
@@ -321,7 +372,12 @@ export default function Stories(props) {
         }
 
         /* filter by age range */
-        if (globalState.state.age !== undefined && globalState.state.age !== '') {
+        if (globalState.state.age !== undefined
+            && globalState.state.age !== ''
+            && globalState.state.race === ''
+            && globalState.state.gender === ''
+            && (globalState.state.tag.length === 0
+                || globalState.state.tag === undefined)) {
 
             const year = getYear();
             let start;
@@ -363,10 +419,76 @@ export default function Stories(props) {
             firebase
                 .firestore()
                 .collection("reports")
-                // .where('birthYear', '>', 1994)
                 .orderBy('birthYear')
                 .startAt(start)
                 .endAt(end)
+                .get()
+                .then(function (querySnapshot) {
+                    const data = [];
+                    querySnapshot.forEach(function (doc) {
+                        if (doc.data().officerId === officer.officerBadgeID) {
+                            data.push({ id: doc.id, ...doc.data() });
+                        }
+                        else {
+                            console.log('Not a match.');
+                        }
+                    })
+                    setReports(data);
+                })
+                .catch(err => {
+                    console.log('FAIL');
+                })
+        }
+
+        /* filter by age range and other filters */
+        if (globalState.state.age !== undefined
+            && globalState.state.age !== ''
+            && globalState.state.race !== '') {
+
+            const year = getYear();
+            let start;
+            let end;
+
+            if (globalState.state.age === '<18') {
+                start = year - 18;
+                end = year;
+            }
+            else if (globalState.state.age === '19-25') {
+                start = year - 25;
+                end = year - 19;
+            }
+            else if (globalState.state.age === '26-35') {
+                start = year - 35;
+                end = year - 26;
+            }
+            else if (globalState.state.age === '36-45') {
+                start = year - 45;
+                end = year - 36;
+            }
+            else if (globalState.state.age === '46-55') {
+                start = year - 55;
+                end = year - 46;
+            }
+            else if (globalState.state.age === '56-65') {
+                start = year - 65;
+                end = year - 56;
+            }
+            else if (globalState.state.age === '66-75') {
+                start = year - 75;
+                end = year - 66;
+            }
+            else if (globalState.state.age === '76+') {
+                start = 1;
+                end = year - 76;
+            }
+
+            firebase
+                .firestore()
+                .collection("reports")
+                .orderBy('birthYear')
+                .startAt(start)
+                .endAt(end)
+                .where('race', '==', `${globalState.state.race}`)
                 .get()
                 .then(function (querySnapshot) {
                     const data = [];

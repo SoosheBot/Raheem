@@ -254,6 +254,10 @@ export const StoryListSearch = styled.div`
             width: 45%;
             text-align: center;
 
+            &:first-child {
+                border-right: 1px solid #C4C4C4;
+            }
+
             &:hover {
                 cursor: pointer;
             }
