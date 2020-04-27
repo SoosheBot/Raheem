@@ -13,11 +13,7 @@ import About from './components/About';
 import Story from './components/Story';
 import ThankYou from './components/ThankYou';
 import Report from './components/Report';
-<<<<<<< HEAD
 
-=======
-import Testgeo from './components/testGeo';
->>>>>>> ecbf60b943685de68d7e26ad94698ed654850d9b
 /* dashboard components */
 import Dashboard from './components/Dashboard/Dashboard';
 import TestGeo from './components/Dashboard/TestGeo'; 
