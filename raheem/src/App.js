@@ -6,19 +6,36 @@ import { Splash, Title } from './styles/global/index'
 /* route */
 import { Route } from 'react-router-dom';
 
+/* components */
+//global
+import About from './components/About';
+import Header from './components/layout/Header';
+
+
 /* report components */
 import QRcode from './components/QRcode';
 import Landing from './components/Landing';
-import About from './components/About';
+import Report from './components/Report';
 import Story from './components/Story';
 import ThankYou from './components/ThankYou';
+<<<<<<< HEAD
 import Report from './components/Report';
 
 /* dashboard components */
 import Dashboard from './components/Dashboard/Dashboard';
 import TestGeo from './components/Dashboard/TestGeo'; 
+=======
+
+
+//officer dashboard
+import Dashboard from './components/Dashboard/Dashboard';
+import Stories from './components/Dashboard/Stories';
+import Stats from './components/Dashboard/Stats';
+import Map from './components/Dashboard/Map';
+>>>>>>> 957ff15b0af237d503f504f4b12a992dc3d904f9
 import StoryList from './components/Stories/StoryList';
 
+import Testgeo from './components/testGeo';
 
 /* structural styling components */
 import Header from './components/layout/Header';
@@ -26,7 +43,6 @@ import DesktopHeader from './components/layout/DesktopHeader';
 
 // temporary route, delete later once finished testing map component
 import DisplayMap from './components/Dashboard/DisplayMap';
-
 
 function App() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -106,6 +122,25 @@ function App() {
           <Dashboard />
         </Route>
 
+<<<<<<< HEAD
+=======
+        <Route path="/officers/:id/stories">
+          <Stories />
+        </Route>
+
+        <Route path="/officers/:id/stats">
+          <Stats />
+        </Route>
+
+        <Route path="/officers/:id/map">
+          <Map />
+        </Route>
+
+        {/* test path removed after successful trial */}
+        {/* <Route path="/test">
+          <Test />
+        </Route> */}
+>>>>>>> 957ff15b0af237d503f504f4b12a992dc3d904f9
       </Splash>
     </div>
   );

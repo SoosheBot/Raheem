@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
+
 import { useHistory, useParams, Route, NavLink } from 'react-router-dom';
+
 
 /* firebase */
 import firebase from '../../config/firebase';
 
 /* styles */
-import { PageContainer } from '../../styles/global';
+import { PageContainer, ButtonSecondary } from '../../styles/global';
 import { DashboardOfficer, DashboardView, DashboardTitle, DashboardMainTitle, ReportButton } from '../../styles/dashboard';
 
 /* components */
 import Stories from './Stories';
+
 
 export default function Dashboard() {
 
@@ -24,7 +27,7 @@ export default function Dashboard() {
             .get()
             .then(function (querySnapshot) {
                 querySnapshot.forEach(function (doc) {
-                    if (doc.data().officerBadgeID == params.id) {
+                    if (doc.data().officerBadgeID === params.id) {
                         setOfficer(doc.data());
                     }
                 })
@@ -66,9 +69,11 @@ export default function Dashboard() {
 
             <DashboardView>
                 <div className="title-container">
+
                     <DashboardTitle><NavLink to={`/officers/${officer.officerBadgeID}`} activeClassName="highlighted">Stories</NavLink></DashboardTitle>
                     <DashboardTitle><NavLink to={`/officers/${officer.officerBadgeID}/stats`}>Stats</NavLink></DashboardTitle>
                     <DashboardTitle><NavLink to={`/officers/${officer.officerBadgeID}/map`}>Map</NavLink></DashboardTitle>
+
                 </div>
 
                 <Route exact path="/officers/:id">
