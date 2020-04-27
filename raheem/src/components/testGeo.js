@@ -23,7 +23,7 @@ import { formStore } from "../formStore.js";
 import Typography from "@material-ui/core/Typography";
 
 /* components */
-import Officer from "../components/Officer";
+import Officer from "./Officer";
 
 /* assets */
 import Back from "../assets/Back.svg";
