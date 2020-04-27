@@ -10,41 +10,42 @@ jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
     useHistory: () => ({
         push: mockHistoryPush
-    })
+    }),
+    useParams: () => ({})
 }));
 
-// describe('<Landing />', () => {
-//     it('renders', () => {
-//         render(<Landing />);
-//     });
-// });
+describe('<Landing />', () => {
+    it('renders', () => {
+        render(<Landing />);
+    });
+});
 
-// describe('Add a Report Button', () => {
-//     it('renders successfully', () => {
-//         const container = render(<Landing />);
-//         const button = container.getByTestId('addReport');
+describe('Add a Report Button', () => {
+    it('renders successfully', () => {
+        const container = render(<Landing />);
+        const button = container.getByTestId('addReport');
 
-//         expect(button.textContent).toMatch('Add a Report');
-//     });
-// });
+        expect(button.textContent).toMatch('Add a Report');
+    });
+});
 
-// describe('View Reports Button', () => {
-//     it('renders successfully', () => {
-//         const container = render(<Landing />);
-//         const button = container.getByTestId('viewReports');
+describe('View Reports Button', () => {
+    it('renders successfully', () => {
+        const container = render(<Landing />);
+        const button = container.getByTestId('viewReports');
 
-//         expect(button.textContent).toMatch('View Reports');
-//     });
-// });
+        expect(button.textContent).toMatch('View Reports');
+    });
+});
 
-// describe('Add a Report Button click', () => {
-//     it('calls history.push() once with /report route', () => {
-//         const container = render(<Landing />);
-//         const button = container.getByTestId('addReport');
-//         fireEvent.click(button);
-//         expect(mockHistoryPush).toHaveBeenCalledWith(`/report`);
-//     });
-// });
+describe('Add a Report Button click', () => {
+    it('calls history.push() once with /report route and officer:flase because no officer has been added', () => {
+        const container = render(<Landing />);
+        const button = container.getByTestId('addReport');
+        fireEvent.click(button);
+        expect(mockHistoryPush).toHaveBeenCalledWith(`/report`, {"officer": false});
+    });
+});
 
 describe('<Officer />', () => {
     it('renders successfully', () => {

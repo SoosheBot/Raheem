@@ -9,8 +9,6 @@ import { Route } from 'react-router-dom';
 /* components */
 //global
 import About from './components/About';
-import Header from './components/layout/Header';
-
 
 /* report components */
 import QRcode from './components/QRcode';
@@ -69,9 +67,9 @@ function App() {
           <DisplayMap />
         </Route>
         {/* temporary route, delete later once finished testing map component */}
-        <Route path="/testgeo">
+        {/* <Route path="/testgeo">
           <TestGeo />
-        </Route>
+        </Route> */}
 
         <Route path="/QR">
           < QRcode />

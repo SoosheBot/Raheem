@@ -15,3 +15,9 @@ describe("<Stats />", () => {
     render(<Stats />);
   });
 });
+
+describe("", () => {
+  it("toggles between 'visual' and 'list' views", () => {
+
+  });
+});

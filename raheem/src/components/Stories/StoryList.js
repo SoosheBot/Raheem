@@ -3,11 +3,7 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 /* victory */
-<<<<<<< HEAD
-// import { VictoryBar, VictoryChart, VictoryContainer } from 'victory';
-=======
 import { VictoryBar, VictoryChart, VictoryAxis } from 'victory';
->>>>>>> ecbf60b943685de68d7e26ad94698ed654850d9b
 
 /* firebase */
 import firebase from '../../config/firebase';
@@ -38,7 +34,7 @@ export default function StoryList() {
     // const { dispatch } = globalState;
 
     /* configure react-hook-form for searching */
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, errors } = useForm();
 
     const [reports, setReports] = useState([]); // state for reports
     const [filtering, setFiltering] = useState(false); // toggleable filter state
@@ -437,9 +433,10 @@ export default function StoryList() {
             { tag: 'neglected', total: neglectedTag }
         ]
 
-        setTagTotals(updatedState);
+        setTagTotals(updatedState); // update state
     }
 
+    /* calculate tag totals for reports */
     useEffect(() => {
         getTagTotals();
     }, [reports]);
