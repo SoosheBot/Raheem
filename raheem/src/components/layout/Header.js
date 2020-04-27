@@ -19,7 +19,6 @@ function Header() {
 
     return (
         <HeaderContainer>
-            <TopBar />
             <div className="header">
                 <div className="logo">
                     <Link to="/"><img src={Logo} alt="Raheem Logo" /></Link>
@@ -85,6 +84,7 @@ const HeaderContainer = styled.div`
                 margin-top: 4rem;
                 display: flex;
                 flex-direction: column;
+                z-index: 1;
     
                 a {
                     background: #ffffff;

@@ -27,7 +27,7 @@ function Landing(props) {
             .get()
             .then(function (querySnapshot) {
                 querySnapshot.forEach(function (doc) {
-                    if (doc.data().officerBadgeID === params.id) {
+                    if (doc.data().officerBadgeID == params.id) {
                         setOfficer(doc.data());
                     }
                 })
@@ -90,7 +90,7 @@ function Landing(props) {
                 }
 
                 <Controls>
-                    <ButtonPrimary data-testid="viewReports">View Reports</ButtonPrimary>
+                    <ButtonPrimary onClick={() => history.push(`/officers/${officer.officerBadgeID}`)} data-testid="viewReports">View Reports</ButtonPrimary>
                     <ButtonSecondary data-testid="addReport" onClick={() => {
                         if (params.id) {
                             history.push(`/report`, officer);

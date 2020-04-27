@@ -12,8 +12,8 @@ import firebase from '../../config/firebase';
 import { formStore } from "../../formStore.js";
 
 /* styles */
-import { StoryListContainer, TopContainer, SliderContainer, TagStatContainer, StoryListSearch } from '../../styles/dashboard/storyList';
-import { DashboardPageContainer } from '../../styles/dashboard';
+import { PageContainer } from '../../styles/global';
+import { Title, StoryListContainer, TopContainer, SliderContainer, TagStatContainer, StoryListSearch } from '../../styles/dashboard/storyList';
 
 /* assets */
 import CarotDown from '../../assets/CarotDown.svg';
@@ -21,21 +21,17 @@ import Search from '../../assets/Search.svg';
 
 /* components */
 import Story from '../Dashboard/Story';
-import Filter from '../Stories/Filter';
-import Sort from '../Stories/Sort';
-import { getByPlaceholderText } from '@testing-library/react';
+import Filter from './Filter';
+import Sort from './Sort';
 
-export default function Stories(props) {
-
-    /* bring in the officer as props */
-    const { officer } = props;
+export default function StoryList() {
 
     /* bring in our global state using the useContext hook
     and our form store */
     const globalState = useContext(formStore);
 
     /* deconstruct dispatch off globalState to dispatch an action */
-    const { dispatch } = globalState;
+    // const { dispatch } = globalState;
 
     /* configure react-hook-form for searching */
     const { register, handleSubmit, errors } = useForm();
@@ -44,87 +40,41 @@ export default function Stories(props) {
     const [filtering, setFiltering] = useState(false); // toggleable filter state
     const [sorting, setSorting] = useState(false); // toggleable sorting state
     const [queries, setQueries] = useState([]);
-    const [officerRatingAvg, setOfficerRatingAvg] = useState(0); // current officer's average rating
 
     /* handle search input on submission */
-    const onSubmit = (data, e) => {
-        /* search for specific races */
-        if (data.query.toLowerCase() === 'asian'
-            || data.query.toLowerCase() === 'african american'
-            || data.query.toLowerCase() === 'white'
-            || data.query.toLowerCase() === 'south asian'
-            || data.query.toLowerCase() === 'latinx'
-            || data.query.toLowerCase() === 'pacific islander'
-            || data.query.toLowerCase() === 'middle eastern'
-            || data.query.toLowerCase() === 'multiracial'
-            || data.query.toLowerCase() === 'native american'
-        ) {
-            firebase
-                .firestore()
-                .collection('reports')
-                .where('officerId', '==', officer.officerBadgeID)
-                .where('race', '==', data.query)
-                .get()
-                .then(function (querySnapshot) {
-                    const data = [];
-                    querySnapshot.forEach(function (doc) {
-                        data.push({ id: doc.id, ...doc.data() });
-                    })
-                    setReports(data);
-                })
-                .catch(err => {
-                    console.log('FAIL');
-                })
-        }
-        /* search for specific genders */
-        else if (data.query.toLowerCase() === 'male'
-            || data.query.toLowerCase() === 'female'
-            || data.query.toLowerCase() === 'non binary'
-            || data.query.toLowerCase() === 'self identify'
-        ) {
-            firebase
-                .firestore()
-                .collection('reports')
-                .where('officerId', '==', officer.officerBadgeID)
-                .where('gender', '==', data.query)
-                .get()
-                .then(function (querySnapshot) {
-                    const data = [];
-                    querySnapshot.forEach(function (doc) {
-                        data.push({ id: doc.id, ...doc.data() });
-                    })
-                    setReports(data);
-                })
-                .catch(err => {
-                    console.log('FAIL');
-                })
-        }
-        e.target.reset();
+    const onSubmit = (data) => {
+        console.log(data);
     }
 
-    /* state for totaling up the tags coming back in the reports */
-    const [tagTotals, setTagTotals] = useState([]);
+    const [tagTotals, setTagTotals] = useState({
+        helped: 0,
+        protected: 0,
+        illegally_searched: 0,
+        profiled: 0,
+        physically_attacked: 0,
+        harassed: 0,
+        wrongly_accused: 0,
+        disrespected: 0,
+        neglected: 0
+    })
 
     /* useEffect to grab all reports */
     useEffect(() => {
-        if (officer.officerBadgeID !== undefined && officer.officerBadgeID !== '') {
-            firebase
-                .firestore()
-                .collection('reports')
-                .where('officerId', '==', officer.officerBadgeID)
-                .get()
-                .then(function (querySnapshot) {
-                    const data = [];
-                    querySnapshot.forEach(function (doc) {
-                        data.push({ id: doc.id, ...doc.data() });
-                    })
-                    setReports(data);
+        firebase
+            .firestore()
+            .collection("reports")
+            .get()
+            .then(function (querySnapshot) {
+                const data = [];
+                querySnapshot.forEach(function (doc) {
+                    data.push({ id: doc.id, ...doc.data() });
                 })
-                .catch(err => {
-                    console.log('FAIL');
-                })
-        }
-    }, [officer]);
+                setReports(data);
+            })
+            .catch(err => {
+                console.log('FAIL');
+            })
+    }, []);
 
     /* check globalState for search filters and render reports based
         on any selected filters by the user */
@@ -135,7 +85,6 @@ export default function Stories(props) {
             firebase
                 .firestore()
                 .collection("reports")
-                .where('officerId', '==', officer.officerBadgeID)
                 .where('gender', '==', `${globalState.state.gender}`)
                 .get()
                 .then(function (querySnapshot) {
@@ -155,7 +104,6 @@ export default function Stories(props) {
             firebase
                 .firestore()
                 .collection("reports")
-                .where('officerId', '==', officer.officerBadgeID)
                 .where('race', '==', `${globalState.state.race}`)
                 .get()
                 .then(function (querySnapshot) {
@@ -175,7 +123,6 @@ export default function Stories(props) {
             firebase
                 .firestore()
                 .collection("reports")
-                .where('officerId', '==', officer.officerBadgeID)
                 .where('tags', 'array-contains-any', globalState.state.tag)
                 .get()
                 .then(function (querySnapshot) {
@@ -195,7 +142,6 @@ export default function Stories(props) {
             firebase
                 .firestore()
                 .collection("reports")
-                .where('officerId', '==', officer.officerBadgeID)
                 .where('tags', 'array-contains-any', globalState.state.tag)
                 .where('race', '==', `${globalState.state.race}`)
                 .get()
@@ -216,7 +162,6 @@ export default function Stories(props) {
             firebase
                 .firestore()
                 .collection("reports")
-                .where('officerId', '==', officer.officerBadgeID)
                 .where('tags', 'array-contains-any', globalState.state.tag)
                 .where('gender', '==', `${globalState.state.gender}`)
                 .get()
@@ -237,7 +182,6 @@ export default function Stories(props) {
             firebase
                 .firestore()
                 .collection("reports")
-                .where('officerId', '==', officer.officerBadgeID)
                 .where('tags', 'array-contains-any', globalState.state.tag)
                 .where('gender', '==', `${globalState.state.gender}`)
                 .where('race', '==', `${globalState.state.race}`)
@@ -259,7 +203,6 @@ export default function Stories(props) {
             firebase
                 .firestore()
                 .collection("reports")
-                .where('officerId', '==', officer.officerBadgeID)
                 .where('gender', '==', `${globalState.state.gender}`)
                 .where('race', '==', `${globalState.state.race}`)
                 .get()
@@ -285,12 +228,7 @@ export default function Stories(props) {
                 .then(function (querySnapshot) {
                     const data = [];
                     querySnapshot.forEach(function (doc) {
-                        if (doc.data().officerId === officer.officerBadgeID) {
-                            data.push({ id: doc.id, ...doc.data() });
-                        }
-                        else {
-                            console.log('Not a match.');
-                        }
+                        data.push({ id: doc.id, ...doc.data() });
                     })
                     setReports(data);
                 })
@@ -309,12 +247,7 @@ export default function Stories(props) {
                 .then(function (querySnapshot) {
                     const data = [];
                     querySnapshot.forEach(function (doc) {
-                        if (doc.data().officerId === officer.officerBadgeID) {
-                            data.push({ id: doc.id, ...doc.data() });
-                        }
-                        else {
-                            console.log('Not a match.');
-                        }
+                        data.push({ id: doc.id, ...doc.data() });
                     })
                     setReports(data);
                 })
@@ -333,12 +266,7 @@ export default function Stories(props) {
                 .then(function (querySnapshot) {
                     const data = [];
                     querySnapshot.forEach(function (doc) {
-                        if (doc.data().officerId === officer.officerBadgeID) {
-                            data.push({ id: doc.id, ...doc.data() });
-                        }
-                        else {
-                            console.log('Not a match.');
-                        }
+                        data.push({ id: doc.id, ...doc.data() });
                     })
                     setReports(data);
                 })
@@ -357,148 +285,7 @@ export default function Stories(props) {
                 .then(function (querySnapshot) {
                     const data = [];
                     querySnapshot.forEach(function (doc) {
-                        if (doc.data().officerId === officer.officerBadgeID) {
-                            data.push({ id: doc.id, ...doc.data() });
-                        }
-                        else {
-                            console.log('Not a match.');
-                        }
-                    })
-                    setReports(data);
-                })
-                .catch(err => {
-                    console.log('FAIL');
-                })
-        }
-
-        /* filter by age range */
-        if (globalState.state.age !== undefined
-            && globalState.state.age !== ''
-            && globalState.state.race === ''
-            && globalState.state.gender === ''
-            && (globalState.state.tag.length === 0
-                || globalState.state.tag === undefined)) {
-
-            const year = getYear();
-            let start;
-            let end;
-
-            if (globalState.state.age === '<18') {
-                start = year - 18;
-                end = year;
-            }
-            else if (globalState.state.age === '19-25') {
-                start = year - 25;
-                end = year - 19;
-            }
-            else if (globalState.state.age === '26-35') {
-                start = year - 35;
-                end = year - 26;
-            }
-            else if (globalState.state.age === '36-45') {
-                start = year - 45;
-                end = year - 36;
-            }
-            else if (globalState.state.age === '46-55') {
-                start = year - 55;
-                end = year - 46;
-            }
-            else if (globalState.state.age === '56-65') {
-                start = year - 65;
-                end = year - 56;
-            }
-            else if (globalState.state.age === '66-75') {
-                start = year - 75;
-                end = year - 66;
-            }
-            else if (globalState.state.age === '76+') {
-                start = 1;
-                end = year - 76;
-            }
-
-            firebase
-                .firestore()
-                .collection("reports")
-                .orderBy('birthYear')
-                .startAt(start)
-                .endAt(end)
-                .get()
-                .then(function (querySnapshot) {
-                    const data = [];
-                    querySnapshot.forEach(function (doc) {
-                        if (doc.data().officerId === officer.officerBadgeID) {
-                            data.push({ id: doc.id, ...doc.data() });
-                        }
-                        else {
-                            console.log('Not a match.');
-                        }
-                    })
-                    setReports(data);
-                })
-                .catch(err => {
-                    console.log('FAIL');
-                })
-        }
-
-        /* filter by age range and other filters */
-        if (globalState.state.age !== undefined
-            && globalState.state.age !== ''
-            && globalState.state.race !== '') {
-
-            const year = getYear();
-            let start;
-            let end;
-
-            if (globalState.state.age === '<18') {
-                start = year - 18;
-                end = year;
-            }
-            else if (globalState.state.age === '19-25') {
-                start = year - 25;
-                end = year - 19;
-            }
-            else if (globalState.state.age === '26-35') {
-                start = year - 35;
-                end = year - 26;
-            }
-            else if (globalState.state.age === '36-45') {
-                start = year - 45;
-                end = year - 36;
-            }
-            else if (globalState.state.age === '46-55') {
-                start = year - 55;
-                end = year - 46;
-            }
-            else if (globalState.state.age === '56-65') {
-                start = year - 65;
-                end = year - 56;
-            }
-            else if (globalState.state.age === '66-75') {
-                start = year - 75;
-                end = year - 66;
-            }
-            else if (globalState.state.age === '76+') {
-                start = 1;
-                end = year - 76;
-            }
-
-            firebase
-                .firestore()
-                .collection("reports")
-                .orderBy('birthYear')
-                .startAt(start)
-                .endAt(end)
-                .where('race', '==', `${globalState.state.race}`)
-                .get()
-                .then(function (querySnapshot) {
-                    const data = [];
-                    querySnapshot.forEach(function (doc) {
-                        if (doc.data().officerId === officer.officerBadgeID) {
-                            data.push({ id: doc.id, ...doc.data() });
-                        }
-                        else {
-                            console.log('Not a match.');
-                        }
+                        data.push({ id: doc.id, ...doc.data() });
                     })
                     setReports(data);
                 })
@@ -646,39 +433,25 @@ export default function Stories(props) {
             { tag: 'neglected', total: neglectedTag }
         ]
 
-        setTagTotals(updatedState);
+        setTagTotals(updatedState); // update state
     }
 
-    /* get officer's average rating */
-    const getAvgRating = () => {
-        let avg = 0;
-        reports.map((report) => {
-            avg += report.rating;
-        })
-
-        avg /= reports.length;
-        setOfficerRatingAvg(Math.round(avg));
-        return;
-    }
-
-    /* get current year */
-    const getYear = () => {
-        const d = new Date();
-        const year = d.getFullYear();
-        return year;
-    }
-
+    /* calculate tag totals for reports */
     useEffect(() => {
         getTagTotals();
-        getAvgRating();
     }, [reports]);
 
     return (
-        <DashboardPageContainer>
-            {console.log(`CURRENT GLOBAL STATE `, globalState)}
+        <PageContainer>
             {filtering === true && <Filter filtering={filtering} setFiltering={setFiltering} queries={queries} setQueries={setQueries} reports={reports} setReports={setReports} />}
             {sorting === true && <Sort sorting={sorting} setSorting={setSorting} queries={queries} setQueries={setQueries} />}
             <StoryListContainer>
+                <div className="title-container">
+                    <Title className="active"><Link to="/dashboard/stories">Stories</Link></Title>
+                    <Title><Link to="/dashboard/stats">Stats</Link></Title>
+                    <Title><Link to="/dashboard/map">Map</Link></Title>
+                </div>
+
                 <TopContainer>
                     {reports.length && reports !== undefined ? (<p>{reports.length} reports</p>) : (<p>0 reports</p>)}
                 </TopContainer>
@@ -686,30 +459,21 @@ export default function Stories(props) {
                 <SliderContainer />
 
                 <TagStatContainer>
-                    <div className="officer-rating">
-                        <h4>Officer rating average</h4>
-                        <div className="circle">
-                            <p className="rating">{officerRatingAvg}</p>
+                    {tagTotals.length &&
+                        // <VictoryChart padding={{ left: 120, top: 20, bottom: 30, right: 30 }}>
+                        //     <VictoryBar data={tagTotals} horizontal="true" y="total" x="tag" />
+                        // </VictoryChart>
+                        <div className="stats-grid">
+                            {tagTotals.map((tag, idx) => {
+                                if (tag.total === 1) {
+                                    return <p key={idx}><span className="bold">{tag.total}</span> person has been {tag.tag}</p>
+                                }
+                                else {
+                                    return <p key={idx}><span className="bold">{tag.total}</span> people have been {tag.tag}</p>
+                                }
+                            })}
                         </div>
-                    </div>
-                    <div className="officer-stats">
-                        <h4>{officer.officerRank} {officer.officerLName}</h4>
-                        {tagTotals.length &&
-                            // <VictoryChart padding={{ left: 120, top: 20, bottom: 30, right: 30 }}>
-                            //     <VictoryBar data={tagTotals} horizontal="true" y="total" x="tag" />
-                            // </VictoryChart>
-                            <div className="stats-grid">
-                                {tagTotals.map((tag, idx) => {
-                                    if (tag.total === 1) {
-                                        return <p key={idx}>{tag.tag} <span className="bold">{tag.total}</span> person.</p>
-                                    }
-                                    else if (tag.total !== 0) {
-                                        return <p key={idx}>{tag.tag} <span className="bold">{tag.total}</span> people.</p>
-                                    }
-                                })}
-                            </div>
-                        }
-                    </div>
+                    }
                 </TagStatContainer>
 
                 <p className="see-more"><Link to="/dashboard/stats">See More</Link></p>
@@ -740,6 +504,7 @@ export default function Stories(props) {
                             window.scroll(0, 0);
                             setSorting(true);
                         }}>
+                            {/* <p>Sort: <span>Newest</span> <img src={CarotDown} alt="Drop Down" /></p> */}
                             {globalState.state.sort !== undefined && globalState.state.sort !== '' && <p>Sort: <span>{globalState.state.sort}</span> <img src={CarotDown} alt="Drop Down" /></p>}
                             {globalState.state.sort === undefined && <p>Sort: <span>Newest</span> <img src={CarotDown} alt="Drop Down" /></p>}
                         </div>
@@ -752,6 +517,6 @@ export default function Stories(props) {
                     }
                 </div>
             </StoryListContainer>
-        </DashboardPageContainer>
+        </PageContainer >
     )
 }

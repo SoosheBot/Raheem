@@ -22,3 +22,7 @@ html {
     background: #ffffff;
   }
 }
+
+.no-scroll {
+  overflow: hidden;
+}

@@ -293,14 +293,6 @@ export const HeaderContainer = styled.div`
     display: flex;
     flex-direction: row;
 
-
-    // @media(max-width: 500px){
-    //     width: 100%;
-    //     display: flex;
-    //     flex-direction: row;
-    //     padding-bottom: .5rem;
-    // }
-
     @media(max-width: 500px){
         width: 100%;
         display: flex;

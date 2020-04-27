@@ -1,14 +1,23 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
+import React from "react";
+import { useHistory } from "react-router-dom";
 
 //styles
 // import styled from 'styled-components';
 // import { PageContainer, Container, YellowHeaderContainer, Content, BackButton, SmallHeading, Heading, Subheading, HeadingContainer, HeaderContainer } from '../styles/global';
-import { PageContainer, Container, Content, BackButton, SmallHeading, Heading, Subheading, HeadingContainer, HeaderContainer } from '../styles/global';
+import {
+  PageContainer,
+  Container,
+  Content,
+  BackButton,
+  SmallHeading,
+  Heading,
+  Subheading,
+  HeadingContainer,
+  HeaderContainer,
+} from "../styles/global";
 
 /* assets */
-import Back from '../assets/Back.svg';
-
+import Back from "../assets/Back.svg";
 
 //Purpose of this component is to explain what Raheem is to new users
 function About(props) {
@@ -115,22 +124,8 @@ function About(props) {
             {/* <ButtonContainer className="landingButtonContainer">
                 <a href="#top" className="top">Back To Top</a>
             </ButtonContainer> */}
-        </PageContainer>
-    )
+    </PageContainer>
+  );
 }
 
 export default About;
-
-// const ButtonContainer = styled.div`
-//     width: 100%;
-//     background-color: #111111;
-//     color: #FFF600;
-//     padding: 1rem 20px;
-//     font-family: 'Neuzeit Grotesk', sans-serif;
-//     font-size: 1.6rem;
-
-//     a.top {
-//         color: #FFF600;
-//         text-decoration: none; 
-//     }
-// `
