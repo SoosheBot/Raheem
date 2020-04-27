@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import firebase from "../../config/firebase";
 
-//NOTE -- THIS COLLECTION HAS BEEN DISABLED IN FIREBASE FOR PRODUCTION, USERS WILL HAVE ADD AND GET PERMISSIONS ONLY--NO PUT/DELETE
+//Testing the firebase collection Edit and Delete
 const useItems = () => {
   const [items, setItems] = useState([]); //useState() hook, sets initial state to an empty array
 
@@ -30,7 +30,7 @@ const deleteItem = id => {
     .doc(id)
     .delete();
 };
-const TestList = ({ editItem }) => {
+const FireList = ({ editItem }) => {
   const listItems = useItems();
 
   return (
@@ -47,4 +47,4 @@ const TestList = ({ editItem }) => {
     </div>
   );
 };
-export default TestList;
+export default FireList;
