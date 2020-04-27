@@ -19,14 +19,14 @@ jest.mock('react-router-dom', () => ({
 //     });
 // });
 
-describe('Add a Report Button', () => {
-    it('renders successfully', () => {
-        const container = render(<Landing />);
-        const button = container.getByTestId('addReport');
+// describe('Add a Report Button', () => {
+//     it('renders successfully', () => {
+//         const container = render(<Landing />);
+//         const button = container.getByTestId('addReport');
 
-        expect(button.textContent).toMatch('Add a Report');
-    });
-});
+//         expect(button.textContent).toMatch('Add a Report');
+//     });
+// });
 
 // describe('View Reports Button', () => {
 //     it('renders successfully', () => {
