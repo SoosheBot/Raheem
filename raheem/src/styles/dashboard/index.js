@@ -35,7 +35,7 @@ export const DashboardOfficer = styled.div`
     @media (min-width: 1000px) {
         width: 50%;
     }
-
+        
     .db-officer-info {
         width: 100%;
         padding: 0 20px;
