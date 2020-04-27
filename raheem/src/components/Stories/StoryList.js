@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 /* victory */
-import { VictoryBar, VictoryChart, VictoryContainer } from 'victory';
+// import { VictoryBar, VictoryChart, VictoryContainer } from 'victory';
 
 /* firebase */
 import firebase from '../../config/firebase';

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from "react-router-dom";
 
 /*FireStore*/
 import firebase from "../config/firebase";
@@ -15,105 +15,128 @@ import Officer from "./Officer";
 import Back from "../assets/Back.svg";
 
 /* styles */
-import { PageContainer, BackButton, Container, Content, HeaderContainer, HeadingContainer, Controls, Divider } from '../styles/global';
-import { StoryForm } from '../styles/global/forms.js';
+import {
+  PageContainer,
+  BackButton,
+  Container,
+  Content,
+  HeaderContainer,
+  HeadingContainer,
+  Controls,
+  Divider,
+} from "../styles/global";
+import { StoryForm } from "../styles/global/forms.js";
 
 //buttons
-import { ButtonPrimary, ButtonSecondary } from '../styles/global';
+import { ButtonPrimary, ButtonSecondary } from "../styles/global";
 
 function Story() {
-    /* bring in useHistory from react-router-dom */
+  /* bring in useHistory from react-router-dom */
 
+  /* bring in useHistory from react-router-dom */
+  const history = useHistory();
+  const location = useLocation();
 
-    /* bring in useHistory from react-router-dom */
-    const history = useHistory();
-    const location = useLocation();
-
-    /* bring in our global state using the useContext hook
+  /* bring in our global state using the useContext hook
     and our form store */
-    const globalState = useContext(formStore);
+  const globalState = useContext(formStore);
 
-    /* deconstruct dispatch off globalState to dispatch an action */
-    const { dispatch } = globalState;
+  /* deconstruct dispatch off globalState to dispatch an action */
+  const { dispatch } = globalState;
 
-    /* state for officer passed in from Report component */
-    // const [officer, setOfficer] = useState(location.state);
-    const [officer] = useState(location.state);
+  /* state for officer passed in from Report component */
+  // const [officer, setOfficer] = useState(location.state);
+  const [officer] = useState(location.state);
 
-    const { handleSubmit, register } = useForm();
-    const onSubmit = data => {
-        dispatch({ type: 'STORY', payload: data });
-        firebase
-            .firestore()
-            .collection('stories')
-            .add({
-                reportRef: `/raheem-mercy/reports/${globalState.state.reportId}`,
-                officerId: officer.officerBadgeID,
-                storyBody: data
-            })
-        localStorage.setItem('completed', true);
-        history.push(`/thank-you`, officer);
-    };
+  const { handleSubmit, register } = useForm();
+  const onSubmit = (data) => {
+    dispatch({ type: "STORY", payload: data });
+    firebase
+      .firestore()
+      .collection("stories")
+      .add({
+        reportRef: `/raheem-mercy/reports/${globalState.state.reportId}`,
+        officerId: officer.officerBadgeID,
+        storyBody: data,
+      });
+    localStorage.setItem("completed", true);
+    history.push(`/thank-you`, officer);
+  };
 
-    return (
-        <PageContainer>
-            <Container>
-                <HeaderContainer>
-                    {/* {console.log('TESTING. IS STATE UPDATED?', globalState)} */}
-                    <BackButton className="go-back">
-                        <img onClick={() => history.goBack()} src={Back} alt="Go Back" data-testid="go-back" />
-                    </BackButton>
+  return (
+    <PageContainer>
+      <Container>
+        <HeaderContainer>
+          {/* {console.log('TESTING. IS STATE UPDATED?', globalState)} */}
+          <BackButton className="go-back-button">
+            <img
+              onClick={() => history.goBack()}
+              src={Back}
+              alt="Go Back"
+              data-testid="go-back"
+            />
+          </BackButton>
 
-                    {location.state === undefined &&
-                        <div className="no-officer">
-                            <p className="no-officer-text">No officer information was loaded. </p>
-                            <p className="no-officer-text">Please rescan your QR code or continue submitting
-                            your report with no officer information attached.</p>
-                        </div>
-                    }
+          {location.state === undefined && (
+            <div className="no-officer">
+              <p className="no-officer-text">
+                No officer information was loaded.{" "}
+              </p>
+              <p className="no-officer-text">
+                Please rescan your QR code or continue submitting your report
+                with no officer information attached.
+              </p>
+            </div>
+          )}
 
-                    {officer && officer.officer !== false &&
-                        <Officer
-                            profile={{
-                                officer: `${officer.officerRank} ${officer.officerLName}`,
-                                department: officer.officerPoliceDepartment,
-                                img: officer.img
-                            }} />
-                    }
-                </HeaderContainer>
-            </Container>
-            <Divider />
+          {officer && officer.officer !== false && (
+            <Officer
+              profile={{
+                officer: `${officer.officerRank} ${officer.officerLName}`,
+                department: officer.officerPoliceDepartment,
+                img: officer.img,
+              }}
+            />
+          )}
+        </HeaderContainer>
+      </Container>
+      <Divider />
 
+      <Container>
+        <HeadingContainer className="page-top">
+          <h2>What Happened?</h2>
+        </HeadingContainer>
 
-            <Container>
-                <HeadingContainer className="page-top">
-                    <h2>What Happened?</h2>
-                </HeadingContainer>
+        <Content>
+          <p className="instruction">
+            Describe the incident from start to finish. Be as descriptive as
+            possible, and remember to include details about the officer's
+            attitude and actions during this encounter.
+          </p>
 
-                <Content>
+          <StoryForm>
+            <form onSubmit={handleSubmit(onSubmit)} data-testid="form">
+              <textarea name="story" ref={register} />
 
-                    <p className='instruction'>Describe the incident from start to finish. Be as descriptive
-                    as possible, and remember to include details about the officer's attitude
-                    and actions during this encounter.
-                </p>
-
-                    <StoryForm>
-                        <form onSubmit={handleSubmit(onSubmit)} data-testid='form'>
-                            <textarea name="story" ref={register} />
-
-                            <Controls>
-                                <ButtonPrimary onClick={() => {
-                                    localStorage.setItem('completed', false);
-                                    history.push(`/thank-you`, officer);
-                                }}>Save For Later</ButtonPrimary>
-                                <ButtonSecondary type="submit">Complete Report</ButtonSecondary>
-                            </Controls>
-                        </form>
-                    </StoryForm>
-                </Content>
-            </Container>
-        </PageContainer>
-    )
+              <Controls>
+                <ButtonPrimary
+                  onClick={() => {
+                    localStorage.setItem("completed", false);
+                    history.push(`/thank-you`, officer);
+                  }}
+                >
+                  Save For Later
+                </ButtonPrimary>
+                <ButtonSecondary data-testid="complete-report" type="submit">
+                  Complete Report
+                </ButtonSecondary>
+              </Controls>
+            </form>
+          </StoryForm>
+        </Content>
+      </Container>
+    </PageContainer>
+  );
 }
 
 export default Story;

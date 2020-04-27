@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
-import ReactMapGL, { Marker, Popup, GeolocateControl } from "react-map-gl";
+import React, { useState } from "react";
+import ReactMapGL, { GeolocateControl } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-import styled from "styled-components";
 
 const TOKEN = process.env.REACT_APP_MAPBOX_ACCESSTOKEN;
 

@@ -155,17 +155,3 @@ function About(props) {
 }
 
 export default About;
-
-// const ButtonContainer = styled.div`
-//     width: 100%;
-//     background-color: #111111;
-//     color: #FFF600;
-//     padding: 1rem 20px;
-//     font-family: 'Neuzeit Grotesk', sans-serif;
-//     font-size: 1.6rem;
-
-//     a.top {
-//         color: #FFF600;
-//         text-decoration: none;
-//     }
-// `
