@@ -229,12 +229,16 @@ export default function Stories(props) {
                 .firestore()
                 .collection("reports")
                 .orderBy('rating', 'desc')
-                .where('officerId', '==', officer.officerBadgeID)
                 .get()
                 .then(function (querySnapshot) {
                     const data = [];
                     querySnapshot.forEach(function (doc) {
-                        data.push({ id: doc.id, ...doc.data() });
+                        if (doc.data().officerId === officer.officerBadgeID) {
+                            data.push({ id: doc.id, ...doc.data() });
+                        }
+                        else {
+                            console.log('Not a match.');
+                        }
                     })
                     setReports(data);
                 })
@@ -248,13 +252,17 @@ export default function Stories(props) {
             firebase
                 .firestore()
                 .collection("reports")
-                .where('officerId', '==', officer.officerBadgeID)
                 .orderBy('rating', 'asc')
                 .get()
                 .then(function (querySnapshot) {
                     const data = [];
                     querySnapshot.forEach(function (doc) {
-                        data.push({ id: doc.id, ...doc.data() });
+                        if (doc.data().officerId === officer.officerBadgeID) {
+                            data.push({ id: doc.id, ...doc.data() });
+                        }
+                        else {
+                            console.log('Not a match.');
+                        }
                     })
                     setReports(data);
                 })
@@ -268,13 +276,17 @@ export default function Stories(props) {
             firebase
                 .firestore()
                 .collection("reports")
-                .where('officerId', '==', officer.officerBadgeID)
                 .orderBy('reportDate', 'asc')
                 .get()
                 .then(function (querySnapshot) {
                     const data = [];
                     querySnapshot.forEach(function (doc) {
-                        data.push({ id: doc.id, ...doc.data() });
+                        if (doc.data().officerId === officer.officerBadgeID) {
+                            data.push({ id: doc.id, ...doc.data() });
+                        }
+                        else {
+                            console.log('Not a match.');
+                        }
                     })
                     setReports(data);
                 })
@@ -288,13 +300,17 @@ export default function Stories(props) {
             firebase
                 .firestore()
                 .collection("reports")
-                .where('officerId', '==', officer.officerBadgeID)
                 .orderBy('reportDate', 'desc')
                 .get()
                 .then(function (querySnapshot) {
                     const data = [];
                     querySnapshot.forEach(function (doc) {
-                        data.push({ id: doc.id, ...doc.data() });
+                        if (doc.data().officerId === officer.officerBadgeID) {
+                            data.push({ id: doc.id, ...doc.data() });
+                        }
+                        else {
+                            console.log('Not a match.');
+                        }
                     })
                     setReports(data);
                 })
