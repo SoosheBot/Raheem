@@ -1,9 +1,6 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 
-/* firebase */
-import firebase from '../../config/firebase';
-
 /* bring in our global form store */
 import { formStore } from "../../formStore.js";
 
@@ -24,8 +21,8 @@ export default function Filter(props) {
     const { dispatch } = globalState;
 
     /* configure react-hook-form */
-    const { register, handleSubmit, errors } = useForm();
-    const { filtering, setFiltering, reports, setReports } = props;
+    const { register, handleSubmit } = useForm();
+    const { filtering, setFiltering } = props;
 
     /* handle form submission */
     const onSubmit = (data) => {

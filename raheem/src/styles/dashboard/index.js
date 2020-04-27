@@ -209,6 +209,16 @@ export const StoryContainer = styled.div`
     padding: 0 20px;
     margin: 5rem 0;
 
+    @media (min-width: 500px) {
+        border-top: 1px solid #C4C4C4;
+        padding-bottom: 8.4rem;
+        padding-top: 2.5rem;
+
+        &:first-child {
+            border-bottom: none;
+        }
+    }
+
     .desktop-story {
 
         @media (min-width: 500px) {
@@ -234,6 +244,12 @@ export const StoryContainer = styled.div`
         display: flex;
 
         .desktop-story-header {
+
+            @media (max-width: 500px) {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+            }
 
             @media (min-width: 500px) {
                 width: 50%;
@@ -272,7 +288,8 @@ export const StoryContainer = styled.div`
             height: 8rem;
             grid-template-columns: 100%;
             grid-row-gap: 1rem;
-            border: 1px solid orange;
+            border-bottom: none;
+            border-top: none;
         }
         
         div {
@@ -309,6 +326,7 @@ export const StoryTagContainer = styled.div`
     display: grid;
     grid-template-columns: 40% 40%;
     grid-row-gap: 1rem;
+    grid-column-gap: 1rem;
 `;
 
 export const StoryTag = styled.div`

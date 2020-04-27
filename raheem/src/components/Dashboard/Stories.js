@@ -49,23 +49,11 @@ export default function Stories(props) {
         console.log(data);
     }
 
-    const [tagTotals, setTagTotals] = useState({
-        helped: 0,
-        protected: 0,
-        illegally_searched: 0,
-        profiled: 0,
-        physically_attacked: 0,
-        harassed: 0,
-        wrongly_accused: 0,
-        disrespected: 0,
-        neglected: 0
-    })
-
-    console.log(`OFFICER BADGE ID `, officer.officerBadgeID);
+    /* state for totaling up the tags coming back in the reports */
+    const [tagTotals, setTagTotals] = useState([]);
 
     /* useEffect to grab all reports */
     useEffect(() => {
-        console.log('did we make it here?');
         if (officer.officerBadgeID !== undefined && officer.officerBadgeID !== '') {
             firebase
                 .firestore()
@@ -75,7 +63,6 @@ export default function Stories(props) {
                 .then(function (querySnapshot) {
                     const data = [];
                     querySnapshot.forEach(function (doc) {
-                        console.log(`DATA WE'RE GETTING BACK `, doc.data());
                         data.push({ id: doc.id, ...doc.data() });
                     })
                     setReports(data);
@@ -337,7 +324,11 @@ export default function Stories(props) {
                 if (tag === 'helped') {
                     helpedTag++;
                 }
+
+                return helpedTag;
             })
+
+            return helpedTag;
         });
 
         reports.map((report) => {
@@ -345,7 +336,11 @@ export default function Stories(props) {
                 if (tag === 'protected') {
                     protectedTag++;
                 }
+
+                return protectedTag;
             })
+
+            return protectedTag;
         });
 
         reports.map((report) => {
@@ -353,7 +348,11 @@ export default function Stories(props) {
                 if (tag === 'illegally searched') {
                     illegallySearchedTag++;
                 }
+
+                return illegallySearchedTag;
             })
+
+            return illegallySearchedTag;
         });
 
         reports.map((report) => {
@@ -361,7 +360,11 @@ export default function Stories(props) {
                 if (tag === 'profiled') {
                     profiledTag++;
                 }
+
+                return profiledTag;
             })
+
+            return profiledTag;
         });
 
         reports.map((report) => {
@@ -369,7 +372,11 @@ export default function Stories(props) {
                 if (tag === 'physically attacked') {
                     physicallyAttackedTag++;
                 }
+
+                return physicallyAttackedTag;
             })
+
+            return physicallyAttackedTag;
         });
 
         reports.map((report) => {
@@ -377,7 +384,11 @@ export default function Stories(props) {
                 if (tag === 'harassed') {
                     harassedTag++;
                 }
+
+                return harassedTag;
             })
+
+            return harassedTag;
         });
 
         reports.map((report) => {
@@ -385,7 +396,11 @@ export default function Stories(props) {
                 if (tag === 'wrongly accused') {
                     wronglyAccusedTag++;
                 }
+
+                return wronglyAccusedTag;
             })
+
+            return wronglyAccusedTag;
         });
 
         reports.map((report) => {
@@ -393,7 +408,11 @@ export default function Stories(props) {
                 if (tag === 'disrespected') {
                     disrespectedTag++;
                 }
+
+                return disrespectedTag;
             })
+
+            return disrespectedTag;
         });
 
         reports.map((report) => {
@@ -401,7 +420,11 @@ export default function Stories(props) {
                 if (tag === 'neglected') {
                     neglectedTag++;
                 }
+
+                return neglectedTag;
             })
+
+            return neglectedTag;
         });
 
         /* create an updated state object to pass into state to
@@ -427,7 +450,6 @@ export default function Stories(props) {
 
     return (
         <DashboardPageContainer>
-            {console.log(`GLOBAL STATE ON STORYLIST `, globalState)}
             {filtering === true && <Filter filtering={filtering} setFiltering={setFiltering} queries={queries} setQueries={setQueries} reports={reports} setReports={setReports} />}
             {sorting === true && <Sort sorting={sorting} setSorting={setSorting} queries={queries} setQueries={setQueries} />}
             <StoryListContainer>
@@ -438,10 +460,21 @@ export default function Stories(props) {
                 <SliderContainer />
 
                 <TagStatContainer>
+                    <h4>{officer.officerRank} {officer.officerLName}</h4>
                     {tagTotals.length &&
-                        <VictoryChart padding={{ left: 120, top: 20, bottom: 30, right: 30 }}>
-                            <VictoryBar data={tagTotals} horizontal="true" y="total" x="tag" />
-                        </VictoryChart>
+                        // <VictoryChart padding={{ left: 120, top: 20, bottom: 30, right: 30 }}>
+                        //     <VictoryBar data={tagTotals} horizontal="true" y="total" x="tag" />
+                        // </VictoryChart>
+                        <div className="stats-grid">
+                            {tagTotals.map((tag, idx) => {
+                                if (tag.total === 1) {
+                                    return <p key={idx}>{tag.tag} <span className="bold">{tag.total}</span> person.</p>
+                                }
+                                else {
+                                    return <p key={idx}>{tag.tag} <span className="bold">{tag.total}</span> people.</p>
+                                }
+                            })}
+                        </div>
                     }
                 </TagStatContainer>
 

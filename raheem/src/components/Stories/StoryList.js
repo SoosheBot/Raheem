@@ -31,10 +31,10 @@ export default function StoryList() {
     const globalState = useContext(formStore);
 
     /* deconstruct dispatch off globalState to dispatch an action */
-    const { dispatch } = globalState;
+    // const { dispatch } = globalState;
 
     /* configure react-hook-form for searching */
-    const { register, handleSubmit, errors } = useForm();
+    const { register, handleSubmit } = useForm();
 
     const [reports, setReports] = useState([]); // state for reports
     const [filtering, setFiltering] = useState(false); // toggleable filter state
@@ -316,7 +316,11 @@ export default function StoryList() {
                 if (tag === 'helped') {
                     helpedTag++;
                 }
+
+                return helpedTag;
             })
+
+            return helpedTag;
         });
 
         reports.map((report) => {
@@ -324,7 +328,11 @@ export default function StoryList() {
                 if (tag === 'protected') {
                     protectedTag++;
                 }
+
+                return protectedTag;
             })
+
+            return protectedTag;
         });
 
         reports.map((report) => {
@@ -332,7 +340,11 @@ export default function StoryList() {
                 if (tag === 'illegally searched') {
                     illegallySearchedTag++;
                 }
+
+                return illegallySearchedTag;
             })
+
+            return illegallySearchedTag;
         });
 
         reports.map((report) => {
@@ -340,7 +352,11 @@ export default function StoryList() {
                 if (tag === 'profiled') {
                     profiledTag++;
                 }
+
+                return profiledTag;
             })
+
+            return profiledTag;
         });
 
         reports.map((report) => {
@@ -348,7 +364,11 @@ export default function StoryList() {
                 if (tag === 'physically attacked') {
                     physicallyAttackedTag++;
                 }
+
+                return physicallyAttackedTag;
             })
+
+            return physicallyAttackedTag;
         });
 
         reports.map((report) => {
@@ -356,7 +376,11 @@ export default function StoryList() {
                 if (tag === 'harassed') {
                     harassedTag++;
                 }
+
+                return harassedTag;
             })
+
+            return harassedTag;
         });
 
         reports.map((report) => {
@@ -364,7 +388,11 @@ export default function StoryList() {
                 if (tag === 'wrongly accused') {
                     wronglyAccusedTag++;
                 }
+
+                return wronglyAccusedTag;
             })
+
+            return wronglyAccusedTag;
         });
 
         reports.map((report) => {
@@ -372,7 +400,11 @@ export default function StoryList() {
                 if (tag === 'disrespected') {
                     disrespectedTag++;
                 }
+
+                return disrespectedTag;
             })
+
+            return disrespectedTag;
         });
 
         reports.map((report) => {
@@ -380,7 +412,11 @@ export default function StoryList() {
                 if (tag === 'neglected') {
                     neglectedTag++;
                 }
+
+                return neglectedTag;
             })
+
+            return neglectedTag;
         });
 
         /* create an updated state object to pass into state to
@@ -406,7 +442,6 @@ export default function StoryList() {
 
     return (
         <PageContainer>
-            {console.log(`GLOBAL STATE ON STORYLIST `, globalState)}
             {filtering === true && <Filter filtering={filtering} setFiltering={setFiltering} queries={queries} setQueries={setQueries} reports={reports} setReports={setReports} />}
             {sorting === true && <Sort sorting={sorting} setSorting={setSorting} queries={queries} setQueries={setQueries} />}
             <StoryListContainer>
@@ -424,9 +459,19 @@ export default function StoryList() {
 
                 <TagStatContainer>
                     {tagTotals.length &&
-                        <VictoryChart padding={{ left: 120, top: 20, bottom: 30, right: 30 }}>
-                            <VictoryBar data={tagTotals} horizontal="true" y="total" x="tag" />
-                        </VictoryChart>
+                        // <VictoryChart padding={{ left: 120, top: 20, bottom: 30, right: 30 }}>
+                        //     <VictoryBar data={tagTotals} horizontal="true" y="total" x="tag" />
+                        // </VictoryChart>
+                        <div className="stats-grid">
+                            {tagTotals.map((tag, idx) => {
+                                if (tag.total === 1) {
+                                    return <p key={idx}><span className="bold">{tag.total}</span> person has been {tag.tag}</p>
+                                }
+                                else {
+                                    return <p key={idx}><span className="bold">{tag.total}</span> people have been {tag.tag}</p>
+                                }
+                            })}
+                        </div>
                     }
                 </TagStatContainer>
 

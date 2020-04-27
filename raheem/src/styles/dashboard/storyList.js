@@ -72,6 +72,13 @@ export const TopContainer = styled.div`
         line-height: 2.4rem;
         letter-spacing: -0.196364px;
         font-weight: bold;
+        padding-left: 2rem;
+
+        @media (min-width: 500px) {
+            font-size: 2.2rem;
+            line-height: 3rem;
+            letter-spacing: -0.24px;
+        }
     }
 `;
 
@@ -82,11 +89,39 @@ export const SliderContainer = styled.div`
 `;
 
 export const TagStatContainer = styled.div`
-    margin-top: 4.1rem;
+    // margin-top: 4.1rem;
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
+    font-family: 'neuzeit-grotesk', sans-serif;
+
+    // div.stats-grid {
+    //     width: 100%;
+    //     border: 1px solid red;
+    //     display: grid;
+    //     grid-template-columns: 25% 25%;
+    // }
+
+    h4 {
+        font-size: 3rem;
+        line-height: 4rem;
+        font-weight: 900;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        width: 100%;
+        font-size: 2rem;
+        line-height: 3rem;
+        border-bottom: 1px solid #C4C4C4;
+    }
+
+    span.bold {
+        font-weight: 900;
+        font-size: 2.5rem;
+    }
 `;
 
 export const StoryListSearch = styled.div`

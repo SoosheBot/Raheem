@@ -45,7 +45,6 @@ export default function Story(props) {
         else if (month === 10) { monthString = 'Nov' }
         else if (month === 11) { monthString = 'Dec' }
 
-        const updatedDate = convertedDate.toUTCString();
         return `${monthString} ${year}`;
     }
 
@@ -109,7 +108,7 @@ export default function Story(props) {
                             <p>{story.storyBody.story}</p>
                             <span onClick={() => setStoryToggle(!storyToggle)}>See less</span>
                         </LongStoryContent>}
-                    </div>
+                </div>
             </div>
         </StoryContainer>
     )

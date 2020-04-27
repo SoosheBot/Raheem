@@ -36,7 +36,6 @@ export default function Dashboard() {
 
     return (
         <PageContainer>
-            {console.log(`CURRENT OFFICER `, officer)}
             <DashboardOfficer>
                 <DashboardMainTitle>
                     <h2>{`${officer.officerRank} ${officer.officerLName}`}</h2>
