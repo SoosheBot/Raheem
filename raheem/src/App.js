@@ -18,13 +18,6 @@ import Landing from './components/Landing';
 import Report from './components/Report';
 import Story from './components/Story';
 import ThankYou from './components/ThankYou';
-<<<<<<< HEAD
-import Report from './components/Report';
-
-/* dashboard components */
-import Dashboard from './components/Dashboard/Dashboard';
-import TestGeo from './components/Dashboard/TestGeo'; 
-=======
 
 
 //officer dashboard
@@ -32,7 +25,6 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Stories from './components/Dashboard/Stories';
 import Stats from './components/Dashboard/Stats';
 import Map from './components/Dashboard/Map';
->>>>>>> 957ff15b0af237d503f504f4b12a992dc3d904f9
 import StoryList from './components/Stories/StoryList';
 
 import Testgeo from './components/testGeo';
@@ -122,8 +114,6 @@ function App() {
           <Dashboard />
         </Route>
 
-<<<<<<< HEAD
-=======
         <Route path="/officers/:id/stories">
           <Stories />
         </Route>
@@ -140,7 +130,6 @@ function App() {
         {/* <Route path="/test">
           <Test />
         </Route> */}
->>>>>>> 957ff15b0af237d503f504f4b12a992dc3d904f9
       </Splash>
     </div>
   );
