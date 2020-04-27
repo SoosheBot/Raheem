@@ -13,7 +13,7 @@ import About from './components/About';
 import Story from './components/Story';
 import ThankYou from './components/ThankYou';
 import Report from './components/Report';
-import Testgeo from './components/testGeo'; 
+import Testgeo from './components/testGeo';
 /* dashboard components */
 import Dashboard from './components/Dashboard/Dashboard';
 import StoryList from './components/Stories/StoryList';
@@ -42,7 +42,7 @@ function App() {
     <div>
 
       <Splash>
-        {windowWidth < 500 &&
+        {windowWidth <= 500 &&
           <Header className="home" />}
         {/* routes using react-router-dom */}
 
@@ -94,6 +94,10 @@ function App() {
 
         {/* route to officer dashboard in RC2 */}
         <Route path="/dashboard/stories">
+          <StoryList />
+        </Route>
+
+        <Route exact path="/dashboard">
           <StoryList />
         </Route>
 

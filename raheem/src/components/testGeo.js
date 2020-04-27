@@ -29,34 +29,34 @@ import Officer from "../components/Officer";
 import Back from "../assets/Back.svg";
 import { GeolocateControl } from 'mapbox-gl';
 
-export default function TestGeo(){
+export default function TestGeo() {
 
-  
 
-  const [coords, setCoords] = useState({lat:0, lon:0})
 
-  const handleClick = (e) =>{
-    navigator.geolocation.getCurrentPosition(success,error)
-  }
+    const [coords, setCoords] = useState({ lat: 0, lon: 0 })
 
-  const success = (pos) =>{
-    var crd = pos.coords;
+    const handleClick = (e) => {
+        navigator.geolocation.getCurrentPosition(success, error)
+    }
 
-    setCoords({lat:crd.latitude, lon:crd.longitude});
-  }
+    const success = (pos) => {
+        var crd = pos.coords;
 
-  const error = (err) =>{
-    console.error(`ERROR(${err.code}): ${err.message}`)
-  }
+        setCoords({ lat: crd.latitude, lon: crd.longitude });
+    }
 
-  return (
-    <PageContainer>
-      <Container>
-        <span>{`lat: ${coords.lat}`}</span>
-        <span>{`lon: ${coords.lon}`}</span>
-        <button onClick={handleClick}>Allow Location Services</button>
-      </Container>
-    </PageContainer>
-  )
+    const error = (err) => {
+        console.error(`ERROR(${err.code}): ${err.message}`)
+    }
+
+    return (
+        <PageContainer>
+            <Container>
+                <span>{`lat: ${coords.lat}`}</span>
+                <span>{`lon: ${coords.lon}`}</span>
+                <button onClick={handleClick}>Allow Location Services</button>
+            </Container>
+        </PageContainer>
+    )
 
 }

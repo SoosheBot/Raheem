@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 /* victory */
-import { VictoryBar, VictoryChart, VictoryContainer } from 'victory';
+import { VictoryBar, VictoryChart, VictoryAxis } from 'victory';
 
 /* firebase */
 import firebase from '../../config/firebase';
@@ -31,14 +31,14 @@ export default function StoryList() {
     const globalState = useContext(formStore);
 
     /* deconstruct dispatch off globalState to dispatch an action */
-    const { dispatch } = globalState;
+    // const { dispatch } = globalState;
 
     /* configure react-hook-form for searching */
-    const { register, handleSubmit, errors } = useForm();
+    const { register, handleSubmit } = useForm();
 
-    const [reports, setReports] = useState([]);
-    const [filtering, setFiltering] = useState(false);
-    const [sorting, setSorting] = useState(false);
+    const [reports, setReports] = useState([]); // state for reports
+    const [filtering, setFiltering] = useState(false); // toggleable filter state
+    const [sorting, setSorting] = useState(false); // toggleable sorting state
     const [queries, setQueries] = useState([]);
 
     /* handle search input on submission */
@@ -217,10 +217,90 @@ export default function StoryList() {
                     console.log('FAIL');
                 })
         }
+
+        /* sort reports by highest rated first */
+        if (globalState.state.sort !== undefined && globalState.state.sort === 'Highest rated') {
+            firebase
+                .firestore()
+                .collection("reports")
+                .orderBy('rating', 'desc')
+                .get()
+                .then(function (querySnapshot) {
+                    const data = [];
+                    querySnapshot.forEach(function (doc) {
+                        data.push({ id: doc.id, ...doc.data() });
+                    })
+                    setReports(data);
+                })
+                .catch(err => {
+                    console.log('FAIL');
+                })
+        }
+
+        /* sort reports by lowest rated first */
+        if (globalState.state.sort !== undefined && globalState.state.sort === 'Lowest rated') {
+            firebase
+                .firestore()
+                .collection("reports")
+                .orderBy('rating', 'asc')
+                .get()
+                .then(function (querySnapshot) {
+                    const data = [];
+                    querySnapshot.forEach(function (doc) {
+                        data.push({ id: doc.id, ...doc.data() });
+                    })
+                    setReports(data);
+                })
+                .catch(err => {
+                    console.log('FAIL');
+                })
+        }
+
+        /* sort reports by newest first */
+        if (globalState.state.sort !== undefined && globalState.state.sort === 'Newest') {
+            firebase
+                .firestore()
+                .collection("reports")
+                .orderBy('reportDate', 'asc')
+                .get()
+                .then(function (querySnapshot) {
+                    const data = [];
+                    querySnapshot.forEach(function (doc) {
+                        data.push({ id: doc.id, ...doc.data() });
+                    })
+                    setReports(data);
+                })
+                .catch(err => {
+                    console.log('FAIL');
+                })
+        }
+
+        /* sort reports by oldest first */
+        if (globalState.state.sort !== undefined && globalState.state.sort === 'Oldest') {
+            firebase
+                .firestore()
+                .collection("reports")
+                .orderBy('reportDate', 'desc')
+                .get()
+                .then(function (querySnapshot) {
+                    const data = [];
+                    querySnapshot.forEach(function (doc) {
+                        data.push({ id: doc.id, ...doc.data() });
+                    })
+                    setReports(data);
+                })
+                .catch(err => {
+                    console.log('FAIL');
+                })
+        }
     }, [globalState]);
 
-    /* get the total amount of total tags in the reports */
+    /* get the total amount of total tags in the reports
+        not performant at all. need to refactor to utilize a more efficient
+        way of totaling up our tag counts */
     const getTagTotals = () => {
+
+        /* temporary state to hold tag totals as they're being calculated */
         let helpedTag = 0;
         let protectedTag = 0;
         let illegallySearchedTag = 0;
@@ -236,7 +316,11 @@ export default function StoryList() {
                 if (tag === 'helped') {
                     helpedTag++;
                 }
+
+                return helpedTag;
             })
+
+            return helpedTag;
         });
 
         reports.map((report) => {
@@ -244,7 +328,11 @@ export default function StoryList() {
                 if (tag === 'protected') {
                     protectedTag++;
                 }
+
+                return protectedTag;
             })
+
+            return protectedTag;
         });
 
         reports.map((report) => {
@@ -252,7 +340,11 @@ export default function StoryList() {
                 if (tag === 'illegally searched') {
                     illegallySearchedTag++;
                 }
+
+                return illegallySearchedTag;
             })
+
+            return illegallySearchedTag;
         });
 
         reports.map((report) => {
@@ -260,7 +352,11 @@ export default function StoryList() {
                 if (tag === 'profiled') {
                     profiledTag++;
                 }
+
+                return profiledTag;
             })
+
+            return profiledTag;
         });
 
         reports.map((report) => {
@@ -268,7 +364,11 @@ export default function StoryList() {
                 if (tag === 'physically attacked') {
                     physicallyAttackedTag++;
                 }
+
+                return physicallyAttackedTag;
             })
+
+            return physicallyAttackedTag;
         });
 
         reports.map((report) => {
@@ -276,7 +376,11 @@ export default function StoryList() {
                 if (tag === 'harassed') {
                     harassedTag++;
                 }
+
+                return harassedTag;
             })
+
+            return harassedTag;
         });
 
         reports.map((report) => {
@@ -284,7 +388,11 @@ export default function StoryList() {
                 if (tag === 'wrongly accused') {
                     wronglyAccusedTag++;
                 }
+
+                return wronglyAccusedTag;
             })
+
+            return wronglyAccusedTag;
         });
 
         reports.map((report) => {
@@ -292,7 +400,11 @@ export default function StoryList() {
                 if (tag === 'disrespected') {
                     disrespectedTag++;
                 }
+
+                return disrespectedTag;
             })
+
+            return disrespectedTag;
         });
 
         reports.map((report) => {
@@ -300,20 +412,26 @@ export default function StoryList() {
                 if (tag === 'neglected') {
                     neglectedTag++;
                 }
+
+                return neglectedTag;
             })
+
+            return neglectedTag;
         });
 
-        const updatedState = {
-            helped: helpedTag,
-            protected: protectedTag,
-            illegally_searched: illegallySearchedTag,
-            profiled: profiledTag,
-            physically_attacked: physicallyAttackedTag,
-            harassed: harassedTag,
-            wrongly_accused: wronglyAccusedTag,
-            disrespected: disrespectedTag,
-            neglected: neglectedTag
-        }
+        /* create an updated state object to pass into state to
+            populate the tags graph */
+        const updatedState = [
+            { tag: 'helped', total: helpedTag },
+            { tag: 'protected', total: protectedTag },
+            { tag: 'illegally searched', total: illegallySearchedTag },
+            { tag: 'profiled', total: profiledTag },
+            { tag: 'physically attacked', total: physicallyAttackedTag },
+            { tag: 'harassed', total: harassedTag },
+            { tag: 'wrongly accused', total: wronglyAccusedTag },
+            { tag: 'disrespected', total: disrespectedTag },
+            { tag: 'neglected', total: neglectedTag }
+        ]
 
         setTagTotals(updatedState);
     }
@@ -324,11 +442,8 @@ export default function StoryList() {
 
     return (
         <PageContainer>
-            {console.log(`GLOBAL STATE FROM STORYLIST `, globalState)}
             {filtering === true && <Filter filtering={filtering} setFiltering={setFiltering} queries={queries} setQueries={setQueries} reports={reports} setReports={setReports} />}
             {sorting === true && <Sort sorting={sorting} setSorting={setSorting} queries={queries} setQueries={setQueries} />}
-            {console.log(`TAG TOTALS `, tagTotals)}
-            {console.log(`CURRENT REPORTS IN STATE `, reports)}
             <StoryListContainer>
                 <div className="title-container">
                     <Title className="active"><Link to="/dashboard/stories">Stories</Link></Title>
@@ -338,15 +453,26 @@ export default function StoryList() {
 
                 <TopContainer>
                     {reports.length && reports !== undefined ? (<p>{reports.length} reports</p>) : (<p>0 reports</p>)}
-                    <p><Link to="/report">Write a Story</Link></p>
                 </TopContainer>
 
                 <SliderContainer />
 
                 <TagStatContainer>
-                    {/* <VictoryChart style={{ parent: { maxWidth: '50%' } }}>
-                        <VictoryBar data={tagData} horizontal="true" y="total" x="tag" />
-                    </VictoryChart> */}
+                    {tagTotals.length &&
+                        // <VictoryChart padding={{ left: 120, top: 20, bottom: 30, right: 30 }}>
+                        //     <VictoryBar data={tagTotals} horizontal="true" y="total" x="tag" />
+                        // </VictoryChart>
+                        <div className="stats-grid">
+                            {tagTotals.map((tag, idx) => {
+                                if (tag.total === 1) {
+                                    return <p key={idx}><span className="bold">{tag.total}</span> person has been {tag.tag}</p>
+                                }
+                                else {
+                                    return <p key={idx}><span className="bold">{tag.total}</span> people have been {tag.tag}</p>
+                                }
+                            })}
+                        </div>
+                    }
                 </TagStatContainer>
 
                 <p className="see-more"><Link to="/dashboard/stats">See More</Link></p>
@@ -377,14 +503,16 @@ export default function StoryList() {
                             window.scroll(0, 0);
                             setSorting(true);
                         }}>
-                            <p>Sort: <span>Newest</span> <img src={CarotDown} alt="Drop Down" /></p>
+                            {/* <p>Sort: <span>Newest</span> <img src={CarotDown} alt="Drop Down" /></p> */}
+                            {globalState.state.sort !== undefined && globalState.state.sort !== '' && <p>Sort: <span>{globalState.state.sort}</span> <img src={CarotDown} alt="Drop Down" /></p>}
+                            {globalState.state.sort === undefined && <p>Sort: <span>Newest</span> <img src={CarotDown} alt="Drop Down" /></p>}
                         </div>
                     </div>
                 </StoryListSearch>
 
                 <div className="list">
                     {
-                        reports !== undefined && reports.length ? (reports.map((report, index) => <Story key={index} report={report} />)) : (<p className="no-reports">There are no reports. Please try searching again.</p>)
+                        reports !== undefined && reports.length ? (reports.map((report, index) => <Story key={index} report={report} />)) : (<p className="no-reports">Stories are loading or are unavailable. Please try refreshing the page.</p>)
                     }
                 </div>
             </StoryListContainer>
