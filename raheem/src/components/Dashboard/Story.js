@@ -24,6 +24,30 @@ export default function Story(props) {
         return age;
     }
 
+    /* format dates for listing reports and stories */
+    const convertTime = () => {
+        const convertedDate = new Date(report.reportDate);
+        const year = convertedDate.getFullYear();
+        const month = convertedDate.getMonth();
+
+        /* set month string */
+        let monthString = ''
+        if (month === 0) { monthString = 'Jan' }
+        else if (month === 1) { monthString = 'Feb' }
+        else if (month === 2) { monthString = 'Mar' }
+        else if (month === 3) { monthString = 'Apr' }
+        else if (month === 4) { monthString = 'May' }
+        else if (month === 5) { monthString = 'June' }
+        else if (month === 6) { monthString = 'Jul' }
+        else if (month === 7) { monthString = 'Aug' }
+        else if (month === 8) { monthString = 'Sept' }
+        else if (month === 9) { monthString = 'Oct' }
+        else if (month === 10) { monthString = 'Nov' }
+        else if (month === 11) { monthString = 'Dec' }
+
+        return `${monthString} ${year}`;
+    }
+
     /* when our component mounts, fetch our story that matches the report
         passed in as props */
     useEffect(() => {
@@ -45,45 +69,47 @@ export default function Story(props) {
     return (
         <StoryContainer>
             <div className="story-header">
-                <h3>Rating {report.rating}</h3>
-                <h3>{report.reportDate}</h3>
-            </div>
-
-            <div className="story-demographics">
-                <div>
-                    <h4>Race</h4>
-                    <p>{report.race}</p>
-                </div>
-                <div>
-                    <h4>Gender</h4>
-                    <p>{report.gender}</p>
-                </div>
-                <div>
-                    <h4>Age</h4>
-                    <p>{getAge()}</p>
-                </div>
-                <div>
-                    <h4>Location</h4>
-                    <p>{report.location}</p>
+                <div className="desktop-story-header">
+                    <h3>Rating {report.rating}</h3>
+                    <h3>{convertTime()}</h3>
                 </div>
             </div>
 
-            <StoryTagContainer>
-                {report.tags.map((tag, idx) => {
-                    return <StoryTag key={idx}>{tag}</StoryTag>
-                })}
-            </StoryTagContainer>
-            {story.storyBody !== undefined && story.storyBody.story.length < 500 && <StoryContent>Story: {story.storyBody.story}</StoryContent>}
-            {story.storyBody !== undefined && story.storyBody.story.length > 500 && storyToggle === false &&
-                <LongStoryContent>
-                    <p>{story.storyBody.story.substring(0, 200)}</p>
-                    <span onClick={() => setStoryToggle(!storyToggle)}>See more</span>
-                </LongStoryContent>}
-            {story.storyBody !== undefined && story.storyBody.story.length > 500 && storyToggle === true &&
-                <LongStoryContent>
-                    <p>{story.storyBody.story}</p>
-                    <span onClick={() => setStoryToggle(!storyToggle)}>See less</span>
-                </LongStoryContent>}
+            <div className="desktop-story">
+                <div className="story-demographics">
+                    <div>
+                        <h4>Race</h4>
+                        <p>{report.race}</p>
+                    </div>
+                    <div>
+                        <h4>Gender</h4>
+                        <p>{report.gender}</p>
+                    </div>
+                    <div>
+                        <h4>Age</h4>
+                        <p>{getAge()}</p>
+                    </div>
+                </div>
+
+                <div className="desktop-story-content">
+                    <StoryTagContainer>
+                        {report.tags.map((tag, idx) => {
+                            return <StoryTag key={idx}>{tag}</StoryTag>
+                        })}
+                    </StoryTagContainer>
+                    {story.storyBody !== undefined && story.storyBody.story.length < 500 && <StoryContent>{story.storyBody.story}</StoryContent>}
+                    {story.storyBody !== undefined && story.storyBody.story.length > 500 && storyToggle === false &&
+                        <LongStoryContent>
+                            <p>{story.storyBody.story.substring(0, 200)}</p>
+                            <span onClick={() => setStoryToggle(!storyToggle)}>See more</span>
+                        </LongStoryContent>}
+                    {story.storyBody !== undefined && story.storyBody.story.length > 500 && storyToggle === true &&
+                        <LongStoryContent>
+                            <p>{story.storyBody.story}</p>
+                            <span onClick={() => setStoryToggle(!storyToggle)}>See less</span>
+                        </LongStoryContent>}
+                </div>
+            </div>
         </StoryContainer>
     )
 }

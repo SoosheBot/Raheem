@@ -13,11 +13,11 @@ jest.mock('react-router-dom', () => ({
     })
 }));
 
-// describe('<Landing />', () => {
-//     it('renders without crashing', () => {
-//         render(<Landing />);
-//     });
-// });
+describe('<Landing />', () => {
+    it('renders', () => {
+        render(<Landing />);
+    });
+});
 
 // describe('Add a Report Button', () => {
 //     it('renders successfully', () => {

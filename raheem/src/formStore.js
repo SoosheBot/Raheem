@@ -11,7 +11,7 @@ const initialState = {
     dob: '',
     incidentDate: '',
     time: '',
-    location:''
+    location: ''
 }
 
 /* create our context object using the createContext hook */
@@ -34,6 +34,11 @@ const StateProvider = ({ children }) => {
                     ...action.payload
                 }
             case 'FILTER':
+                return {
+                    ...state,
+                    ...action.payload
+                }
+            case 'SORT':
                 return {
                     ...state,
                     ...action.payload

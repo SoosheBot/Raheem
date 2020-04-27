@@ -64,22 +64,21 @@ export const TopContainer = styled.div`
     margin-top: 3.2rem;
     width: 100%;
     display: flex;
+    justify-content: flex-start;
     font-family: 'neuzeit-grotesk', sans-serif;
     
     p {
-        width: 50%;
-        font-size: 1.4rem;
-        line-height: 1.8rem;
-        letter-spacing: -0.166667px;
+        font-size: 1.8rem;
+        line-height: 2.4rem;
+        letter-spacing: -0.196364px;
+        font-weight: bold;
+        padding-left: 2rem;
 
-        &:last-child {
-            text-align: right;
+        @media (min-width: 500px) {
+            font-size: 2.2rem;
+            line-height: 3rem;
+            letter-spacing: -0.24px;
         }
-    }
-
-    a {
-        text-decoration: none;
-        color: #0000EE;
     }
 `;
 
@@ -90,14 +89,39 @@ export const SliderContainer = styled.div`
 `;
 
 export const TagStatContainer = styled.div`
-    margin-top: 4.1rem;
-    padding: 1rem;
+    // margin-top: 4.1rem;
     width: 100%;
-    height: 17rem;
-    background: #C4C4C4;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
+    font-family: 'neuzeit-grotesk', sans-serif;
+
+    // div.stats-grid {
+    //     width: 100%;
+    //     border: 1px solid red;
+    //     display: grid;
+    //     grid-template-columns: 25% 25%;
+    // }
+
+    h4 {
+        font-size: 3rem;
+        line-height: 4rem;
+        font-weight: 900;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        width: 100%;
+        font-size: 2rem;
+        line-height: 3rem;
+        border-bottom: 1px solid #C4C4C4;
+    }
+
+    span.bold {
+        font-weight: 900;
+        font-size: 2.5rem;
+    }
 `;
 
 export const StoryListSearch = styled.div`
@@ -107,9 +131,18 @@ export const StoryListSearch = styled.div`
     align-items: center;
     margin-top: 5rem;
 
+    @media (min-width: 600px) {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
+
     .query {
         width: 100%;
         display: flex;
+   
+        @media (min-width: 600px) {
+            width: 33.5rem;
+        }
 
         form {
             display: flex;
@@ -167,6 +200,11 @@ export const StoryListSearch = styled.div`
         font-family: 'neuzeit-grotesk', sans-serif;
         display: flex;
         justify-content: space-evenly;
+
+        @media (min-width: 600px) {
+            width: 33.5rem;
+            margin-top: 0;
+        }
         
         div {
             width: 45%;

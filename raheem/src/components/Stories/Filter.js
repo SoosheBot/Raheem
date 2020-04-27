@@ -1,9 +1,6 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 
-/* firebase */
-import firebase from '../../config/firebase';
-
 /* bring in our global form store */
 import { formStore } from "../../formStore.js";
 
@@ -23,11 +20,9 @@ export default function Filter(props) {
     /* deconstruct dispatch off globalState to dispatch an action */
     const { dispatch } = globalState;
 
-    console.log(`CURRENT GLOBAL STATE `, globalState);
-
     /* configure react-hook-form */
-    const { register, handleSubmit, errors } = useForm();
-    const { filtering, setFiltering, reports, setReports } = props;
+    const { register, handleSubmit } = useForm();
+    const { filtering, setFiltering } = props;
 
     /* handle form submission */
     const onSubmit = (data) => {
@@ -259,7 +254,10 @@ export default function Filter(props) {
                     </FilterSearch>
 
                     <Controls>
-                        <SmallButtonSecondary>Reset</SmallButtonSecondary>
+                        <SmallButtonSecondary onClick={() => {
+                            setFiltering(false);
+                            window.location.reload();
+                        }}>Reset</SmallButtonSecondary>
                         <SmallButtonPrimary type="submit" onClick={() => {
                             window.scroll(0, 0);
                         }}>Done</SmallButtonPrimary>
