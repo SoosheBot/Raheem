@@ -113,7 +113,13 @@ export default function Stats(props) {
                     (departmentData.length)
                 );
     }
-    //need to calculate avg rating by precinct//
+
+    //data for ratings bar graph
+    const ratingData = [
+            {group: 'Officer', rating: officerAvgRating()},
+            {group: 'Precinct', rating: 1},
+            {group: 'Department', rating: departmentAvgRating()}
+    ];
 
 
     //-----TAGS CALCULATIONS-----//
@@ -129,7 +135,6 @@ export default function Stats(props) {
     //--totals and averages--//
     
     //officer//
-
     //total complaints
     const countOfficerComplaintTags = officerTagsArray.filter(x => x !== 'helped' && x !== 'protected').length
     //average per report
@@ -140,7 +145,6 @@ export default function Stats(props) {
     }
 
     //department//
-    
     //total complaints
     const countDeptComplaintTags = deptTagsArray.filter(x => x !== 'helped' && x !== 'protected').length
     //average per report
@@ -149,6 +153,13 @@ export default function Stats(props) {
             countDeptComplaintTags/(deptTagsArray.length)
         )
     }
+
+    //data for bar graph of averages
+    const complaintsAvgData = [
+        {group: 'Officer', rating: avgOfficerComplaint()},
+        {group: 'Precinct', rating: 1},
+        {group: 'Department', rating: avgDeptComplaint()}
+    ]
 
     //--breakdown of Tag Types--//
     //officer
@@ -163,36 +174,39 @@ export default function Stats(props) {
     const officerNeglected = officerTagsArray.filter(x => x === 'neglected').length
     
     //percentages
-    const percentIllegalSearch = (officerIllegalSearch/(officerTagsArray.length))*100
-    const percentProfiled = (officerProfiled/(officerTagsArray.length))*100
-    const percentPhysAtt = (officerPhysAtt/(officerTagsArray.length))*100
-    const percentHarassed = (officerHarassed/(officerTagsArray.length))*100
-    const percentWronglyAccused = (officerWronglyAccused/(officerTagsArray.length))*100
-    const percentDisrespected = (officerDisrespected/(officerTagsArray.length))*100
-    const percentNeglected = (officerNeglected/(officerTagsArray.length))*100
-        
+    const percentIllegalSearch = (officerIllegalSearch/(countOfficerComplaintTags))*100
+    const percentProfiled = (officerProfiled/(countOfficerComplaintTags))*100
+    const percentPhysAtt = (officerPhysAtt/(countOfficerComplaintTags))*100
+    const percentHarassed = (officerHarassed/(countOfficerComplaintTags))*100
+    const percentWronglyAccused = (officerWronglyAccused/(countOfficerComplaintTags))*100
+    const percentDisrespected = (officerDisrespected/(countOfficerComplaintTags))*100
+    const percentNeglected = (officerNeglected/(countOfficerComplaintTags))*100
+    
+    //precentages data for pie chart
+    const complaintsData = [
+        { complaint: 'Illegally Searched', percentage: percentIllegalSearch},
+        { complaint: 'Profiled', percentage: percentProfiled},
+        { complaint: 'Physically Attacked', percentage: percentPhysAtt},
+        { complaint: 'Harrassed', percentage: percentHarassed},
+        { complaint: 'Wrongly Accused', percentage: percentWronglyAccused},
+        { complaint: 'Disrespected', percentage: percentDisrespected},
+        { complaint: 'Neglected', percentage: percentNeglected},
+    ] 
+
     //--breakdown of Tag Types--//
     //department totals//
     const deptIllegalSearch = deptTagsArray.filter(x => x === 'illegally searched').length
-    const deptProfile = deptTagsArray.filter(x => x === 'profiled').length
+    const deptProfiled = deptTagsArray.filter(x => x === 'profiled').length
     const deptPhysAtt = deptTagsArray.filter(x => x === 'physically attacked').length
-    const deptHarass = deptTagsArray.filter(x => x === 'harassed').length
-    const deptWrongAccuse = deptTagsArray.filter(x => x === 'wrongly accused').length
-    const deptDisrespect = deptTagsArray.filter(x => x === 'disrespected').length
-    const deptNeglect = deptTagsArray.filter(x => x === 'neglected').length
+    const deptHarassed = deptTagsArray.filter(x => x === 'harassed').length
+    const deptWronglyAccused = deptTagsArray.filter(x => x === 'wrongly accused').length
+    const deptDisrespected = deptTagsArray.filter(x => x === 'disrespected').length
+    const deptNeglected = deptTagsArray.filter(x => x === 'neglected').length
 
 
     //----compliments----//
-    //--officer
     
-    //totals
-    const countOfficerProtectedTags = officerTagsArray.filter(x => x === 'protected').length
-    const countOfficerHelpedTags = officerTagsArray.filter(x => x === 'helped').length
-    
-    //percentages
-    const percentProtected = (countOfficerProtectedTags/(officerTagsArray.length))*100
-    const percentHelped = (countOfficerHelpedTags/(officerTagsArray.length))*100
-
+    //--officer--//
     //total compliments
     const countOfficerComplimentTags = officerTagsArray.filter(x => x === 'helped' || x === 'protected').length
 
@@ -202,6 +216,20 @@ export default function Stats(props) {
             countOfficerComplimentTags/(officerTagsArray.length)
         )
     }
+
+    //totals breakdown
+    const countOfficerProtectedTags = officerTagsArray.filter(x => x === 'protected').length
+    const countOfficerHelpedTags = officerTagsArray.filter(x => x === 'helped').length
+    
+    //percentages
+    const percentProtected = (countOfficerProtectedTags/(countOfficerComplimentTags))*100
+    const percentHelped = (countOfficerHelpedTags/(countOfficerComplimentTags))*100
+
+    //data for percentages display
+    const complimentsData = [
+        { compliment: 'Protected', percentage: percentProtected},
+        { compliment: 'Helped', percentage: percentHelped},
+    ]
 
     //--department--//
     const countDeptProtectedTags = deptTagsArray.filter(x => x === 'protected').length
@@ -217,6 +245,14 @@ export default function Stats(props) {
             countDeptComplimentTags/(deptTagsArray.length)
         )
     }
+
+    //data for bar graph of averages for officer, precinct, dept
+    const complimentsAvgData = [
+        {group: 'Officer', rating: avgOfficerCompliments()},
+        {group: 'Precinct', rating: 1},
+        {group: 'Department', rating: avgDeptCompliments()}
+    ]
+
     //--------------------------------------------------//
 
     //---- RACE CALCULATIONS ----//
@@ -291,6 +327,19 @@ export default function Stats(props) {
             (countRaceMultiracial/(officerData.length))*100
         )
     }
+
+    //data for race percentage display
+    const raceData = [
+        { race: 'Asian', percentage: percentAsian()},
+        { race: 'Black/African', percentage: percentBlack()},
+        { race: 'Latinx', percentage: percentLatinx()},
+        { race: 'Middle Eastern', percentage: percentMiddleEastern()},
+        { race: 'Native American', percentage: percentNativeAmerican()},
+        { race: 'Pacific Islander', percentage: percentPacificIslander()},
+        { race: 'South Asian', percentage: percentSouthAsian()},
+        { race: 'White', percentage: percentWhite()},
+        { race: 'Multiracial', percentage: percentMultiracial()},
+    ] 
     //----------------------------------------------------//
 
     //sets events to custom tooltip
@@ -375,15 +424,15 @@ export default function Stats(props) {
                     <p className="context">Rating Out of 10</p>
                         <StatsListGrid>
                             <p>Officer's Rating</p>
-                            <p className="values"> {officerAvgRating()}</p>
+                            <p className="values"> {officerAvgRating().toFixed(2)}</p>
                         </StatsListGrid>
                         <StatsListGrid>
                             <p>Precinct Average</p>
-                            <p className="values"></p>
+                            <p className="values">0</p>
                         </StatsListGrid>
                         <StatsListGrid>
                             <p>Department Average</p>
-                            <p className="values"> {departmentAvgRating()} </p>
+                            <p className="values"> {departmentAvgRating().toFixed(2)} </p>
                         </StatsListGrid>
                 </StatsListContainer>
             
@@ -396,16 +445,16 @@ export default function Stats(props) {
                             <p className="values"> {countOfficerComplaintTags} </p>
                         </StatsListGrid>
                         <StatsListGrid>
-                            <p>Average Complaints</p>
-                            <p className="values">{avgOfficerComplaint()}</p>
+                            <p>Average Per Report</p>
+                            <p className="values">{avgOfficerComplaint().toFixed(2)}</p>
                         </StatsListGrid>
                         <StatsListGrid>
                             <p>Department Total </p>
                             <p className="values">{countDeptComplimentTags}</p>
                         </StatsListGrid>
                         <StatsListGrid>
-                            <p>Department Average</p>
-                            <p className="values"> {avgDeptComplaint()} </p>
+                            <p>Dept. Average Per Report</p>
+                            <p className="values"> {avgDeptComplaint().toFixed(2)} </p>
                         </StatsListGrid>
                 <StatsDivider />
                 <h3>Complaint Totals by Type</h3>
@@ -451,16 +500,16 @@ export default function Stats(props) {
                         <p className="values">{countOfficerComplimentTags}</p>
                     </StatsListGrid>
                     <StatsListGrid>
-                        <p>Average Compliments</p>
-                        <p className="values">{avgOfficerCompliments()}</p>
+                        <p>Average Per Report</p>
+                        <p className="values">{avgOfficerCompliments().toFixed(2)}</p>
                     </StatsListGrid>
                     <StatsListGrid>
                         <p>Department Total </p>
                         <p className="values">{countDeptComplimentTags}</p>
                     </StatsListGrid>
                     <StatsListGrid>
-                        <p>Department Average </p>
-                        <p className="values">{avgDeptCompliments()}</p>
+                        <p>Dept. Average Per Report </p>
+                        <p className="values">{avgDeptCompliments().toFixed(2)}</p>
                     </StatsListGrid>
                 <StatsDivider />
                 <h3>Compliment Totals by Type </h3>
@@ -528,27 +577,31 @@ export default function Stats(props) {
         <StatsVisualContainer>
         <h2>Average Overall Rating </h2>
             <div>
-            <VictoryChart
-                domainPadding={{ x: 10 }}
-                >
-                <VictoryStack horizontal
-                    colorScale={['#242424', '#fff']}>
-                        
-
+                <VictoryStack>
+                <VictoryBar 
+                    horizontal
+                    style={{ data: { fill: "#fff600" } }}
+                    alignment="middle"
+                    data={ratingData}
+                    x='group'
+                    y='rating'
+                    y0='1'
+                />
+                <VictoryBar
+                    style={{ data: { fill: "#000000"} }}
+                    data={[
+                        { x: 1, y: 10, y0: 1 },
+                        { x: 2, y: 10, y0: 1 },
+                        { x: 3, y: 10, y0: 1 },
+                    ]}
+                />
                 </VictoryStack>
-                <VictoryAxis dependentAxis
-                    tickFormat={(tick) => `${tick}`}
-                    />
-                    <VictoryAxis
-                    tickFormat={["Officer Rating", "Precinct Rating", "Department Rating",]}
-                    />
-                </VictoryChart>
             </div>
             </StatsVisualContainer>
             
             
             <div className="report-type">                
-            <StatsVisualContainer className="visneg">
+            <StatsVisualContainer >
                 <h2>Complaints </h2>
                 <h3>Averages</h3>
                 <div>
