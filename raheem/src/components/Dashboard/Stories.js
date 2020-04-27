@@ -675,7 +675,6 @@ export default function Stories(props) {
 
     return (
         <DashboardPageContainer>
-            {console.log(`CURRENT GLOBAL STATE `, globalState)}
             {filtering === true && <Filter filtering={filtering} setFiltering={setFiltering} queries={queries} setQueries={setQueries} reports={reports} setReports={setReports} />}
             {sorting === true && <Sort sorting={sorting} setSorting={setSorting} queries={queries} setQueries={setQueries} />}
             <StoryListContainer>
