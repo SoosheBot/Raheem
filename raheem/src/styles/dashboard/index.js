@@ -209,11 +209,41 @@ export const StoryContainer = styled.div`
     padding: 0 20px;
     margin: 5rem 0;
 
+    .desktop-story {
+
+        @media (min-width: 500px) {
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .desktop-story-content {
+
+            @media (min-width: 500px) {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
+
     .story-header {
         width: 100%;
         margin-bottom: 0.5rem;
         font-family: 'neuzeit-grotesk', sans-serif;
         display: flex;
+
+        .desktop-story-header {
+
+            @media (min-width: 500px) {
+                width: 50%;
+                display: flex;
+            }
+        }
+
+        @media (min-width: 500px) {
+            justify-content: flex-end;
+        }
 
         h3 {
             width: 50%;
@@ -236,6 +266,14 @@ export const StoryContainer = styled.div`
         border-bottom: 1px solid #C4C4C4;
         display: grid;
         grid-template-columns: 50% 50%;
+
+        @media (min-width: 500px) {
+            width: 50%;
+            height: 8rem;
+            grid-template-columns: 100%;
+            grid-row-gap: 1rem;
+            border: 1px solid orange;
+        }
         
         div {
             font-family: 'neuzeit-grotesk', sans-serif;

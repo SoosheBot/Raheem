@@ -473,7 +473,6 @@ export default function Stories(props) {
                             window.scroll(0, 0);
                             setSorting(true);
                         }}>
-                            {/* <p>Sort: <span>Newest</span> <img src={CarotDown} alt="Drop Down" /></p> */}
                             {globalState.state.sort !== undefined && globalState.state.sort !== '' && <p>Sort: <span>{globalState.state.sort}</span> <img src={CarotDown} alt="Drop Down" /></p>}
                             {globalState.state.sort === undefined && <p>Sort: <span>Newest</span> <img src={CarotDown} alt="Drop Down" /></p>}
                         </div>

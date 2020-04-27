@@ -70,41 +70,47 @@ export default function Story(props) {
     return (
         <StoryContainer>
             <div className="story-header">
-                <h3>Rating {report.rating}</h3>
-                <h3>{convertTime()}</h3>
-            </div>
-
-            <div className="story-demographics">
-                <div>
-                    <h4>Race</h4>
-                    <p>{report.race}</p>
-                </div>
-                <div>
-                    <h4>Gender</h4>
-                    <p>{report.gender}</p>
-                </div>
-                <div>
-                    <h4>Age</h4>
-                    <p>{getAge()}</p>
+                <div className="desktop-story-header">
+                    <h3>Rating {report.rating}</h3>
+                    <h3>{convertTime()}</h3>
                 </div>
             </div>
 
-            <StoryTagContainer>
-                {report.tags.map((tag, idx) => {
-                    return <StoryTag key={idx}>{tag}</StoryTag>
-                })}
-            </StoryTagContainer>
-            {story.storyBody !== undefined && story.storyBody.story.length < 500 && <StoryContent>{story.storyBody.story}</StoryContent>}
-            {story.storyBody !== undefined && story.storyBody.story.length > 500 && storyToggle === false &&
-                <LongStoryContent>
-                    <p>{story.storyBody.story.substring(0, 200)}</p>
-                    <span onClick={() => setStoryToggle(!storyToggle)}>See more</span>
-                </LongStoryContent>}
-            {story.storyBody !== undefined && story.storyBody.story.length > 500 && storyToggle === true &&
-                <LongStoryContent>
-                    <p>{story.storyBody.story}</p>
-                    <span onClick={() => setStoryToggle(!storyToggle)}>See less</span>
-                </LongStoryContent>}
+            <div className="desktop-story">
+                <div className="story-demographics">
+                    <div>
+                        <h4>Race</h4>
+                        <p>{report.race}</p>
+                    </div>
+                    <div>
+                        <h4>Gender</h4>
+                        <p>{report.gender}</p>
+                    </div>
+                    <div>
+                        <h4>Age</h4>
+                        <p>{getAge()}</p>
+                    </div>
+                </div>
+
+                <div className="desktop-story-content">
+                    <StoryTagContainer>
+                        {report.tags.map((tag, idx) => {
+                            return <StoryTag key={idx}>{tag}</StoryTag>
+                        })}
+                    </StoryTagContainer>
+                    {story.storyBody !== undefined && story.storyBody.story.length < 500 && <StoryContent>{story.storyBody.story}</StoryContent>}
+                    {story.storyBody !== undefined && story.storyBody.story.length > 500 && storyToggle === false &&
+                        <LongStoryContent>
+                            <p>{story.storyBody.story.substring(0, 200)}</p>
+                            <span onClick={() => setStoryToggle(!storyToggle)}>See more</span>
+                        </LongStoryContent>}
+                    {story.storyBody !== undefined && story.storyBody.story.length > 500 && storyToggle === true &&
+                        <LongStoryContent>
+                            <p>{story.storyBody.story}</p>
+                            <span onClick={() => setStoryToggle(!storyToggle)}>See less</span>
+                        </LongStoryContent>}
+                    </div>
+            </div>
         </StoryContainer>
     )
 }
