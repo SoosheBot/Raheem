@@ -120,8 +120,19 @@ export const TagStatContainer = styled.div`
             width: 50%;
         }
 
+        div.circle {
+            width: 8rem;
+            height: 8rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background: #FFF600;
+            border: #888888;
+        }
+
         p.rating {
-            font-size: 3rem;
+            font-size: 3.5rem;
             line-height: 4rem;
             font-weight: bold;
             letter-spacing: -0.196364px;

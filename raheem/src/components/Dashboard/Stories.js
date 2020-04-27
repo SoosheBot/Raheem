@@ -476,7 +476,9 @@ export default function Stories(props) {
                 <TagStatContainer>
                     <div className="officer-rating">
                         <h4>Officer rating average</h4>
-                        <p className="rating">{officerRatingAvg}</p>
+                        <div className="circle">
+                            <p className="rating">{officerRatingAvg}</p>
+                        </div>
                     </div>
                     <div className="officer-stats">
                         <h4>{officer.officerRank} {officer.officerLName}</h4>
