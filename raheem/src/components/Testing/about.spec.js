@@ -6,6 +6,7 @@ import About from '../About';
 const mockHistoryPush = jest.fn();
 const mockHistoryGoBack = jest.fn();
 
+//mock the useHistory
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
     useHistory: () => ({
@@ -15,7 +16,7 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('<About />', () => {
-    it('renders successfully', () => {
+    it('renders', () => {
         render(<About />);
     });
 });

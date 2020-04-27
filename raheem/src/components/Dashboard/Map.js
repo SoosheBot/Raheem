@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
-import ReactMapGL, { Marker, Popup, GeolocateControl } from "react-map-gl";
+import React, { useState } from "react";
+import ReactMapGL, { GeolocateControl } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-import styled from "styled-components";
 
 const TOKEN = process.env.REACT_APP_MAPBOX_ACCESSTOKEN;
 
@@ -23,7 +22,7 @@ export default function Map() {
 
   //get location data and send to firebase.
 
-  const ColectLocation = (lat, lon) =>{
+  const CollectLocation = (lat, lon) =>{
     const dataLat = lat;
     const dataLon = lon;
     console.log(`lat:${dataLat}  lon:${dataLon}`); 
@@ -31,12 +30,10 @@ export default function Map() {
 
   //refactored for DRYness in return
 
-  const _onViewportChange = (viewport) => {setViewport({ ...viewport }); ColectLocation(viewport.latitude,viewport.longitude)};
+  const _onViewportChange = (viewport) => {setViewport({ ...viewport }); CollectLocation(viewport.latitude,viewport.longitude)};
 
   return (
     <div>
-      {/* <StartEnd>Map Start</StartEnd> */}
-
       <ReactMapGL
         className="MapBox"
         {...viewport}
@@ -55,17 +52,6 @@ export default function Map() {
           latitude='{viewport.latitude}'
         />
       </ReactMapGL>
-
-      {/* <StartEnd>Map End</StartEnd> */}
     </div>
   );
-}
-
-// const StartEnd = styled.h1`
-//   font-size: 4em;
-//   font-weight: bold;
-//   padding-top: 50px;
-//   padding-bottom: 50px;
-//   text-align: center;
-//   border: 5px solid purple;
-// `;
+};

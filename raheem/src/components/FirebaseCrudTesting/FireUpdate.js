@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-//NOTE -- THIS COLLECTION HAS BEEN DISABLED IN FIREBASE FOR PRODUCTION, USERS WILL HAVE ADD AND GET PERMISSIONS ONLY--NO PUT/DELETE
+//Testing the firebase collection Update
 
-const TestUpdate = ({ setEditing, currentItem, updateItem }) => {
+const FireUpdate = ({ setEditing, currentItem, updateItem }) => {
     const [item, setItem] = useState(currentItem);
 
     useEffect(() => {
@@ -36,5 +36,5 @@ const TestUpdate = ({ setEditing, currentItem, updateItem }) => {
 }
 
 
-export default TestUpdate;
+export default FireUpdate;
 

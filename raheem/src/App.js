@@ -68,7 +68,7 @@ function App() {
         </Route>
         {/* temporary route, delete later once finished testing map component */}
         <Route path="/testgeo">
-          <Testgeo />
+          <TestGeo />
         </Route>
 
         <Route path="/QR">
