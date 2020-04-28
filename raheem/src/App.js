@@ -112,9 +112,9 @@ function App() {
           <Dashboard />
         </Route>
 
-        <Route path="/officers/:id/stories">
+        {/* <Route path="/officers/:id/stories">
           <Stories />
-        </Route>
+        </Route> */}
 
         <Route path="/officers/:id/stats">
           <Stats />

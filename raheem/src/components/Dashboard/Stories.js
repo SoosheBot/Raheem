@@ -675,7 +675,6 @@ export default function Stories(props) {
 
     return (
         <DashboardPageContainer>
-            {console.log(`CURRENT GLOBAL STATE `, globalState)}
             {filtering === true && <Filter filtering={filtering} setFiltering={setFiltering} queries={queries} setQueries={setQueries} reports={reports} setReports={setReports} />}
             {sorting === true && <Sort sorting={sorting} setSorting={setSorting} queries={queries} setQueries={setQueries} />}
             <StoryListContainer>
@@ -731,7 +730,7 @@ export default function Stories(props) {
 
                     <div className="filter">
                         <div onClick={() => {
-                            window.scroll(0, 0);
+                            // window.scroll(0, 0);
                             setFiltering(true);
                         }}>
                             <p>Filter <img src={CarotDown} alt="Drop Down" /></p>

@@ -78,7 +78,7 @@ export default function Sort(props) {
 
                 <Controls>
                     <LargeButtonPrimary type="submit" onClick={() => {
-                        window.scroll(0, 0);
+                        // window.scroll(0, 0);
                     }}>Done</LargeButtonPrimary>
                 </Controls>
             </form>
