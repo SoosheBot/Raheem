@@ -45,9 +45,9 @@ export const StatsContainer = styled.div`
             padding-top: 1rem;
         }
 
-        // div.displayView {
-        //     display: none;
-        // }
+        div.displayView {
+            display: none;
+        }
 `
 
 export const StatsContentContainer = styled.div`
