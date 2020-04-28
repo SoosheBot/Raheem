@@ -13,7 +13,7 @@ export default function CustomLabel(props) {
         cornerRadius={50}
         flyoutWidth={100}
         flyoutHeight={100}
-        flyoutStyle={{ fill: "black" }}
+        flyoutStyle={{ fill: "hover" }}
     />
     </>
     )    

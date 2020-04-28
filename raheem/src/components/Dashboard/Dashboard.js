@@ -7,7 +7,7 @@ import { useHistory, useParams, Route, NavLink } from 'react-router-dom';
 import firebase from '../../config/firebase';
 
 /* styles */
-import { PageContainer, ButtonSecondary } from '../../styles/global';
+import { PageContainer } from '../../styles/global';
 import { DashboardOfficer, DashboardView, DashboardTitle, DashboardMainTitle, ReportButton } from '../../styles/dashboard';
 
 /* components */
@@ -27,7 +27,7 @@ export default function Dashboard() {
             .get()
             .then(function (querySnapshot) {
                 querySnapshot.forEach(function (doc) {
-                    if (doc.data().officerBadgeID == params.id) {
+                    if (doc.data().officerBadgeID === params.id) {
                         console.log(`RESPONSE `, doc.data());
                         setOfficer(doc.data());
                     }

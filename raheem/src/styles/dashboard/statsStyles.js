@@ -45,9 +45,9 @@ export const StatsContainer = styled.div`
             padding-top: 1rem;
         }
 
-        div.displayView {
-            display: none;
-        }
+        // div.displayView {
+        //     display: none;
+        // }
 `
 
 export const StatsContentContainer = styled.div`
@@ -152,6 +152,11 @@ export const PieContainer = styled.div`
     flex-wrap: none;
     border: blue dashed 2px;
     margin: 20px;
+`
+
+export const BarContainer = styled.div`
+    display: flex;
+    flex-wrap: none;
 `
 
 export const SwitchContainer = styled.div`
