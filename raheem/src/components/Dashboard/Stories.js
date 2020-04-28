@@ -730,7 +730,7 @@ export default function Stories(props) {
 
                     <div className="filter">
                         <div onClick={() => {
-                            window.scroll(0, 0);
+                            // window.scroll(0, 0);
                             setFiltering(true);
                         }}>
                             <p>Filter <img src={CarotDown} alt="Drop Down" /></p>
