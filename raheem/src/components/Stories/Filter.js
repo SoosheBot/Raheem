@@ -259,7 +259,7 @@ export default function Filter(props) {
                             window.location.reload();
                         }}>Reset</SmallButtonSecondary>
                         <SmallButtonPrimary type="submit" onClick={() => {
-                            window.scroll(0, 0);
+                            // window.scroll(0, 0);
                         }}>Done</SmallButtonPrimary>
                     </Controls>
                 </form>

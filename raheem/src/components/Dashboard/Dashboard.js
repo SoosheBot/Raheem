@@ -82,7 +82,7 @@ export default function Dashboard() {
                 </Route>
 
                 <Route exact path="/officers/:id/stories">
-                    <Stories officerBadgeID={officer.officerBadgeID} />
+                    <Stories officer={officer} />
                 </Route>
             </DashboardView>
         </PageContainer>

@@ -90,7 +90,8 @@ function Landing(props) {
                 }
 
                 <Controls>
-                    <ButtonPrimary onClick={() => history.push(`/officers/${officer.officerBadgeID}`)} data-testid="viewReports">View Reports</ButtonPrimary>
+                    {officer.officerBadgeID === undefined && <ButtonPrimary onClick={() => history.push(`/dashboard/stories`)} data-testid="viewReports">View Reports</ButtonPrimary>}
+                    {officer.officerBadgeID !== undefined && <ButtonPrimary onClick={() => history.push(`/officers/${officer.officerBadgeID}`)} data-testid="viewReports">View Reports</ButtonPrimary>}
                     <ButtonSecondary data-testid="addReport" onClick={() => {
                         if (params.id) {
                             history.push(`/report`, officer);

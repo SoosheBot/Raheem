@@ -339,7 +339,15 @@ export const StoryTagContainer = styled.div`
     display: grid;
     grid-template-columns: 40% 40%;
     grid-row-gap: 1rem;
-    grid-column-gap: 1rem;
+    grid-column-gap: 5rem;
+
+    @media (min-width: 850px) {
+        grid-column-gap: 2rem;
+    }
+
+    @media (min-width: 900px) {
+        grid-column-gap: 1rem;
+    }
 `;
 
 export const StoryTag = styled.div`
