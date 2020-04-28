@@ -440,4 +440,9 @@ export const Input = styled.input`
     color: #ccc;
     border-radius: 0.6rem;
     border: 1px solid #111111;
+
+    &:focus {
+        outline: none;
+        border: 1px solid #FFF600;
+    }
 `
