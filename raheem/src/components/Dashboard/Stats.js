@@ -375,7 +375,7 @@ export default function Stats(props) {
                     <p className="context">Rating Out of 10</p>
                         <StatsListGrid>
                             <p>Officer's Rating</p>
-                            <p className="values"> {officerAvgRating()}</p>
+                            <p className="values"> {officerAvgRating().toFixed(2)}</p>
                         </StatsListGrid>
                         <StatsListGrid>
                             <p>Precinct Average</p>
@@ -383,33 +383,34 @@ export default function Stats(props) {
                         </StatsListGrid>
                         <StatsListGrid>
                             <p>Department Average</p>
-                            <p className="values"> {departmentAvgRating()} </p>
+                            <p className="values"> {departmentAvgRating().toFixed(2)} </p>
                         </StatsListGrid>
                 </StatsListContainer>
             
             <div className="report-type">                    
             <StatsListContainer>    
                 <h2>Complaints </h2> 
-                <h3>Average of Complaints</h3>
+                <h3>Average Complaints Per Report</h3>
                         <StatsListGrid>
-                            <p>Total Complaints</p>
-                            <p className="values"> {countOfficerComplaintTags} </p>
+                            <p>Officer Average</p>
+                            <p className="values">{avgOfficerComplaint().toFixed(2)}</p>
                         </StatsListGrid>
-                        <StatsListGrid>
-                            <p>Average Complaints</p>
-                            <p className="values">{avgOfficerComplaint()}</p>
-                        </StatsListGrid>
-                        <StatsListGrid>
-                            <p>Department Total </p>
-                            <p className="values">{countDeptComplimentTags}</p>
-                        </StatsListGrid>
+
                         <StatsListGrid>
                             <p>Department Average</p>
-                            <p className="values"> {avgDeptComplaint()} </p>
+                            <p className="values"> {avgDeptComplaint().toFixed(2)} </p>
                         </StatsListGrid>
                 <StatsDivider />
-                <h3>Complaint Totals by Type</h3>
+                <h3>Complaint Totals</h3>
                     {/* break down of types of complaints */}
+                    <StatsListGrid>
+                            <p>Officer Total</p>
+                            <p className="values"> {countOfficerComplaintTags} </p>
+                    </StatsListGrid>
+                    <StatsListGrid>
+                            <p>Department Total</p>
+                            <p className="values">{countDeptComplimentTags}</p>
+                        </StatsListGrid>
                     <StatsListGrid>
                         <p>Illegally Searched</p>
                         <p className="values">{officerIllegalSearch}</p>
@@ -446,24 +447,25 @@ export default function Stats(props) {
                 <h2 >Compliments </h2>
                {/* total compliments for officer */}
                 <h3>Average of Compliments </h3>
-                    <StatsListGrid>
-                        <p>Total Compliments</p>
-                        <p className="values">{countOfficerComplimentTags}</p>
-                    </StatsListGrid>
+
                     <StatsListGrid>
                         <p>Average Compliments</p>
-                        <p className="values">{avgOfficerCompliments()}</p>
+                        <p className="values">{avgOfficerCompliments().toFixed(2)}</p>
+                    </StatsListGrid>
+                    <StatsListGrid>
+                        <p>Department Average </p>
+                        <p className="values">{avgDeptCompliments().toFixed(2)}</p>
+                    </StatsListGrid>
+                <StatsDivider />
+                <h3>Compliment Totals by Type </h3>
+                    <StatsListGrid>
+                        <p>Officer Total</p>
+                        <p className="values">{countOfficerComplimentTags}</p>
                     </StatsListGrid>
                     <StatsListGrid>
                         <p>Department Total </p>
                         <p className="values">{countDeptComplimentTags}</p>
                     </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Department Average </p>
-                        <p className="values">{avgDeptCompliments()}</p>
-                    </StatsListGrid>
-                <StatsDivider />
-                <h3>Compliment Totals by Type </h3>
                     <StatsListGrid>
                         <p>Helped</p>
                         <p className="values">{countOfficerHelpedTags}</p>
