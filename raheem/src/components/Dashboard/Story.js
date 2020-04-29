@@ -92,11 +92,15 @@ export default function Story(props) {
                 </div>
 
                 <div className="desktop-story-content">
+
+                    {/* Map over the story specific tags and display them */}
                     <StoryTagContainer>
                         {report.tags.map((tag, idx) => {
                             return <StoryTag key={idx}>{tag}</StoryTag>
                         })}
                     </StoryTagContainer>
+
+                    {/* Conditional displays of the story body depending on length. Does it need to be toggleable? */}
                     {story.storyBody !== undefined && story.storyBody.story.length < 500 && <StoryContent>{story.storyBody.story}</StoryContent>}
                     {story.storyBody !== undefined && story.storyBody.story.length > 500 && storyToggle === false &&
                         <LongStoryContent>
