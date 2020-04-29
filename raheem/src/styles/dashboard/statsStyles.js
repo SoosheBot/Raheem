@@ -176,7 +176,7 @@ export const StatsListGrid = styled.div`
         padding: 2rem 0 0;
 
         @media (max-width: 500px){
-            padding: 1rem 0 0;
+            padding: 1.5rem 0 0.5rem;
         }
     }
 
@@ -195,7 +195,11 @@ export const StatsListGrid = styled.div`
 
 export const StatsDivider = styled.div`
     border-bottom: 1px solid #C4C4C4;
-    margin: 3rem 0 2rem;
+    margin: 10rem 0 2rem;
+    
+    @media (max-width: 500px){
+        margin: 4.5rem 0 3.5rem;
+    }
 `
 
 export const StatsVisualContainer = styled.div`
