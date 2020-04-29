@@ -173,7 +173,11 @@ export const StatsListGrid = styled.div`
     p {
         width: 50%;
         border-right: 1px #C4C4C4 solid;
-        padding: 1rem 0 0;
+        padding: 2rem 0 0;
+
+        @media (max-width: 500px){
+            padding: 1rem 0 0;
+        }
     }
 
     p.values { 
