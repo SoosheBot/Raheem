@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 //data visualization libraru
-import CustomLabel from './CustomLabel';
-import { VictoryPie, VictoryTooltip, VictoryBar, VictoryStack, VictoryChart, VictoryAxis } from 'victory';
+import { VictoryPie, VictoryTooltip, VictoryBar, VictoryStack, VictoryChart, VictoryAxis, VictoryLabel, VictoryPortal } from 'victory';
 
 //global styles
-import { Tag } from '../../styles/tags';
-import { SwitchContainer, StatsContainer, StatsContentContainer, StatsListContainer, StatsDivider, StatsListGrid, StatsVisualContainer, PieContainer  } from '../../styles/dashboard/statsStyles'
+import { SwitchContainer, StatsContainer, StatsContentContainer, StatsListContainer, StatsDivider, StatsListGrid, StatsVisualContainer, BarContainer, PieContainer  } from '../../styles/dashboard/statsStyles'
 
 //other styles
 import { Switch, Grid, FormGroup, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails} from '@material-ui/core';
@@ -113,7 +111,13 @@ export default function Stats(props) {
                     (departmentData.length)
                 );
     }
-    //need to calculate avg rating by precinct//
+
+    //data for ratings bar graph
+    const ratingData = [
+            {group: 'Officer Rating', rating: officerAvgRating(), label: officerAvgRating().toFixed(2)},
+            {group: 'Precinct Rating', rating: 4.00, label: "5.25"},
+            {group: 'Department Rating', rating: departmentAvgRating(), label: departmentAvgRating().toFixed(2)}
+    ];
 
 
     //-----TAGS CALCULATIONS-----//
@@ -129,7 +133,6 @@ export default function Stats(props) {
     //--totals and averages--//
     
     //officer//
-
     //total complaints
     const countOfficerComplaintTags = officerTagsArray.filter(x => x !== 'helped' && x !== 'protected').length
     //average per report
@@ -140,7 +143,6 @@ export default function Stats(props) {
     }
 
     //department//
-    
     //total complaints
     const countDeptComplaintTags = deptTagsArray.filter(x => x !== 'helped' && x !== 'protected').length
     //average per report
@@ -149,6 +151,13 @@ export default function Stats(props) {
             countDeptComplaintTags/(deptTagsArray.length)
         )
     }
+
+    //data for bar graph of complaint averages
+    const complaintsAvgData = [
+        {group: 'Officer', rating: avgOfficerComplaint(), label: `Officer: ${avgOfficerComplaint().toFixed(2)}`},
+        {group: 'Precinct', rating: 0.65, label: `Precinct: ${0.65}`},
+        {group: 'Department', rating: avgDeptComplaint(), label: `Department: ${avgDeptComplaint().toFixed(2)}`}
+    ]
 
     //--breakdown of Tag Types--//
     //officer
@@ -163,36 +172,43 @@ export default function Stats(props) {
     const officerNeglected = officerTagsArray.filter(x => x === 'neglected').length
     
     //percentages
-    const percentIllegalSearch = (officerIllegalSearch/(officerTagsArray.length))*100
-    const percentProfiled = (officerProfiled/(officerTagsArray.length))*100
-    const percentPhysAtt = (officerPhysAtt/(officerTagsArray.length))*100
-    const percentHarassed = (officerHarassed/(officerTagsArray.length))*100
-    const percentWronglyAccused = (officerWronglyAccused/(officerTagsArray.length))*100
-    const percentDisrespected = (officerDisrespected/(officerTagsArray.length))*100
-    const percentNeglected = (officerNeglected/(officerTagsArray.length))*100
-        
+    const percentIllegalSearch = (officerIllegalSearch/(countOfficerComplaintTags))*100
+    const percentProfiled = (officerProfiled/(countOfficerComplaintTags))*100
+    const percentPhysAtt = (officerPhysAtt/(countOfficerComplaintTags))*100
+    const percentHarassed = (officerHarassed/(countOfficerComplaintTags))*100
+    const percentWronglyAccused = (officerWronglyAccused/(countOfficerComplaintTags))*100
+    const percentDisrespected = (officerDisrespected/(countOfficerComplaintTags))*100
+    const percentNeglected = (officerNeglected/(countOfficerComplaintTags))*100
+    
+    //percentages data for pie chart
+    const complaintsData = [
+        { x: 'Illegally Searched', y: percentIllegalSearch, fill: '#111111'},
+        { x: 'Profiled', y: percentProfiled, fill: '#EFD114'},
+        { x: 'Physically Attacked', y: percentPhysAtt, fill: '#868685'},
+        { x: 'Harrassed', y: percentHarassed, fill: '#E8E893'},
+        { x: 'Wrongly Accused', y: percentWronglyAccused, fill: '#6F6F6E'},
+        { x: 'Disrespected', y: percentDisrespected, fill: '#BBBABA'},
+        { x: 'Neglected', y: percentNeglected, fill: '#D5D5D5'},
+    ] 
+    const complaintLabels = complaintsData.map(complaint => `${complaint.x}: ${complaint.y.toFixed(1)}%` );
+    const complaintLabelsPercent = complaintsData.map(complaint => `${complaint.y.toFixed(1)}%` );
+    const complaintColors = complaintsData.map(complaint => complaint.fill);
+    console.log(complaintLabelsPercent)
+
     //--breakdown of Tag Types--//
     //department totals//
     const deptIllegalSearch = deptTagsArray.filter(x => x === 'illegally searched').length
-    const deptProfile = deptTagsArray.filter(x => x === 'profiled').length
+    const deptProfiled = deptTagsArray.filter(x => x === 'profiled').length
     const deptPhysAtt = deptTagsArray.filter(x => x === 'physically attacked').length
-    const deptHarass = deptTagsArray.filter(x => x === 'harassed').length
-    const deptWrongAccuse = deptTagsArray.filter(x => x === 'wrongly accused').length
-    const deptDisrespect = deptTagsArray.filter(x => x === 'disrespected').length
-    const deptNeglect = deptTagsArray.filter(x => x === 'neglected').length
+    const deptHarassed = deptTagsArray.filter(x => x === 'harassed').length
+    const deptWronglyAccused = deptTagsArray.filter(x => x === 'wrongly accused').length
+    const deptDisrespected = deptTagsArray.filter(x => x === 'disrespected').length
+    const deptNeglected = deptTagsArray.filter(x => x === 'neglected').length
 
 
     //----compliments----//
-    //--officer
     
-    //totals
-    const countOfficerProtectedTags = officerTagsArray.filter(x => x === 'protected').length
-    const countOfficerHelpedTags = officerTagsArray.filter(x => x === 'helped').length
-    
-    //percentages
-    const percentProtected = (countOfficerProtectedTags/(officerTagsArray.length))*100
-    const percentHelped = (countOfficerHelpedTags/(officerTagsArray.length))*100
-
+    //--officer--//
     //total compliments
     const countOfficerComplimentTags = officerTagsArray.filter(x => x === 'helped' || x === 'protected').length
 
@@ -202,6 +218,23 @@ export default function Stats(props) {
             countOfficerComplimentTags/(officerTagsArray.length)
         )
     }
+
+    //totals breakdown
+    const countOfficerProtectedTags = officerTagsArray.filter(x => x === 'protected').length
+    const countOfficerHelpedTags = officerTagsArray.filter(x => x === 'helped').length
+    
+    //percentages
+    const percentProtected = (countOfficerProtectedTags/(countOfficerComplimentTags))*100
+    const percentHelped = (countOfficerHelpedTags/(countOfficerComplimentTags))*100
+
+    //data for percentages display
+    const complimentsData = [
+        { x: 'Protected', y: percentProtected, fill: '#525151'},
+        { x: 'Helped', y: percentHelped, fill: '#FFF600'},
+    ]
+
+    const complimentLabel = complimentsData.map(compliment => `${compliment.x}: ${compliment.y.toFixed(1)}%`)
+    const complimentColors = complimentsData.map(compliment => compliment.fill);
 
     //--department--//
     const countDeptProtectedTags = deptTagsArray.filter(x => x === 'protected').length
@@ -217,6 +250,14 @@ export default function Stats(props) {
             countDeptComplimentTags/(deptTagsArray.length)
         )
     }
+
+    //data for bar graph of averages for officer, precinct, dept
+    const complimentsAvgData = [
+        {group: 'Officer', rating: avgOfficerCompliments(), label: `Officer: ${avgOfficerCompliments().toFixed(2)}`},
+        {group: 'Precinct', rating: 0.25, label: `Precinct: ${0.25}`}, 
+        {group: 'Department', rating: avgDeptCompliments(), label: `Department: ${avgDeptCompliments().toFixed(2)}`}
+    ]
+
     //--------------------------------------------------//
 
     //---- RACE CALCULATIONS ----//
@@ -291,10 +332,26 @@ export default function Stats(props) {
             (countRaceMultiracial/(officerData.length))*100
         )
     }
-    //----------------------------------------------------//
 
-    //sets events to custom tooltip
-    CustomLabel.defaultEvents = VictoryTooltip.defaultEvents;
+    //data for race percentage display
+    const raceData = [
+        { x: 'Pacific Islander', y: percentPacificIslander(), fill: '#6F6F6E'},
+        { x: 'Black/African', y: percentBlack(), fill: '#E8E893'},
+        { x: 'Latinx', y: percentLatinx(), fill: '#D5D5D5'},
+        { x: 'Middle Eastern', y: percentMiddleEastern(), fill: '#BBBABA'},
+        { x: 'White', y: percentWhite(), fill: '#FFF600'},
+        { x: 'Native American', y: percentNativeAmerican(), fill: '#868685'},
+        { x: 'South Asian', y: percentSouthAsian(), fill: '#525151'},
+        { x: 'Multiracial', y: percentMultiracial(), fill: '#111111'},
+        { x: 'Asian', y: percentAsian(), fill: '#EFD114'},
+        ]; 
+        console.log("race Data", raceData)
+    const raceLabels = raceData.map(race => `${race.x}: ${race.y.toFixed(1)}%` );
+    const raceLabelsPercent = raceData.map(race => `${race.y}%` );
+    const raceColors = raceData.map(race => race.fill);
+
+
+    //----------------------------------------------------//
 
     //custom material UI toggle switch
         const YellowSwitch = withStyles(() => ({
@@ -359,18 +416,23 @@ export default function Stats(props) {
                 <label>Visual View</label>
                 </SwitchContainer>
             </StatsContentContainer>
-            
-            {/* list view */}
-            <div id="list-view">
-            <StatsContentContainer>
-                <StatsListContainer>
+
+            <StatsContentContainer className="totalreports">
+                <StatsListContainer >
                 <StatsListGrid className="totals">
                     <h2 className="context">Total Reports</h2>
                     <p className="values">{officerData.length}</p>
                 </StatsListGrid>
                 </StatsListContainer>
-                <StatsListContainer>
-                    <h2 className="context">Average Rating</h2>
+            </StatsContentContainer>
+            
+            
+            {/* list view */}
+            <div id="list-view">
+            <div className="desktop-container">
+            <StatsContentContainer>
+                <StatsListContainer >
+                    <h2 className="average">Average Rating</h2>
                     {/* stats based on slider from form */}
                     <p className="context">Rating Out of 10</p>
                         <StatsListGrid>
@@ -379,107 +441,16 @@ export default function Stats(props) {
                         </StatsListGrid>
                         <StatsListGrid>
                             <p>Precinct Average</p>
-                            <p className="values"></p>
+                            <p className="values">4.00</p>
                         </StatsListGrid>
                         <StatsListGrid>
                             <p>Department Average</p>
                             <p className="values"> {departmentAvgRating().toFixed(2)} </p>
                         </StatsListGrid>
                 </StatsListContainer>
-            
-            <div className="report-type">                    
-            <StatsListContainer>    
-                <h2>Complaints </h2> 
-                <h3>Average Complaints Per Report</h3>
-                        <StatsListGrid>
-                            <p>Officer Average</p>
-                            <p className="values">{avgOfficerComplaint().toFixed(2)}</p>
-                        </StatsListGrid>
+                </StatsContentContainer>
 
-                        <StatsListGrid>
-                            <p>Department Average</p>
-                            <p className="values"> {avgDeptComplaint().toFixed(2)} </p>
-                        </StatsListGrid>
-                <StatsDivider />
-                <h3>Complaint Totals</h3>
-                    {/* break down of types of complaints */}
-                    <StatsListGrid>
-                            <p>Officer Total</p>
-                            <p className="values"> {countOfficerComplaintTags} </p>
-                    </StatsListGrid>
-                    <StatsListGrid>
-                            <p>Department Total</p>
-                            <p className="values">{countDeptComplimentTags}</p>
-                        </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Illegally Searched</p>
-                        <p className="values">{officerIllegalSearch}</p>
-                    </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Profiled</p>
-                        <p className="values">{officerProfiled}</p>
-                    </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Physically Attacked</p>
-                        <p className="values">{officerPhysAtt}</p>
-                    </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Harrassed</p>
-                        <p className="values">{officerHarassed}</p>
-                    </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Wrongly Accused</p>
-                        <p className="values">{officerWronglyAccused}</p>
-                    </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Disrespected</p>
-                        <p className="values">{officerDisrespected}</p>
-                    </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Neglected</p>
-                        <p className="values">{officerNeglected}</p>
-                    </StatsListGrid>
-
-            </StatsListContainer>
-            {/* closes negative reports */}
-            
-            <StatsListContainer>
-                <h2 >Compliments </h2>
-               {/* total compliments for officer */}
-                <h3>Average of Compliments </h3>
-
-                    <StatsListGrid>
-                        <p>Average Compliments</p>
-                        <p className="values">{avgOfficerCompliments().toFixed(2)}</p>
-                    </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Department Average </p>
-                        <p className="values">{avgDeptCompliments().toFixed(2)}</p>
-                    </StatsListGrid>
-                <StatsDivider />
-                <h3>Compliment Totals by Type </h3>
-                    <StatsListGrid>
-                        <p>Officer Total</p>
-                        <p className="values">{countOfficerComplimentTags}</p>
-                    </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Department Total </p>
-                        <p className="values">{countDeptComplimentTags}</p>
-                    </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Helped</p>
-                        <p className="values">{countOfficerHelpedTags}</p>
-                    </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Protected</p>
-                        <p className="values">{countOfficerProtectedTags}</p>
-                    </StatsListGrid>
-            </StatsListContainer>
-            {/* closes positive reports */}
-            </div>
-            </StatsContentContainer>
-            
-            <StatsContentContainer className="demographics">
+                <StatsContentContainer className="demographics">
                 <StatsListContainer>
                     <h2>Race</h2>
                         <StatsListGrid>
@@ -520,6 +491,101 @@ export default function Stats(props) {
                         </StatsListGrid>
                 </StatsListContainer>
         </StatsContentContainer>
+        </div>
+        
+        <div className="desktop-container">
+        <StatsContentContainer>              
+        <StatsListContainer className="comps">    
+            <h2>Complaints </h2> 
+            <h3>Average Per Report</h3>
+                <StatsListGrid>
+                    <p>Officer Average</p>
+                    <p className="values">{avgOfficerComplaint().toFixed(2)}</p>
+                </StatsListGrid>
+                <StatsListGrid>
+                    <p>Department Average</p>
+                    <p className="values"> {avgDeptComplaint().toFixed(2)} </p>
+                </StatsListGrid>
+
+            <StatsDivider />
+            <h3>Totals</h3>
+                {/* break down of types of complaints */}
+                <StatsListGrid>
+                    <p>Officer Total</p>
+                    <p className="values"> {countOfficerComplaintTags} </p>
+                </StatsListGrid>
+                <StatsListGrid>
+                    <p>Department Total</p>
+                    <p className="values">{countDeptComplimentTags}</p>
+                </StatsListGrid>
+                <StatsListGrid>
+                    <p>Illegally Searched</p>
+                    <p className="values">{officerIllegalSearch}</p>
+                </StatsListGrid>
+                <StatsListGrid>
+                    <p>Profiled</p>
+                    <p className="values">{officerProfiled}</p>
+                </StatsListGrid>
+                <StatsListGrid>
+                    <p>Physically Attacked</p>
+                    <p className="values">{officerPhysAtt}</p>
+                </StatsListGrid>
+                <StatsListGrid>
+                    <p>Harrassed</p>
+                    <p className="values">{officerHarassed}</p>
+                </StatsListGrid>
+                <StatsListGrid>
+                    <p>Wrongly Accused</p>
+                    <p className="values">{officerWronglyAccused}</p>
+                </StatsListGrid>
+                <StatsListGrid>
+                    <p>Disrespected</p>
+                    <p className="values">{officerDisrespected}</p>
+                </StatsListGrid>
+                <StatsListGrid>
+                    <p>Neglected</p>
+                    <p className="values">{officerNeglected}</p>
+                </StatsListGrid>
+        </StatsListContainer>
+        {/* closes negative reports */}
+        </StatsContentContainer>
+
+        <StatsContentContainer>
+        <StatsListContainer className="comps">
+            <h2 >Compliments </h2>
+            {/* total compliments for officer */}
+            <h3>Average Per Report </h3>
+
+                <StatsListGrid>
+                    <p>Average Compliments</p>
+                    <p className="values">{avgOfficerCompliments().toFixed(2)}</p>
+                </StatsListGrid>
+                <StatsListGrid>
+                    <p>Department Average </p>
+                    <p className="values">{avgDeptCompliments().toFixed(2)}</p>
+                </StatsListGrid>
+            <StatsDivider />
+            <h3>Totals </h3>
+                <StatsListGrid>
+                    <p>Officer Total</p>
+                    <p className="values">{countOfficerComplimentTags}</p>
+                </StatsListGrid>
+                <StatsListGrid>
+                    <p>Department Total </p>
+                    <p className="values">{countDeptComplimentTags}</p>
+                </StatsListGrid>
+                <StatsListGrid>
+                    <p>Helped</p>
+                    <p className="values">{countOfficerHelpedTags}</p>
+                </StatsListGrid>
+                <StatsListGrid>
+                    <p>Protected</p>
+                    <p className="values">{countOfficerProtectedTags}</p>
+                </StatsListGrid>
+        </StatsListContainer>
+        </StatsContentContainer>
+        {/* closes positive reports */}
+        </div>
         {/* closes list view */}
         </div>
 
@@ -527,110 +593,167 @@ export default function Stats(props) {
 
         {/* visual view */}
         <StatsContentContainer className="displayView" id="visual-view">
-        <StatsVisualContainer>
-        <h2>Average Overall Rating </h2>
-            <div>
-            <VictoryChart
-                domainPadding={{ x: 10 }}
+        <StatsVisualContainer >
+        <h2 className="average">Average Rating </h2>
+            <BarContainer>
+                <VictoryStack
+                    horizontal
+                    desc={"Bar Graph depicting average rating for officer, precinct and department" }
+                    domainPadding={20}
+                    padding={{ top: -200, bottom: 40, left: 20, right: 100 }}
+                    style={{
+                        data:{width: 30}
+                    }}
                 >
-                <VictoryStack horizontal
-                    colorScale={['#242424', '#fff']}>
-                        
-
+                    <VictoryBar 
+                        style={{ data: { fill: '#111111', stroke: "#111111", strokeWidth: 2}, labels: { fill: "#111111"} }} 
+                        alignment="middle"
+                        labelComponent={
+                            <VictoryPortal>
+                                <VictoryLabel/>
+                            </VictoryPortal>}
+                        data={ratingData}
+                            x='group'
+                            y='rating'
+                            y0='0'
+                    />
+                    <VictoryBar
+                        style={{ data: { fill: '#fff', stroke: '#111111', strokeWidth: 2} }}
+                        data={[
+                            { x: 'Officer Rating', y: 10, y0: 1},
+                            { x: 'Precinct Rating', y: 10, y0: 1},
+                            { x: 'Department Rating', y: 10, y0: 1},
+                        ]}
+                        labels={({ datum }) => datum.x}
+                        labelComponent={
+                            <VictoryPortal>
+                                <VictoryLabel
+                                    verticalAnchor={"middle"}
+                                />
+                            </VictoryPortal>}
+                    />
                 </VictoryStack>
-                <VictoryAxis dependentAxis
-                    tickFormat={(tick) => `${tick}`}
+            </BarContainer>
+        </StatsVisualContainer>
+
+        <StatsVisualContainer>
+                <h2>Race</h2>
+                <PieContainer>
+                    <VictoryPie
+                        desc={"pie Graph depicting reporter race by percentage"}
+                        style={{ labels: { fill: "#111111" } }}
+                        innerRadius={75}
+                        colorScale={raceColors}
+                        data={raceData}
+                        labels={raceLabels}
+                        labelComponent={
+                            <VictoryTooltip
+                                verticalAnchor="middle"
+                                x={200} y={250}
+                                orientation="top"
+                                pointerLength={10}
+                                flyoutWidth={130}
+                                flyoutHeight={50}
+                                flyoutStyle={{ fill: "#fff", stroke: "#111111", strokeWidth: 2 }}
+                            />}
                     />
-                    <VictoryAxis
-                    tickFormat={["Officer Rating", "Precinct Rating", "Department Rating",]}
-                    />
-                </VictoryChart>
-            </div>
-            </StatsVisualContainer>
+                </PieContainer>
+        </StatsVisualContainer>
+            {/* closes race */}
             
             
             <div className="report-type">                
-            <StatsVisualContainer className="visneg">
+            <StatsVisualContainer className="comps" >
                 <h2>Complaints </h2>
-                <h3>Averages</h3>
-                <div>
-                    <VictoryChart
-                        domainPadding={{ x: 10 }}
-                        >
-                        <VictoryStack horizontal
-                            colorScale={['#242424', '#fff']}>
-                                
-
-                        </VictoryStack>
-                        <VictoryAxis dependentAxis
-                            tickFormat={(tick) => `${tick}`}
-                            />
-                            <VictoryAxis
-                            tickFormat={["Officer Rating", "Precinct Rating", "Department Rating",]}
-                            />
-                    </VictoryChart>
-                </div>
+                <h3>Average Per Report</h3>
+                <BarContainer>
+                    <VictoryBar
+                        horizontal
+                        desc={"Bar Graph depicting average complaints per report for officer, precinct and department" }
+                        domainPadding={100}
+                        padding={{ top: 0, bottom: 0, left: 20, right: 80 }}
+                        style={{ data: { fill: '#111111', stroke: "#111111", strokeWidth: 2}, labels: { fill: "#111111"} }} 
+                        alignment="middle"
+                        labels= {({ datum }) => datum.y}
+                        labelComponent={
+                            <VictoryPortal>
+                                <VictoryLabel/>
+                            </VictoryPortal>}
+                        data={complaintsAvgData}
+                            x='group'
+                            y='rating'
+                            y0='0'
+                    />
+            </BarContainer>
                 <h3>Type</h3>
                 <PieContainer>
                     <VictoryPie
-                        style={{ labels: { fill: "white" } }}
-                        innerRadius={100}
-                        labelRadius={120}
-                        labels={({ datum }) => `# ${datum.y}`}
-                        labelComponent={<CustomLabel />}
-                        data={[
-                            // set this to data from firebase
-                            { x: 1, y: 5 },
-                            { x: 2, y: 4 },
-                            { x: 3, y: 2 },
-                            { x: 4, y: 3 },
-                            { x: 5, y: 1 }
-                    ]}
+                        desc={"pie Graph depicting complaint percentages by type"}
+                        style={{ labels: { fill: "#111111"  }}}
+                        innerRadius={75}
+                        colorScale={complaintColors}
+                        data={complaintsData}
+                        labels={complaintLabels}
+                        labelComponent={
+                            <VictoryTooltip
+                                verticalAnchor="middle"
+                                x={200} y={250}
+                                orientation="top"
+                                pointerLength={10}
+                                flyoutWidth={160}
+                                flyoutHeight={50}
+                                flyoutStyle={{ fill: "#fff", stroke: "#111111", strokeWidth: 2 }}
+                                />}
                     />
                 </PieContainer>
             </StatsVisualContainer>
             {/* closes negative reports */}
             
-            <StatsVisualContainer className="vispos">
+            <StatsVisualContainer className="comps">
                 <h2 >Compliments</h2>
                 <h3>
-                    Averages
+                    Average Per Report
                 </h3>
-                <div>
-                    <VictoryChart
-                        domainPadding={{ x: 10 }}
-                        >
-                        <VictoryStack horizontal
-                            colorScale={['#242424', '#fff']}>
-                                
-
-                        </VictoryStack>
-                        <VictoryAxis dependentAxis
-                            tickFormat={(tick) => `${tick}`}
-                            />
-                            <VictoryAxis
-                            tickFormat={["Officer Rating", "Precinct Rating", "Department Rating",]}
-                            />
-                    </VictoryChart>
-                </div>
+                <BarContainer>
+                    <VictoryBar
+                        horizontal
+                        desc={"Bar Graph depicting average compliments per report for officer, precinct and department" }
+                        domainPadding={100}
+                        padding={{ top: 0, bottom: 0, left: 20, right: 80 }}
+                        style={{ data: { fill: '#111111', stroke: "#111111", strokeWidth: 2}, labels: { fill: "#111111"} }} 
+                        alignment="middle"
+                        labels= {({ datum }) => datum.y}
+                        labelComponent={
+                            <VictoryPortal>
+                                <VictoryLabel/>
+                            </VictoryPortal>}
+                        data={complimentsAvgData}
+                            x='group'
+                            y='rating'
+                            y0='0'
+                    />
+            </BarContainer>
                 <h3>
                     Type
                 </h3>
                 <PieContainer>
                     <VictoryPie
-                        style={{ labels: { fill: "white" } }}
-                        innerRadius={100}
-                        labelRadius={120}
-                        labels={({ datum }) => `# ${datum.y}`}
-                        labelComponent={<CustomLabel />}
-                        data={[
-                            // set this to data from firebase
-                            { x: 1, y: 5 },
-                            { x: 2, y: 4 },
-                            { x: 3, y: 2 },
-                            { x: 4, y: 3 },
-                            { x: 5, y: 1 }
-                    ]}
+                        desc={"pie Graph depicting compliment percentages by type"}
+                        style={{ labels: { fill: "#111111" } }}
+                        innerRadius={75}
+                        colorScale={complimentColors}
+                        data={complimentsData}
+                        labels={complimentLabel}
+                        labelComponent={
+                            <VictoryTooltip
+                                verticalAnchor="middle"
+                                x={200} y={250}
+                                orientation="top"
+                                pointerLength={10}
+                                flyoutWidth={130}
+                                flyoutHeight={50}
+                                flyoutStyle={{ fill: "#fff", stroke: "#111111", strokeWidth: 2 }}
+                            />}
                     />
                 </PieContainer>
             </StatsVisualContainer>
@@ -638,55 +761,35 @@ export default function Stats(props) {
         </div>
         {/* closes report-type */}
         
-        <div className="demographics">
-            <StatsVisualContainer>
-                <h2>Race</h2>
-                <PieContainer>
-                    <VictoryPie
-                        style={{ labels: { fill: "white" } }}
-                        innerRadius={100}
-                        labelRadius={120}
-                        labels={({ datum }) => `# ${datum.y}`}
-                        labelComponent={<CustomLabel />}
-                        data={[
-                            // set this to data from firebase
-                            { x: 1, y: 5 },
-                            { x: 2, y: 4 },
-                            { x: 3, y: 2 },
-                            { x: 4, y: 3 },
-                            { x: 5, y: 1 }
-                    ]}
-                    />
-                </PieContainer>
-            </StatsVisualContainer>
-            {/* closes race */}
-        </div>
-        {/* closes demographics */}
     </StatsContentContainer>
     {/* closes visual view */}
 
-    <StatsContentContainer>
-        <StatsVisualContainer>
-            <h2>Report Date</h2>
+    {/* <StatsContentContainer>
+        <StatsVisualContainer className="reports">
+            <h2>Reports Per Day</h2>
 
-                    <div className="date-tags">
+            <div className="date-tags">
+                    // date picker? or something? 
+            </div>
 
-                    </div>
-
-                    <VictoryChart>
-                    <VictoryAxis tickCount={8}/>
-                    <VictoryBar
-                        data={[              
-                            { x: 1, y: 5 },
-                            { x: 2, y: 4 },
-                            { x: 3, y: 2 },
-                            { x: 4, y: 3 },
-                            { x: 5, y: 1 }]}
-                        style={{ data: { fill: "#FFF600", stroke: "black", strokeWidth: 2 }}}
-                    />
-                    </VictoryChart>
-                </StatsVisualContainer>
-    </StatsContentContainer>
+            <VictoryChart>
+            <VictoryAxis tickCount={8}/>
+            <VictoryBar
+                data={[              
+                    { x: 'Sun', y: 5 },
+                    { x: 'Mon', y: 4 },
+                    { x: 'Tues', y: 2 },
+                    { x: 'Wed', y: 3 },
+                    { x: 'Thurs', y: 1 },
+                    { x: 'Fri', y: 4 },
+                    { x: 'Sat', y: 6 },
+                ]}
+                labels= {({ datum }) => datum.y}
+                style={{ data: { fill: "#FFF600", stroke: "black", strokeWidth: 2 }}}
+            />
+            </VictoryChart>
+        </StatsVisualContainer>
+    </StatsContentContainer> */}
     {/* closes report date */}
 
     </FormGroup>

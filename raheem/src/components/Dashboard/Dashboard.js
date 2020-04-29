@@ -7,7 +7,7 @@ import { useHistory, useParams, Route, NavLink } from 'react-router-dom';
 import firebase from '../../config/firebase';
 
 /* styles */
-import { PageContainer, ButtonSecondary } from '../../styles/global';
+import { PageContainer } from '../../styles/global';
 import { DashboardOfficer, DashboardView, DashboardTitle, DashboardMainTitle, ReportButton } from '../../styles/dashboard';
 
 /* components */
@@ -65,7 +65,7 @@ export default function Dashboard() {
                         </div>
                     </div>
                 </div>
-                <ReportButton onClick={() => history.push(`/report`)}>Add a report</ReportButton>
+                <ReportButton onClick={() => history.push(`/report/${officer.officerBadgeID}`)}>Add A Report</ReportButton>
             </DashboardOfficer>
 
             <DashboardView>
