@@ -5,6 +5,7 @@ export const StatsContainer = styled.div`
     background-color: #fff;
     display: flex;
     flex-direction: column;
+    height: 125vh;
 
     @media (max-width: 500px){
         width: 100%;
@@ -59,15 +60,16 @@ export const StatsContainer = styled.div`
         }
     }
 
-    // div.displayView {
-    //     display: none;
-    // }
+    div.displayView {
+        display: none;
+    }
 
     .desktop-container {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         padding-top: 1.5rem;
+        border-bottom: 1px solid #C4C4C4;
 
         @media (max-width: 800px){
             display: flex;
@@ -80,12 +82,12 @@ export const StatsContainer = styled.div`
         justify-content: center;
         width: 100%;
         padding-top: 1rem;
+        border-bottom: 1px solid #C4C4C4;
     }
 `
 
 export const StatsContentContainer = styled.div`
     padding: 3rem 3rem 6rem 3rem;
-    border-bottom: 1px solid #C4C4C4;
     min-width: 50%;
 
     @media (max-width:500px){
@@ -193,18 +195,21 @@ export const StatsDivider = styled.div`
 `
 
 export const StatsVisualContainer = styled.div`
-    width: 40%;
     display: flex;
     flex-direction: column;
+    width: 45%;
     padding-bottom: 3.2rem;
-    border-bottom: 1px solid #C4C4C4;
     
+    @media (max-width: 800px){
+        width: auto;
+    }
+
     @media (max-width: 500px){
         padding: 0 2rem 3.2rem 2rem
-        width: 100%;
         display: flex;
         flex-direction: column;
         border-bottom: 1px solid #C4C4C4;
+        width: auto;
     }
 
     h2.average {
