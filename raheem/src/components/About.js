@@ -38,11 +38,10 @@ function About(props) {
 
             <Container>
                 <HeadingContainer className="about, page-top">
-                    <Heading className="about">
+                <Heading className="about">
                         About Raheem
                 </Heading>
                 </HeadingContainer>
-
                 <Subheading className="about">
                     Raheem is an independent service for reporting police conduct in the United States.
                 </Subheading>
@@ -73,15 +72,14 @@ function About(props) {
                     Raheem uses data to identify places with the highest rates of police violence in the country. Then we partner with community oversight structures in these areas to collect firsthand reports of police conduct and help people file formal complaints that can lead to officers being held accountable. Our digital outreach and organizing strategy enables us to reach people who’ve been recently impacted by policing and connect them to oversight boards, organizations, and advocacy campaigns that can help them seek justice and accountability for police violence.
                 </Content>
             </Container>
-        
-            <HeadingContainer className="about">
-                <h2>
-                    Our Team
-                </h2>
-            </HeadingContainer>
 
             <Container>
-                <SmallHeading className="about">
+            <HeadingContainer className="about, section-top">
+                <Heading>
+                    Our Team
+                </Heading>
+            </HeadingContainer>
+                <SmallHeading className="about, section-top">
                     Brandon Anderson
                 </SmallHeading>
                 <Content className="about">
@@ -125,7 +123,7 @@ function About(props) {
                 <a href="#top" className="top">Back To Top</a>
             </ButtonContainer> */}
     </PageContainer>
-  );
+);
 }
 
 export default About;
