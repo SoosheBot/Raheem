@@ -225,6 +225,16 @@ export const Container = styled.div`
         }
     }
 
+    div.section-top {
+        margin-bottom: 3rem;
+    }
+
+    h4.section-top {
+        width: 100%;
+        text-align: left;
+        margin-top: 0;
+    }
+
     h4.about {
         width: 100%;
         margin: 0;
