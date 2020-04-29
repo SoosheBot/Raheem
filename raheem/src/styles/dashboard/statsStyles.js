@@ -1,9 +1,16 @@
 import styled from 'styled-components';
 
-
 export const StatsContainer = styled.div`
     width: 90%;
     background-color: #fff;
+    display: flex;
+    flex-direction: column;
+
+    @media (max-width: 500px){
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
     
     h2 {
         font-family: 'Neuzeit Grotesk', sans-serif;
@@ -17,6 +24,7 @@ export const StatsContainer = styled.div`
         padding-right: 2rem;
         margin: 2rem auto 20px 0;
     }
+
     h2.context {
         margin-bottom: 0rem;
     }
@@ -36,52 +44,99 @@ export const StatsContainer = styled.div`
         margin: 0rem;
     }
 
+    div.page-top {
+        margin-top: 2rem;
+        border-top: 1px solid #C4C4C4;
+        padding-top: 2rem;
+        padding-left: 2rem;
+        width: 100%;
+        border-bottom: none;
+
         @media (max-width: 500px){
-            width: 100%;
-        }
-
-        div.page-top {
-            border-top: 1px solid #C4C4C4;
             padding-top: 1rem;
+            margin-top: 1rem;
         }
+    }
 
-        div.displayView {
-            display: none;
+    div.displayView {
+        display: none;
+    }
+
+    .desktop-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-top: 1.5rem;
+
+        @media (max-width: 800px){
+            display: flex;
+            flex-direction: column;
         }
+    }
+
+    .totalreports{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding-top: 0.5rem;
+    }
 `
 
 export const StatsContentContainer = styled.div`
-    width: 50%;
+    padding: 3rem;
+    border-bottom: 1px solid #C4C4C4;
+    min-width: 50%;
+
+    @media (max-width:500px){
+        padding: 2rem;
+        width: 100%;
+    }
+
+    p {
+        font-family: 'Neuzeit Grotesk', sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 1.8rem;
+        line-height: 2.4rem;
+        letter-spacing: 0.1936364px;
+    }
+
+    // div.reports {
+    //     width: 30%;
+    //     background-color: #fff;
+    //     padding: none;
+    //     margin: none;
+    // }
+`
+export const StatsListContainer = styled.div`
+    min-width: 45%;
     display: flex;
     flex-direction: column;
+    padding-bottom: 3.2rem;
+    margin-bottom: 1.5rem;
+    
+    @media (max-width: 500px){
+        padding: 0 2rem 3.2rem 2rem;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    @media (max-width: 800px){
+        min-width: 80%;
+    }
+
+    .totals {
+        border-bottom: none;
+        min-width: 70%;
 
         @media (max-width: 500px){
             width: 100%;
         }
 
-        p {
-            font-family: 'Neuzeit Grotesk', sans-serif;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 1.8rem;
-            line-height: 2.4rem;
-            letter-spacing: 0.1936364px;
-        },
-`
-export const StatsListContainer = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 3.2rem;
-    border-bottom: 1px solid #C4C4C4;
-    margin-bottom: 1.5rem;
-    
-    .totals {
-        border-bottom: none;
-
-        h2{
+        h2 {
             width: 51%;
-            
+            min-width: 214px;
         }
         
         p.values{
@@ -90,9 +145,9 @@ export const StatsListContainer = styled.div`
         }
     }
 
-    @media (max-width: 500px){
-        padding: 0 2rem 3.2rem 2rem
-    }
+    h2.average {
+        min-width: 246px;
+    },
 
     p.context {
         margin: 0rem;
@@ -136,7 +191,7 @@ export const StatsDivider = styled.div`
 `
 
 export const StatsVisualContainer = styled.div`
-    width: 100%;
+    width: 40%;
     display: flex;
     flex-direction: column;
     padding-bottom: 3.2rem;
@@ -144,19 +199,27 @@ export const StatsVisualContainer = styled.div`
     
     @media (max-width: 500px){
         padding: 0 2rem 3.2rem 2rem
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid #C4C4C4;
+    }
+
+    h2.average {
+        min-width: 246px;
     }
 ` 
 
 export const PieContainer = styled.div`
     display: flex;
     flex-wrap: none;
-    width: 90%;
     margin: 20px;
 `
 
 export const BarContainer = styled.div`
     display: flex;
     flex-wrap: none;
+
 `
 
 export const SwitchContainer = styled.div`
