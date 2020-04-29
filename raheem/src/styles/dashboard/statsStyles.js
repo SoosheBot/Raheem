@@ -5,7 +5,7 @@ export const StatsContainer = styled.div`
     background-color: #fff;
     display: flex;
     flex-direction: column;
-    height: 125vh;
+    height: 130vh;
 
     @media (max-width: 500px){
         width: 100%;
