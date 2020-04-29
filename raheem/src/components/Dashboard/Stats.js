@@ -593,14 +593,16 @@ export default function Stats(props) {
 
         {/* visual view */}
         <StatsContentContainer className="displayView" id="visual-view">
+        <div className="desktop-container">  
         <StatsVisualContainer >
         <h2 className="average">Average Rating </h2>
+        <p className="context">Rating Out of 10</p>
             <BarContainer>
                 <VictoryStack
                     horizontal
                     desc={"Bar Graph depicting average rating for officer, precinct and department" }
                     domainPadding={20}
-                    padding={{ top: -200, bottom: 40, left: 20, right: 100 }}
+                    padding={{ top: 20, bottom: 40, left: 20, right: 120 }}
                     style={{
                         data:{width: 30}
                     }}
@@ -660,9 +662,10 @@ export default function Stats(props) {
                 </PieContainer>
         </StatsVisualContainer>
             {/* closes race */}
+            </div>
             
             
-            <div className="report-type">                
+            <div className="desktop-container">                
             <StatsVisualContainer className="comps" >
                 <h2>Complaints </h2>
                 <h3>Average Per Report</h3>
