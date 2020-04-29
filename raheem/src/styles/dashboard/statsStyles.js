@@ -51,6 +51,7 @@ export const StatsContainer = styled.div`
         padding-left: 2rem;
         width: 100%;
         border-bottom: none;
+        padding-bottom: 0;
 
         @media (max-width: 500px){
             padding-top: 1rem;
@@ -58,9 +59,9 @@ export const StatsContainer = styled.div`
         }
     }
 
-    div.displayView {
-        display: none;
-    }
+    // div.displayView {
+    //     display: none;
+    // }
 
     .desktop-container {
         display: flex;
@@ -78,17 +79,17 @@ export const StatsContainer = styled.div`
         display: flex;
         justify-content: center;
         width: 100%;
-        padding-top: 0.5rem;
+        padding-top: 1rem;
     }
 `
 
 export const StatsContentContainer = styled.div`
-    padding: 3rem;
+    padding: 3rem 3rem 6rem 3rem;
     border-bottom: 1px solid #C4C4C4;
     min-width: 50%;
 
     @media (max-width:500px){
-        padding: 2rem;
+        padding: 2rem 2rem 5rem 2rem;
         width: 100%;
     }
 
@@ -128,7 +129,7 @@ export const StatsListContainer = styled.div`
 
     .totals {
         border-bottom: none;
-        min-width: 70%;
+        min-width: 60%;
 
         @media (max-width: 500px){
             width: 100%;
@@ -147,12 +148,13 @@ export const StatsListContainer = styled.div`
 
     h2.average {
         min-width: 246px;
+        margin-bottom: 0.25rem;
     },
 
     p.context {
         margin: 0rem;
         padding: 0rem;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 
     p.valuestotal {

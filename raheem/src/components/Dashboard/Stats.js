@@ -115,7 +115,7 @@ export default function Stats(props) {
     //data for ratings bar graph
     const ratingData = [
             {group: 'Officer Rating', rating: officerAvgRating(), label: officerAvgRating().toFixed(2)},
-            {group: 'Precinct Rating', rating: 5.25, label: "5.25"},
+            {group: 'Precinct Rating', rating: 4.00, label: "5.25"},
             {group: 'Department Rating', rating: departmentAvgRating(), label: departmentAvgRating().toFixed(2)}
     ];
 
@@ -441,7 +441,7 @@ export default function Stats(props) {
                         </StatsListGrid>
                         <StatsListGrid>
                             <p>Precinct Average</p>
-                            <p className="values">0</p>
+                            <p className="values">4.00</p>
                         </StatsListGrid>
                         <StatsListGrid>
                             <p>Department Average</p>
@@ -511,13 +511,13 @@ export default function Stats(props) {
             <h3>Totals</h3>
                 {/* break down of types of complaints */}
                 <StatsListGrid>
-                        <p>Officer Total</p>
-                        <p className="values"> {countOfficerComplaintTags} </p>
+                    <p>Officer Total</p>
+                    <p className="values"> {countOfficerComplaintTags} </p>
                 </StatsListGrid>
                 <StatsListGrid>
-                        <p>Department Total</p>
-                        <p className="values">{countDeptComplimentTags}</p>
-                    </StatsListGrid>
+                    <p>Department Total</p>
+                    <p className="values">{countDeptComplimentTags}</p>
+                </StatsListGrid>
                 <StatsListGrid>
                     <p>Illegally Searched</p>
                     <p className="values">{officerIllegalSearch}</p>

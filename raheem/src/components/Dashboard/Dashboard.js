@@ -65,7 +65,7 @@ export default function Dashboard() {
                         </div>
                     </div>
                 </div>
-                <ReportButton onClick={() => history.push(`/report`)}>Add a report</ReportButton>
+                <ReportButton onClick={() => history.push(`/report/${officer.officerBadgeID}`)}>Add A Report</ReportButton>
             </DashboardOfficer>
 
             <DashboardView>

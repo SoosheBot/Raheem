@@ -87,6 +87,10 @@ function App() {
           <Report />
         </Route>
 
+        <Route path="/report/:id">
+          <Report />
+        </Route>
+
         <Route path="/story">
           <Story />
         </Route>
