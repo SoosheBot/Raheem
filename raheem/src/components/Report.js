@@ -38,8 +38,6 @@ export default function Report(props) {
     and our form store */
   const globalState = useContext(formStore);
 
-  // console.log(globalState);
-
   // location state
   const [coords, setCoords] = useState({ lat: 0, lon: 0 });
 
@@ -49,13 +47,11 @@ export default function Report(props) {
   /* state for an array of the user's selected / toggled tags */
   const [toggledTags, setToggledTags] = useState([]);
 
+  /* state for the officer interaction rating based on the slider */
   const [rating, setRating] = useState("");
 
   /* state for officer passed in from Landing component */
-  // const [officer, setOfficer] = useState(location.state);
   const [officer] = useState(location.state);
-
-  console.log(location);
 
   /* function to actually toggle / select a specific tag */
   const toggleTag = (e) => {
@@ -76,7 +72,10 @@ export default function Report(props) {
 
   /* handle submit for the demographics form */
   const onSubmit = (data) => {
-    console.log(`DATA: `, data);
+
+    /* initialize a new date object that will be used as report
+      creation date and time and sent to the backend with the rest
+      of the form data */
     const date = Date.now();
     dispatch({
       type: 'REPORT',
@@ -127,10 +126,10 @@ export default function Report(props) {
           })
         })
 
-    history.push('/story', officer);
+    history.push('/story', officer); // push user to the Story component to fill out their story
   }
 
-  // saveing change of rating when the user moves the slider
+  // saving change of rating when the user moves the slider
   const handleRatingChange = (e, value) => {
     setRating(value);
   }
@@ -163,6 +162,7 @@ export default function Report(props) {
             <img onClick={() => history.goBack()} src={Back} alt="Go Back" />
           </BackButton>
 
+          {/* If there is no attached officer to the report, let the user know */}
           {location.state === undefined &&
             <div className="no-officer">
               <p className="no-officer-text">No officer information was loaded.</p>
@@ -171,6 +171,7 @@ export default function Report(props) {
             </div>
           }
 
+          {/* If there is an attached officer to the report, display the officer's information */}
           {officer && officer.officer !== false &&
             <Officer
               profile={{
@@ -190,6 +191,7 @@ export default function Report(props) {
         </HeadingContainer>
 
         <Content>
+          {/* The following content is for the rating slider */}
           <SliderContainer>
             <Typography gutterBottom></Typography>
             <TxSlider
@@ -209,6 +211,7 @@ export default function Report(props) {
           <h2>I was _____. <span className="light">(select as many as apply)</span></h2>
         </HeadingContainer>
 
+        {/* The following content is the toggleable tags for how the interaction went */}
         <Content>
           <TagContainer>
             <Tag onClick={toggleTag} value="helped">helped</Tag>
@@ -230,6 +233,8 @@ export default function Report(props) {
 
         <ReportForm>
           <form onSubmit={handleSubmit(onSubmit)}>
+
+            {/* Incident date information */}
             <Content>
               <SmallHeading>Incident Date</SmallHeading>
               <div className="inputs, date">
@@ -302,6 +307,8 @@ export default function Report(props) {
               <p>This allows us to contact you in the event that further information is needed.</p>
             </HeadingContainer>
 
+
+            {/* Contact information requiring user's email */}
             <Content>
               <SmallHeading>Email</SmallHeading>
               <div className="inputs">
@@ -402,8 +409,9 @@ export default function Report(props) {
               {/* error handling for race inputs */}
               {errors.race && <p className="error">Please select your race.</p>}
             </Content>
+
+            {/* GENDER INPUTS */}
             <Content className="about-you">
-              {/* GENDER INPUTS */}
               <SmallHeading>Gender</SmallHeading>
 
               <label className="container">
@@ -444,8 +452,9 @@ export default function Report(props) {
                 />
               </label>
             </Content>
+
+            {/* AGE INPUTS*/}
             <Content className="page-end-desktop">
-              {/* AGE INPUTS*/}
               <div className="inputs" style={{ flexDirection: 'column' }}>
                 <SmallHeading>Date of Birth</SmallHeading>
                 <div className="dob-container, date">
@@ -508,7 +517,7 @@ export default function Report(props) {
             {/* submit the form and continue through the flow */}
             <Controls>
               <ButtonSecondary type="submit">Continue</ButtonSecondary>
-              <p> You'll have the opportunity to say more on the next page.</p>
+              <p>You'll have the opportunity to say more on the next page.</p>
             </Controls>
           </form>
         </ReportForm>

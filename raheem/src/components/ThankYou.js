@@ -27,17 +27,16 @@ function ThankYou() {
   const history = useHistory();
   const location = useLocation();
 
-  /* we could possibly store some value in localStorage to determine
-        whether or not the user has rendered the Thank You component from
-        the cancel button on the initial landing, or from actually completing
-        a submission */
+  /* state for managing whether or not the user successfully submitted
+    a report or chose to save it for later */
   const [cancelled, setCancelled] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   /* state for officer from Story or Email component */
-  // const [officer, setOfficer] = useState(location.state);
   const [officer] = useState(location.state);
 
+  /* on rendering of the component, check to see if the user successfully
+    completed the report or not and set our state accordingly */
   useEffect(() => {
     if (localStorage.getItem("completed") === "true") {
       setSubmitted(true);
@@ -59,6 +58,7 @@ function ThankYou() {
             />
           </BackButton>
 
+          {/* If there is no attached officer to the report, then alert the user */}
           {location.state === undefined && (
             <div className="no-officer">
               <p className="no-officer-text">
@@ -71,6 +71,7 @@ function ThankYou() {
             </div>
           )}
 
+          {/* If there is an attached officer to the report, display the officer's information */}
           {officer && officer.officer !== false && (
             <Officer
               profile={{
@@ -85,6 +86,8 @@ function ThankYou() {
       </Container>
       <Divider />
 
+      {/* If the user has cancelled or saved their report, alert
+        them that a reminder will be sent to them to complete it */}
       {cancelled === true && (
         <Container className="thank-you">
           <HeadingContainer className="page-top">
@@ -105,6 +108,8 @@ function ThankYou() {
         </Container>
       )}
 
+      {/* If the user has successfully submitted the report, alert them
+        that we have received it and their story will help end police violence */}
       {submitted && (
         <Container className="thank-you">
           <HeadingContainer>
@@ -116,12 +121,15 @@ function ThankYou() {
           </Content>
 
           <Controls>
+            {/* Push the user back to the home / splash page */}
             <ButtonPrimary
               data-testid="homePageButton"
               onClick={() => history.push(`/`)}
             >
               Home
             </ButtonPrimary>
+
+            {/* Push the user to the officer's page to view officer specific reports */}
             <ButtonSecondary
               data-testid="officerPageButton"
               onClick={() =>

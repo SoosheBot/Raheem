@@ -31,9 +31,8 @@ import { StoryForm } from "../styles/global/forms.js";
 import { ButtonPrimary, ButtonSecondary } from "../styles/global";
 
 function Story() {
-  /* bring in useHistory from react-router-dom */
 
-  /* bring in useHistory from react-router-dom */
+  /* bring in useHistory and useLocation from react-router-dom */
   const history = useHistory();
   const location = useLocation();
 
@@ -45,11 +44,15 @@ function Story() {
   const { dispatch } = globalState;
 
   /* state for officer passed in from Report component */
-  // const [officer, setOfficer] = useState(location.state);
   const [officer] = useState(location.state);
 
+  /* configure react-hook-form */
   const { handleSubmit, register } = useForm();
+
+  /* handle submission of the form */
   const onSubmit = (data) => {
+
+    /* dispatch the form data to the backend to match its respective report */
     dispatch({ type: "STORY", payload: data });
     firebase
       .firestore()
@@ -59,6 +62,10 @@ function Story() {
         officerId: officer.officerBadgeID,
         storyBody: data,
       });
+
+    /* set the completed flag to true in localStorage and push the user
+      to the thank you component to be conditionally rendered as a complete
+      submission of the report */
     localStorage.setItem("completed", true);
     history.push(`/thank-you`, officer);
   };
@@ -67,7 +74,6 @@ function Story() {
     <PageContainer>
       <Container>
         <HeaderContainer>
-          {/* {console.log('TESTING. IS STATE UPDATED?', globalState)} */}
           <BackButton className="go-back-button">
             <img
               onClick={() => history.goBack()}
@@ -77,6 +83,7 @@ function Story() {
             />
           </BackButton>
 
+          {/* If there is no attached officer to the report, alert the user */}
           {location.state === undefined && (
             <div className="no-officer">
               <p className="no-officer-text">
@@ -89,6 +96,7 @@ function Story() {
             </div>
           )}
 
+          {/* If there is an attached officer, then display the officer's information */}
           {officer && officer.officer !== false && (
             <Officer
               profile={{
@@ -119,6 +127,10 @@ function Story() {
               <textarea name="story" ref={register} />
 
               <Controls>
+                {/* If the user opts to save the submission for later,
+                    then set the completed flag to false in localStorage
+                    and push them to the thank you component to conditionally
+                    render the saved submission alert */}
                 <ButtonPrimary
                   onClick={() => {
                     localStorage.setItem("completed", false);

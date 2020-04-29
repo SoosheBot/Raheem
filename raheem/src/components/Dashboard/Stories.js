@@ -23,7 +23,6 @@ import Search from '../../assets/Search.svg';
 import Story from '../Dashboard/Story';
 import Filter from '../Stories/Filter';
 import Sort from '../Stories/Sort';
-import { getByPlaceholderText } from '@testing-library/react';
 
 export default function Stories(props) {
 
@@ -43,7 +42,7 @@ export default function Stories(props) {
     const [reports, setReports] = useState([]); // state for reports
     const [filtering, setFiltering] = useState(false); // toggleable filter state
     const [sorting, setSorting] = useState(false); // toggleable sorting state
-    const [queries, setQueries] = useState([]);
+    const [queries, setQueries] = useState([]); // state for search queries
     const [officerRatingAvg, setOfficerRatingAvg] = useState(0); // current officer's average rating
 
     /* handle search input on submission */
@@ -633,7 +632,7 @@ export default function Stories(props) {
         });
 
         /* create an updated state object to pass into state to
-            populate the tags graph */
+            populate the tag statistics */
         const updatedState = [
             { tag: 'helped', total: helpedTag },
             { tag: 'protected', total: protectedTag },
@@ -668,6 +667,7 @@ export default function Stories(props) {
         return year;
     }
 
+    /* on rendering of the component, get the tag totals and average rating of the officer */
     useEffect(() => {
         getTagTotals();
         getAvgRating();
@@ -675,6 +675,8 @@ export default function Stories(props) {
 
     return (
         <DashboardPageContainer>
+            {/* If the user has toggled the filter or sort components, update state
+                and display the components for filtering and sorting reports and stories */}
             {filtering === true && <Filter filtering={filtering} setFiltering={setFiltering} queries={queries} setQueries={setQueries} reports={reports} setReports={setReports} />}
             {sorting === true && <Sort sorting={sorting} setSorting={setSorting} queries={queries} setQueries={setQueries} />}
             <StoryListContainer>
@@ -684,6 +686,7 @@ export default function Stories(props) {
 
                 <SliderContainer />
 
+                {/* handling and displaying of tags */}
                 <TagStatContainer>
                     <div className="officer-rating">
                         <h4>Officer rating average</h4>
@@ -694,9 +697,6 @@ export default function Stories(props) {
                     <div className="officer-stats">
                         <h4>{officer.officerRank} {officer.officerLName}</h4>
                         {tagTotals.length &&
-                            // <VictoryChart padding={{ left: 120, top: 20, bottom: 30, right: 30 }}>
-                            //     <VictoryBar data={tagTotals} horizontal="true" y="total" x="tag" />
-                            // </VictoryChart>
                             <div className="stats-grid">
                                 {tagTotals.map((tag, idx) => {
                                     if (tag.total === 1) {
@@ -713,6 +713,7 @@ export default function Stories(props) {
 
                 <p className="see-more"><Link to="/dashboard/stats">See More</Link></p>
 
+                {/* Text search input, filter, and sort options */}
                 <StoryListSearch>
                     <div className="query">
                         <form onSubmit={handleSubmit(onSubmit)}>
@@ -730,15 +731,15 @@ export default function Stories(props) {
 
                     <div className="filter">
                         <div onClick={() => {
-                            // window.scroll(0, 0);
-                            setFiltering(true);
+                            setFiltering(true); // set filtering mode
                         }}>
                             <p>Filter <img src={CarotDown} alt="Drop Down" /></p>
                         </div>
                         <div onClick={() => {
                             window.scroll(0, 0);
-                            setSorting(true);
+                            setSorting(true); // set sorting mode
                         }}>
+                            {/* If we are sorting, display what we are sorting by */}
                             {globalState.state.sort !== undefined && globalState.state.sort !== '' && <p>Sort: <span>{globalState.state.sort}</span> <img src={CarotDown} alt="Drop Down" /></p>}
                             {globalState.state.sort === undefined && <p>Sort: <span>Newest</span> <img src={CarotDown} alt="Drop Down" /></p>}
                         </div>
@@ -746,6 +747,7 @@ export default function Stories(props) {
                 </StoryListSearch>
 
                 <div className="list">
+                    {/* Conditionally render how many reports there are */}
                     {
                         reports !== undefined && reports.length ? (reports.map((report, index) => <Story key={index} report={report} />)) : (<p className="no-reports">Stories are loading or are unavailable. Please try refreshing the page.</p>)
                     }
