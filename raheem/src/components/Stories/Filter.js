@@ -26,11 +26,11 @@ export default function Filter(props) {
 
     /* handle form submission */
     const onSubmit = (data) => {
-        console.log(data);
         dispatch({ type: 'FILTER', payload: data });
         setFiltering(false);
     }
 
+    /* If we are in filter mode... */
     if (filtering === true) {
         return (
             <FilterContainer>
@@ -43,7 +43,7 @@ export default function Filter(props) {
                             </div>
                             <div className="exit">
                                 <p onClick={() => {
-                                    setFiltering(false);
+                                    setFiltering(false); // exit filter mode
                                 }}>&#x78;</p>
                             </div>
                         </div>
@@ -255,17 +255,16 @@ export default function Filter(props) {
 
                     <Controls>
                         <SmallButtonSecondary onClick={() => {
-                            setFiltering(false);
-                            window.location.reload();
+                            setFiltering(false); // exit filter mode
+                            window.location.reload(); // refresh page to reset filters
                         }}>Reset</SmallButtonSecondary>
                         <SmallButtonPrimary type="submit" onClick={() => {
-                            // window.scroll(0, 0);
                         }}>Done</SmallButtonPrimary>
                     </Controls>
                 </form>
             </FilterContainer>
         )
-    }
+    } // otherwise, if we are not in filter mode...
     else {
         return null;
     }
