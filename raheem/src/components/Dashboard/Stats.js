@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 import { VictoryPie, VictoryTooltip, VictoryBar, VictoryStack, VictoryChart, VictoryAxis, VictoryLabel, VictoryPortal } from 'victory';
 
 //global styles
-import { Tag } from '../../styles/tags';
 import { SwitchContainer, StatsContainer, StatsContentContainer, StatsListContainer, StatsDivider, StatsListGrid, StatsVisualContainer, BarContainer, PieContainer  } from '../../styles/dashboard/statsStyles'
 
 //other styles
@@ -116,7 +115,7 @@ export default function Stats(props) {
     //data for ratings bar graph
     const ratingData = [
             {group: 'Officer Rating', rating: officerAvgRating(), label: officerAvgRating().toFixed(2)},
-            {group: 'Precinct Rating', rating: 5.25, label: "5.25"},
+            {group: 'Precinct Rating', rating: 4.00, label: "5.25"},
             {group: 'Department Rating', rating: departmentAvgRating(), label: departmentAvgRating().toFixed(2)}
     ];
 
@@ -417,18 +416,23 @@ export default function Stats(props) {
                 <label>Visual View</label>
                 </SwitchContainer>
             </StatsContentContainer>
-            
-            {/* list view */}
-            <div id="list-view">
-            <StatsContentContainer>
-                <StatsListContainer>
+
+            <StatsContentContainer className="totalreports">
+                <StatsListContainer >
                 <StatsListGrid className="totals">
                     <h2 className="context">Total Reports</h2>
                     <p className="values">{officerData.length}</p>
                 </StatsListGrid>
                 </StatsListContainer>
-                <StatsListContainer>
-                    <h2 className="context">Average Rating</h2>
+            </StatsContentContainer>
+            
+            
+            {/* list view */}
+            <div id="list-view">
+            <div className="desktop-container">
+            <StatsContentContainer>
+                <StatsListContainer >
+                    <h2 className="average">Average Rating</h2>
                     {/* stats based on slider from form */}
                     <p className="context">Rating Out of 10</p>
                         <StatsListGrid>
@@ -437,106 +441,16 @@ export default function Stats(props) {
                         </StatsListGrid>
                         <StatsListGrid>
                             <p>Precinct Average</p>
-                            <p className="values">0</p>
+                            <p className="values">4.00</p>
                         </StatsListGrid>
                         <StatsListGrid>
                             <p>Department Average</p>
                             <p className="values"> {departmentAvgRating().toFixed(2)} </p>
                         </StatsListGrid>
                 </StatsListContainer>
-            
-            <div className="report-type">                    
-            <StatsListContainer>    
-                <h2>Complaints </h2> 
-                <h3>Average Complaints Per Report</h3>
-                    <StatsListGrid>
-                        <p>Officer Average</p>
-                        <p className="values">{avgOfficerComplaint().toFixed(2)}</p>
-                    </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Department Average</p>
-                        <p className="values"> {avgDeptComplaint().toFixed(2)} </p>
-                    </StatsListGrid>
+                </StatsContentContainer>
 
-                <StatsDivider />
-                <h3>Complaint Totals</h3>
-                    {/* break down of types of complaints */}
-                    <StatsListGrid>
-                            <p>Officer Total</p>
-                            <p className="values"> {countOfficerComplaintTags} </p>
-                    </StatsListGrid>
-                    <StatsListGrid>
-                            <p>Department Total</p>
-                            <p className="values">{countDeptComplimentTags}</p>
-                        </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Illegally Searched</p>
-                        <p className="values">{officerIllegalSearch}</p>
-                    </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Profiled</p>
-                        <p className="values">{officerProfiled}</p>
-                    </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Physically Attacked</p>
-                        <p className="values">{officerPhysAtt}</p>
-                    </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Harrassed</p>
-                        <p className="values">{officerHarassed}</p>
-                    </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Wrongly Accused</p>
-                        <p className="values">{officerWronglyAccused}</p>
-                    </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Disrespected</p>
-                        <p className="values">{officerDisrespected}</p>
-                    </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Neglected</p>
-                        <p className="values">{officerNeglected}</p>
-                    </StatsListGrid>
-            </StatsListContainer>
-            {/* closes negative reports */}
-            
-            <StatsListContainer>
-                <h2 >Compliments </h2>
-               {/* total compliments for officer */}
-                <h3>Average of Compliments </h3>
-
-                    <StatsListGrid>
-                        <p>Average Compliments</p>
-                        <p className="values">{avgOfficerCompliments().toFixed(2)}</p>
-                    </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Department Average </p>
-                        <p className="values">{avgDeptCompliments().toFixed(2)}</p>
-                    </StatsListGrid>
-                <StatsDivider />
-                <h3>Compliment Totals by Type </h3>
-                    <StatsListGrid>
-                        <p>Officer Total</p>
-                        <p className="values">{countOfficerComplimentTags}</p>
-                    </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Department Total </p>
-                        <p className="values">{countDeptComplimentTags}</p>
-                    </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Helped</p>
-                        <p className="values">{countOfficerHelpedTags}</p>
-                    </StatsListGrid>
-                    <StatsListGrid>
-                        <p>Protected</p>
-                        <p className="values">{countOfficerProtectedTags}</p>
-                    </StatsListGrid>
-            </StatsListContainer>
-            {/* closes positive reports */}
-            </div>
-            </StatsContentContainer>
-            
-            <StatsContentContainer className="demographics">
+                <StatsContentContainer className="demographics">
                 <StatsListContainer>
                     <h2>Race</h2>
                         <StatsListGrid>
@@ -577,6 +491,101 @@ export default function Stats(props) {
                         </StatsListGrid>
                 </StatsListContainer>
         </StatsContentContainer>
+        </div>
+        
+        <div className="desktop-container">
+        <StatsContentContainer>              
+        <StatsListContainer className="comps">    
+            <h2>Complaints </h2> 
+            <h3>Average Per Report</h3>
+                <StatsListGrid>
+                    <p>Officer Average</p>
+                    <p className="values">{avgOfficerComplaint().toFixed(2)}</p>
+                </StatsListGrid>
+                <StatsListGrid>
+                    <p>Department Average</p>
+                    <p className="values"> {avgDeptComplaint().toFixed(2)} </p>
+                </StatsListGrid>
+
+            <StatsDivider />
+            <h3>Totals</h3>
+                {/* break down of types of complaints */}
+                <StatsListGrid>
+                    <p>Officer Total</p>
+                    <p className="values"> {countOfficerComplaintTags} </p>
+                </StatsListGrid>
+                <StatsListGrid>
+                    <p>Department Total</p>
+                    <p className="values">{countDeptComplimentTags}</p>
+                </StatsListGrid>
+                <StatsListGrid>
+                    <p>Illegally Searched</p>
+                    <p className="values">{officerIllegalSearch}</p>
+                </StatsListGrid>
+                <StatsListGrid>
+                    <p>Profiled</p>
+                    <p className="values">{officerProfiled}</p>
+                </StatsListGrid>
+                <StatsListGrid>
+                    <p>Physically Attacked</p>
+                    <p className="values">{officerPhysAtt}</p>
+                </StatsListGrid>
+                <StatsListGrid>
+                    <p>Harrassed</p>
+                    <p className="values">{officerHarassed}</p>
+                </StatsListGrid>
+                <StatsListGrid>
+                    <p>Wrongly Accused</p>
+                    <p className="values">{officerWronglyAccused}</p>
+                </StatsListGrid>
+                <StatsListGrid>
+                    <p>Disrespected</p>
+                    <p className="values">{officerDisrespected}</p>
+                </StatsListGrid>
+                <StatsListGrid>
+                    <p>Neglected</p>
+                    <p className="values">{officerNeglected}</p>
+                </StatsListGrid>
+        </StatsListContainer>
+        {/* closes negative reports */}
+        </StatsContentContainer>
+
+        <StatsContentContainer>
+        <StatsListContainer className="comps">
+            <h2 >Compliments </h2>
+            {/* total compliments for officer */}
+            <h3>Average Per Report </h3>
+
+                <StatsListGrid>
+                    <p>Average Compliments</p>
+                    <p className="values">{avgOfficerCompliments().toFixed(2)}</p>
+                </StatsListGrid>
+                <StatsListGrid>
+                    <p>Department Average </p>
+                    <p className="values">{avgDeptCompliments().toFixed(2)}</p>
+                </StatsListGrid>
+            <StatsDivider />
+            <h3>Totals </h3>
+                <StatsListGrid>
+                    <p>Officer Total</p>
+                    <p className="values">{countOfficerComplimentTags}</p>
+                </StatsListGrid>
+                <StatsListGrid>
+                    <p>Department Total </p>
+                    <p className="values">{countDeptComplimentTags}</p>
+                </StatsListGrid>
+                <StatsListGrid>
+                    <p>Helped</p>
+                    <p className="values">{countOfficerHelpedTags}</p>
+                </StatsListGrid>
+                <StatsListGrid>
+                    <p>Protected</p>
+                    <p className="values">{countOfficerProtectedTags}</p>
+                </StatsListGrid>
+        </StatsListContainer>
+        </StatsContentContainer>
+        {/* closes positive reports */}
+        </div>
         {/* closes list view */}
         </div>
 
@@ -584,8 +593,8 @@ export default function Stats(props) {
 
         {/* visual view */}
         <StatsContentContainer className="displayView" id="visual-view">
-        <StatsVisualContainer>
-        <h2>Average Overall Rating </h2>
+        <StatsVisualContainer >
+        <h2 className="average">Average Rating </h2>
             <BarContainer>
                 <VictoryStack
                     horizontal
@@ -615,8 +624,6 @@ export default function Stats(props) {
                             { x: 'Precinct Rating', y: 10, y0: 1},
                             { x: 'Department Rating', y: 10, y0: 1},
                         ]}
-                        categories={{
-                            x: ["birds", "cats", "dogs"]}}
                         labels={({ datum }) => datum.x}
                         labelComponent={
                             <VictoryPortal>
@@ -628,10 +635,35 @@ export default function Stats(props) {
                 </VictoryStack>
             </BarContainer>
         </StatsVisualContainer>
+
+        <StatsVisualContainer>
+                <h2>Race</h2>
+                <PieContainer>
+                    <VictoryPie
+                        desc={"pie Graph depicting reporter race by percentage"}
+                        style={{ labels: { fill: "#111111" } }}
+                        innerRadius={75}
+                        colorScale={raceColors}
+                        data={raceData}
+                        labels={raceLabels}
+                        labelComponent={
+                            <VictoryTooltip
+                                verticalAnchor="middle"
+                                x={200} y={250}
+                                orientation="top"
+                                pointerLength={10}
+                                flyoutWidth={130}
+                                flyoutHeight={50}
+                                flyoutStyle={{ fill: "#fff", stroke: "#111111", strokeWidth: 2 }}
+                            />}
+                    />
+                </PieContainer>
+        </StatsVisualContainer>
+            {/* closes race */}
             
             
             <div className="report-type">                
-            <StatsVisualContainer >
+            <StatsVisualContainer className="comps" >
                 <h2>Complaints </h2>
                 <h3>Average Per Report</h3>
                 <BarContainer>
@@ -658,17 +690,26 @@ export default function Stats(props) {
                     <VictoryPie
                         desc={"pie Graph depicting complaint percentages by type"}
                         style={{ labels: { fill: "#111111"  }}}
-                        colorScale={complaintColors}
                         innerRadius={75}
-                        labelComponent={<VictoryTooltip />}
-                        labels={complaintLabels}
+                        colorScale={complaintColors}
                         data={complaintsData}
+                        labels={complaintLabels}
+                        labelComponent={
+                            <VictoryTooltip
+                                verticalAnchor="middle"
+                                x={200} y={250}
+                                orientation="top"
+                                pointerLength={10}
+                                flyoutWidth={160}
+                                flyoutHeight={50}
+                                flyoutStyle={{ fill: "#fff", stroke: "#111111", strokeWidth: 2 }}
+                                />}
                     />
                 </PieContainer>
             </StatsVisualContainer>
             {/* closes negative reports */}
             
-            <StatsVisualContainer>
+            <StatsVisualContainer className="comps">
                 <h2 >Compliments</h2>
                 <h3>
                     Average Per Report
@@ -699,21 +740,20 @@ export default function Stats(props) {
                     <VictoryPie
                         desc={"pie Graph depicting compliment percentages by type"}
                         style={{ labels: { fill: "#111111" } }}
-                        colorScale={complimentColors}
                         innerRadius={75}
+                        colorScale={complimentColors}
+                        data={complimentsData}
                         labels={complimentLabel}
                         labelComponent={
-                                <VictoryTooltip
-                                    verticalAnchor="middle"
-                                    x={200} y={250}
-                                    orientation="top"
-                                    pointerLength={10}
-                                    // cornerRadius={50}
-                                    flyoutWidth={100}
-                                    flyoutHeight={50}
-                                    flyoutStyle={{ fill: "#fff", stroke: "#111111", strokeWidth: 2 }}
-                                />}
-                        data={complimentsData}
+                            <VictoryTooltip
+                                verticalAnchor="middle"
+                                x={200} y={250}
+                                orientation="top"
+                                pointerLength={10}
+                                flyoutWidth={130}
+                                flyoutHeight={50}
+                                flyoutStyle={{ fill: "#fff", stroke: "#111111", strokeWidth: 2 }}
+                            />}
                     />
                 </PieContainer>
             </StatsVisualContainer>
@@ -721,63 +761,35 @@ export default function Stats(props) {
         </div>
         {/* closes report-type */}
         
-
-
-        <div className="demographics">
-            <StatsVisualContainer>
-                <h2>Race</h2>
-                <PieContainer>
-                    <VictoryPie
-                        desc={"pie Graph depicting reporter race by percentage"}
-                        startAngle={90}
-                        endAngle={450}
-                        style={{ labels: { fill: "#111111" } }}
-                        innerRadius={75}
-                        colorScale={raceColors}
-                        data={raceData}
-                        labels={raceLabels}
-                        labelComponent={
-                            <VictoryTooltip
-                                verticalAnchor="middle"
-                                x={200} y={250}
-                                orientation="top"
-                                pointerLength={10}
-                                // cornerRadius={50}
-                                flyoutWidth={100}
-                                flyoutHeight={50}
-                                flyoutStyle={{ fill: "#fff", stroke: "#111111", strokeWidth: 2 }}
-                            />}
-                    />
-                </PieContainer>
-            </StatsVisualContainer>
-            {/* closes race */}
-        </div>
-        {/* closes demographics */}
     </StatsContentContainer>
     {/* closes visual view */}
 
-    <StatsContentContainer>
-        <StatsVisualContainer>
-            <h2>Report Date</h2>
+    {/* <StatsContentContainer>
+        <StatsVisualContainer className="reports">
+            <h2>Reports Per Day</h2>
 
-                    <div className="date-tags">
+            <div className="date-tags">
+                    // date picker? or something? 
+            </div>
 
-                    </div>
-
-                    <VictoryChart>
-                    <VictoryAxis tickCount={8}/>
-                    <VictoryBar
-                        data={[              
-                            { x: 1, y: 5 },
-                            { x: 2, y: 4 },
-                            { x: 3, y: 2 },
-                            { x: 4, y: 3 },
-                            { x: 5, y: 1 }]}
-                        style={{ data: { fill: "#FFF600", stroke: "black", strokeWidth: 2 }}}
-                    />
-                    </VictoryChart>
-                </StatsVisualContainer>
-    </StatsContentContainer>
+            <VictoryChart>
+            <VictoryAxis tickCount={8}/>
+            <VictoryBar
+                data={[              
+                    { x: 'Sun', y: 5 },
+                    { x: 'Mon', y: 4 },
+                    { x: 'Tues', y: 2 },
+                    { x: 'Wed', y: 3 },
+                    { x: 'Thurs', y: 1 },
+                    { x: 'Fri', y: 4 },
+                    { x: 'Sat', y: 6 },
+                ]}
+                labels= {({ datum }) => datum.y}
+                style={{ data: { fill: "#FFF600", stroke: "black", strokeWidth: 2 }}}
+            />
+            </VictoryChart>
+        </StatsVisualContainer>
+    </StatsContentContainer> */}
     {/* closes report date */}
 
     </FormGroup>

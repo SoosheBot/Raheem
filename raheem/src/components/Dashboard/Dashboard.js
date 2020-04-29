@@ -27,7 +27,7 @@ export default function Dashboard() {
             .get()
             .then(function (querySnapshot) {
                 querySnapshot.forEach(function (doc) {
-                    if (doc.data().officerBadgeID === params.id) {
+                    if (doc.data().officerBadgeID == params.id) {
                         console.log(`RESPONSE `, doc.data());
                         setOfficer(doc.data());
                     }
@@ -65,7 +65,7 @@ export default function Dashboard() {
                         </div>
                     </div>
                 </div>
-                <ReportButton onClick={() => history.push(`/report`)}>Add a report</ReportButton>
+                <ReportButton onClick={() => history.push(`/report/${officer.officerBadgeID}`)}>Add A Report</ReportButton>
             </DashboardOfficer>
 
             <DashboardView>
